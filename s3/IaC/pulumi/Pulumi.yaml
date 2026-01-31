@@ -1,0 +1,11 @@
+name: aws-s3-saa
+description: A python project for AWS s3 SAA.
+runtime:
+  name: python
+  options:
+    toolchain: pip
+    virtualenv: venv
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: aws-python
