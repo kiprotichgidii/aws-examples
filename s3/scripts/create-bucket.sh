@@ -6,6 +6,8 @@ if [ -z "$1" ]; then
 fi
 
 BUCKET_NAME=$1
-REGION=$2
+REGION=${2:-"us-east-1"}
 
-aws s3api create-bucket --bucket $BUCKET_NAME --region $REGION
+aws s3api create-bucket \
+  --bucket $BUCKET_NAME \
+  --create-bucket-configuration="LocationConstraint=$REGION"
