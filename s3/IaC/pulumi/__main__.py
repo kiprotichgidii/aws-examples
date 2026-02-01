@@ -8,3 +8,4 @@ bucket = s3.Bucket('my-pulumi-bucket')
 
 # Export the name of the bucket
 pulumi.export('bucket_name', bucket.id)
+
