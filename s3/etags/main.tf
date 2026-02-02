@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "amzn-bucket" {
-  #bucket = "amzn-tf-s3-bucket"
+  bucket = "amzn-tf-s3-bucket"
 
   tags = {
     Name        = "My Terraform bucket"
@@ -21,7 +21,7 @@ resource "aws_s3_bucket" "amzn-bucket" {
 }
 
 resource "aws_s3_object" "index" {
-  bucket = aws_s3_bucket.amzn-bucket.id
+  bucket = aws_s3_bucket.amzn-bucket.bucket
   key    = "index.html"
   source = "index.html"
 
