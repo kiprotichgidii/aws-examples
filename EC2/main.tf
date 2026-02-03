@@ -127,6 +127,7 @@ resource "aws_instance" "amazon-ec2-instance" {
   instance_type = "t3.micro" # Free Tier eligible
   subnet_id     = aws_subnet.terraform_subnet.id
   key_name      = aws_key_pair.ssh_public_key.key_name
+  region        = "us-east-1"
   vpc_security_group_ids = [
     aws_security_group.terraform_security_group.id
   ]
