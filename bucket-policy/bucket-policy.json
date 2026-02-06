@@ -1,0 +1,19 @@
+{
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::387543059434:user/gedionkiprotich"
+            },
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::bucket-policy-gidi",
+                "arn:aws:s3:::bucket-policy-gidi/*"
+            ]
+        }
+    ]
+}
