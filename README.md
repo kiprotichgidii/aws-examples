@@ -34,3 +34,32 @@ Batch Operations:
 In order to use S3 Batch Operations, you need to provide lists of objects in an S3 or supply an S3 inventory report `manifest.json`.
 
 You can also have Batch Operations generate out a completion report to audit the outcome of bulk operations.
+
+### Amazon S3 Inventory
+
+Amazon S3 Inventory takes inventory of objects in an S3 bucket on a repeated schedule so that you have an audit history of object changes.
+
+Amazon S3 will outout the inventory into the destination of another S3 bucket in the form of a manifest file.
+
+You can specify additional metadata to be included in the inventory report such as:
+- Object size
+- Last modified date
+- Storage class
+- Object tags
+- Object ACLs
+- Object retention
+- Object legal hold
+- Object encryption status
+
+#### Frequency
+- Daily: delivered within 48 hours
+- Weekly: First report delivered within 48 hrs, full reports every Sunday.
+
+#### Output Format
+- CSV (Comma Separated Values)
+- ORC (Optimized Row Columnar)
+- Parquet (Columnar Storage File Format) Apache Parquet
+
+#### Inventory Scope
+- Specific prefixes to filter objects
+- Specific all or only current version
