@@ -22,4 +22,16 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 #### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
 
+Batch Operations:
+- Copy - Copy objects listed in the manifest to the specified destination bucket.
+- Update object metadata: Copy objects listed in the manifest to the specified destination bucket.
+- Delete objects
+- Invoke Lambda functions
+- Restore objects from S3 Glacier
+- Update S3 Access Control Lists (ACLs)
+- Update S3 Object Lock settings
+- Update S3 Storage Class
+- Update S3 Tags
+- Update S3 Website configuration
+
 
