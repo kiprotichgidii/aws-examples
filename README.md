@@ -27,4 +27,10 @@ Batch Operations:
 - **Invoke AWS Lambda Function**: Run a Lambda function for each object in the manifest.
 - **Replace Object Tags**: Replace the tags on Amazon S3 objects listed in the manifest.
 - **Replcae ACLs**: Replace ACLs on Amazon S3 objects listed in the manifest.
-- 
+- **Restore Objects**: Restore objects from S3 Glacier.
+- **Object Lock Retention**: Prevents Overwriting or Deleting objects for a fixed amount of time.
+- **Object Lock Legal Hold**: Prevents Overwriting or Deleting objects until the legal hold is removed.
+
+In order to use S3 Batch Operations, you need to provide lists of objects in an S3 or supply an S3 inventory report `manifest.json`.
+
+You can also have Batch Operations generate out a completion report to audit the outcome of bulk operations.
