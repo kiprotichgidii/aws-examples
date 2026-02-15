@@ -17,7 +17,6 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 4. Design Cost-Optimized Architectures (20%): Right-sizing resources, using Savings Plans/Reserved Instances, and monitoring costs with AWS Cost Explorer.
 
 
-
 ## Amazon S3(Simple Storage Service)
 
 A codebase for all the examples used for the AWS Certified Solutions Architect(SAA-C03) exam prep.
