@@ -19,5 +19,7 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 
 ## Amazon S3(Simple Storage Service)
 
-A codebase for all the examples used for the AWS Certified Solutions Architect(SAA-C03) exam prep.
+#### S3 Batch Operations
+S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
+
 
