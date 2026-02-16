@@ -59,7 +59,20 @@ S3 bucket names are used to form URL links to perform various HTTPS operations i
    - Only used with **S3 Express One Zone** Storage class
    - Recommended for single-digit millisecond performance for PUT and GET Ops.
    - No prefix limits for directory buckets
-   - 
+   - Individual directories can scale horizontally
+   - Default limit is 10 directory buckets per account
+
+#### S3 Bucket Folders
+
+S3 Bucket Folders are S3 objects with a name that ends with a forward slash `/`.
+
+### S3 Objects
+
+S3 Objects are resources that represnet data and are not infrastructure resources.
+**Properties**
+  - **Etags**: a way to detect when the contents of an object have changed without downloading the contents of the object. 
+  - **Checksums**: ensures the integrity of files being uploaded to or from S3.
+  - **Object Prefixes**: 
 
 
 #### S3 Batch Operations
