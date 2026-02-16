@@ -78,7 +78,7 @@ S3 Objects are resources that represnet data and are not infrastructure resource
   - **Object Locking**: Makes data files immutable
   - **Object Versioning**: Having multiple versions of a data file
 
-#### Object Etags
+#### S3 Object Etags
 A response header that is returned when an object is uploaded to S3. It is a hash of the object contents.
 - Uses a hashing function to generate a unique identifier for the object e.g MD5 or SHA-1
 - Etags are part of the HTTP protocol
@@ -87,6 +87,17 @@ A response header that is returned when an object is uploaded to S3. It is a has
 - Etags reflect changes only to the object contents and not metadata
 - Etags represent a specific version of an object
 
+#### S3 Object Checksums
+Amazon S3 uses checksums to verify data integrity of files on the transfer of data to and from S3.
+AWS allows you to chnage the checksum algorithm during the uploading of an object
+
+**Checksum Algorithms**
+- **CRC32**: A 32-bit checksum value that is calculated from the object data.
+- **CRC32C**: A 32-bit checksum value that is calculated from the object data.
+- **SHA1**: A 160-bit checksum value that is calculated from the object data.
+- **SHA256**: A 256-bit checksum value that is calculated from the object data.
+
+#### S3 Object Prefixes
 
 
 
