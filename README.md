@@ -331,7 +331,29 @@ S3 Glacier Storage Classes offer simila functionality to S3 Glacier but with gre
   - S3 Glacier Flexible Retrieval
   - S3 Glacier Deep Archive
 
+#### S3 Glacier Instant Retrieval
 
+S3 Glacier Instant Retrieval is a storage class designed for rarely acccessed data that still needs immediate access in performance sensitive use cases.
+
+**Properties**
+
+- High Durability: 99.999999999% (11 Nines)
+- High Availability: 99.9% (3 nines)
+- Cost-effective: 68% cheaper than S3 Standard -> for long-lived data that is accessed once a quarter.
+- Retrieval Time: Milliseconds
+- Pricing:
+  - Storage Per GB
+  - Per request
+  - Has a retrieval fee
+  - Has a minimum storage duration charge of 30 days
+
+- Use cases:
+  - Rarely Accessed data that needs immediate access
+  - Image hosting
+  - File sharing apps
+  - Medical Imaging and health records
+  - New media assets
+  - Satellite and Aerial imaging
 
 
 ### S3 Batch Operations
