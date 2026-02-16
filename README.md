@@ -178,23 +178,41 @@ s3://my-example-bucket/object-name
 
 Amazon S3 supports two request styles:
 
-1. **Path Style**: The bucket name is in the request path. i.e `http://bucket-name.s3.amazonaws.com/object-name`
-   e.g
+1. **Path Style**: The bucket name is in the request path. i.e `http://bucket-name.s3.amazonaws.com/object-name` e.g,
    ```bash
    DELETE/examplebucket/objectname HTTP/1.1
    Host: s3.amazonaws.com
    x-amz-date: Wed, 21 Oct 2015 18:27:50 +0000
    Authorization: AWS4-HMAC-SHA256 Credential=AKIAIOSFODNN7EXAMPLE/20151021/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature=b64-encoded-signature
    ```
-2. **Virtual Hosted Style**: The bucket name is a subdomain on the host. i.e `http://bucket-name.s3.amazonaws.com/object-name`
-   e.g
+2. **Virtual Hosted Style**: The bucket name is a subdomain on the host. i.e `http://bucket-name.s3.amazonaws.com/object-name` e.g,
    ```bash
    DELETE/objectname HTTP/1.1
    Host: examplebucket.s3.amazonaws.com
    x-amz-date: Wed, 21 Oct 2015 18:27:50 +0000
    Authorization: AWS4-HMAC-SHA256 Credential=AKIAIOSFODNN7EXAMPLE/20151021/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature=b64-encoded-signature
    ```
+S3 supports both Virtual-hosted and path-style requests. However, Virtual-hosted style is the recommended way to access S3 buckets and objects since path-style URIs will be discontinued in the future.
+To force AWS CLI to use virtual-hosted style requests, you need to globally configure the CLI. e.g, 
+```bash
+aws configure set s3.addressing_style virtual
+```
 
+### S3 Dualstack Endpoints
+There are two possible endpoints when accessing the Amazon S3 API:
+
+1. **Standard Endpoint**: Handles IPv4 traffic e.g.
+
+   ```bash
+   https://s3.us-east-1.amazonaws.com
+   ```
+2. **Dualstack Endpoint**: Handles both IPv4 and IPv6 traffic e.g.
+
+   ```bash
+   https://s3.dualstack.us-east-1.amazonaws.com
+   ```
+
+At one point, AWS only supported IPv4 traffic. However, with the deprecation of IPv4, AWS introduced dualstack endpoints to support both IPv4 and IPv6 traffic.
 
 
 ### S3 Batch Operations
