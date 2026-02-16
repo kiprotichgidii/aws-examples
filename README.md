@@ -232,9 +232,19 @@ It is desgined for general purpose storage for frequently accessed data.
 - Retrieval Time: Milliseconds
 - Higher throughput: optimized for data that is frequently accessed and/or requires real time access.
 - Scalability: Easily scales to storage size and number of requests.
-- Does not have a Minimum Storage Duration Charge.
-- Is has no retrieval fees.
-- Pricing is per GB per requests.
+- Pricing:
+  - Storage Per GB
+  - Per Request
+  - Has no retrieval fee
+  - Has no minimum storage duration charge
+- Use cases:
+  - Content Delivery
+  - Dynamic websites
+  - Mobile applications
+  - Gaming applications
+  - Big Data analytics
+  - Machine learning
+  - Internet of Things (IoT)
 
 #### S3 Reduced Redundancy Storage (RRS)
 S3 RRS is a legacy storage class to store non-critical, reproducible data at lower levels of redundancy than AWS S3's standard storage. RRS currently provides no cost-benefit to customers on AWS for the reduced redundancy and has no place in modern storage use-cases.
