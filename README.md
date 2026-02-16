@@ -275,6 +275,20 @@ S3 Standard-IA is a storage class that is designed for data that is less frequen
   - Backup data storage
   - Long-term data stores
 
+#### S3 Express One Zone Storage Class
+
+Amazon S3 Express One Zone delivers consistent singe-digit millisecond data access for the most frequently accessed data and latency-sensitive applications.
+
+**Properties**
+
+- It is the lowest latency cloud-object storage class available.
+- It offers data access speeds upto 10X faster than S3 Standard.
+- Requests cost upto 50% less than S3 Standard.
+- Data is stored in a single AZ(User selected).
+- Data is stored in a new bucket type(Amazon S3 directory bucket).
+
+The S3 directory bucket used supports simple real-folder structure. Only allowed 10 S3 directory buckets per AWS account by default. Express One Zone applies a flat per request charge for requests of upto 512KB.
+
 
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
