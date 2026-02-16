@@ -21,6 +21,23 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 
 S3 bucket names are used to form URL links to perform various HTTPS operations i.e `https://myexamplebucketname.s3.amazonaws.com/object-name`.
 
+#### S3 Naming Rules
+- Must be between 3-63 characters long
+- Must contain only lowercase letters, numbers, hyphens, and underscores
+- Must start and end with a letter or number
+- Must not contain spaces
+- Must not contain uppercase letters
+- Must not contain special characters
+- Must not contain consecutive periods
+- Must not start with `xn--`, `sthree-`, or `sthree-configuration` prefix
+- Must not end with `s3outpost` suffix
+- Must not be formatted as IP address
+- Must begin and end with a letter
+- Must not end with `--s3alias` or `--ol-s3`
+- Must be unique across all AWS accounts
+- Cannot ne reused unless original bucket is deleted
+
+
 #### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
 
