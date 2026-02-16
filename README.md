@@ -72,7 +72,14 @@ S3 Objects are resources that represnet data and are not infrastructure resource
 **Properties**
   - **Etags**: a way to detect when the contents of an object have changed without downloading the contents of the object. 
   - **Checksums**: ensures the integrity of files being uploaded to or from S3.
-  - **Object Prefixes**: 
+  - **Object Prefixes**: Simulates file-system folders in a flat hierarchy.
+  - **Object Metadata**: Describes the contents of the data
+  - **Object tags**: Resource tagging but at the object level.
+  - **Object Locking**: Makes data files immutable
+  - **Object Versioning**: Having multiple versions of a data file
+
+#### Object Etags
+A response header that is returned when an object is uploaded to S3. It is a hash of the object contents.
 
 
 #### S3 Batch Operations
