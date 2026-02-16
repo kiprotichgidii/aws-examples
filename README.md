@@ -110,6 +110,7 @@ Metadata is used for;
 - S3 allows you to attach metadata to S3 objects at anytime
 
 1. **System Defined Metadata**
+
 This is metadata that only Amazon can control. i.e
    - `Content-Type`
    - `Content-Encoding`
@@ -118,6 +119,7 @@ This is metadata that only Amazon can control. i.e
    - `Expires`
    - `x-amz-website-redirect-location:/new-page.html`
 2. **User Defined Metadata**
+
 User-defined metadata is metadata that is set by the user and must start with `x-amz-meta-`
    - `x-amz-meta-encryption:"AES-256"`
    - `x-amz-meta-access-level:"confidential"`
