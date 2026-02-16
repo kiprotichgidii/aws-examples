@@ -53,7 +53,13 @@ S3 bucket names are used to form URL links to perform various HTTPS operations i
    - Used with all storage classes except with **S3 Express One Zone** Storage class
    - No prefix limits
    - Default liit of 100 general purpose buckets per account
+
 2. **Directory Buckets**
+   - Organizes data in folder hierarchy
+   - Only used with **S3 Express One Zone** Storage class
+   - Recommended for single-digit millisecond performance for PUT and GET Ops.
+   - No prefix limits for directory buckets
+   - 
 
 
 #### S3 Batch Operations
