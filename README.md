@@ -241,6 +241,30 @@ S3 RRS is a legacy storage class to store non-critical, reproducible data at low
 
 RRS is no longer cost-effectice, and is not recommended for use. It is only still available in the AWS Console as an option due to legacy customers.
 
+#### S3 Standard-Infrequent Access (S3 Standard-IA)
+
+S3 Standard-IA is a storage class that is designed for data that is less frequently accessed but requires rapid access when needed.
+
+**Properties**
+
+- High Durability: 99.999999999% (11 nines)
+- High Availability: 99.9% (3 nines)
+- Data Redundancy: Data is stored across 3 or more AZs.
+- Retrieval Time: Milliseconds.
+- High Throughput: Optimized for rapi access.
+- Cost-effective: Costs 50% less than S3 standard, but only if you do not access a file more than once in a month.
+- Scalability: Easily scales to storage size and number of requests.
+- Pricing:
+  - Storage Per GB
+  - Per request
+  - Has a retrieval fee
+  - Has a minimum storage duration charge of 30 days
+
+- Use cases:
+  - Disaster Recover storage
+  - Backup data storage
+  - Long-term data stores
+
 
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
