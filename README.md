@@ -144,6 +144,10 @@ Object retention is handled in two different ways:
 
 S3 Object Locking can only be set via the AWS API. i.e (CLI,SDK), and not in the AWS Console.
 
+### AWS S3 Bucket URI
+The S3 Bucket URI is a way to reference the address of an S3 bucket and S3 objects. The S3 Bucket URI is required for specific AWS CLI commands. e.g `s3://my-example-bucket/object-name`.
+
+
 
 #### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
