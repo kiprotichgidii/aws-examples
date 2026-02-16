@@ -155,7 +155,7 @@ s3://my-example-bucket/object-name
 - `aws s3`: a high-level way to interact with S3 buckets and objects. e.g;
 
   ```bash
-  aws-s3 cp hello.txt se://mybucket/hello.txt
+  aws-s3 cp hello.txt s3://mybucket/hello.txt
   ```
 - `aws s3api`: a low-level way to interact with S3 buckets and objects. e.g:
 
@@ -213,6 +213,10 @@ There are two possible endpoints when accessing the Amazon S3 API:
    ```
 
 At one point, AWS only supported IPv4 traffic. However, with the deprecation of IPv4, AWS introduced dualstack endpoints to support both IPv4 and IPv6 traffic.
+
+### S3 Storage Classes
+
+
 
 
 ### S3 Batch Operations
