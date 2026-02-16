@@ -98,7 +98,9 @@ AWS allows you to chnage the checksum algorithm during the uploading of an objec
 - **SHA256**: A 256-bit checksum value that is calculated from the object data.
 
 #### S3 Object Prefixes
-
+These are prefixes that proceed the object filename and is part of the object key name. e.g `assests/images/image.png`. In this case `assets/images` is the prefix.
+Object prefixes allows for a way ti organize, group, and filter objects in a bucket.
+Prefixes use the forwad slash `/` as a delimiter to group similar data to directories, or subdirectories.
 
 
 #### S3 Batch Operations
