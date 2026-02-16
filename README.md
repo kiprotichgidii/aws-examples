@@ -216,7 +216,25 @@ At one point, AWS only supported IPv4 traffic. However, with the deprecation of 
 
 ### S3 Storage Classes
 
+AWS offers a range of S3 storage classes that trade retrieval time, accessibility and durability for cheaper storage costs.
 
+#### S3 Standard Storage Class
+
+S3 Standard is the default storage class for S3 buckets. It is a general-purpose storage class that is suitable for a wide range of use cases.
+
+It is desgined for general purpose storage for frequently accessed data.
+
+**Properties**
+
+- High Durability: 99.999999999% (11 nines)
+- High Availability: 99.99%
+- Data Redundancy: Data is stored across 3 or more AZs.
+- Retrieval Time: Milliseconds
+- Higher throughput: optimized for data that is frequently accessed and/or requires real time access.
+- Scalability: Easily scales to storage size and number of requests.
+- Does not have a Minimum Storage Duration Charge.
+- Is has no retrieval fees.
+- Pricing is per GB per requests.
 
 
 ### S3 Batch Operations
