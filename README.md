@@ -48,13 +48,14 @@ S3 bucket names are used to form URL links to perform various HTTPS operations i
 ### Types of S3 Buckets
 
 1. General Purpose
-  - Organizes data in a flat hierarchy
-  - It is the original S3 bucket type
-  - Used with all storage classes except with **S3 Express One Zone** Storage class
-  - No prefix limits
-  - Default liit of 100 general purpose buckets per account
+   - Organizes data in a flat hierarchy
+   - It is the original S3 bucket type
+   - Used with all storage classes except with **S3 Express One Zone** Storage class
+   - No prefix limits
+   - Default liit of 100 general purpose buckets per account
 
 2. Directory Buckets
+   - 
 
 
 #### S3 Batch Operations
