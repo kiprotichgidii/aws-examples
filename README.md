@@ -120,10 +120,13 @@ This is metadata that only Amazon can control. i.e
    - `x-amz-website-redirect-location:/new-page.html`
 2. **User Defined Metadata**
 
-User-defined metadata is metadata that is set by the user and must start with `x-amz-meta-`
+User-defined metadata is metadata that is set by the user and must start with `x-amz-meta-`.
    - `x-amz-meta-encryption:"AES-256"`
    - `x-amz-meta-access-level:"confidential"`
    - `x-amz-expiration-date:"2026-12-31"`
+
+#### WORM in the Cloud
+Write Once Read Many (WORM) is a storage compliance feature that makes data immutable. You write once and the file can never be modified or deleted, but can be read an unlimited number of times.
 
 
 
