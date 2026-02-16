@@ -128,6 +128,13 @@ User-defined metadata is metadata that is set by the user and must start with `x
 #### WORM in the Cloud
 Write Once Read Many (WORM) is a storage compliance feature that makes data immutable. You write once and the file can never be modified or deleted, but can be read an unlimited number of times.
 
+#### S3 Object Lock
+S3 Object Lock is a feature that allows you to prevent objects from being deleted or overwritten for a fixed amount of time.
+  - Data Ingerity
+  - Regulatory Compliance
+S3 Object Lock is an SEC 17a-4, CTCC, and FINRA regulatory compliance feature.
+For S3 Object locking, objects are stored using a WORM model, just like in S3 Glacier.
+
 
 
 #### S3 Batch Operations
