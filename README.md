@@ -145,11 +145,20 @@ Object retention is handled in two different ways:
 S3 Object Locking can only be set via the AWS API. i.e (CLI,SDK), and not in the AWS Console.
 
 ### AWS S3 Bucket URI
-The S3 Bucket URI is a way to reference the address of an S3 bucket and S3 objects. The S3 Bucket URI is required for specific AWS CLI commands. e.g `s3://my-example-bucket/object-name`.
+The S3 Bucket URI is a way to reference the address of an S3 bucket and S3 objects. The S3 Bucket URI is required for specific AWS CLI commands. e.g.
+
+```bash
+s3://my-example-bucket/object-name
+```
 
 ### AWS S3 CLI
-- `aws s3`: a high-level way to interact with S3 buckets and objects. e.g `aws-s3 cp hello.txt se://mybucket/hello.txt`.
+- `aws s3`: a high-level way to interact with S3 buckets and objects. e.g;
+
+  ```bash
+  aws-s3 cp hello.txt se://mybucket/hello.txt
+  ```
 - `aws s3api`: a low-level way to interact with S3 buckets and objects. e.g:
+
   ```bash
   aws s3api put-object \
     --bucket mybucket \
@@ -157,6 +166,7 @@ The S3 Bucket URI is a way to reference the address of an S3 bucket and S3 objec
     --body hello.txt
   ```
 - `aws s3control`: managing S3 endpoints, S3 outposts, S3 Batch Operations, S3 Inventory, S3 Replication, S3 Storage Lens, and S3 Object Lock.
+
   ```bash
   aws s3control describe-job \
     --account-id 123456789012 \
