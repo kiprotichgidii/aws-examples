@@ -139,11 +139,10 @@ S3 Object Locking can be used to prevent objects from being deleted or overwritt
   - Indefinitely
 
 Object retention is handled in two different ways:
-  - Retention Periods: fixed period of time during which objects are protected from deletion or overwrite.
-  - Legal Holds: A hold placed on an object that prevents it from being deleted or overwritten. Legal holds can be placed on objects indefinitely and can be removed at any time.
+  - **Retention Periods**: fixed period of time during which objects are protected from deletion or overwrite.
+  - **Legal Holds**: A hold placed on an object that prevents it from being deleted or overwritten. Legal holds can be placed on objects indefinitely and can be removed at any time.
 
 S3 Object Locking can only be set via the AWS API, e,g (CLI,SDK), and not in the AWS Console.
-
 
 
 #### S3 Batch Operations
