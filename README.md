@@ -80,6 +80,14 @@ S3 Objects are resources that represnet data and are not infrastructure resource
 
 #### Object Etags
 A response header that is returned when an object is uploaded to S3. It is a hash of the object contents.
+- Uses a hashing function to generate a unique identifier for the object e.g MD5 or SHA-1
+- Etags are part of the HTTP protocol
+- Etags are used for revalidating in caching systems
+- Etags represent a hash of an S3 object
+- Etags reflect changes only to the object contents and not metadata
+- Etags represent a specific version of an object
+
+
 
 
 #### S3 Batch Operations
