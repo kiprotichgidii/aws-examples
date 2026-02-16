@@ -102,6 +102,28 @@ These are prefixes that proceed the object filename and is part of the object ke
 Object prefixes allows for a way ti organize, group, and filter objects in a bucket.
 Prefixes use the forwad slash `/` as a delimiter to group similar data to directories, or subdirectories.
 
+#### S3 Object Metadata
+Metadata provides information about other data but not the contents itself.
+Metadata is used for;
+- Categorization and organization of data
+- Providing context about the data
+- S3 allows you to attach metadata to S3 objects at anytime
+
+1. **System Defined Metadata**
+This is metadata that only Amazon can control. i.e
+   - `Content-Type`
+   - `Content-Encoding`
+   - `Content-Language`
+   - `Cache-Control`
+   - `Expires`
+   - `x-amz-website-redirect-location:/new-page.html`
+2. **User Defined Metadata**
+User-defined metadata is metadata that is set by the user and must start with `x-amz-meta-`
+   - `x-amz-meta-encryption:"AES-256"`
+   - `x-amz-meta-access-level:"confidential"`
+   - `x-amz-expiration-date:"2026-12-31"`
+
+
 
 #### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
