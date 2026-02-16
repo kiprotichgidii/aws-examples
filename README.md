@@ -174,8 +174,30 @@ s3://my-example-bucket/object-name
   ```
 - `aws s3outposts`: manage endpoints for S3 outposts
 
+### S3 Request Styles
 
-#### S3 Batch Operations
+Amazon S3 supports two request styles:
+
+1. **Path Style**: The bucket name is in the request path. i.e `http://bucket-name.s3.amazonaws.com/object-name`
+   - Example:
+   ```bash
+   DELETE/examplebucket/objectname HTTP/1.1
+   Host: s3.amazonaws.com
+   x-amz-date: Wed, 21 Oct 2015 18:27:50 +0000
+   Authorization: AWS4-HMAC-SHA256 Credential=AKIAIOSFODNN7EXAMPLE/20151021/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature=b64-encoded-signature
+   ```
+2. **Virtual Hosted Style**: The bucket name is a subdomain on the host. i.e `http://bucket-name.s3.amazonaws.com/object-name`
+   - Example:
+   ```bash
+   DELETE/objectname HTTP/1.1
+   Host: examplebucket.s3.amazonaws.com
+   x-amz-date: Wed, 21 Oct 2015 18:27:50 +0000
+   Authorization: AWS4-HMAC-SHA256 Credential=AKIAIOSFODNN7EXAMPLE/20151021/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature=b64-encoded-signature
+   ```
+
+
+
+### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
 
 Batch Operations:
