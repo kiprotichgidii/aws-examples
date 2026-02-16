@@ -384,6 +384,19 @@ Archived objects have an additional 40KBS of data:
   - 32KB for archive index and metadata
   - 8KB for the name of the object
 
+#### S3 Intelligent-Tiering Storage Class
+
+S3 Intelligent-Tiering storage class automatically moves objects into different storage tiers based on access patterns to reduce storage costs. AWS charges a low monthly cost for object monitoring and automation.
+
+**Access Tiers**
+
+1. **Frequent Access Tier**: The default tier, objects remain in there as long as they are being accessed.
+2. **Infrequent Access Tier**: Objects are automatically moved into this tier after 30 days of no access.
+3. **Archive Instant Access Tier**: Objects are automatically moved into this tier after 90 days of no access.
+4. **Archive Access Tier**: After activation, objects are automatically moved into this tier after 90 days of no access.
+5. **Deep Archive Access Tier**: After activation, objects are automatically moved into this tier after 180 days of no access.
+
+
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
 
