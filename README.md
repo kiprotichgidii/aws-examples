@@ -227,7 +227,7 @@ It is desgined for general purpose storage for frequently accessed data.
 **Properties**
 
 - High Durability: 99.999999999% (11 nines)
-- High Availability: 99.99%
+- High Availability: 99.99% (4 nines)
 - Data Redundancy: Data is stored across 3 or more AZs.
 - Retrieval Time: Milliseconds
 - Higher throughput: optimized for data that is frequently accessed and/or requires real time access.
@@ -235,6 +235,11 @@ It is desgined for general purpose storage for frequently accessed data.
 - Does not have a Minimum Storage Duration Charge.
 - Is has no retrieval fees.
 - Pricing is per GB per requests.
+
+#### S3 Reduced Redundancy Storage (RRS)
+S3 RRS is a legacy storage class to store non-critical, reproducible data at lower levels of redundancy than AWS S3's standard storage. RRS currently provides no cost-benefit to customers on AWS for the reduced redundancy and has no place in modern storage use-cases.
+
+RRS is no longer cost-effectice, and is not recommended for use. It is only still available in the AWS Console as an option due to legacy customers.
 
 
 ### S3 Batch Operations
