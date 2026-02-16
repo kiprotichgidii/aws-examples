@@ -22,6 +22,7 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 S3 bucket names are used to form URL links to perform various HTTPS operations i.e `https://myexamplebucketname.s3.amazonaws.com/object-name`.
 
 #### S3 Naming Rules
+
 - Must be between 3-63 characters long
 - Must contain only lowercase letters, numbers, hyphens, and underscores
 - Must start and end with a letter or number
@@ -36,6 +37,24 @@ S3 bucket names are used to form URL links to perform various HTTPS operations i
 - Must not end with `--s3alias` or `--ol-s3`
 - Must be unique across all AWS accounts
 - Cannot ne reused unless original bucket is deleted
+
+#### S3 Bucket Restrictions and Limitations
+
+- Default buckets size is 100 but can be increased to 1000 buckets by requesting.
+- Bucket needs to be empty before deletion
+- There is no maximum bucket size and objects, files can be between 0-5TB
+- Get, Put, List and Delete Ops are designed for HA. 
+
+### Types of S3 Buckets
+
+1. General Purpose
+  - Organizes data in a flat hierarchy
+  - It is the original S3 bucket type
+  - Used with all storage classes except with **S3 Express One Zone** Storage class
+  - No prefix limits
+  - Default liit of 100 general purpose buckets per account
+
+2. Directory Buckets
 
 
 #### S3 Batch Operations
