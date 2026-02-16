@@ -19,7 +19,7 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 
 ## Amazon S3(Simple Storage Service)
 
-S3 bucket names are used to form URL links to perform various HTTPS operations i.e https://myexamplebucketname.s3.amazonaws.com/object-name.
+S3 bucket names are used to form URL links to perform various HTTPS operations i.e `https://myexamplebucketname.s3.amazonaws.com/object-name`.
 
 #### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
