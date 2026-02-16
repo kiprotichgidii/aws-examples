@@ -289,6 +289,27 @@ Amazon S3 Express One Zone delivers consistent singe-digit millisecond data acce
 
 The S3 directory bucket used supports simple real-folder structure. Only allowed 10 S3 directory buckets per AWS account by default. Express One Zone applies a flat per request charge for requests of upto 512KB.
 
+#### S3 One Zone-IA (Infrequent Access)
+
+S3 One Zone-IS is designed for data that is less frequently accessed and has additional saving at reduced availability.
+
+**Properties**
+
+- High Durability: 99.999999999% (11 nines)
+- Lower Availability: Single AZ has lower availability than S3 Standard-IA.
+- Cost-effective: One AZ
+- Retrieval Time: Milliseconds
+- Data Redundancy: Data is stored across a single AZ.
+- Retrieval Time: Milliseconds.
+- Pricing:
+  - Storage Per GB
+  - Per request
+  - Has a retrieval fee
+  - Has a minimum storage duration charge of 30 days
+
+- Use cases:
+  - Secondary Backup copies of on-premise data
+  - Infrequently accessed non-mission-critical data
 
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
