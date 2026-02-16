@@ -355,6 +355,21 @@ S3 Glacier Instant Retrieval is a storage class designed for rarely acccessed da
   - New media assets
   - Satellite and Aerial imaging
 
+#### S3 Glacier Flexible Retrieval
+
+S3 Glacier Flexible Retrieval combines S3 and Glacier into a single set of APIs. It's considerably faster than Glacier Vault-based storage.
+
+There are three retrieval Tiers when it comes to S3 Glacier Flexible Retrieval:
+
+1. **Expedited Tier**: 1-5 minutes, for urgent requests, limited to 250MB archive size.
+2. **Standard Tier**: 3-5 hours, no archive size limit 
+3. **Bulk Tier**: 5-12 hours, no archive size limit, even Petabytes of data can be retrieved.
+
+Arhived objects will have an additioncal 40KBS of data:
+  - 32KB for archive index and metadata
+  - 8KB for the name of the object
+
+You pay per GB retrieved and number of requests. This is a separate cost from the cost of storage. It is recommended to store fewer and larger files, instead of smaller files because 40KBs on thousands of files can add up pretty quickly.
 
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
