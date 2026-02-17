@@ -756,12 +756,14 @@ AWS Access Keys are used to authenticate and authorize access to AWS services. T
 
 An Access Key is commonly referred to as AWS Credentials. A user must be granted access to use Access keys. 
 
-![](./images/aws-access-key-type.png)
+![AWS Access Key Type](./images/aws-access-key-type.png)
 
 - Never share you Access Key with anyone. If you do, you can be held liable for any damages caused by the unauthorized use of your Access Key.
 - Never commit your Access Keys to a codebase like GitHub or GitLab.
 - You can have two ative Access Keys 
 - Access Keys have whatever access the corresponding user has to AWS resources.
+
+![AWS Access Keys](./images/aws-access-key.png)
 
 Access Keys are to be stored in two different ways:
 
@@ -806,3 +808,4 @@ Access Keys are to be stored in two different ways:
     export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
     ```
     When using the environment variables method, the AWS CLI and SDKs will automatically use the environment variables to authenticate and authorize access to AWS services.
+
