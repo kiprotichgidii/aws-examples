@@ -590,7 +590,7 @@ Amazon S3 supports multipart upload for objects larger than 100MB. It allows you
        --upload-id 'dfRtDYU0WWCCcH43C...'
    ```
    The JSON file:
-   
+
    ```JSON
    {"Parts": [
        {"PartNumber": 1, "ETag": "\"etag\""},
@@ -686,7 +686,7 @@ Here are some common AWS Services that often dump their data into S3 buckets:
 
 ### AWS Application Programming Interface (API)
 
-What is an API?
+**What is an API?**
 
 An API is a software that allows two applications/services to communicate with each other. The most common API type is HTTP/S requests.
 
@@ -713,4 +713,40 @@ You also need to provide an ACTION and accompanying parameters as the payload.
 Rarely do users directly send HTTP requests directly to the AWS API since it is a lot of work. It is much easier to interact with the API using Developer tools, i.e AWS SDK, AWS CLI, and AWS Management Console.
 
 ![AWS API Interaction](./images/aws-api-interaction.png)
+
+### AWS Command Line Interface (CLI)
+
+**What is a CLI?**
+
+A CLI is a text-based interface that allows you to interact with a computer or software application using text commands. Operating systems implement a CLI in a shell.
+
+**What is a Shell?**
+
+A shell is a program that provides a user interface for accessing the services of an operating system. It is a command-line interface that allows you to interact with the operating system using text commands. e.g
+
+- Bash
+- Zsh
+- Fish
+- PowerShell
+
+**What is a Terminal?**
+
+A termnial is a text-based interface that allows you to interact with a computer or software application using text commands. e.g
+
+- Windows Terminal
+- GNOME Terminal
+- Konsole
+- iTerm2
+
+**What is a console?**
+
+A console is a physical computer to physically input information into a terminal.
+
+The terms **terminal**, **console**, and **shell** are often used to refer to interacting with a shell.
+
+**What is AWS CLI?**
+
+The AWS CLI allows users to programmatically interact with the AWS API using single or multi-line commands in a shell/terminal.
+
+The AWS CLI is a Python executable program and Python is required to be able to install AWS CLI on your Windows, Mac, or Linux/Unix computer.
 
