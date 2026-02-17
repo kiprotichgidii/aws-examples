@@ -17,4 +17,4 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 4. Design Cost-Optimized Architectures (20%): Right-sizing resources, using Savings Plans/Reserved Instances, and monitoring costs with AWS Cost Explorer.
 
 **Topic Notes**
-- [Simple Storage Service(S3)](S3/README.md)
+- [Simple Storage Service(S3)](./S3/README.md)
