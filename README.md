@@ -539,13 +539,62 @@ S3 Static Website Hosting can be enabled on a bucket by setting the **WebsiteCon
 
 The format of the website endpoint URL varies depending on the region where the bucket is located. It can either have a period, or an hyphen between the region and the word website.
 
-- `http://bucket-name.s3-website-region.amazonaws.com`
-OR 
-- `http://bucket-name.s3-website.region.amazonaws.com`
+1. `http://bucket-name.s3-website-region.amazonaws.com`
+2. `http://bucket-name.s3-website.region.amazonaws.com`
 
 There are two hosting types via the console:
 - Host a static website
 - Redirect requests to objects
 
 Requester Pays buckets do not allow access through website endpoints because of the bucket configuration.
+
+### Amazon S3 Multipart Upload
+
+Amazon S3 supports multipart upload for objects larger than 100MB. It allows you to upload an object in multiple parts, each part can be uploaded independently and in parallel. Each part can be up to 5GB in size, and you can have up to 10,000 parts per object. The total size of the object can be up to 5TB.
+
+**Multipart Advantages**
+
+- Improved throughput.
+- Incase of network failure, you can resume from where the upload stopped.
+- Once a multipart has started, parts can be uploaded at any time, there's no expiry for uploading the parts.
+- You can upload files while creating a file.
+
+![Multipart-Upload Diagram](./images/s3-multipart-upload.png)
+
+**Multipart Upload Steps**
+
+1. First, initiate the multipart upload, which will return an upload ID.
+   ```bash
+   aws s3api create-multipart-upload \
+       --bucket my-bucket \
+       --key 'my-file'
+   ```
+2. The upload upload each part, by providing the upload ID. Parts can be numbered from 1 to 10000. 
+   ```bash
+   aws s3api upload-part \
+       --bucket my-bucket \
+       --key 'my-file' \
+       --part-number 1 \
+       --body 'part-1' \
+       --upload-id "dfRtDYU0WWCCcH43C..."
+   ```
+   Collect all the Etags for each upload part.
+
+3. Finally, tell S3 that the job is complete. Provide a JSON file with Etags corresponding to each part.
+
+   ```bash
+   aws s3api complete-multipart-upload \
+       --bucket my-bucket \
+       --key 'my-file' \
+       --multipart-upload file://parts.json \
+       --upload-id 'dfRtDYU0WWCCcH43C...'
+   ```
+The JSON file:
+```JSON
+{"Parts": [
+    {"PartNumber": 1, "ETag": "\"etag\""},
+    {"PartNumber": 2, "ETag": "\"etag\""},
+    {"PartNumber": 3, "ETag": "\"etag\""}
+]}
+```
 
