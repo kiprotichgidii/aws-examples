@@ -34,7 +34,3 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [Network ACLs](./network-acls/README.md)
 - [RDS](./rds/README.md)
 - [DynamoDB](./dynamodb/README.md)
-- [S3](./s3/README.md)
-- [EBS](./ebs/README.md)
-- [S3](./s3/README.md)
-- [S3](./s3/README.md)
