@@ -683,3 +683,32 @@ Here are some common AWS Services that often dump their data into S3 buckets:
 - **Amazon Athena**: Outputs query results to S3.
 - **AWS IoT Core**: Stores IoT data in S3.
 
+### AWS Application Programming Interface (API)
+
+What is an API?
+
+An API is a software that allows two applications/services to communicate with each other. The most common API type is HTTP/S requests.
+
+AWS API is an HTTP API and you can interact with it by sending HTTP requests using an application interacting with APIs like postman.
+
+Each AWS Service has its own service endpoint which you can send requests to. e.g
+
+```JSON
+GET / HTTP/1.1
+host: monitoring.us-east-1.amazonaws.com
+x-amz-target: GraniteServiceVersion20100801.GetMetricData
+x-amz-date: 20260217T135528Z
+Authorization: AWS4-HMAC-SHA256 Credential=AKIAIOSFODNN7EXAMPLE/20260217/...
+Content-Type: application/json
+Accept: application/json
+Content-Encoding: amz-1.0
+Content-Length: 45
+Connection: Keep-Alive
+```
+To authorize, you need to generate a signed request. You make a separatae request using your AWS credentials and get back a token.
+
+You also need to provide an ACTION and accompanying parameters as the payload.
+
+Rarely do users directly send HTTP requests directly to the AWS API since it is a lot of work. It is much easier to interact with the API using Developer tools, i.e AWS SDK, AWS CLI, and AWS Management Console.
+
+![AWS API Interaction](./images/aws-api-interaction.png)
