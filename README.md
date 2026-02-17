@@ -665,3 +665,21 @@ with open(object_key, 'wb') as f:
 ```
 Depending on how large the file is, you might need to write each part to disk if your program does not have enough memory to hold all the parts.
 
+### S3 Interoperability
+
+Interoperability in the context of cloud services is the capability of a cloud service to exchange and utilize information with other cloud services.
+
+Here are some common AWS Services that often dump their data into S3 buckets:
+- **Amazon EC2**: Stores snapshots and backups in S3.
+- **Amazon RDS**: Backups and exports to S3.
+- **AWS CloudTrail**: Stores API call logs in S3.
+- **Amazon CloudWatch Logs**: Exports logs/metrics to S3.
+- **AWS Lambda**: Outputs data/logs to S3.
+- **AWS Glue**: Stores it's ETL results in S3.
+- **Amazon Kinesis**: Data streaming to S3 via Firehose.
+- **Amazon EMR**: Uses S3 for input/output data storage.
+- **Amazon Redshift**: Unloads data to S3.
+- **AWS Data Pipeline**: Moves/transforms data to/from S3.
+- **Amazon Athena**: Outputs query results to S3.
+- **AWS IoT Core**: Stores IoT data in S3.
+
