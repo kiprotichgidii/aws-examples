@@ -378,6 +378,61 @@ S3 Intelligent-Tiering storage class automatically moves objects into different 
 5. **Deep Archive Access Tier**: After activation, objects are automatically moved into this tier after 180 days of no access.
 
 ### S3 Security Overview
+1. **Bucket Policies**: Defines permissions for an entire bucket using JSON based access policy langauge.
+2. **Access Control Lists (ACLs)**: Provide a legacy method to manage access permissions on individual objects and buckets.
+3. **AWS Private Link for Amazon S3**: Enables private network access to S3, bypassing the public internet for enhanced security.
+4. **Cross-Origin Resource Sharing (CORS)**: Allows restricted resources on a web page from another domain to be requested.
+5. **Amazon S3 Block Public Access**: A collection of settings that work together to prevent unintended public access to S3 buckets and objects.
+6. **IAM Access Analyzer for S3**: Analyzes resource policies to help identify and mitigate potential threats.
+7. **Internetwork Traffic Privacy**: Ensure data privacy by encrypting data moving between AWS services and the internet.
+8. **Object Ownership**: Manages data ownership between AWS accounts when objects are uploaded to S3 buckets.
+9. **S3 Access Points**: Simplifies managing data access at scale for shared datasets in S3.
+10. **Access Grants**: Providing access to S3 data via a directory service such as AD.
+11. **Versioning**: Preserves, retrieves, and restores every version of every object stored in an S3 bucket.
+12. **MFA Delete**: Adds an additional layer of security by requiring MFA for deletion of S3 objects.
+13. **Object Tags**: Provides a way to categorize storage by assigning key-value pairs to objects.
+14. **In-Transit Encryption**: Protects data by encrypting it as it travels to and from S3 over the internet.
+15. **Server-Side Encryption**: Automatically encrypt data when writing it to S3 and decrypt it when downloading it. 
+16. **Compliance Validation for Amazon S3**: Ensure S3 services meet the compliance requirements like HIPPA, GDPR, etc.
+17. **Infrastructure Security**: Protects the underlying infra of the S3 service, ensuring integrity and availability of the service.
+
+### S3 Block Public Access
+
+Block Public Access is a collection of settings that work together to prevent unintended public access to S3 buckets and objects. It is enabled by default on all new S3 buckets.
+
+Block Public Access settings:
+1. **BlockPublicAcls**: Blocks public access to S3 buckets and objects through ACLs.
+2. **IgnorePublicAcls**: Ignores public ACLs on S3 buckets and objects.
+3. **BlockPublicPolicy**: Blocks public access to S3 buckets and objects through bucket policies.
+4. **RestrictPublicBuckets**: Restricts public access to S3 buckets and objects through bucket policies.
+
+### S3 Access Control Lists (ACLs)
+
+S3 ACLs have been traditionally used to allow other AWS accounts to upload objects to an S3 bucket. It is not recommended to use ACLs for new S3 buckets. Instead, use bucket policies to grant access to other AWS accounts.
+
+ACLs grant basic read/write permissions to other AWS accounts:
+- You can grant permissions only to other AWS accounts
+- You cannot grant permissions to users in your own AWS account
+- You cannot grant conditional permissions
+- You cannot explicitly deny permissions
+
+### S3 Bucket Policies
+
+S3 Bucket policy is a resource-based policy to granrt an S3 bucket and bucket objects to other principles e.g AWS Accounts, Users, AWS Services, etc
+
+### S3 Bucket Policies vs IAM Policies
+
+S3 bucket policies have overlapping functionality as an IAM policy that grants access to S3.
+
+S3 Bucket policies provide convenience over IAM policies in that they can be used to grant access to S3 buckets and objects without the need to create an IAM policy.
+
+| S3 Bucket Policy | AWS IAM Policy |
+| --- | --- |
+|Provides access to a specific bucket and it's objetcts | Provides access to many AWS services and resources |
+| Can specify multiple principles to grant access to | Can provide permissions for multiple buckets in one policy |
+| Bucket policies can be upto 20KB in size | The principle by default is the entity that the IAM policy is attached to|
+| Unless Block Public Access is turned off, it will deny all anonymous access even if access is granted using the bucket policy | Policy sizes are limited based on principal: 2KB for users, 5KB for Groups, 10KB for Roles |
+|
 
 
 ### S3 Batch Operations
