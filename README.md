@@ -925,3 +925,59 @@ export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 export AWS_SESSION_TOKEN=AQoDYXdzEJr...
 ```
 
+### Signing AWS API Requests
+
+When you send API requests to AWS, you sign the request so that AWS can identify who sent them. When you use AWS SDK or AWS CLI, these requests are signed for you automatically.
+
+Signatures do the following:
+- Prevent data tampering
+- Verify the Identity of the requester
+
+Not all request need to be signed. For example:
+- Anonymous requests to S3 buckets 
+- Some API operations to STS e.g AssumeRoleWithWebIdentity
+
+AWS has two different protocols for request signing:
+- AWS Signature Version 2 (only used in legacy customer's usecases)
+- AWS Signature Version 4
+
+**Example Signature in Query Format**
+
+```bash
+https://s3.amazonaws.com/example-bucket/test.txt
+?X-Amz-Algorithm=AWS4-HMAC-SHA256
+&X-Amz-Credential=AKIAIOSFODNN7EXAMPLE%2F20260217%2Fus-east-1%2Fs3%2Faws4_request
+&X-Amz-Date=20260217T155038Z
+&X-Amz-Expires=300
+&X-Amz-SignedHeaders=host
+&X-Amz-Signature=<signature-value>
+```
+
+### AWS IP Address Ranges
+
+AWS publishes the IP address ranges for all AWS services in JSON format. These ranges are updated regularly, so it is important to use the latest version. The IP address ranges are available in the following endpoint URL: https://ip-ranges.amazonaws.com/ip-ranges.json
+
+Organizations might want these IP ranges for whitelisting purposes in their firewalls or security groups. Since it's a JSON ednpoint the data can be pulled programmatically as follows:
+
+```bash
+curl https://ip-ranges.amazonaws.com/ip-ranges.json | jq '.prefixes[] | select(.region == "us-east-1") | select(.service == "CODEBUILD") | .ip_prefix'
+```
+
+![AWS IP Address Ranges](./images/aws-ip-address-ranges.png)
+
+### Service Endpoints
+
+An endpoint is the URL of the entry point for an AWS web service. To connect to programmatically to an AWS service, you use an endpoint. For example, the S3 service endpoint in the US East (N. Virginia) Region is https://s3.us-east-1.amazonaws.com. 
+
+Endpoints vary depending on the type of AWS service, but the general fomart is `protocol://service-code.region-code.amazonaws.com`. e.g `https://cloudformation.us-east-1.amazonaws.com`.
+
+Therea are four types of Service endpoints:
+1. **Global endpoints**: AWS Services that use the same endpoint. e.g `https://iam.amazonaws.com`, `https://sts.amazonaws.com`, `https://s3.amazonaws.com`
+2. **Regional endpoints**: AWS Services that require region specification. e.g `https://cloudformation.us-east-1.amazonaws.com`
+3. **Dualstack endpoints**: Allows both IPv4 and IPv6 traffic.
+4. **FIPS endpoints**: Endpoints that support FIPS or enterprise use cases.
+
+These types of service endpoints can be combined. e.g Regional+FIPS+Dualstack
+
+An AWS Service may also have multiple different endpoints. For example, S3 has a global endpoint, but it also has regional endpoints. AWS SDK and AWS CLI will automatically pick the default endpoint for the region you are in.
+
