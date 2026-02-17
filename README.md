@@ -15,3 +15,6 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 2. Design Resilient Architectures(26%): High availability, fault tolerance, and disaster recovery using Multi-AZ deployments, Auto Scaling, and Route 53.
 3. Design High-Performing Architectures (24%): Selecting optimized compute (EC2), database (RDS, DynamoDB), and storage (S3, EBS) for performance efficiency.
 4. Design Cost-Optimized Architectures (20%): Right-sizing resources, using Savings Plans/Reserved Instances, and monitoring costs with AWS Cost Explorer.
+
+**Topic Notes**
+- [Simple Storage Service(S3)](S3/README.md)
