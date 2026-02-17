@@ -472,3 +472,27 @@ Amazon S3 Select can be used with the following Storage Classes:
 
 ### S3 Event Notifications
 
+S3 Event Notifications allow you to notify other AWS services about S3 event data. S3 Event Notifications makes application integration very easy for S3.
+
+**Notification Events**
+
+- New Object Created Events
+- Object Removal Events
+- Restore Object Events
+- Reduced Redundancy Storage (RRS) Object lost Events
+- Replication Events
+- S3 Lifecycles Expiration Events
+- S3 Lifecycle Transition Events
+- S3 Intelligent-Tiering Automatic Archival Events
+- Object Tagging Events
+- Object ACL PUT Events
+
+**Possible Notification Destinations**
+
+- Amazon Simple Notification Service (SNS)
+- Amazon Simple Queue Service (SQS)
+- Amazon Lambda Function
+- Amazon EventBridge
+
+Amazon Event Notifications are designed to be delivered at least once. These notications are delivered in seconds but can sometimes take a minute or longer.
+
