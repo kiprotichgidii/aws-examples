@@ -765,44 +765,44 @@ An Access Key is commonly referred to as AWS Credentials. A user must be granted
 
 Access Keys are to be stored in two different ways:
 
-1. Configuration Files
+1. **Configuration Files**
 
-When using configuration files, Access Keys are to be stored in `~/.aws/credentials` and `~/.aws/config` files. e.g
+  When using configuration files, Access Keys are to be stored in `~/.aws/credentials` and `~/.aws/config` files. e.g
 
-The `~/.aws/credentials` fie:
-```ini
-[default]
-aws_access_key_id = AKIAIOSFODNN7EXAMPLE
-aws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-[dev]
-aws_access_key_id = AKIAIOSFODNN7EXAMPLE
-aws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-```
-The `~/.aws/config` file contains the default region and output format:
+  The `~/.aws/credentials` fie:
+  ```ini
+  [default]
+  aws_access_key_id = AKIAIOSFODNN7EXAMPLE
+  aws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  [dev]
+  aws_access_key_id = AKIAIOSFODNN7EXAMPLE
+  aws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  ```
+  The `~/.aws/config` file contains the default region and output format:
 
-```ini
-[default]
-region = us-east-1
-output = json
-```
-The default will be used when no profile is specified. You can specify a profile using the `--profile` flag. You can store multiple access keys by providing them profile names.
+  ```ini
+  [default]
+  region = us-east-1
+  output = json
+  ```
+  The default will be used when no profile is specified. You can specify a profile using the `--profile` flag. You can store multiple access keys by providing them profile names.
 
-Both the `~/.aws/credentials` and `~/.aws/config` files can be populated using the `aws configure` command:
+  Both the `~/.aws/credentials` and `~/.aws/config` files can be populated using the `aws configure` command:
 
-```bash
-$ aws configure
-AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
-AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-Default region name [None]: us-east-1
-Default output format [None]: json
-``` 
+  ```bash
+  $ aws configure
+  AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
+  AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  Default region name [None]: us-east-1
+  Default output format [None]: json
+  ``` 
 
-2. Environment Variables
+2. **Environment Variables**
 
-When using environment variables, Access Keys are to be stored in environment variables. e.g
+  When using environment variables, Access Keys are to be stored in environment variables. e.g
 
-```bash
-export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
-export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-```
-When using the environment variables method, the AWS CLI and SDKs will automatically use the environment variables to authenticate and authorize access to AWS services.
+  ```bash
+  export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+  export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  ```
+  When using the environment variables method, the AWS CLI and SDKs will automatically use the environment variables to authenticate and authorize access to AWS services.
