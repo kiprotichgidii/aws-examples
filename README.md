@@ -396,6 +396,8 @@ S3 Intelligent-Tiering storage class automatically moves objects into different 
 4. **Archive Access Tier**: After activation, objects are automatically moved into this tier after 90 days of no access.
 5. **Deep Archive Access Tier**: After activation, objects are automatically moved into this tier after 180 days of no access.
 
+### S3 Security Overview
+
 
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
@@ -441,3 +443,32 @@ You can specify additional metadata to be included in the inventory report such 
 #### Inventory Scope
 - Specific prefixes to filter objects
 - Specific all or only current version
+
+### Amazon S3 Select
+
+Amazon S3 Select allows you to use Structured Query Language (SQL) to filter the contents of S3 objects. e.g.
+
+```bash
+aws s3api select-object-content \
+    --bucket my-bucket \
+    --key my-data-file.csv \
+    --expression "SELECT * FROM s3object WHERE column_name = 'value'" \
+    --expression-type 'SQL' \
+    --input-serialization '{"CSV": {}, "CompressionType": "NONE"}' \
+    --output-serialization '{"CSV": {}}' "output.csv"
+```
+It works on objects stored in CSV, JSON, or Apache Parquet format.
+
+It also works with objects that are compressed with GZIP or BZIP2(for CSV and JSON Objects only).
+
+It also works on objects that are server-side encrypted and you can obtain results back in JSON or CSV format.
+
+Amazon S3 Select can be used with the following Storage Classes:
+- S3 Standard
+- S3 Standard-Infrequent Access
+- S3 One Zone-Infrequent Access
+- S3 Intelligent-Tiering
+- S3 Glacier Instant Retrieval
+
+### S3 Event Notifications
+
