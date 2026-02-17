@@ -590,6 +590,7 @@ Amazon S3 supports multipart upload for objects larger than 100MB. It allows you
        --upload-id 'dfRtDYU0WWCCcH43C...'
    ```
    The JSON file:
+   
    ```JSON
    {"Parts": [
        {"PartNumber": 1, "ETag": "\"etag\""},
