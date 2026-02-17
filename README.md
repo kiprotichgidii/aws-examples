@@ -799,10 +799,10 @@ Access Keys are to be stored in two different ways:
 
 2. **Environment Variables**
 
-  When using environment variables, Access Keys are to be stored in environment variables. e.g
+    When using environment variables, Access Keys are to be stored in environment variables. e.g
 
-  ```bash
-  export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
-  export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-  ```
-  When using the environment variables method, the AWS CLI and SDKs will automatically use the environment variables to authenticate and authorize access to AWS services.
+    ```bash
+    export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+    export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    ```
+    When using the environment variables method, the AWS CLI and SDKs will automatically use the environment variables to authenticate and authorize access to AWS services.
