@@ -809,3 +809,17 @@ Access Keys are to be stored in two different ways:
     ```
     When using the environment variables method, the AWS CLI and SDKs will automatically use the environment variables to authenticate and authorize access to AWS services.
 
+### API Retries and Exponential BackOff
+
+When interacting with APIs over a network, it is very common for a networking issue to occur for various reasons due to the amount of devices a request has to pass through and point of failures:
+- DNS Serversaw
+- Switches
+- Load Balancers
+- Routers
+- Firewalls
+- etc
+
+To handle these transient failures, APIs implement retry mechanisms with exponential backoff. Exponential backoff is a strategy that increases the delay between retries with each failed attempt. This prevents overwhelming the server with too many requests in a short period of time.
+
+![API Retries and Exponential BackOff](./images/api-retries-and-exponential-backoff.png)
+
