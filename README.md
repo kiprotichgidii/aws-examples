@@ -496,3 +496,24 @@ S3 Event Notifications allow you to notify other AWS services about S3 event dat
 
 Amazon Event Notifications are designed to be delivered at least once. These notications are delivered in seconds but can sometimes take a minute or longer.
 
+### S3 Storage Class Analysis
+
+Storage Class Analysis allows you to analyze storage access patterns of objects within a bucket to recommend objects to move between Standard Storage and Standard IA.
+
+It is a manual process which you can trigger from the S3 Console or using the S3 API as follows:
+
+```bash
+aws s3api put-bucket-analytics-configuration\
+    --bucket my-bucket --id 1 \
+    --analytics-configuration '{"Id": "1", "StorageClassAnalysis": {}}'  
+```
+S3 Storage Clas Analysis observes the inrequent access patterns of a filtered set of data over a period of time and makes recommendations to move objects between Standard Storage and Standard IA.
+
+You can have multiple analysis filter (up to 1000 filters) per bucket. The results can be exported in CSV format to an S3 bucket.
+  - Use data in Amazon QuickSight for data visulization. 
+
+S3 Storage Class Analysis provides storager usage visualization in the Amazon S3 console, that is updated daily.
+
+After a filter is applied, the analysis will be available within 24-48 hours.
+
+Storage Class Analysis will analyze an object for 30 days or longer to gather enough information.
