@@ -750,3 +750,59 @@ The AWS CLI allows users to programmatically interact with the AWS API using sin
 
 The AWS CLI is a Python executable program and Python is required to be able to install AWS CLI on your Windows, Mac, or Linux/Unix computer.
 
+### AWS Access Keys
+
+AWS Access Keys are used to authenticate and authorize access to AWS services. They consist of an Access Key ID and a Secret Access Key. The Access Key ID is a public identifier, while the Secret Access Key is a private key that is used to sign requests to the AWS API. Access Keys should be treated like passwords and should be stored securely.
+
+An Access Key is commonly referred to as AWS Credentials. A user must be granted access to use Access keys. 
+
+![](./images/aws-access-key-type.png)
+
+- Never share you Access Key with anyone. If you do, you can be held liable for any damages caused by the unauthorized use of your Access Key.
+- Never commit your Access Keys to a codebase like GitHub or GitLab.
+- You can have two ative Access Keys 
+- Access Keys have whatever access the corresponding user has to AWS resources.
+
+Access Keys are to be stored in two different ways:
+
+1. Configuration Files
+
+When using configuration files, Access Keys are to be stored in `~/.aws/credentials` and `~/.aws/config` files. e.g
+
+The `~/.aws/credentials` fie:
+```ini
+[default]
+aws_access_key_id = AKIAIOSFODNN7EXAMPLE
+aws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+[dev]
+aws_access_key_id = AKIAIOSFODNN7EXAMPLE
+aws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+```
+The `~/.aws/config` file contains the default region and output format:
+
+```ini
+[default]
+region = us-east-1
+output = json
+```
+The default will be used when no profile is specified. You can specify a profile using the `--profile` flag. You can store multiple access keys by providing them profile names.
+
+Both the `~/.aws/credentials` and `~/.aws/config` files can be populated using the `aws configure` command:
+
+```bash
+$ aws configure
+AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
+AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+Default region name [None]: us-east-1
+Default output format [None]: json
+``` 
+
+2. Environment Variables
+
+When using environment variables, Access Keys are to be stored in environment variables. e.g
+
+```bash
+export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+```
+When using the environment variables method, the AWS CLI and SDKs will automatically use the environment variables to authenticate and authorize access to AWS services.
