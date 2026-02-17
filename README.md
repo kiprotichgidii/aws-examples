@@ -821,5 +821,11 @@ When interacting with APIs over a network, it is very common for a networking is
 
 To handle these transient failures, APIs implement retry mechanisms with exponential backoff. Exponential backoff is a strategy that increases the delay between retries with each failed attempt. This prevents overwhelming the server with too many requests in a short period of time.
 
-![API Retries and Exponential BackOff](./images/api-retries-and-exponential-backoff.png)
+- Try again in 1 seconds
+- Try again in 2 seconds
+- Try again in 4 seconds
+- Try again in 8 seconds
+- Try again in 16 seconds
+- Try again in 32 seconds
 
+![API Retries and Exponential BackOff](./images/api-retries-and-exponential-backoff.png)
