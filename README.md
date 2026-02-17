@@ -16,5 +16,25 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 3. Design High-Performing Architectures (24%): Selecting optimized compute (EC2), database (RDS, DynamoDB), and storage (S3, EBS) for performance efficiency.
 4. Design Cost-Optimized Architectures (20%): Right-sizing resources, using Savings Plans/Reserved Instances, and monitoring costs with AWS Cost Explorer.
 
-**Topic Notes**
+**AWS Services**
 - [Simple Storage Service(S3)](./s3/README.md)
+- [Virtual Private Cloud(VPC)](./vpc/README.md)
+- [Elastic Compute Cloud(EC2)](./ec2/README.md)
+- [Elastic Block Store(EBS)](./ebs/README.md)
+- [Elastic Load Balancing(ELB)](./elb/README.md)
+- [Auto Scaling(AS)](./as/README.md)
+- [Route 53](./route53/README.md)
+- [CloudFront](./cloudfront/README.md)
+- [CloudWatch](./cloudwatch/README.md)
+- [CloudTrail](./cloudtrail/README.md)
+- [CloudFormation](./cloudformation/README.md)
+- [IAM](./iam/README.md)
+- [KMS](./kms/README.md)
+- [Security Groups](./security-groups/README.md)
+- [Network ACLs](./network-acls/README.md)
+- [RDS](./rds/README.md)
+- [DynamoDB](./dynamodb/README.md)
+- [S3](./s3/README.md)
+- [EBS](./ebs/README.md)
+- [S3](./s3/README.md)
+- [S3](./s3/README.md)
