@@ -531,3 +531,21 @@ S3 Stoarge Lens metrics can be exported as CSV or Parquet format to another S3 b
 
 S3 Storage Lens aggregates metrics and displays the information in the Account Snapshot as an interactive dashboard that is updated daily.
 
+### S3 Static Website Hosting
+
+S3 Static Website Hosting allows you to host and serve a static website from your S3 bucket. S3 website endpoints are **HTTP** endpoints and do not support **HTTPS**. You can use **Amazon CloudFront** to serve a static website over **HTTPS**.
+
+S3 Static Website Hosting can be enabled on a bucket by setting the **WebsiteConfiguration** property on the bucket. It also provides a website endpoint URL as such:
+
+The format of the website endpoint URL varies depending on the region where the bucket is located. It can either have a period, or an hyphen between the region and the word website.
+
+- `http://bucket-name.s3-website-region.amazonaws.com`
+OR 
+- `http://bucket-name.s3-website.region.amazonaws.com`
+
+There are two hosting types via the console:
+- Host a static website
+- Redirect requests to objects
+
+Requester Pays buckets do not allow access through website endpoints because of the bucket configuration.
+
