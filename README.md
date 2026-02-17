@@ -589,14 +589,14 @@ Amazon S3 supports multipart upload for objects larger than 100MB. It allows you
        --multipart-upload file://parts.json \
        --upload-id 'dfRtDYU0WWCCcH43C...'
    ```
-The JSON file:
-```JSON
-{"Parts": [
-    {"PartNumber": 1, "ETag": "\"etag\""},
-    {"PartNumber": 2, "ETag": "\"etag\""},
-    {"PartNumber": 3, "ETag": "\"etag\""}
-]}
-```
+   The JSON file:
+   ```JSON
+   {"Parts": [
+       {"PartNumber": 1, "ETag": "\"etag\""},
+       {"PartNumber": 2, "ETag": "\"etag\""},
+       {"PartNumber": 3, "ETag": "\"etag\""}
+   ]}
+   ```
 
 ### Amazon S3 Byte Range Fetching
 
@@ -712,3 +712,4 @@ You also need to provide an ACTION and accompanying parameters as the payload.
 Rarely do users directly send HTTP requests directly to the AWS API since it is a lot of work. It is much easier to interact with the API using Developer tools, i.e AWS SDK, AWS CLI, and AWS Management Console.
 
 ![AWS API Interaction](./images/aws-api-interaction.png)
+
