@@ -598,3 +598,70 @@ The JSON file:
 ]}
 ```
 
+### Amazon S3 Byte Range Fetching
+
+Amazon S3 supports byte range fetching, which allows you to retrieve a specific range of bytes from an S3 object using the Range header during S3 GetObject API requests. This is useful for large objects, as it allows you to retrieve only the data you need.
+
+Example uisng the AWS SDK Python(boto3) Library:
+
+```python
+import boto3
+
+s3 = boto3.client('s3')
+bucket_name = 'your_bucket_name'
+object_key = 'your_object_key'
+
+# Get the first 100 bytes of the object
+byte_range = 'bytes=0-99'
+
+response = s3.get_object(
+    Bucket='mybucket',
+    Key='my-file.txt',
+    Range=byte_range
+)
+
+# Read the partial content
+data = response['Body'].read()
+```
+Amazon S3 allows for concurrent connections so you can request multiple parts at the same time. 
+
+Fetching smaller ranges of a large object allows your application to improve retry times when request are interrupted.
+
+Typical sizes for byte range requesta are between 8MB and 16MB.
+
+**Multipart Download**
+
+To do a multipart download of a large object, you'll need to store each part and then concat all the parts downloaded in the correct order back into a single file.
+
+**Boto3 Example**:
+
+This example opens multiple S3 connections, holds each part in memory, and the reassembles the parts back into a single file.
+
+```python
+import boto3
+
+s3 = boto3.client('s3')
+bucket_name = 'your_bucket_name'
+object_key = 'your_object_key'
+
+b_range = ['bytes=0-99', 'bytes=100-199', 'bytes=200-299']
+
+# Fetch the parts
+parts = []
+for byte_range in byte_ranges:
+    response = s3.get_object(
+        Bucket=bucket_name,
+        Key=object_key,
+        Range=b_range
+    )
+    parts.append(response['Body'].read())
+
+# Concatenate all parts
+complete_file = b''.join(parts)
+
+# Write the complete file to disk
+with open(object_key, 'wb') as f:
+    f.write(complete_file)
+```
+Depending on how large the file is, you might need to write each part to disk if your program does not have enough memory to hold all the parts.
+
