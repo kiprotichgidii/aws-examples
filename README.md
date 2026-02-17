@@ -829,3 +829,99 @@ To handle these transient failures, APIs implement retry mechanisms with exponen
 - Try again in 32 seconds
 
 ![API Retries and Exponential BackOff](./images/api-retries-and-exponential-backoff.png)
+
+### AWS Security Token Service (STS)
+
+STS is a web service that enables you to request temporary, limited-privilege security credentials for IAM Users or federated users. These temporary credentials consist of an access key ID, a secret access key, and a security token. They are valid for a limited time, typically 15 minutes to 12 hours, and can be used to access AWS services in the same way as long-term access keys. STS is commonly used in conjunction with IAM roles to provide temporary, federated access to AWS resources.
+
+AWS Security Token Service is a global service and all AWS STS requests go to a single enpoint at https://sts.amazonaws.com. 
+
+The following API Actions can be used to obtain STS:
+- AssumeRole
+- AssumeRoleWithWebIdentity
+- AssumeRoleWithSAML
+- GetSessionToken
+- GetFederationToken
+- GetAccessKeyInfo
+- GetCallerIdentity
+- DecodeAuthorizationMessage
+
+An STS will return:
+- Access Key ID
+- Secret Access Key
+- Session Token
+- Expiration Date and Time
+
+**Example STS Request with AWS SDK**
+
+We assume a role via STS and optionally provide a session name:
+
+```python
+import boto3
+
+# assume a role and get temporary credentials
+sts_client = boto3.client("sts")
+
+response = sts_client.assume_role(
+    RoleArn="arn:aws:iam::123456789012:role/MyRole",
+    RoleSessionName="MySession"
+)
+
+creds = response['credentials']
+
+# load in temporary credentials
+s3 = boto3.client('s3',
+    aws_access_key_id=creds['AccessKeyId'],
+    aws_secret_access_key=creds['SecretAccessKey'],
+    aws_session_token=creds['SessionToken']
+)
+```
+This is what is returned by the STS and then loaded into the client:
+```json
+{
+    "Credentials": {
+        "AccessKeyId": "AKIAIOSFODNN7EXAMPLE",
+        "SecretAccessKey": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+        "SessionToken": "AQoDYXdzEJr...",
+        "Expiration": "2026-02-17T15:50:38Z"
+    },
+    "AssumedRoleUser": {
+        "AssumedRoleId": "AROA123456789012:MySession",
+        "Arn": "arn:aws:iam::123456789012:assumed-role/MyRole/MySession"
+    }
+}
+```
+
+**Example STS Request with AWS CLI**
+
+We can generate out temporary credentials via STS using the AWS CLI:
+
+```bash
+aws sts assume-role \
+    --role-arn "arn:aws:iam::123456789012:role/MyRole" \
+    --role-session-name "MySession"
+```
+
+Output:
+```json
+{
+    "Credentials": {
+        "AccessKeyId": "AKIAIOSFODNN7EXAMPLE",
+        "SecretAccessKey": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+        "SessionToken": "AQoDYXdzEJr...",
+        "Expiration": "2026-02-17T15:50:38Z"
+    },
+    "AssumedRoleUser": {
+        "AssumedRoleId": "AROA123456789012:MySession",
+        "Arn": "arn:aws:iam::123456789012:assumed-role/MyRole/MySession"
+    }
+}
+```
+Then we can load them into the CLI configurations or the environment variables:
+
+```bash
+export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+export AWS_SESSION_TOKEN=AQoDYXdzEJr...
+```
+
