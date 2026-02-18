@@ -503,20 +503,35 @@ Data is encrypted on the senders-side and then decrypted on the server-side.
 Server-side encryption is always on for all new S3 objects. Server-side encryption only encrypts the contents of an object, and not it's contents.
 
 1. **SSE-S3**
-    - Amazon manages all the encryptions
-    - S3 encrypts each object with a unique key
-    - S3 uses envelop encryption
-    - By default, all objects will have SSE-S3 applied
-    - There is no additional charge for using SSE-S3
-    - SSE-S3 uses 256-bit Advanced Encryption Standard (AES-256)
-    - Bucket key can be set for SSE-S3 for improved performance
+    - Amazon manages all the encryptions.
+    - S3 encrypts each object with a unique key.
+    - S3 uses envelop encryption.
+    - By default, all objects will have SSE-S3 applied.
+    - There is no additional charge for using SSE-S3.
+    - SSE-S3 uses 256-bit Advanced Encryption Standard (AES-256).
+    - Bucket key can be set for SSE-S3 for improved performance.
 
 2. **SSE-KMS**
-    - 
+    - This is when you use a KMS Key managed by AWS.
+    - A KMS key managed key is required for SSE-KMS.
+    - User chooses the KSM Key to encrypt the S3 object.
+    - KMS automatically rotates keys.
+    - KMS key policy controls who can decrypt using the key.
+    - KMS can help meet regulatory requirements.
+    - KMS keys have their own additional costs.
+    - AWS KMS keys must be in the same region as the object being encrypted.
+    - Uploading with KMS requires kms:GenerateDataKey permissions.
+    - Downloading with KMS requires kms:Decrypt permissions.
+    - Bucket key can be set for SSE-KMS for improved performance.
 
 3. **SSE-C**
-    - Uses **Customer-Provided Encryption Keys (SSE-C)** to encrypt the object.
-    - The encryption key is managed by the customer.
+    - User provides their own encryption key that amazon S3 then uses to apply AES-256 encryption on the objects.
+    - User needs to provide the encryption key every time they retrieve objects. Then encryption key uploaded to Amazon is deleted after each request.
+    - Using SSE-C has no additional cost.
+    - Amazon S3 stores a randomly salted hash-based message-auth code (HMAC) of the encryption key to validate future requests.
+    - Presigned URLs support SSE-C.
+    - With bucket versioning, different object versions can be encrypted with different keys.
+    - User manages encryption keys on the client side and any additional safeguards such as key rotations.
 
 
 ### S3 Batch Operations
