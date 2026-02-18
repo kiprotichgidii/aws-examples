@@ -450,26 +450,17 @@ To utilize Access Analyzer for S3, it needs to be created in the IAM Access Anal
 S3 Internet Traffic Privacy ensures data privacy by encrypting data moving between AWS services and the internet. It can be implemented using two different ways:
 
 1. **AWS PrivateLink**
-
-    Allows you to connect an Elastic Network Interface(ENI) directly to other AWS Services e.g S3,EC2, Lambda, etc.
-
-    It can connect to select 3rd party services as well via the AWS Marketplace.
-
-    It can go cross-account.
-
-    It has fine-grained permissions via VPC endpoint policies.
-
-    AWS charges a small fee to use PrivateLink.
+    - Allows you to connect an Elastic Network Interface(ENI) directly to other AWS Services e.g S3,EC2, Lambda, etc.
+    - It can connect to select 3rd party services as well via the AWS Marketplace.
+    - It can go cross-account.
+    - It has fine-grained permissions via VPC endpoint policies.
+    - AWS charges a small fee to use PrivateLink.
 
 2. **VPC Gateway Endpoint**
-
-    Allows you to connect a VPC directly to S3 or (DynamoDB), while staying private within the internal AWS network.
-
-    VPC Gateway Endpoints do not have the capability to go cross-account.
-
-    VPC Gateway Endpoints do not have fine-grained permissions.
-
-    VPC Gateway Endpoints are free of charge.
+    - Allows you to connect a VPC directly to S3 or (DynamoDB), while staying private within the internal AWS network.
+    - VPC Gateway Endpoints do not have the capability to go cross-account.
+    - VPC Gateway Endpoints do not have fine-grained permissions.
+    - VPC Gateway Endpoints are free of charge.
 
 
 ### S3 Batch Operations
