@@ -550,6 +550,18 @@ Server-side encryption is always on for all new S3 objects. Server-side encrypti
     - User sends the encrypted DEK to AWS KMS, which decrypts the DEK using the corresponding CMK and returns the plaintext DEK.
     - User uses the plaintext DEK to decrypt the data locally and then discard the DEK from memory.
 
+#### S3 Bucket Key
+
+When using SSE-KMS, an individual data key is used ton every object request. In that case, S3 has to call AWS KMS every time a request is made. KMS charges on the number of requests made, and so this can add up to a significant amount.
+
+S3 Bucket key allows users to generate a short-lived bucket-level key from AWS Key that is temporarily stored in S3. This approach redces the cost by 99% and will decrease request traffic and improve overall performance.
+
+A unique bucket-level key is generated for each requester. Users can enable bucket keys at the bucket level to be applied to all objects in the bucket.
+
+Users can enable bucket key at the object level to be applied to a specific objects. S3 bucket keys can be enabled for SSE-S3 and SSE-KMS.
+
+
+
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
 
