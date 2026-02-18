@@ -396,7 +396,7 @@ S3 Intelligent-Tiering storage class automatically moves objects into different 
 16. **Compliance Validation for Amazon S3**: Ensure S3 services meet the compliance requirements like HIPPA, GDPR, etc.
 17. **Infrastructure Security**: Protects the underlying infra of the S3 service, ensuring integrity and availability of the service.
 
-### S3 Block Public Access
+#### S3 Block Public Access
 
 Block Public Access is a collection of settings that work together to prevent unintended public access to S3 buckets and objects. It is enabled by default on all new S3 buckets.
 
@@ -406,7 +406,7 @@ Block Public Access settings:
 3. **BlockPublicPolicy**: Blocks public access to S3 buckets and objects through bucket policies.
 4. **RestrictPublicBuckets**: Restricts public access to S3 buckets and objects through bucket policies.
 
-### S3 Access Control Lists (ACLs)
+#### S3 Access Control Lists (ACLs)
 
 S3 ACLs have been traditionally used to allow other AWS accounts to upload objects to an S3 bucket. It is not recommended to use ACLs for new S3 buckets. Instead, use bucket policies to grant access to other AWS accounts.
 
@@ -416,11 +416,11 @@ ACLs grant basic read/write permissions to other AWS accounts:
 - You cannot grant conditional permissions
 - You cannot explicitly deny permissions
 
-### S3 Bucket Policies
+#### S3 Bucket Policies
 
 S3 Bucket policy is a resource-based policy to granrt an S3 bucket and bucket objects to other principles e.g AWS Accounts, Users, AWS Services, etc
 
-### S3 Bucket Policies vs IAM Policies
+#### S3 Bucket Policies vs IAM Policies
 
 S3 bucket policies have overlapping functionality as an IAM policy that grants access to S3.
 
@@ -433,6 +433,42 @@ S3 Bucket policies provide convenience over IAM policies in that they can be use
 | Bucket policies can be upto 20KB in size | The principle by default is the entity that the IAM policy is attached to|
 | Unless Block Public Access is turned off, it will deny all anonymous access even if access is granted using the bucket policy | Policy sizes are limited based on principal: 2KB for users, 5KB for Groups, 10KB for Roles |
 |
+
+#### S3 Access Grants
+
+S3 Access Grants let you map identities in a directory service (IAM Identity Cener, Azure Active Directory, Okta, etc) to access S3 resources.
+
+![](./images/s3-access-grants.png)
+
+#### IAM Access Analyzer for S3
+
+Access Analyzer for S3 will alert you when S3 buckets are expose to the public internet or other AWS accounts.
+
+To utilize Access Analyzer for S3, it needs to be created in the IAM Access Analyzer at the account level.
+
+#### S3 Internet Traffic Privacy
+
+S3 Internet Traffic Privacy ensures data privacy by encrypting data moving between AWS services and the internet. It can be implemented using two different ways:
+
+1. **AWS PrivateLink**
+    Allows you to connect an Elastic Network Interface(ENI) directly to other AWS Services e.g S3,EC2, Lambda, etc.
+
+    It can connect to select 3rd party services as well via the AWS Marketplace.
+
+    It can go cross-account.
+
+    It has fine-grained permissions via VPC endpoint policies.
+
+    AWS charges a small fee to use PrivateLink.
+
+2. **VPC Gateway Endpoint**
+    Allows you to connect a VPC directly to S3 or (DynamoDB), while staying private within the internal AWS network.
+
+    VPC Gateway Endpoints do not have the capability to go cross-account.
+
+    VPC Gateway Endpoints do not have fine-grained permissions.
+
+    VPC Gateway Endpoints are free of charge.
 
 
 ### S3 Batch Operations
