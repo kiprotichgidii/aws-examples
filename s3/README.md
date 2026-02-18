@@ -560,6 +560,10 @@ A unique bucket-level key is generated for each requester. Users can enable buck
 
 Users can enable bucket key at the object level to be applied to a specific objects. S3 bucket keys can be enabled for SSE-S3 and SSE-KMS.
 
+#### S3 Client-Side Encryption
+
+Client-side encryption is when the user encrypts the data on their end before uploading it to S3. This guarantees that AWS and no third party can decrypt their data. Vasrious AWS SDKs have built-int code to make it easy to encrypt data before uploading it to S3.
+
 
 
 ### S3 Batch Operations
