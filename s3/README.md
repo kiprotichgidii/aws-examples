@@ -564,6 +564,19 @@ Users can enable bucket key at the object level to be applied to a specific obje
 
 Client-side encryption is when the user encrypts the data on their end before uploading it to S3. This guarantees that AWS and no third party can decrypt their data. Vasrious AWS SDKs have built-int code to make it easy to encrypt data before uploading it to S3.
 
+#### S3 Data Consistency
+
+Data consistency is when data is stored in two different places and whether that data exactly matches or not. S3 provides two types of data consistency:
+
+1. **Strongly Consistent**
+    - Every time that a user requests data, they can expect to receive consistent data within X time. (1 second)
+    - AWS S3 never returns old data, but the user typically has to wait at least 2 seconds for the query to return.
+
+2. **Eventually Consistent**
+    - When you request data, you may get back inconsistent data within 2 seconds.
+    - AWS S3 serves whatever data is currently in the database, it may be new or old data, but will generally be upto date after a bit longer.
+
+Amazon S3 offers strongly consistent data for all read, write, and delete operations on objects in a bucket. Prior to January 2020, S3 did not have strongly consistent data for all S3 operations.
 
 
 ### S3 Batch Operations
