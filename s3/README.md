@@ -462,6 +462,62 @@ S3 Internet Traffic Privacy ensures data privacy by encrypting data moving betwe
     - VPC Gateway Endpoints do not have fine-grained permissions.
     - VPC Gateway Endpoints are free of charge.
 
+#### Cross-Origin Resource Sharing (CORS)
+
+CORS is an HTTP-Header based mechanism that allows a server to indicate any other origins (domains,scheme, or port) than it's own from which a browser should permit loading of resources.
+
+Access is controlled via HTTP headers:
+1. **Request Header**
+   - **Origin**: Specifies the origin of the request.
+   - **Access-Control-Request-Method**: Specifies the HTTP method of the request.
+   - **Access-Control-Request-Headers**: Specifies the HTTP headers of the request.
+2. **Response Header**
+   - **Access-Control-Allow-Origin**: Specifies the origin of the response.
+   - **Access-Control-Allow-Methods**: Specifies the HTTP methods of the response.
+   - **Access-Control-Allow-Headers**: Specifies the HTTP headers of the response.
+   - **Access-Control-Allow-Credentials**: Specifies whether the response should be allowed to be cached.
+   - **Access-Control-Max-Age**: Specifies the maximum age of the response.
+   - **Access-Control-Expose-Headers**: Specifies the HTTP headers of the response.
+
+Amazon S3 allows you to set CORS to an S3 bucket with static website hosting so different origins can perform HTTP requests from your S3 static website.
+
+The CORS configuration can be either JSON or XML, but currently, the AWS Console only allows JSON configurations.
+
+#### S3 In-Transit Encryption
+
+Data is secure when moving between locations.
+
+This encryption ensures that data remains confidential and cannot be interrupted or viewed by unauthorized parties while in transit.
+
+Data is encrypted on the senders-side and then decrypted on the server-side.
+
+**Encryption Algorithms**
+1. **Transport Layer Security (TLS)**
+    - An encryption protocol for data integrity between two or more communicating computer applications. TLS 1.2 and TLS 1.3(Best Practice)
+
+2. **Secure Socket Layers (SSL)**
+    - An encryption protocol for data integrity between two or more communicating computer applications. SSL 1.0, 2.0, and 3.0 are deprecated.
+
+#### S3 Server-Side Encryption (SSE)
+
+Server-side encryption is always on for all new S3 objects. Server-side encryption only encrypts the contents of an object, and not it's contents.
+
+1. **SSE-S3**
+    - Amazon manages all the encryptions
+    - S3 encrypts each object with a unique key
+    - S3 uses envelop encryption
+    - By default, all objects will have SSE-S3 applied
+    - There is no additional charge for using SSE-S3
+    - SSE-S3 uses 256-bit Advanced Encryption Standard (AES-256)
+    - Bucket key can be set for SSE-S3 for improved performance
+
+2. **SSE-KMS**
+    - 
+
+3. **SSE-C**
+    - Uses **Customer-Provided Encryption Keys (SSE-C)** to encrypt the object.
+    - The encryption key is managed by the customer.
+
 
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
