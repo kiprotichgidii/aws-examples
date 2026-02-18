@@ -580,6 +580,26 @@ S3 Object replication helps to:
 - Bi-Directional Replication
 - S3 Batch Replication
 
+#### S3 Versioning
+
+S3 Versioning allows users to store multipl versions of S3 objects. With versioning, it's easy to recover from unintended user actions and application failures.
+
+Versioning-enabled buckets can help recover from accidental deletion or overwrite actions.
+
+Stores all versions of an object in S3 at the same object key address.
+
+Once Versioning is enabled, it cannot be disabled, but only suspended on the bucket. 
+
+Versioning fully integrates with S3 lifecycle rules. 
+
+MFA Delete feature provides extra protection against deletion of your data.
+
+**S3 Bucket States**
+
+- Unversioned(default)
+- Versioned
+- Versioning Suspended
+
 #### S3 Data Consistency
 
 Data consistency is when data is stored in two different places and whether that data exactly matches or not. S3 provides two types of data consistency:
