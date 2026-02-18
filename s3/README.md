@@ -634,7 +634,15 @@ S3 Lifecycle allows users to automate the storage class changes, archival, or de
 - Filter based on objects
 - Filter based on object size(min and/or max)
 
+#### S3 Transfer Acceleration
 
+S3 Transfer Acceleration is a bucket-level feature that provided fast and secure transfer of files over log distances between end users and an S3 bucket.
+
+It utilizes AWS CloudFront's ditributed edge locations to quickly enter the Amazon Global Network. Instead of uploading to a bucket, users use a different endpoint to route to an edge location. e.g `https://s3.accelerate.amazonaws.com` or `https://s3.accelerate.dualstack.amazonaws.com`
+
+S3 Transfer Acceleration is only supported on virtual-hosted style requests. Buckets cannot contain periods and must be DNS compliant. 
+
+It can take upto 20 minutes after acceleration is enabled for it to take effect.
 
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
