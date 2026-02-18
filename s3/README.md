@@ -564,6 +564,22 @@ Users can enable bucket key at the object level to be applied to a specific obje
 
 Client-side encryption is when the user encrypts the data on their end before uploading it to S3. This guarantees that AWS and no third party can decrypt their data. Vasrious AWS SDKs have built-int code to make it easy to encrypt data before uploading it to S3.
 
+#### S3 Object Replication
+
+S3 Object replication helps to:
+- Replicate objects while retaining metadata
+- Replicate objects into different storage classes
+- Maintain object copies under different ownership
+- Keep objects stored over multiple AWS Regions
+- Replicate objetcs within 15 minutes
+- Sunc buckets, replicate existing objects, and replicate previously failed or replicated objects.
+
+**Replication Options**
+- Cross-Region Replication (region-to-region)
+- Same-Region Replication (bucket-to-bucket)
+- Bi-Directional Replication
+- S3 Batch Replication
+
 #### S3 Data Consistency
 
 Data consistency is when data is stored in two different places and whether that data exactly matches or not. S3 provides two types of data consistency:
