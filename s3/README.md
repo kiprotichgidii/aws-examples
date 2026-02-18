@@ -533,6 +533,22 @@ Server-side encryption is always on for all new S3 objects. Server-side encrypti
     - With bucket versioning, different object versions can be encrypted with different keys.
     - User manages encryption keys on the client side and any additional safeguards such as key rotations.
 
+4. **DSSE-KMS (Dual-Sided Server-Side Encryption)**
+    - This is SSE-KMS with the inclusion of client-side encryption.
+    - With DSSE-KMS, daat is encrypted twice.
+    - The key used for client-side encryption comes from KMS.
+    - There are additional costs for using DSSE and KMS keys.
+
+    **Encryption**
+    - Client-side request AWS KMS to generate a data encryption key(DEK) using the CMK.
+    - KMS sends two versions of the DEK to the user; a plaintext version and an encrypted version.
+    - User uses the plaintext DEK to encrypt their data locally and then discard it from memory.
+    - The encrypted version of the DEK is stored alongside the encrypted data in Amazon S3.
+
+    **Decryption**
+    - User retrieves the encrypted data and the associated encrypted DEK.
+    - User sends the encrypted DEK to AWS KMS, which decrypts the DEK using the corresponding CMK and returns the plaintext DEK.
+    - User uses the plaintext DEK to decrypt the data locally and then discard the DEK from memory.
 
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
