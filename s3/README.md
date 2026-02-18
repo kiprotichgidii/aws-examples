@@ -614,6 +614,27 @@ Data consistency is when data is stored in two different places and whether that
 
 Amazon S3 offers strongly consistent data for all read, write, and delete operations on objects in a bucket. Prior to January 2020, S3 did not have strongly consistent data for all S3 operations.
 
+#### S3 Lifecycle
+
+S3 Lifecycle allows users to automate the storage class changes, archival, or deletion of S3 objects. S3 Lifecycle can be used together with S3 versioning. S3 Lifecycle can be applied to both current and previous versions of S3 objects.
+
+**Lifecycle Action Types**
+- Transition Actions
+- Expiring Actions
+
+**Lifecycle Rule Actions**
+- Move current versions of objects between storage classes.
+- Move non-current versions of objects between storage classes.
+- Expire current versions of objects.
+- Permanently delete noncurrent versions of objects.
+- Delete expired objects, delete markers, or incomplete multipart uploads.
+
+**Lifecycle Filters**
+- Filter based on prefix
+- Filter based on objects
+- Filter based on object size(min and/or max)
+
+
 
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
