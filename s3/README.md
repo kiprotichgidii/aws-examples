@@ -644,6 +644,25 @@ S3 Transfer Acceleration is only supported on virtual-hosted style requests. Buc
 
 It can take upto 20 minutes after acceleration is enabled for it to take effect.
 
+#### S3 Presigned URLs
+
+S3 Presigned URLs provide temporary access to upload or download object data via URL. They are commonly used to provide access to private objects. 
+
+A presigned URL can be generated using the AWS CLI or an AWS SDK.
+
+#### S3 Access Points
+
+S3 Access Points are names network endpoints that are attached to buckets that you can use to perform S3 object operations. S3 Access Points simplify managing data access for shared datasets in S3.
+
+Each andpoint has:
+- Distinct permissions via an access point policy
+- Distinct Network Controls
+- Distinct block public Access
+
+S3 Access point policy allows you to write permissions for a bucket alongside your bucket policy. An access point helps to move specific and complex access configurations out of your bucket policy keeping your bucket policy simple and easy to read.
+
+Instead of creating a bucket policy you can create multiple access points that allow you to apply policies to parts of your bucket contents.
+
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
 
