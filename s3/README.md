@@ -432,7 +432,6 @@ S3 Bucket policies provide convenience over IAM policies in that they can be use
 | Can specify multiple principles to grant access to | Can provide permissions for multiple buckets in one policy |
 | Bucket policies can be upto 20KB in size | The principle by default is the entity that the IAM policy is attached to|
 | Unless Block Public Access is turned off, it will deny all anonymous access even if access is granted using the bucket policy | Policy sizes are limited based on principal: 2KB for users, 5KB for Groups, 10KB for Roles |
-|
 
 #### S3 Access Grants
 
@@ -451,6 +450,7 @@ To utilize Access Analyzer for S3, it needs to be created in the IAM Access Anal
 S3 Internet Traffic Privacy ensures data privacy by encrypting data moving between AWS services and the internet. It can be implemented using two different ways:
 
 1. **AWS PrivateLink**
+
     Allows you to connect an Elastic Network Interface(ENI) directly to other AWS Services e.g S3,EC2, Lambda, etc.
 
     It can connect to select 3rd party services as well via the AWS Marketplace.
@@ -462,6 +462,7 @@ S3 Internet Traffic Privacy ensures data privacy by encrypting data moving betwe
     AWS charges a small fee to use PrivateLink.
 
 2. **VPC Gateway Endpoint**
+
     Allows you to connect a VPC directly to S3 or (DynamoDB), while staying private within the internal AWS network.
 
     VPC Gateway Endpoints do not have the capability to go cross-account.
