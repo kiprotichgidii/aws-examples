@@ -756,6 +756,18 @@ A 403 (Forbidden Request) HTTP error code will occur for the following reasons:
 
 In the case that the requester forgets to include the header, then the 403 error will occur, and no charge will occur to the requester or the bucket owner.
 
+### AWS Marketplace for S3
+
+The AWS Marketplace for S3 provides alternatives to AWS services that work with Amazon S3.
+
+| Service Type | AWS Services | Third Party Services|
+| --- | --- | --- |
+| **Storage Backup and Recovery** | FSx for Lustre<br>Tape Gateway<br>File Gateway | Veeam Backup for AWS<br>Druva: AWS Backup & Disaster Recovery |
+| **Data Integration and Analytics** | Transfer Family <br>DataSync<br>Athena | ChaosSearch<br>Logz.io<br>BryteFlow Enterprise Edition |
+| **Observability and Monitoring** | CloudTrail<br>CloudWatch | DataDog<br>Splunk<br>Dynatrace | 
+| **Security and Threat Detection** | GuardDuty<br>Macie | Trend Cloud One<br>InsghtIDR (Rapid7)<br>VM-Series Virtual Next Generation Firewalls (NGFW) (Palo Alto Networks) |
+| **Permissions** | IAM | OneLogin Workforce Identity<br>FileCloud EFSS<br>Yarkon S3 Server |
+
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
 
