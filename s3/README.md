@@ -726,6 +726,35 @@ There are two ways to archive S3 objects:
       - S3 Intelligent-Tiering Archive Access Tier (Within Mins)
       - S3 Intelligent-Tiering Deep Archive Access Tier (+12hrs)
 
+### S3 Requesters Pay
+
+S3 Requesters Pay bucket allows the bucket owner to offset/delegate specific costs to the requester of the data. The requester now pays for their Downloads/Uploadc costs while the bucket owner pays for the storage costs. This option is recommended when you want to share the data with other users but don't want to incur the charges associated with others accessing the data.
+
+**Use Cases**
+1. **Collaborative Projects**: External partners pay for their own S3 data uploads and downloads.
+2. **Client Data Storage**: Clients pay for their S3 storage and transfer costs.
+3. **Shared Educational Resources**: Researchers cover their S3 usage fees and not the institution.
+4. **Conent Distribution**: Distributors/customers pay for S3 data transfer and downloads.
+
+All requests must be authenticated involving requester pays buckets. Requester assumes an IAMM role before making their requests; the IAM policy will have a `S3:RequesterPayer` condition. Anonymous access to Requester Pays buckets is not allowed.
+
+The AWS account of the Requester will be charged.
+
+#### S3 Requesters Pay Header
+
+Requesters must include the `x-amz-requester-payer` in their API request header for:
+- DELETE, GET, HEAD, POST, and PUT requests
+- or as a parameter in a REST request
+
+#### S3 Requesters Pay Troubleshooting
+
+A 403 (Forbidden Request) HTTP error code will occur for the following reasons:
+- The requester doesn't include the parameter (`x-amz-request-payer`) 
+- Request authentication failure (something is wrong with the IAM role or IAM policy)
+- The requester is anonymous
+- The request is a SOAP request (not allowed when requester pay is turned on)
+
+In the case that the requester forgets to include the header, then the 403 error will occur, and no charge will occur to the requester or the bucket owner.
 
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
