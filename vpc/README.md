@@ -56,3 +56,12 @@ A default VPC is configured with:
 
 A defaut VPC can be deleted, but AWS recommends that you do not, and instead use the default VPC.
 
+If you accidentally delete the default VPC, it can be recreated via the CLI, using the following command:
+
+```bash
+aws ec2 create-default-vpc --region us-east-1
+```
+- A deleted VPC cannot be restored.
+- You cannot mark an existing non-default VPC as a default VPC and if you already have a default VPC in a region, you canoot create another one.
+
+###  
