@@ -86,3 +86,69 @@ IPv6 default route: `::/0`
 
 When `0.0.0.0/0` is specified as the default route in a route table for the Internet Gateway, it allows all internet access. When `0.0.0.0/0` is specified in a Security Group's inbound Rules, it allows all traffic from the internet to access the public resources.
 
+### Shared VPC
+
+AWS Resource Access Manager allows you to share resources across your AWS accounts. VPCs can be shared with other AWS accounts within the same account to centrally manage resources in a single VPC. 
+
+Using a shared VPC allows you to:
+- Reduce the number of VPCs you create and manage
+- Separate accounts for billing and access control
+
+In order to share a VPC you need to establish sharing within your AWS organization via the RAM api:
+
+```bash
+aws ram enable-sharing-with-aws-organization
+```
+- You share VPCs by sharing subnets.
+- You can ony share non-default subnets
+- You need to create a resource share in RAM (what you are sharing)
+- You need to create a shared principles in RAM (who you are sharing with)
+
+Shared VPC will appear in the shared account with the specific share subnets. You can tell if it's shared by looking at the OwnerID.
+
+### Introduction to NACls (Network Access Control Lists)
+
+NACLs act as a stateless virtual firewall at the subnet level. NACLs have both ALLOW and DENY Rules, unlike Security Groups, which only have ALLOW rules.
+
+A default NACL is created with every new VPC.
+
+Each NACL has two different sets of rules:
+- Inbound Rules (Ingress traffic)
+- Outbound Rules (Egress traffic)
+
+Subnets are associated with NACLs and a subnet can only belong to a single NACL.
+
+They key difference of NACLs from Security Groups is that NACLs have both ALLOW and DENY rules, while Security Groups only have ALLOW rules. With NACLs, you could block a single IP address, which you can't do with Security Groups.
+
+NACL rules have NACL numbers, which determine the order of evaluation from the lowest to the highest. The highest rule # can be 32766 and it's recommended to work in 10 or 100 increments.
+
+With NACL rules, you can set a type of traffic or set up a custom Protocol and Port range. You can either allow or deny traffic for a specific rule.
+
+#### Creating NACLs
+
+User creates the NACL rule:
+
+```bash
+aws ec2 create-network-acl \
+  --vpc-id vpc-1234abcd5678efgh 
+```
+
+Then adds a NACL entry rule:
+
+```bash
+aws ec2 create-network-acl-entry \
+  --network-acl-id acl-1a2b3c4d5e6f7h789a \
+  --ingress \
+  --rule-number 100 \
+  --protocol tcp \
+  --port-range From=80,To=80 \
+  --cidr-block 0.0.0.0/0 --rule-action allow
+```
+
+Then associate the NACL to a subnet:
+
+```bash
+aws ec2 replace-network-acl-association \
+  --association-id aclassoc-1a2b3c4d5e6f7890a \
+  --network-acl-id acl-1a2b3c4d5e6f7890ab
+```
