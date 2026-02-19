@@ -64,4 +64,25 @@ aws ec2 create-default-vpc --region us-east-1
 - A deleted VPC cannot be restored.
 - You cannot mark an existing non-default VPC as a default VPC and if you already have a default VPC in a region, you canoot create another one.
 
-###  
+###  Deleting a VPC
+
+To be able to delete a VPC, you need to ensure that all the VPC resources have been deleted prior to that. e.g
+- Security Groups and Network ACLs
+- Subnets
+- Route Tables
+- Gateway Endpoints
+- Internet Gateways
+- Egress-Only Internet Gateways (EO-IGWs)
+
+When a VPC is deleted in the AWS Console, it will automatically attempt to delete all the VPC resources associated with that VPC.
+
+### Default Route / Catch-all-route
+
+The default route represents all the IP addresses. It gives access from anywhere or to the internet without restriction.
+
+IPv4 default route: `0.0.0.0/0`
+
+IPv6 default route: `::/0`
+
+When `0.0.0.0/0` is specified as the default route in a route table for the Internet Gateway, it allows all internet access. When `0.0.0.0/0` is specified in a Security Group's inbound Rules, it allows all traffic from the internet to access the public resources.
+
