@@ -673,6 +673,16 @@ S3 Replication rules can be used to synchronize objects to the regional buckets.
 
 ### S3 Object Lambda Access Points
 
+S3 object Lambda Access Points allow you to transform the output requests of S3 objects when you want to present data differently. 
+
+S3 Object Lambda Access points only operate on the outputted objects, the original objects in the S3 bucket remian untouched.
+
+S3 Object Lambda can be performed on the following operations:
+- **HEAD**: information about the object, not contents
+- **GET**: on S3 objects incuding it's contents
+- **LIST**: a list of S3 objects
+
+An Amazon Lambda function is attached to an S3 bucket via the Object Lambda Access Point. Multiple Transformations can be configured per Objects Lambda Access Point.
 
 
 ### S3 Batch Operations
