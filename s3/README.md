@@ -663,6 +663,18 @@ S3 Access point policy allows you to write permissions for a bucket alongside yo
 
 Instead of creating a bucket policy you can create multiple access points that allow you to apply policies to parts of your bucket contents.
 
+#### S3 Multi-Region Access Points
+
+Multi-Region access points is a global endpoint to route requests to multiple buckets in different regions.
+
+Multi-Region Access Points will return data from the regional bucket with the lowets latency. AWS Global Accelerator is used to route to the closest bucket an requests are accelerated over the internet, VPC or PrivateLink.
+
+S3 Replication rules can be used to synchronize objects to the regional buckets.
+
+### S3 Object Lambda Access Points
+
+
+
 ### S3 Batch Operations
 S3 Batch Operations allows you to perform large-scale batch operations on S3 objects. You can use S3 Batch Operations to perform operations such as copying objects, updating object metadata, and deleting objects.
 
