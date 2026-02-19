@@ -684,7 +684,7 @@ S3 Object Lambda can be performed on the following operations:
 
 An Amazon Lambda function is attached to an S3 bucket via the Object Lambda Access Point. Multiple Transformations can be configured per Objects Lambda Access Point.
 
-#### Mounting for Amazon S3
+### Mounting for Amazon S3
 
 Mounting allows you to mount an S3 bucket to your Linux local file system. Mountpoint is an open source client that provides high-throughput access to objects within basic file-system operations.
 
@@ -705,6 +705,26 @@ Mounting for S3 supports the following storage classes:
 - S3 One-Zone IA
 - Reduced Redundancy Storage (RRS)
 - S3 Glacier Instant Retrieval
+
+### S3 Archived Objects
+
+Archived Objects are rarely-accessed objects in Amazon S3 that cannot be accessed in real-time in exchange for a reduced storage cost.
+
+There are two ways to archive S3 objects:
+
+1. **Archived Storage Classes**
+    - When you know your access patterns
+    - Requires manual intervention to mave data
+    - Lower costs archives storage costs
+      - S3 Glacier Flexible Retrieval (mins to hrs)
+      - S3 Glacier Deep Archive (+12hrs)
+
+2. **Archive Access Tiers**
+    - When you don't know your access patterns
+    - Data is automatically moved for archiving
+    - Slightly higher costs than Archive Storage Classes
+      - S3 Intelligent-Tiering Archive Access Tier (Within Mins)
+      - S3 Intelligent-Tiering Deep Archive Access Tier (+12hrs)
 
 
 ### S3 Batch Operations
