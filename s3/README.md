@@ -671,7 +671,7 @@ Multi-Region Access Points will return data from the regional bucket with the lo
 
 S3 Replication rules can be used to synchronize objects to the regional buckets.
 
-### S3 Object Lambda Access Points
+#### S3 Object Lambda Access Points
 
 S3 object Lambda Access Points allow you to transform the output requests of S3 objects when you want to present data differently. 
 
@@ -683,6 +683,28 @@ S3 Object Lambda can be performed on the following operations:
 - **LIST**: a list of S3 objects
 
 An Amazon Lambda function is attached to an S3 bucket via the Object Lambda Access Point. Multiple Transformations can be configured per Objects Lambda Access Point.
+
+#### Mounting for Amazon S3
+
+Mounting allows you to mount an S3 bucket to your Linux local file system. Mountpoint is an open source client that provides high-throughput access to objects within basic file-system operations.
+
+Mounting an S3 bucket allows you to:
+- Read files upto 5TB in size
+- List and read existing files
+- Create new files
+
+Mounting an S3 bucket does not:
+- Modify existing files
+- Delete directories
+- Support symbolic links
+- Support file locking
+
+Mounting for S3 supports the following storage classes:
+- S3  Standard
+- S3 Standard IA
+- S3 One-Zone IA
+- Reduced Redundancy Storage (RRS)
+- S3 Glacier Instant Retrieval
 
 
 ### S3 Batch Operations
