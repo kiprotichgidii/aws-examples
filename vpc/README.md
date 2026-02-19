@@ -1,4 +1,4 @@
-## AWS Virtual Private Cloud
+## AWS Virtual Private Cloud (VPC)
 
 AWS Virtual Private Cloud is a logically isolated virtual network. A VPC resembles a traditional network that you'd operate in your own data center.
 
