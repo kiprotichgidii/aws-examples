@@ -41,3 +41,18 @@ Technically, NACLs and SGs are EC2 networking components, but as mentioned earli
   - IPv4 addresses, Elastic IPs.
 - DNS hostnames
 
+### Default VPC
+
+AWS has a default VPC in every region, so you can immediately deploy instances. 
+
+A default VPC is configured with:
+- An IPv4 CIDR block at the address 172.31.0.0/16, with 65,536 IP addresses available
+- A subnet size of `/20` for each AZ, with 4096 IP addresses available
+- An Internet Gateway
+- A default Security Group
+- A default Network Access Control List(NACL)
+- A default DHCP options set
+- A route table with a route to the public internet via an Internet Gateway
+
+A defaut VPC can be deleted, but AWS recommends that you do not, and instead use the default VPC.
+
