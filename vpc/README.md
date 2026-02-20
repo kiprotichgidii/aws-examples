@@ -152,3 +152,72 @@ aws ec2 replace-network-acl-association \
   --association-id aclassoc-1a2b3c4d5e6f7890a \
   --network-acl-id acl-1a2b3c4d5e6f7890ab
 ```
+### Security Groups
+
+Security Groups act as a stateful virtual firewall at the instance level. Security Groups are associated with EC2 instances. 
+
+Each Security Group has two different sets of rules:
+- Inbound Rules (ingress traffic)
+- Outbound Rules (egress traffic)
+
+![](./images/security-groups-outbound-rules.png)
+
+A Security Group can contain multiple instances in different subnets. They are not bound by subnets but they are bound by VPCs. 
+
+![](./images/aws-security-group-span.png)
+
+#### Security Group Rules
+
+- With Security Group rules, you can choose a preset traffic type, eg. HTTP/S, Postgres, etc.
+- You can choose a custom protocol and port range.
+- Then destination type can be a:
+  - IPv4 CIDR block
+  - IPv6 CIDR block
+  - Another Security Group
+  - A Managed Prefix list
+
+![](./images/aws-security-group-rules.png)
+
+Security Groups have only ALLOW rules, unlike NACLs, which have both ALLOW and DENY rules.
+
+#### Security Groups Use Cases
+
+1. **Allow IP Address**
+    - You can specify the source to be an IPv4 or IPv6 range, or a specific IP address.
+    - A specific IPv4 address is a `/32` range. 
+    - A specific IPv6 address is a `/128` range. 
+    ![](./images/aws-security-group-allow-ip.png)
+
+2. **Allow to Another Security Group**
+    - You can specify the source to be another Security Group.
+    - This is useful when you want to allow traffic from one Security Group to another.
+    ![](./images/aws-security-group-allow-sg.png)
+
+3. **Nested Security Groups**
+    - An instance can belong to multiple Security Groups, and rules are permissive, instead of restrictive. If you have one security group with no ALLOW rule, and an ALLOW to another security group, it will be ALLOW.
+    ![](./images/aws-security-group-nested-sg.png)
+
+#### Creating Security Groups
+
+1. Create Security Group:
+   ```bash
+   aws ec2 create-security-group \
+     --group-name my-sg \
+     --description "My Security Group" \
+     --vpc-id vpc-1234abcd5678efgh
+   ```
+
+2. Add Security Group Rule:
+   ```bash
+   aws ec2 authorize-security-group-ingress \
+     --group-id sg-1234abcd5678efgh \
+     --protocol tcp \
+     --port 80 \
+     --cidr 0.0.0.0/0
+   ```
+3. Associate Security Group with Instance:
+   ```bash
+   aws ec2 modify-instance-attribute \
+     --instance-id i-1234abcd5678efgh \
+     --groups sg-1234abcd5678efgh
+   ```
