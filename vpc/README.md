@@ -253,3 +253,85 @@ For Security Groups, they allow all outbound request, and responses for the outb
 
 ![](./images/aws-stateful-firewalls.png)
 
+### Route Tables
+
+Route Tables are used to determine where traffic is directed. A route table contains a set of rules, called routes, that are used to determine where traffic is directed. 
+
+Each VPC has a main route table by default. You can create additional route tables and associate them with subnets.
+
+Each subnet in your VPC must explicitly be associated with a route table. If you don't explicitly associate a subnet with a route table, it will be associated with the main route table by default.
+
+A subnet can only be associated with one route table at a time but you can associate multiple subnets with the same route table.
+
+![](./images/aws-vpc-route-tables.png)
+
+#### Main Route Table
+
+This is a default route table created alongside every VPC which cannot be deleted whatsoever.
+
+A subnet that is not explicitly associated with a route table, will use the main route table by default.
+
+#### Custom Route Tables
+
+You can create custom route tables and associate them with subnets. eg. A custom route table could be used if you need specific subnets to only route out to a VPN and not the IGW.
+
+#### Destination 
+
+This is where the route will go. Here you need to specify an IPv4 or IPv6 CIDR Block on Managed Prefix List:
+- `0.0.0.0/0`
+- `::/0`
+- `pl-1234abcd5678efgh` (com.amazonaws.us-east-1.s3)
+
+### Elastic IPs
+
+Elastic IP addresses in AWS are static IPv4 addresses that can be associated with an EC2 instance. 
+- Elastic IP addresses are region specific.
+- Elastic IP addresses are drawn from Amazon's pool of IPv4 addresses.
+- Elastic IP addresses are charged $1 for each EIP that is allocated and unassociated.
+- Elastic IP addresses also include the public IPv4 address charge.
+- Elastic IP addresses can be associated or unassociated to:
+  - An EC2 instance
+  - A primary Network Card eg. ENI
+
+#### Use Cases
+
+- When you restart an EC2 instance, it will get a new public IP address. If you want to keep the same public IP address, you can use an Elastic IP address.
+- When an EC2 instance fails, you might want to use the same IP address on a fail-over instance. An elastic IP allows you to remap that static IP address.
+
+In IPv6, VPC addressing is already globally unique, and therefore there is no need for elastic IP addresses.
+
+#### Usage
+
+With `--network-board-group` you can pick very specific AZs, Local Zones or Wavelength Zones. To allocate an Elastic IP:
+
+```bash
+aws ec2 allocate-address --domain vpc 
+{
+    "PublicIP": "54.228.5.3",
+    "AllocationId": "eipalloc-1234567890abcdef0",
+    "IublicIPv4Pool": "amazon",
+    "Domain": "vpc",
+    "NetworkBorderGroup": "us-east-1a"
+}
+```
+Associate Elastic IP with an EC2 instance:
+
+```bash
+aws ec2 associate-address \
+  --instance-id i-1234567890abcdef0 \
+  --allocation-id eipalloc-1234567890abcdef0
+```
+
+Disassociate Elastic IP from an EC2 instance:
+
+```bash
+aws ec2 disassociate-address \
+  --association-id eipassoc-1234567890abcdef0
+```
+
+Deallocate Elastic IP:
+
+```bash
+aws ec2 release-address \
+  --allocation-id eipalloc-1234567890abcdef0
+```
