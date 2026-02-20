@@ -186,15 +186,18 @@ Security Groups have only ALLOW rules, unlike NACLs, which have both ALLOW and D
     - You can specify the source to be an IPv4 or IPv6 range, or a specific IP address.
     - A specific IPv4 address is a `/32` range. 
     - A specific IPv6 address is a `/128` range. 
+
     ![](./images/aws-security-group-allow-ip.png)
 
 2. **Allow to Another Security Group**
     - You can specify the source to be another Security Group.
     - This is useful when you want to allow traffic from one Security Group to another.
+
     ![](./images/aws-security-group-allow-sg.png)
 
 3. **Nested Security Groups**
     - An instance can belong to multiple Security Groups, and rules are permissive, instead of restrictive. If you have one security group with no ALLOW rule, and an ALLOW to another security group, it will be ALLOW.
+
     ![](./images/aws-security-group-nested-sg.png)
 
 #### Creating Security Groups
@@ -221,3 +224,17 @@ Security Groups have only ALLOW rules, unlike NACLs, which have both ALLOW and D
      --instance-id i-1234abcd5678efgh \
      --groups sg-1234abcd5678efgh
    ```
+#### Security Group Limits
+
+- You can have upto 10,000 Security Groups in a region. (default is 2,500)
+- You can have upto 60 inbound rules and 60 outbound rules per Security Group. 
+- You can have upto 16 Security Groups per Elastic Network Interface (ENI). (default is 5)
+
+Security Groups do not filter traffic destined to and from the following:
+- Amazon Domain Name Services (DNS)
+- Amazon Dynamic Host Configuration Protocol (DHCP)
+- Amazon EC2 instance metadata 
+- Amazon ECS task metadata endpoints
+- License activation for Windows instances
+- Amazon Time Sync Service
+- Reserved IP addresses used by default VPC routes
