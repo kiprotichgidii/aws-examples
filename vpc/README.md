@@ -238,3 +238,18 @@ Security Groups do not filter traffic destined to and from the following:
 - License activation for Windows instances
 - Amazon Time Sync Service
 - Reserved IP addresses used by default VPC routes
+
+### Stateful vs Stateless
+
+**Stateless Firewalls** like **AWS NACLs** are not aware of the state of the request. They only look at the packet headers and decide whether to allow or deny the packet based on the rules.
+
+In both directions, they treat you like a stranger and stop you both ways and do a rule check, it does not matter if the request had been authenticated on entry or on exit, they will always do a rule check.
+
+![](./images/aws-stateless-firewalls.png)
+
+**Stateful Firewalls** like **AWS Security Groups** are aware of the state of the request. They keep track of the state of the connection and decide whether to allow or deny the packet based on the rules.
+
+For Security Groups, they allow all outbound request, and responses for the outbound requests are also allowed back in.
+
+![](./images/aws-stateful-firewalls.png)
+
