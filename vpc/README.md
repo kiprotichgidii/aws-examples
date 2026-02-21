@@ -343,3 +343,11 @@ aws ec2 associate-address \
   --allocation-id eipalloc-1234567890abcdef0
   --allow-reassociation
 ```
+ You can also explicitly tell it not to re-associate:
+
+```bash
+aws ec2 associate-address \
+  --instance-id i-1234567890abcdef0 \
+  --allocation-id eipalloc-1234567890abcdef0
+  --no-allow-reassociation
+```
