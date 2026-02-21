@@ -335,3 +335,11 @@ Deallocate Elastic IP:
 aws ec2 release-address \
   --allocation-id eipalloc-1234567890abcdef0
 ```
+In the case of a failure, you can re-associate the Elastic IP address with another EC2 instance.
+
+```bash
+aws ec2 associate-address \
+  --instance-id i-1234567890abcdef0 \
+  --allocation-id eipalloc-1234567890abcdef0
+  --allow-reassociation
+```
