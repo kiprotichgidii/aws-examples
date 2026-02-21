@@ -351,3 +351,13 @@ aws ec2 associate-address \
   --allocation-id eipalloc-1234567890abcdef0
   --no-allow-reassociation
 ```
+
+You can attempt to recover or specify and IPv4 address during allocation:
+
+```bash
+aws ec2 allocate-address \
+  --domain vpc \
+  --address 54.228.5.3
+```
+
+
