@@ -367,3 +367,4 @@ aws ec2 allocate-address \
   --domain vpc \
   --public-ipv4-pool ipv4-pool-id \
 ```
+
