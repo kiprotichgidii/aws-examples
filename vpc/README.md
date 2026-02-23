@@ -393,3 +393,35 @@ IPv4 only VPCs can be migrated to operate in Dualstack Mode (IPv4 & IPv6). To mi
 
 You cannot disable IPv4 support on a VPC and it's subnets, as it is the default IP addressing format for Amazon VPC and Amazon EC2.
 
+### AWS Direct Connect
+
+AWS Direct Connect is the AWS solution for establishing dedicated network connections from on-premise locations to AWS. It is a private connection between your on-premise network and your VPC. It is not a VPN and it is not a proxy. It is a dedicated connection between your on-premise network and your VPC.
+
+Direct Connect has two ver fast-network connection options:
+- Lower Bandwidth (50 Mbps - 500 Mbps)
+- Higher Bandwidth (1 Gbps - 100 Gbps)
+
+![AWS Direct Connect](./images/aws-direct-connect.png)
+
+- AWS Direct Connect helps reduce network costs and increase bandwidth throughput. Ideal for high-traffic networks.
+- AWS Direct Connect provides a more consistent network performance than a typical internet-based connection.
+
+#### Direct Connect Support
+
+AWS Direct Connect supports:
+
+- both IPv4 and IPv6
+- Ethernet Frame sizes of 1522 to 9023 bytes
+
+#### Direct Connect Maintenance
+
+Periodically, AWS performs maintenance on the hardware fleet. There are two types of maintenance:
+
+- **Planned Maintenance**: 
+    - Scheduled in advance to improve availability and deliver new features.
+    - AWS will notify you at least 14 days in advance of planned maintenance.
+- **Unplanned Maintenance**:
+    - Maintenance that isn't planned in advance, often occurs due to unexpected hardware failures.
+    - AWS will notify you as soon as possible of unplanned maintenance.
+
+
