@@ -535,3 +535,64 @@ To create a Gateway Endpoint, you must specify the VPC in which you want to crea
 | **Routing Mechanism** | DNS interception and routing | Rout table entries for specific destinations | Integrates with GWLB |
 | **Traffic Direction** | Bi-directional | Uni-directional | Usually Uni-directional |
 
+### VPC Flow Logs
+
+VPC Flow Logs allow you to capture information about the IP traffic going to and from the instances in your VPC.
+
+To create VPC Flow Logs:
+
+```bash
+aws ec2 create-flow-logs \
+    --resource-type VPC \
+    --resource-id vpc-1234567890abcdef0 \
+    --traffic-type ALL \
+    --log-destination-type cloud-watch-logs \
+    --log-destination arn:aws:logs:region:account-id:log-group:log-group-name \
+    --deliver-logs-permission-arn arn:aws:iam::account-id:role/role-name
+```
+Flow logs can be scoped for the following:
+- VPC, Subnets
+- Elastic Network Interfaces (ENIs)
+- Transit Gateway
+- Transit Gateway Attachments
+
+Traffic can be monitored for:
+- ACCEPT - Traffic was accepted.
+- REJECT - Traffic was rejected.
+- ALL - All accepted and rejectedtraffic.
+
+Logs can be delivered to either:
+- Amazon S3 Bucket
+- CloudWatch Logs
+- Kinesis Data Firehose
+
+**VPC Flow Log Entry Format**
+
+```xml
+<version> <account-id> <interface-id> <srcaddr> <dstaddr> <srcport> <dstport> <protocol> <packets> <bytes> <start> <end> <action> <log-status>
+```
+
+**VPC Flow Log Entry Fields**
+
+- `version`: The VPC Flow Logs version.
+- `account-id`: The AWS account ID for the flow log.
+- `interface-id`: ID of the network interface for which the traffic is recorded.
+- `srcaddr`: Source IP address of the flow.
+- `dstaddr`: Destination IP address of the flow.
+- `srcport`: Source port of the flow.
+- `dstport`: Destination port of the flow.
+- `protocol`: The IANA protocol number of the traffic.
+- `packets`: Number of packets transferred during the flow.
+- `bytes`: Number of bytes transferred during the flow.
+- `start`: Start time, in Unix seconds, of the capture window. 
+- `end`: End time, in Unix secounds, of the capture window. 
+- `action`: The action associated with the traffic.
+   - **ACCEPT** - The recorded traffic was permitted by the security group and NACLs.
+   - **REJECT** - The recorded traffic was rejected by the security group or NACLs.
+- `log-status`: Status of the flow log entry.
+   - **OK** - Data is logging normally to the specified locations.
+   - **NODATA** - There was no traffic to or from the network interface during the capture window.
+   - **SKIPDATA** - Some Flow log records were skipped during the capture window. This may be due to an internal capacity constraint or an internal error.
+
+  
+
