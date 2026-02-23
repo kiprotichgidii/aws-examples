@@ -425,3 +425,71 @@ Periodically, AWS performs maintenance on the hardware fleet. There are two type
     - AWS will notify you as soon as possible of unplanned maintenance.
 
 
+### VPC Endpoints
+
+VPC Endpoints allow you to connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an Internet Gateway, NAT device, VPN connection, or AWS Direct Connect connection.
+
+Traffic between your VPC and the supported service does not leave the Amazon network.
+
+![VPC Endpoints](./images/aws-vpc-endpoints.png)
+
+There are three types of VPC endpoints:
+
+- **Interface endpoints**
+- **Gateway endpoints**
+- **Gateway Load Balancer Endpoints**
+
+VPC Endpoints provide the following benefits:
+- They eliminate the need for and Internet Gateway, NAT device, VPN connection, or AWS Direct Connect connection.
+- Instances in the VPC do not require public IP addresses to access AWS Services.
+- Traffic between your VPC and other services does not leave the AWS network.
+- Horizontally scaled, redundant, and highly available VPC component for the specific AZs you choose.
+- Allows secure communication between instances and services without adding availability risks or bandwidth constraints on traffic.
+
+### AWS PrivateLink
+
+AWS PrivateLink is a networking technology that enables private connectivity between VPCs and AWS services. It allows you to access AWS services from your VPC without exposing them to the public internet.
+
+It allows you to securely connect your VPC to:
+
+- AWS services.
+- AWS Services hosted in other AWS accounts.
+- Supported AWS Marketplace partners' services without the need for an IGW, NAT device, VPN connection, or AWS Direct Connect connection.
+
+![AWS PrivateLink](./images/aws-privatelink.png)
+
+With Privatelink, you create an Interface Endpoint to connect to services. You also create your own services by creating a service endpoint.
+
+**PrivateLink ready partner services** allow you to access SaaS products privately, as if they were running in your own VPC.
+
+### Interface Endpoints
+
+Interface endpoints are **Elastic Network Interfaces (ENIs)** with private IP addresses that are created in your subnets. They are used to access AWS services from your VPC without exposing them to the public internet.
+
+Interfaca Endpoints are used to access services hosted on AWS easily and securely by keeping your network traffic within the AWS network.
+
+![Interface Endpoints](./images/aws-interface-endpoints.png)
+
+Interface Endpoints support the following AWS Services:
+- Amazon API Gateway
+- CloudFormation
+- CloudWatch
+- Kinesis
+- SageMaker
+- CodeBuild
+- AWS Config
+- EC2 API
+- ELB API
+- AWS KMS
+- Secrets Manager
+- Systems Manager
+- Security Token Service (STS)
+- SNS (Simple Notification Service)
+- SQS (Simple Queue Service)
+- Marketplace Partner Services
+- Endpoint Services in other AWS Accounts
+
+Pricing per VPC Endpoint per AZ ($/hour) = $0.01
+
+Pricing per GB data processed ($) = $0.01
+
