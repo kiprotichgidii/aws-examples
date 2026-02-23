@@ -367,3 +367,18 @@ aws ec2 allocate-address \
   --domain vpc \
   --public-ipv4-pool ipv4-pool-id \
 ```
+### AWS IPv6 Support
+
+IPv6 was developed to provide a solution for the eventual exhaustion of IPv4 addresses. AWS Services provide support for IPv6 but it's configuration and access will vary per service.
+
+A service is configured either for: 
+- IPv6 Only
+- IPv4 & IPv6
+
+IPv6 is accessed using a service endpoint, which is a DNS name that is used to access the service. 
+- Public Endpoint Support 
+AND/OR
+- Private Endpoint Support
+
+Not all AWS services support IPv4 addresses, and not all AWS services or their resources have IPv6 turned on by default. 
+
