@@ -510,3 +510,28 @@ Virtual Appliances as-a-service can be obtained from:
 
 You can send traffic to GWLB by making simple configuration changes to your VPC's route tables.
 
+### VPC Gateway Endpoint
+
+A Gateway Endpoint provides reliable connectivity to Amazon S3, and DynamoDB without requiring an Internet Gateway, NAT device, VPN connection, or AWS Direct Connect connection. 
+
+![VPC Gateway Endpoint](./images/aws-vpc-gateway-endpoint.png)
+
+- Gateway Endpoints do not use AWS PrivateLink. 
+- Gateway Endpoints do not incur additional charges.
+- Gateway Endpoints suport the following services:
+  - Amazon S3
+  - DynamoDB
+
+To create a Gateway Endpoint, you must specify the VPC in which you want to create the endpoint and the service to which you want to establish the connection.
+
+### VPC Endpoints Comparison
+
+| Feature | Interface Endpoint | Gateway Endpoint | Gateway Load Balancer Endpoint |
+| --- | --- | --- | --- |
+| **Type** | Elastic Network Interface(ENI) | Gateway with VPC | Interface Endpoint Type |
+| **Use Case** | Private connections to AWS Services, Partner Services, and other VPCs without public IPS. | Private connections to S3 and DynamoDB from VPCs. | Route traffic to 3rd party virtual appliances like firewalls in another VPC. |
+| **Service Integration** | AWS PrivateLink | S3 and DynamoDB | AWS PrivateLink and GWLB |
+| **Pricing** | Per hour when provisioned<br> Per GB data processed | Free | Per Endpoint Hours<br> Per data processed |
+| **Routing Mechanism** | DNS interception and routing | Rout table entries for specific destinations | Integrates with GWLB |
+| **Traffic Direction** | Bi-directional | Uni-directional | Usually Uni-directional |
+
