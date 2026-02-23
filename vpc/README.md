@@ -493,3 +493,20 @@ Pricing per VPC Endpoint per AZ ($/hour) = $0.01
 
 Pricing per GB data processed ($) = $0.01
 
+### Gateway Load Balancer Endpoints
+
+Gateway Load Balancer Endpoints powered via AWS PrivateLink allow you to distribute traffic to third-party security appliances and services, such as firewalls, intrusion detection and prevention systems, and deep packet inspection systems, in a highly available and scalable manner.
+
+![Gateway Load Balancer Endpoints](./images/aws-gateway-load-balancer-endpoints.png)
+
+**GWLB endpoints** allow you to deploy, scale, and manage:
+- Firewalls
+- Intrusion Detection and Prevention Systems (IDPS)
+- Deep Packet Inspection Systems
+
+Virtual Appliances as-a-service can be obtained from:
+- AWS Partner Network
+- AWS Marketplace
+
+You can send traffic to GWLB by making simple configuration changes to your VPC's route tables.
+
