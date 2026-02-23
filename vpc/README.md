@@ -594,5 +594,60 @@ Logs can be delivered to either:
    - **NODATA** - There was no traffic to or from the network interface during the capture window.
    - **SKIPDATA** - Some Flow log records were skipped during the capture window. This may be due to an internal capacity constraint or an internal error.
 
-  
+### AWS Virtual Private Network (VPN)
 
+**AWS VPN** let's you establisha secure and private tunnel from your network or device, to the **AWS Global Network**.
+
+There are two types of VPN connections in AWS:
+- **AWS Site-to-Site VPN**: Allows you to securely connect your on-premise network or branch office to your VPC.
+- **AWS Client VPN**: Allows you to securely connect individual users to AWS or on-premise networks.
+
+#### What is IPSec?
+
+Internet Protocol Security (IPSec) is a secure network protocol suite that authenticates and encrypts the packets of data to provide secure encrypted communication between two computers over an Internet Protocol (IP) network. It is used in Private Networks and VPNs.
+
+### AWS Site-to-Site VPN
+
+AWS Site-to-Site VPN allows you to connect your VPC to your on-premise network. 
+
+![AWS Site-to-Site VPN](./images/aws-site-to-site-vpn.png)
+
+#### AWS Site-to-Site Components
+
+- **VPN Connection**: Secure connection between your VPC and your on-premise network.
+- **VPN Tunneel**: Encrypted connection for data transfer between your VPC and your on-premise network.
+- **Customer Gateway(CGW)**: Provides information to AWS about your customer gateway device.
+- **Customer Gateway Device**: The physical device or software application on your side of the Site-to-Site VPN connection.
+- **Target Gateway**: A generic term for the VPN endpoint on the AWS Side of the Site-to-Site VPN connection.
+- **Virtual Private Gateway (VGW)**: VPN endpoint on the Amazon Side of the Site-to-Site VPN connection that can be attached to a single VPC.
+- **Transit Gateway**: A transit hub that can be used to interconnect multiple VPCs and on-premise networks, and as a VPN endpoint for the Amazon side of the Site-to-Site VPN connection.
+
+#### Features
+
+- Internet Key Exchange Version 2 (IKEv2)
+- NAT Traversal
+- 4-byte ASN in the range of 1-2147483647 for VGW configuration
+- 2-byte ASN for CGW in the range of 1-65535
+- CloudWatch Metrics for VPN Connection
+- Reusable IP addresses for customer gateways
+- Additional Encryption Options
+  - AES-256-bit encryption
+  - SHA-2 Hashing Algorithm
+  - Diffie-Hellman Group 14
+  - Configurable tunnel options
+- Custom private ASN for the Amazon side of the BGP session
+- Support for IPv6 traffic for VPN connections on a transit gateway
+- Optional acceleration for the Site-to-Site VPN connection via AWS Global Accelerator service.
+- Site-to-Site VPN can be attached to AWS Cloud WAN
+- Site-to-Site VPN can be attached to AWS Transit Gateway
+
+#### Limitations
+
+- IPv6 traffic is not supported for VPN connections on a Virtual Private Gateway (VGW).
+- An AWS VPN connection does not support path MTU discovery
+- Does not support the use of overlapping CIDR blocks
+
+#### Pricing
+
+- Each VPN Connection hour
+- Data transfer from Amazon EC2 to the internet
