@@ -651,3 +651,37 @@ AWS Site-to-Site VPN allows you to connect your VPC to your on-premise network.
 
 - Each VPN Connection hour
 - Data transfer from Amazon EC2 to the internet
+
+
+### Virtual Private Gateway (VGW)
+
+A **Virtual Private Gateway (VGW)** is a VPN endpoint on the Amazon Side of the Site-to-Site VPN connection that can be attached to a single VPC.
+
+When you create a VGW, you need to assign an Amazon Autonomous System Number (ASN), or a custom ASN. If you don't specify an ASN, the Virtual Private Gateway (VGW) will be created with the default ASN of 64512. Once a VGW is created, the ASN cannot be changed.
+
+**What is an ASN?**
+
+An **Autonomous System Number (ASN)** is a unique identifier that is allocated to each autonomous system (AS) that participates in the internet. An autonomous system is a network or group of networks that are managed as a single entity and are responsible for routing traffic for a specific domain or organization.
+
+### Customer Gateway (CGW)
+
+A **Customer Gateway (CGW)** is a resource that you create in AWS that represents the customer Gateway Device in your on-premise network. When configuring a CGW, you'll set:
+- BGP ASN for your customer gateway device
+- IP Address of your customer gateway device
+- Private Cert provisioned by AWS Certificate Manager (ACM)
+
+You'll also need to provide additional configuration to the customer gateway device which will establish the connection between AWS and the customer's on-premise network.
+
+![AWS Site-to-Site VPN](./images/aws-site-to-site-vpn-cgw.png)
+
+Incase of a failure within AWS, the VPN connection automatically fails over to the second tunnel so that access isn't interrupted. From time to time, AWS performs routine maintenance on the first tunnel, during which time the VPN connection will fail over to the second tunnel.
+
+AWS provides sample configuration files for various customer gateway devices. 
+
+![AWS Site-to-Site VPN](./images/aws-site-to-site-vpn-cgw-device-list.png)
+
+If you have a device not listed in the list, you'll have to ensure that the device can be configured for the following:
+- Internet Key Exchange Version 2 (IKEv2)
+- IPsec security association
+- Tunnel Interface
+- Border Gateway Protocol (BGP) (Optional)
