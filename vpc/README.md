@@ -382,3 +382,14 @@ AND/OR
 
 Not all AWS services support IPv4 addresses, and not all AWS services or their resources have IPv6 turned on by default. 
 
+### Migrating from IPv4 to IPv6
+
+IPv4 only VPCs can be migrated to operate in Dualstack Mode (IPv4 & IPv6). To migrate an IPv4 only VPC to Dualstack:
+- Add a new IPv6 CIDR Block to the VPC
+- Create or associate IPv6 subnets 
+- Update Route tables to include IPv6 routes
+- Upgrade Security Rules to include IPv6 ranges
+- Enable IPv6 on your EC2 instances or migrate if it does not support IPv6
+
+You cannot disable IPv4 support on a VPC and it's subnets, as it is the default IP addressing format for Amazon VPC and Amazon EC2.
+
