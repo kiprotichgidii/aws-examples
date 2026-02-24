@@ -25,7 +25,7 @@ AWS IAM allows you to create and manage AWS users and groups, with permissions t
 
 IAM policies are written in JSON, and contain permissions, which determine which API actions are allowed and which ones are denied. 
 
-Sample IAM Policy:
+#### Example
 
 ```JSON
 {
