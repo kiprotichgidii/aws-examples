@@ -930,3 +930,40 @@ The inbound and outbound rules can be updated for the VPC Security Groups to ref
 aws ec2 describe-security-groups \
  --group-id sg-0123456789abcdef0
 ```
+### Network Address Usage
+
+Network Address Usage is metric applied to your virtual network to help plan and monitor the size of the VPC. NAU ensures that users don't run out of room in their VPCs. 
+
+In NAU, resources are represented as NAU units:
+
+| Resource | NAU Units |
+| --- | --- |
+| Each IPv4 and IPv6 address assigned to an ENI | 1 |
+| Additional ENI attached to EC2 instances | 1 |
+| Prefix assigned to a network interface | 1 |
+| Network LB per AZ | 6 |
+| VPC Endpoint per AZ | 6 |
+| Transit Gateway attachment | 6 |
+| Lambda function | 6 |
+| NAT Gateway per AZ | 6 |
+| EFS attached to an EC2 instance | 6 |
+
+A VPC or Peered VPCs can handles a certain amount of NAU units:
+- VPC NAU Limit 
+  - 64,000 NAUs (default) 
+  - 256,000 NAUs (quota increase)
+- Peered VPCs NAU Limit 
+  - 128,000 NAUs (default) 
+  - 512,000 NAUs (quota increase)
+  - Applied to all VPCs in the peer
+
+You can use to maually calculate when planning for a VPC.
+
+CloudWatch NAU Metrics can be used to automatically keep track of NAU usage and trigger alarms when the NAU usage is approaching the limit.
+
+NAU monitring needs to be enabled on a VPC to use the CloudWatch NAU Metrics.
+
+CloudWatch Metrics:
+- AWS/EC2/NetworkAddressUsage
+- AWS/EC2/NetworkAddressUsagePeered
+- AWS/Usage/ResourceCount
