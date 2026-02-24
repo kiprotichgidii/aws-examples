@@ -685,3 +685,35 @@ If you have a device not listed in the list, you'll have to ensure that the devi
 - IPsec security association
 - Tunnel Interface
 - Border Gateway Protocol (BGP) (Optional)
+
+### Transit Gateway (TGW)
+
+A transit Gateway is a transit hub that can be used to interconnect multiple VPCs and on-premise networks, and as a VPN endpoint for the Amazon side of the Site-to-Site VPN connection.
+
+![AWS Transit Gateway](./images/aws-transit-gateway.png)
+
+Transit gateway can support either IPv4 or IPv6 traffic inside the VPN tunnel. 
+
+### AWS Client VPN
+
+AWS Client VPN is a fully managed client-based VPN service that enables you to securely access AWS resources and resources in your on-premise network.
+
+![AWS Client VPN](./images/aws-client-vpn.png)
+
+AWS Client VPN offers:
+
+- Certificate-based authentication 
+- Active Directory authentication (AWS Directory Service)
+- Federation authentication (Single Sign-On via SAML)
+- AWS CLient VPN uses a single tunnel
+- Uses Security Groups for granular control
+- Uses AD groups for granular control
+- Self-service portal to download AWS VPN Desktop Client
+
+AWS Client VPN has two roles:
+
+- **Administrators**: Responsible for setting up and configuring the service
+- **Clients**: The user who connects to the Client VPN endpoint to establish a VPN Session
+
+AWS Client VPN can be used to securely connect to an RDS instance that is only in a private subnet.
+
