@@ -21,4 +21,46 @@ AWS IAM allows you to create and manage AWS users and groups, with permissions t
 
     ![Inline Policies](./images/aws-inline-policies.png)
 
+### Anatomy of an IAM Policy
+
+IAM policies are written in JSON, and contain permissions, which determine which API actions are allowed and which ones are denied. 
+
+Sample IAM Policy:
+
+```JSON
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Deny-Barclay-S3-Access",
+            "Effect": "Deny",
+            "Action": "s3:*",
+            "Principal": {"AWS": ["arn:aws:iam:123456789012:barclay"]},
+            "Resource": "arn:aws:s3:::barclay-s3-bucket"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "iam:CreateServiceLinkedRole",
+            "Resource": "*",
+            "Condition": {
+                "StringLike": {
+                    "iam:AWSServiceName": [
+                        "rds.amazonaws.com",
+                        "rds.application-autoscaling.amazonaws.com"
+                    ]
+                }
+            }
+        }
+    ]
+}
+```
+
+- **Version policy language**: 2012-10-17 is the latest version.
+- **Statement**: A list of permissions.
+- **Sid**(Optional): A unique identifier for a statement.
+- **Effect**: Allow or Deny.
+- **Action**: List of API action to allow or deny.
+- **Principal**: The user, group, or role that is allowed or denied access to AWS resources.
+- **Resource**: The AWS resource to which the action applies.
+- **Condition**(Optional): Circumstances under which the policy grants permissions.
 
