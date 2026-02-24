@@ -812,3 +812,41 @@ Amazon VPC Lattice is a fully managed application networking service that is use
 - **Target Group**: A collection of resources of a specific type. eg EC2, IP addresses, Lambda fucntions, ALBs, K8s pods
 - **Service Directory**: A registry of all Lattice services owned or shared with AWS Account through AWS Resource Manager(AWS RAM).
 
+### Transit Gateway
+
+A **Transit Gateway** is a transit hub that can be used to internconnect VPCs and on-premise networks.
+
+- A Transit Gateway leverages the AWS Resource Manager service.
+- It operates as a Virtual Router at the regional level.
+- It supports upto 5000 VPCs per transit gateway.
+  - AN ENI will be provisioned in target VPCs to facilitate VPC to Transit Gateway Communication.
+- Each attachment can handle up to 50 Gbits/second of traffic.
+- VPN connections can be attached to a Transit Gateway.
+- Direct Connect connections can be attached to a Transit Gateway.
+- Third-party virtual appliances can be attached via the Transit Gateway attachments
+- Connections with other Transit gateways can be peered
+
+![AWS Transit Gateway](./images/aws-transit-gateway-1.png)
+
+### Traffic Mirroring
+
+Traffic Mirroring sends a copy of network traffic from a source ENI to a target ENI, or UDP enabled NLB or GWLB. Traffic mirroring can be used to send a copy of the network traffic to a security monitoring tool or appliance.
+
+![AWS Traffic Mirroring](./images/aws-traffic-mirroring.png)
+
+- Traffic Mirroring will attach a VXLAN header
+- Each packet is mirrored once
+- Traffic monitoring supports the use of filter rules, eg.
+  - Number to prioritize rules (lower is higher priority)
+  - Reject or Accept
+  - Protocol eg. TCP, UDP, ICMP
+  - Source PORT
+  - Destination PORT
+  - Source CIDR Block
+  - Destination CIDR Block
+
+  To mirror traffic, a traffic mirror session needs to be created:
+  - Create a mirror source
+  - Create a mirror target
+  - Create a mirror filter
+
