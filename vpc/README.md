@@ -871,26 +871,62 @@ It filters outbound traffic at the perimeter of the VPC:
  - Perform deep packet inspection of traffic entering or leaving a VPC.
  - Use stateful protocol detection to filter protocols like HTTPS or the port used.
 
- ### VPC Peering
+### VPC Peering
 
- VPC Peering allows the connection one VPC to another over a direct route using Private IP addresses. 
+VPC Peering allows the connection one VPC to another over a direct route using Private IP addresses. 
 
- ![AWS VPC Peering](./images/aws-vpc-peering.png)
+![AWS VPC Peering](./images/aws-vpc-peering.png)
 
- - VPC Peering connection is not a gateway
- - VPC Peering connection is not a VPN connection
- - VPC Peering connection does not rely on separate piece of physical hardware
- - There is no single point of failure for communication or bandwidth bottlenecks
- - VPC Peering can be between Ipv4 addresses of IPv6 addresses
- - Instances on peered VPCs behave exactly as if they were in the same VPC
- - VPC Peerinf can connect VPCs across the same or different AWS accounts and regions
- - Peering Uses a star configuration i.e 1 Cental VPC and 4 other VPCs connected to it
-   ![AWS Peered VPCs](./images/aws-peered-vpcs.png)
- - No transit Peering i.e Peering must be take place directly between VPCs
-   - Needs a one-to-one connection to immediate VPC
-   - For transitive peering, use a **AWS Transit Gateway**
- - No overlapping CIDR blocks allowed
- - Data transfer accross AZs or regions incurs charges
- 
-  
- 
+- VPC Peering connection is not a gateway
+- VPC Peering connection is not a VPN connection
+- VPC Peering connection does not rely on separate piece of physical hardware
+- There is no single point of failure for communication or bandwidth bottlenecks
+- VPC Peering can be between Ipv4 addresses of IPv6 addresses
+- Instances on peered VPCs behave exactly as if they were in the same VPC
+- VPC Peerinf can connect VPCs across the same or different AWS accounts and regions
+- Peering Uses a star configuration i.e 1 Cental VPC and 4 other VPCs connected to it
+  ![AWS Peered VPCs](./images/aws-peered-vpcs.png)
+- No transit Peering i.e Peering must be take place directly between VPCs
+  - Needs a one-to-one connection to immediate VPC
+  - For transitive peering, use a **AWS Transit Gateway**
+- No overlapping CIDR blocks allowed
+- Data transfer accross AZs or regions incurs charges
+
+#### VPC Peering Steps
+
+1. Create the peering connection by providing the two VPCs to be connected and AWS will return a peering connection ID:
+   
+   ```bash
+   aws ec2 create-vpc-peering-connection \
+    --vpc-id vpc-0123456789abcdef0 \
+    --peer-vpc-id vpc-0fedcba9876543210
+   ```
+2. Accept the peering connection:
+   
+   ```bash
+   aws ec2 accept-vpc-peering-connection \
+    --vpc-peering-connection-id pcx-1234567890abcdef0
+   ```
+3. Enable routing of traffic between the two VPCs by updating the Route Tables so that traffic can flow between the two VPCs. You'll need to create a route in each of the VPCs:
+   
+   ```bash
+   aws ec2 create-route \
+    --route-table-id rtb-requester-vpc \
+    --destination-cidr-block cidr-block-of-accepter-vpc \
+    --vpc-peering-connection-id pcx-1234567890abcdef0
+   ```
+
+   ```bash
+   aws ec2 create-route \
+    --route-table-id rtb-accepter-vpc \
+    --destination-cidr-block cidr-block-of-requester-vpc \
+    --vpc-peering-connection-id pcx-1234567890abcdef0
+   ```
+#### Referencing SG in Peered VPC
+
+The inbound and outbound rules can be updated for the VPC Security Groups to reference security groups in the peered VPC.
+
+```bash
+aws ec2 describe-security-groups \
+ --group-id sg-0123456789abcdef0
+```
