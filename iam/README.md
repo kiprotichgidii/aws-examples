@@ -64,3 +64,17 @@ IAM policies are written in JSON, and contain permissions, which determine which
 - **Resource**: The AWS resource to which the action applies.
 - **Condition**(Optional): Circumstances under which the policy grants permissions.
 
+### Principle Of Least Privilege (PoLP) 
+
+**Principle of Least Privilege** is a computer security concept of providing a user, role, or application the least amount of permissions necessary to perform its job functions. 
+
+- **Just-Enough-Access (JEA)**: Permitting only the exact actions for the identity to perform an action.
+- **Just-In-Time (JIT)**: Permitting access for the smallest amount of time necessary to perform an action.
+
+**ConsoleMe**
+
+ConsoleMe is an open-source Netflix project to self-serve short-lived IAM policies so an end user can access AWS resources while enforcing JEA and JIT. 
+
+**Risk-based Adaptive POlicies**
+
+Each attempt to access AWS resources generates a risk score of how likely the request is to be from a compromised source. The risk could be based on many factors, eg. device, user loaction, IP address, service being accesses, and when.
