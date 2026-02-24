@@ -774,3 +774,19 @@ The NAT AMI is built on the lastes version of the Amazon Linux AMI, 2018.03, whi
 
 Community AMIs for third-party NAT software exist to launch NAT Instances.
 
+### Bastion/JumpBox
+
+Jumpboxes are security hardened virtual machines that provide secure access to private subnets. 
+
+![AWS Bastion](./images/aws-bastion-jumpbox.png)
+
+- Jumpboxes areEC2 instances that are security hardened.
+- Jumpboxes access private subnet resources via SSH or RCP.
+- They are known as Jumpboxes becuase you are jumping from one box to access another.
+- They are known as Bastion because they provide protection against attacks.
+
+**NATs** cannot and should not be used as Bastions. **NAT Gateways/Instances** are only intended for EC2 instances to gain outbound internet access for tasks such as security updates.
+
+AWS Marketplace has Community or Third-Party Bastions/Jumpboxes available for use.
+
+The **System Manager's** **Session Manager** can replace the need for a Bastion/Jumpbox.
