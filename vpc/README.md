@@ -850,3 +850,47 @@ Traffic Mirroring sends a copy of network traffic from a source ENI to a target 
   - Create a mirror target
   - Create a mirror filter
 
+### AWS Network Firewall
+
+AWS Network Firewall is a stateful, managed, network firewall and IDS/IPS service that protects your VPCs.
+
+It filters outbound traffic at the perimeter of the VPC:
+ - Filter IGW traffic
+ - Filter NAT Gateway Traffic
+ - Filter Transit Gateway Traffic
+ - Filter VPN Traffic
+ - Filter Amazon Direct Connect Traffic
+
+ AWS Network Firewall utilizes the Open-Source Suricata IDS/IPS software and supports Suricata compatible rules.
+
+ #### AWS Network Firewall Use Cases
+
+ AWS Network Firewall has multiple use cases:
+ - Pass traffic only through known AWS service domains or IP address endpoints, eg. Amazon S3.
+ - Use a custom list of known bad domains to limit the types of domain names that your applications can access.
+ - Perform deep packet inspection of traffic entering or leaving a VPC.
+ - Use stateful protocol detection to filter protocols like HTTPS or the port used.
+
+ ### VPC Peering
+
+ VPC Peering allows the connection one VPC to another over a direct route using Private IP addresses. 
+
+ ![AWS VPC Peering](./images/aws-vpc-peering.png)
+
+ - VPC Peering connection is not a gateway
+ - VPC Peering connection is not a VPN connection
+ - VPC Peering connection does not rely on separate piece of physical hardware
+ - There is no single point of failure for communication or bandwidth bottlenecks
+ - VPC Peering can be between Ipv4 addresses of IPv6 addresses
+ - Instances on peered VPCs behave exactly as if they were in the same VPC
+ - VPC Peerinf can connect VPCs across the same or different AWS accounts and regions
+ - Peering Uses a star configuration i.e 1 Cental VPC and 4 other VPCs connected to it
+   ![AWS Peered VPCs](./images/aws-peered-vpcs.png)
+ - No transit Peering i.e Peering must be take place directly between VPCs
+   - Needs a one-to-one connection to immediate VPC
+   - For transitive peering, use a **AWS Transit Gateway**
+ - No overlapping CIDR blocks allowed
+ - Data transfer accross AZs or regions incurs charges
+ 
+  
+ 
