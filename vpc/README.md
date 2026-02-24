@@ -717,3 +717,60 @@ AWS Client VPN has two roles:
 
 AWS Client VPN can be used to securely connect to an RDS instance that is only in a private subnet.
 
+### Network Address Translation (NAT)
+
+**NAT** is a method of mapping an IP address space to another by modifying network address information in the IP header of packets while they are in transit across a traffic routing device. NAT is used to allow instances in a private subnet to access the internet.
+
+If you have a private network and you need help to gain outbound access to the internet, you would need to use a NAT gateway to remap the private IP addresses to a public IP address.
+
+![AWS NAT](./images/aws-nat.png)
+
+### NAT Gateway
+
+**NAT Gateway** is a fully managed NAT service to allow instances in a private subnet to access the internet while preventing the internet from initiating a connection with those instances.
+- A NAT Gateway is redundant within a single subnet
+- A NAT Gateway is required per subnet
+
+![AWS NAT Gateway](./images/aws-nat-gateway.png)
+
+**Pricing**
+
+An AWS NAT Gateway can get exepensive really quickly. For example,3 NATs for 1 month = $98.55 
+
+You pay:
+
+- Per Hour Per NAT Gateway eg. $0.045
+- Per GB data processed eg. $0.045
+
+A NAT Gateway has two connection modes:
+1. **Public**
+    - Instances in private subnets can connect to the internet through a public NAT Gateway.
+    - It cannot receive unsolicited inbound connections from the internet.
+    - It must be associated with an Elastic IP Address.
+2. **Private**
+    - Instances in private subnets can connect to other VPCs or your on-premise network through a private NAT Gateway.
+    - You can route traffic from the NAT gateway through a transit gateway or a virtual private gateway.
+    - You cannot associate an Elastic IP Address with a private NAT Gateway.
+
+### DNS64 and NAT64
+
+A NAT Gateway supports network address translation from IPv6 to IPv4, popularly known as NAT64. 
+
+#### What is DNS64?
+
+IPv6-only workloads running in a VPC can only send and receive IPv6 network packets. Without **DNS64**, a DNS query for an IPv4-only service will yield an IPv4 destination address in response and an IPv6-only service cannot communicate with it. To bridge this communication gap, DNS64 can be enabled for a subnet and it applies to all AWS resources within that subnet.
+
+#### What is NAT64?
+
+**NAT64** enables IPv6 services in Amazon VPCs to communicate with IPv4-only services within the same VPC or connected VPCs, in an on-premise network, or over the internet.
+
+### NAT Instance
+
+**NAT Instances** (legacy) is an AWS managed IAM to launch a NAT onto individual EC2 instances. NAT instnaces require the client to handle scaling, high availability, and patching. NAT instances are not fault tolerant and must be manually configured for high availability.
+
+The NAT AMI is built on the lastes version of the Amazon Linux AMI, 2018.03, which reached the end of standard support on December 31, 2023 and end of maintenance support on December 31, 2023.
+
+![AWS NAT Instance](./images/aws-nat-instance.png)
+
+Community AMIs for third-party NAT software exist to launch NAT Instances.
+
