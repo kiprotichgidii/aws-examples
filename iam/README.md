@@ -21,3 +21,4 @@ AWS IAM allows you to create and manage AWS users and groups, with permissions t
 
     ![Inline Policies](./images/aws-inline-policies.png)
 
+
