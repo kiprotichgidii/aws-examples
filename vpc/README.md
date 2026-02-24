@@ -790,3 +790,25 @@ Jumpboxes are security hardened virtual machines that provide secure access to p
 AWS Marketplace has Community or Third-Party Bastions/Jumpboxes available for use.
 
 The **System Manager's** **Session Manager** can replace the need for a Bastion/Jumpbox.
+
+### VPC Lattice
+
+Amazon VPC Lattice is a fully managed application networking service that is used to connect, secure, and monitor service-to-service communications for your applications. With Amazon VPC Lattice, you can easily turn your AWS resources into services for a micro-services architecture. 
+
+- Can be used in a single VPC
+- Can be used across multiple VPCs
+- Can be used across accounts and used with multiple accounts
+- Performs NAT for IPv4, IPv6 and overlapping networks
+- Integrates with AWS IAM
+- Uses weight routing for traffic, eg. blue/green and canary style deployments
+- Uses HTTPS for service-to-service communication
+- Supports Custome domain names
+- Offers Bring-Your-Own SSL/TLS certificates
+
+![AWS VPC Lattice](./images/aws-vpc-lattice.png)
+
+- **Service Network**: The logical container for all the services that can communicate with each other within the associated VPCs.
+- **Listener**: The protocol and port the services listens on. A service can have upto 2 listeners, a listener containing the routing rules and another for default rule.
+- **Target Group**: A collection of resources of a specific type. eg EC2, IP addresses, Lambda fucntions, ALBs, K8s pods
+- **Service Directory**: A registry of all Lattice services owned or shared with AWS Account through AWS Resource Manager(AWS RAM).
+
