@@ -123,3 +123,17 @@ AWS Account Root User is a user who is created at the time of the AWS Account cr
 
 #### Root User Tasks
 
+- Change Account Settings:
+  - Includes the account name, email address, root user password, and root user access keys.
+  - Other accounts settings such as contact info, payment currency, and regions, do not requre root user credentials.
+- Restore IAM User permissions:
+  - If the only IAM Admin accidentally revokes their own permissions, the Root User can restore their permissions.
+- Activate IAM Access to the Billing and Cost Management Console.
+- View certain tax invoices.
+- Close an AWS Account.
+- Change or Cancel AWS Support Plan.
+- Register as a seller in the Reservec Instance Marketplace.
+- Enable MFA Delete on an S3 bucket.
+- Edit or delete an Amazon S3 bucket policy that includes an invalid VPC ID or VPC Endoint ID.
+- Sign up for GovCloud.
+
