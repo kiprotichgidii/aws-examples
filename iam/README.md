@@ -54,6 +54,32 @@ IAM policies are written in JSON, and contain permissions, which determine which
     ]
 }
 ```
+#### Example in YAML
+
+```yaml
+Version: "2012-10-17"
+Statement:
+  - Sid: Deny-Barclay-S3-Access
+    Effect: Deny
+    Action: s3:*
+    Principal:
+      AWS:
+        - arn:aws:iam:123456789012:barclay
+    Resource: arn:aws:s3:::barclay-s3-bucket
+  - Effect: Allow
+    Action: iam:CreateServiceLinkedRole
+    Resource: '*'
+    Condition:
+      StringLike:
+        iam:AWSServiceName:
+          - rds.amazonaws.com
+          - rds.application-autoscaling.amazonaws.com
+```
+YAML can be converted to JSON using the `yq` command-line tool.
+
+```bash
+yq -o json policy.yaml > policy.json
+```
 
 - **Version policy language**: 2012-10-17 is the latest version.
 - **Statement**: A list of permissions.
@@ -78,3 +104,5 @@ ConsoleMe is an open-source Netflix project to self-serve short-lived IAM polici
 **Risk-based Adaptive POlicies**
 
 Each attempt to access AWS resources generates a risk score of how likely the request is to be from a compromised source. The risk could be based on many factors, eg. device, user loaction, IP address, service being accesses, and when.
+
+
