@@ -106,3 +106,20 @@ ConsoleMe is an open-source Netflix project to self-serve short-lived IAM polici
 Each attempt to access AWS resources generates a risk score of how likely the request is to be from a compromised source. The risk could be based on many factors, eg. device, user loaction, IP address, service being accesses, and when.
 
 
+### AWS Account Root User
+
+AWS Account Root User is a user who is created at the time of the AWS Account creation. It has all the permissions in the AWS Account.
+- The Root User account uses an email & password to login.
+  - A regular user has to provide the Account ID/Alias, username & password to login.
+- The Root User account cannot be deleted whatsoever.
+- The Root User has full permissions to the account and it's permissions cannot be restricted whatsoever.
+  - IAM policies cannot be used to explicitly deny the Root User account access to any AWS resource.
+  - Only AWS Organizations Service Control Policies (SCPs) can be used to limit permissions of the Root User account.
+- There can only be one Root User account per AWS Account.
+- The root user should only be used for specific and specialized tasks that are rarely performed.
+- An AWS Root Account should not be used for day-to-day tasks.
+- It is strongly recommended to never use Root User access Keys.
+- It is strongly recommended to turn on MFA for the Root User account.
+
+#### Root User Tasks
+
