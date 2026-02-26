@@ -10,7 +10,7 @@ Cloud-init is the industry standard multi-distribution method for cross-platform
 
 Cloud Instance Initialization is the process of preparing an instance with configuration data for the operating system and runtime environment. It is used to install software, configure the instance, and set up the instance for use.
 
-![Cloud-Init](./images/cloud-init.png)
+![AWS Cloud-Init](./images/aws-cloud-init.png)
 
 Cloud Instances are initialized from a disk image and instance data:
 - Metadata
@@ -19,7 +19,6 @@ Cloud Instances are initialized from a disk image and instance data:
 
 User Data is a script that is run when the instance is first launched. It can be used to install software, configure the instance, and set up the instance for use.
 
-![AWS Cloud-Init](./images/aws-cloud-init.png)
 
 ### EC2 User Data
 
@@ -91,3 +90,50 @@ systemctl start nginx
 systemctl enable nginx
 echo "<html><h1>Hello World</h1></html>" > /var/www/html/index.html"
 ```
+### EC2 Meta Data
+
+EC2 metadata information can be accessed from the instance itself using the Metadata Service (MDS) via a special endpoint. There are two versions of the Metadata Service: 
+
+- **Instance Metadata Service Version 1 (IMDSv1)**: a request/response method
+- **Instance Metadata Service Version 2 (IMDSv2)**: a session-oriented method
+
+IMDSv2 was implemented after an exploit of IMDSv1 was discovered. IMDSv2 adds defense in depths attackes against open firewalls, reverse proxies, and SSRF vulnerabilities.
+
+The endpoint address:
+- IPv4: `http://169.254.169.254/latest/meta-data/`
+- IPv6: `http://fd00:ec2::254/latest/meta-data/`
+
+IMDSv1 using curl:
+
+```bash
+curl ttp://169.254.169.254/latest/meta-data
+```
+
+IMDSv2 using curl:
+
+```bash
+TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/
+```
+Instance metadata is grouped into categories, and there are over 60+ categories of instance metadata. Some of the categories are:
+
+- `ami-id`
+- `ami-launch-index`
+- `ami-manifest-path`
+- `ancestor-ami-ids`
+- `autoscaling/target-lifecycle-state`
+- `block-device-mapping/ami`
+- `block-device-mapping/ebsN`
+- `block-device-mapping/ephemeralN`
+- `block-device-mapping/root`
+- `block-device-mapping/swap`
+- `elastic-gpus/associations/elastic-gpu-id`
+- `elastic-inference/associations/eia-id`
+- `events/maintenance/history`
+...
+
+There are configuration options you can configure around metadata:
+- You can enforce the use of tokens (IMDSv2)
+- You can turn off the endpoint all together
+- You can specify the amount of network hops allowed
+
