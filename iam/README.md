@@ -137,3 +137,69 @@ AWS Account Root User is a user who is created at the time of the AWS Account cr
 - Edit or delete an Amazon S3 bucket policy that includes an invalid VPC ID or VPC Endoint ID.
 - Sign up for GovCloud.
 
+### IAM Password Policy
+
+IAM Allows users to set a password policy to set the minimum requirements for passwords and rotate passwords so that users have to update their password at regular intervals.
+
+### IAM Access Keys
+
+Access Keys allow users to interact with AWS services programmatically via the AWS CLI or AWS SDKs. You are only allowed two access keys per user.
+
+![Access Keys](./images/aws-iam-access-keys.png)
+
+
+### Multi-Factor Authentication(MFA)
+
+MFA is an additional layer of security to the authentication process which requires a second form of identification in addition to the user's password. After filling in a username/email and password, a user is required to use a second device such as a phone to confirm that it's the actual user logging in.
+
+MFA protects users against people who attempt to gain access to their accounts using stolen passwords. MFA is an option in most cloud providers and social media platforms.
+
+### IAM Temporary Security Credentials
+
+Temporary credentials are just like IAM user credentials but they are only valid for a limited amount of time. They are used to access AWS resources programmatically via the AWS CLI or AWS SDKs. They are also used to access AWS resources programmatically via the AWS CLI or AWS SDKs.
+
+Temporary credentials are useful in scenarios that involve:
+- Identity Federation
+- Delegation
+- Cross-account access
+- IAM roles
+
+Temporary credentials can last from minutes to hours. They are not stored with the user but are generated dynamically and provided to the user when requester.
+
+They are the basis of roles and identity federation.
+
+### IAM Identity Federation
+
+Identity federation is a method of authentication that links a users electronic identity and attributes, stored across multiple distinct identity management systems. Identity Federation allows users to exist on different platforms, eg. Facebook, Google, Microsoft, etc. and still be able to gain access to AWS resources as if they were an AWS IAM user.
+
+IAM Supports two types of Identity Federation:
+
+1. **Enterprise Identity Federation**
+    - SAML 2.0 (Microsoft Active Directory)
+    - Custom Federation Broker
+2. **Web Identity Federation**
+    - Amazon
+    - Facebook
+    - Google
+    - OpenID Connect 2.0 (OIDC)
+
+### IAM Security Token Service (STS)
+
+IAM STS is a web service that enables you to request temporary, limited-privilege credentials for IAM users, or federated users. These credentials can be used to access AWS resources programmatically via the AWS CLI or AWS SDKs.
+
+AWS STS is a global service, and all AWS STS requests go to a single global endpoint at https://sts.amazonaws.com. An STS will return:
+- AccessKeyID
+- SecretAccessKey
+- SessionToken
+- Expiration
+
+The following API actions can be used to obtain STS:
+- AssumeRole
+- AssumeRoleWithWebIdentity
+- AssumeRoleWithSAML
+- DecodeAuthorizationMessage
+- GetSessionToken
+- GetAccessKeyInfo
+- GetCallerIdentity
+- GetFederationToken
+
