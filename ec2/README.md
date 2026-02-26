@@ -137,3 +137,62 @@ There are configuration options you can configure around metadata:
 - You can turn off the endpoint all together
 - You can specify the amount of network hops allowed
 
+### EC2 Instance Types
+
+The instance type naming convention is as follows:
+
+![AWS EC2 Instance Types](./images/aws-ec2-instance-types.png)
+
+Some parts of the instance type may be omitted, eg. `t3.micro` does not contain Processor Family or Additional Capacity.
+
+### EC2 Instance Families
+
+Instance families are different combinations of CPU, Memory, Storage, and Networking capacity. Instance families allow you to choose the appropriate combination of capacity to meet your workload requirements. Different instance families are different because of the varying hardware used to give them their unique properties.
+
+#### Instance Family Types
+
+1. **General Purpose**
+   - A1, T2, T3, T3a, T4g, M4, M5, M5a, M5n, M6zn, M6g, M6i, Mac
+   - This instance family types offers a balance of compute, memory, and networking resources. 
+   - **Best for**: Web servers, development environments, and general-purpose workloads.
+
+2. **Compute Optimized**
+   - C4, C5, Cba, C5n, C6g, C6gn
+   - This instance family types are ideal for compute-intensive applications that benefit from high-performance processors. 
+   - **Best for**: Scientific modeling, dedicated gaming servers, and server engines
+
+3. **Memory Optimized**
+   - R4, R5, R5a, ,R5b, R5n, X1, X1e, High Memory, z1d
+   - This instance family types provides high performance for workloads that process large datasets in memory. 
+   - **Best for**: In-memory caches, In-memory databases, and real-time big data analytics
+
+4. **Accelerated Optimized**
+   - P2, P3, P4, G3, G4ad, G4dn, F1, Inf1, VT1
+   - This instance family types are ideal for hardware accelerators or co-processors such as Graphics Processing Units (GPUs).
+   - **Best for**: Machine learning, computational finance, siesmic analysis, and speech recognition
+
+5. **Storage Optimized**
+   - I3, I3en, D2, D3, D3en, H1
+   - This instance family types are ideal for high, sequential read and write access to very large datasets on local storage.
+   - **Best for**: No-SQL, In-memory or transactional databases, and data warehousing
+
+Often, Instance families are referred to as Instance Types, but an instance type is a combination of size and family.
+
+- **C**: Compute Optimized
+- **D**: Dense Storage
+- **F**: Field Programmable Gate Array (FPGA)
+- **G**: Graphics Intensive 
+- **Hpc**: High Performance Computing
+- **Im**: STorage Optimized with a 1:4 (vCPU:Memory) ratio
+- **Is**: STorage Optimized with a 1:6 (vCPU:Memory) ratio
+- **Inf**: AWS Inferentia
+- **M**: General Purpose
+- **Mac**: Apple MacOS
+- **P**: GPU Accelerated
+- **R**: Memory Optimized
+- **T**: Burstable Performance
+- **Trn**: AWS Trainium
+- **U**: High Memory
+- **VT**: Video Transcoding
+- **X**: Memory Intensive
+
