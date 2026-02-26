@@ -203,3 +203,50 @@ The following API actions can be used to obtain STS:
 - GetCallerIdentity
 - GetFederationToken
 
+### IAM Cross Account Roles
+
+IAM Cross Account Roles allow users in one AWS account to access resources in another AWS account. It is a common pattern in AWS to have a central account for managing AWS resources and a separate account for each application or service.
+
+This way there's no need to create them a user account within each account. Instead you create a role within each account that the users can assume to gain access to the resources in that account.
+
+![Cross Account Roles](./images/aws-iam-cross-account-roles.png)
+
+The role you create has a policy which grants access to the `sts:AssumeRole` action to the users in the other account. 
+
+```JSON
+{
+  "Version": "2012-10-17",
+  "Statement": {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Resource": "arn:aws:iam::PRODUCTION_ACCOUNT_ID:role/UpdateApp"
+    }
+}
+```
+
+### IAM AssumeRoleWithWebIdentity
+
+IAM `AssumeRoleWithWebIdentity` returns a set of temporary credentials for a user who has been authenticated in a mobile or web application with a web identity provider, such as Facebook, Google, or Amazon. 
+
+![AssumeRoleWithWebIdentity](./images/aws-iam-assume-role-with-web-identity.png)
+
+### AWS Single Sign-On (SSO)
+
+AWS Singe Sign-On (SSO) is a cloud-based identity and access management service that enables organizations to securely authenticate and authorize users to access applications and resources. It provides a centralized way to manage user access to multiple applications, including AWS accounts, SaaS applications, and custom applications.
+
+AWS SSO is where you create, or connect, your workforce identities in AWS once and manage access centrally across your AWS organization.
+
+![AWS SSO](./images/aws-sso.png)
+
+- Choose your identity source:
+  - AWS SSO
+  - Active Directory
+  - SAML 2.0
+
+- Managed user permissions centrally:
+  - AWS Account
+  - AWS Applications
+  - SAML Applications
+
+- Uses get Single Click Access
+
