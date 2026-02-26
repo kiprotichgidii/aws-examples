@@ -197,3 +197,38 @@ Often, Instance families are referred to as Instance Types, but an instance type
 - **X**: Memory Intensive
 
 Both **T** and **M** families are General Purpose. The **M** family offers an even balance of compute, memory, and networking resources. The **T** family is the cheapest and is great for variable workloads. It offers a baseline level of CPU performance with the ability to burst above the baseline when needed.
+
+### EC2 Processors
+
+AWS underlying instance can have access to a variety of different processors to meet specific cloud workload needs.
+
+1. **Intel Xeon Processors**
+   - Similar to Intel Desktop CPUs but with advanced capabilities.
+2. **AMD EPYC Processors**
+   - Alternactives to Intel-based instances.
+   - POtential cost saving over Intel Processors.
+3. **NVIDIA GPUs**
+   - Graphics Intensive workloads.
+   - Often used in Machine Learning workloads.
+4. **AWS Graviton Processors**
+   - Custom-built by AWS using ARM architecture.
+5. **Intel Habana Gaudi Processors**
+   - Specialized processors for Machine Learning workloads.
+6. **Intel FPGAs**
+   - Intel's offering for field-programmable gate arrays for workloads that benefit from custom hardware acceleration.
+7. **Xilinx (AMD)**
+   - AMD's offering for field-programmable gate arrays for workloads that benefit from custom hardware acceleration.
+8. **AWS Inferentia**
+   - AWS processors designed to deliver high-performance machine learning inference at low cost.
+
+### EC2 Instance Sizes
+
+Each instance type includes one or more instance sizes, allowing users to scale their resources to the requirements of the target workloads. Each instance size generally doubles in price and key attributes.
+
+| Name | vCPUs | Memory (GiB) | On-Demand per hour | On-Demand per month |
+| --- | --- | --- | --- | --- |
+| t2.small | 1 | 12 | $0.0023 | $16.79 |
+| t2.medium | 2 | 24 | $0.0464 | $33.87 |
+| t2.large | 2 | 36 | $0.0928 | $67.74 |
+| t2.xlarge | 4 | 54 | $0.1856 | $135.48 |
+
