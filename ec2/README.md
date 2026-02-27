@@ -428,3 +428,21 @@ When using  Session Manager, you will need to change your user to the default us
 sudo su - ec2-user
 ```
 
+### EC2 Burstable Instances
+
+Burstable Instances allow workloads to handle bursts of higher CPU usage for very short durations. This allows AWS customers to save money overall since they do not need to upgrade their instance based on highest peak usage. 
+
+- **T4g**: Graviton (ARM),cheaper than t46
+- **T3a**: AMD EPYC, cheaper than t3
+- **T3**: Intel Xeon Scalable, best overall
+- **T2**: Intel Xeon, free tier due to previous generation processors
+
+#### Standard Mode
+
+- The default mode for burstable instances
+- Provides a baseline level of CPU performance with the ability to burst above the baseline using accumulated CPI credits, suitable for workloads with variable CPU usage.
+
+#### Unlimited Mode
+
+- Allows an instance to sustain high CPU performance for any period, whenever required, exceeding the baseline and accumulated CPU credits, with additional charges applied for extra CPU usage beyond the accumulated credits.
+
