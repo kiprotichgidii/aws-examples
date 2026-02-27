@@ -246,3 +246,38 @@ Instance profiles allow users to avoid passing long-live AWS credentials. (AWS A
 
 When you select an AMI role when launching an EC2 instance, AWS will automatically create the Instance Profile. Instance Profile are not easily viewed via the AWS console.
 
+Creating the instance profile:
+
+```bash
+aws iam create-instance-profile \
+  --instance-profile-name MyInstanceProfile
+```
+Addin the single IAM role to the instance profile:
+
+```bash
+aws iam add-role-to-instance-profile \
+  --instance-profile-name MyInstanceProfile \
+  --role-name MyRole
+```
+
+Associating the instance profile with an EC2 instance:
+
+```bash
+aws ec2 associate-iam-instance-profile \
+  --instance-id i-1234567890abcdef0 \
+  --iam-instance-profile Name=MyInstanceProfile
+```
+
+Listing all IAM roles:
+
+```bash
+aws iam list-instance-profiles
+```
+
+Getting info about a specific instance profile:
+
+```bash
+aws iam get-instance-profile \
+  --instance-profile-name MyInstanceProfile
+```
+
