@@ -341,3 +341,18 @@ aws ec2 modify-instance-attribute \
   --auto-recovery disabled \
   --region us-east-1
 ```
+
+### EC2 Instance Console Screenshot
+
+Instance Console Screenshot will take a screenshot of the current state of the instance. This is useful for troubleshooting booting issues when you cannot connect to the instance over SSH or RDP.
+
+![AWS EC2 Instance Console Screenshot](./images/aws-ec2-instance-console-screenshot.png)
+
+You can use the AWS CLI to grab the screenshot of the instance console:
+
+```bash
+aws ec2 get-console-screenshot
+```
+
+If something went wrong, you might see something other than a login screen.
+
