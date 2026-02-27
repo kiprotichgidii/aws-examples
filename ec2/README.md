@@ -356,3 +356,75 @@ aws ec2 get-console-screenshot
 
 If something went wrong, you might see something other than a login screen.
 
+### EC2 Hostnames
+
+A hostname is a unique name in your network to identify a computer via DNS. With AWS, the hostname format will vary depending on what compute service is being used.
+
+You need to ensure that your cloud-init(`/etc/cloud/cloud.cfg`) configuration will preserve hostname changes across reboots.
+
+```yaml
+#cloud-config
+hostname: my-hostname
+preserve_hostname: true
+```
+Then change the hostname and reboot for the name to take effect:
+
+```bash
+sudo hostnamectl set-hostname my-hostname
+sudo reboot
+```
+
+Changing the hostname could be necessary in specific use-cases where software is expecting a very specific hostname. ie. when building microservices using Service Meshes.
+
+There are two hostnametypes for the guest OS hostname:
+
+1. **IP Name**
+   - Legacy naming scheme based on the private IP address of the instance. 
+   - Used when you launch an IPv4 only instance. 
+   
+   ```bash
+   # us-east-1
+   private-ipv4-address.ec2.internal
+   ip-10-24-34-0.ec2.internal
+
+   # Other regions
+   private-ipv4-address.region.compute.internal
+   ip-10-24-34-0.ca-central-1.compute.internal
+   ```
+
+2. **Resource Name**
+   - EC2 instance ID is included in the hostname of the instance.
+   - Used when you launch an IPv6 only instance.
+   - If dualstack, you can choose.
+
+   ```bash
+   # us-east-1
+   ec2-instance-id.ec2.internal
+   i-1234567890abcdef0.ec2.internal
+
+   # Other regions
+   ec2-instance-id.region.compute.internal
+   i-1234567890abcdef0.ca-central-1.compute.internal
+   ```
+### EC2 Default User Name
+
+The default user name for an OS managed by AWS will vary based on the distribution.
+
+| Distribution | Default User Name |
+| --- | --- |
+| Amazon Linux AMIs | ec2-user |
+| CentOS AMI | centos/ec2-user |
+| Debian AMI | admin |
+| Fedora AMI | ec2-user |
+| RHEL AMI | ec2-user/root |
+| SUSE AMI | ec2-user/root |
+| Ubuntu AMI | ubuntu |
+| Oracle AMI | ec2-user |
+| Bitnami AMI | bitnami |
+
+When using  Session Manager, you will need to change your user to the default user name for the distribution. 
+
+```bash
+sudo su - ec2-user
+```
+
