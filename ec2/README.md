@@ -232,3 +232,17 @@ Each instance type includes one or more instance sizes, allowing users to scale 
 | t2.large | 2 | 36 | $0.0928 | $67.74 |
 | t2.xlarge | 4 | 54 | $0.1856 | $135.48 |
 
+### EC2 Instance Profile
+
+EC2 instance profile is a reference to an AMI role that will be passed and assumed by the EC2 instance when it starts up.
+
+![AWS EC2 Instance Profile](./images/aws-ec2-instance-profile.png)
+
+Instance profiles allow users to avoid passing long-live AWS credentials. (AWS Access Key and Secret Key)
+
+- EC2 instance profiles can be associated at the time of launch or on a running EC2 instance. If there was no previous EC2 instance profile attached, a hard reboot is required for the role to be assumed.
+- Only a single IAM role can be associated with Instance Profile.
+- Changing roles is not instantaneous due to eventual consistency. If you need the role immediately, you need to dissociate/associate the profile or hard reboot the instance.
+
+When you select an AMI role when launching an EC2 instance, AWS will automatically create the Instance Profile. Instance Profile are not easily viewed via the AWS console.
+
