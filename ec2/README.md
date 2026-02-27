@@ -491,4 +491,33 @@ Logs that woule be collected from an EC2 instance is CloudWatch Unified Agent is
 - `/var/log/aws/ams/bootstrap.log`
 - `/var/log/aws/ssm/build.log`
 
+### EC2 Placement Groups
+
+EC2 Placement Groups allow users to choose the logical placement of EC2 instances in the AWS cloud to optimize for communication, performance, and durability. Placement Groups are free of charge.
+
+#### Cluster Placement Group
+
+- Packs instances close together in a single Availability Zone (AZ) to achieve the lowest possible latency and highest possible network throughput.
+- Low-latency network performance for tightly-coupled node-to-node communication.
+- Ideal for high-performance computing (HPC) applications that require low-latency communication between instances.
+- Cluster cannot be multi-AZ.
+
+![AWS EC2 Cluster Placement Group](./images/aws-ec2-cluster-placement-group.png)
+
+#### Partition Placement Group
+
+- Spreads instances across logical partitions
+- Each partition does not share the underlying hardware with each other (rack partition)
+- Well suited for large distributed and replicated workloads (Hadoop, Cassandra, Kafka,etc.)
+
+![AWS EC2 Partition Placement Group](./images/aws-ec2-partition-placement-group.png)
+
+#### Spread Placement Group
+
+- Each instance is placed on a different rack
+- Used when critical instances should be kept separate from each other (ie. database primary and replica)
+- Can spread a maximum of 7 hosts per AZ
+- Spread can be multi-AZ.
+
+![AWS EC2 Spread Placement Group](./images/aws-ec2-spread-placement-group.png)
 
