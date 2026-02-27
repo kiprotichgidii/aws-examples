@@ -444,5 +444,18 @@ Burstable Instances allow workloads to handle bursts of higher CPU usage for ver
 
 #### Unlimited Mode
 
-- Allows an instance to sustain high CPU performance for any period, whenever required, exceeding the baseline and accumulated CPU credits, with additional charges applied for extra CPU usage beyond the accumulated credits.
+Allows an instance to sustain high CPU performance for any period, whenever required, exceeding the baseline and accumulated CPU credits, with additional charges applied for extra CPU usage beyond the accumulated credits.
 
+### EC2 Source and Destination Checks
+
+The EC2 source/destination check is a security feature that prevents an instance from sending or receiving traffic that has a different source or destination IP address than the instance itself. This is a security feature that is enabled by default on all EC2 instances.
+
+To disable the source/destination check, you can use the AWS CLI:
+
+```bash
+aws ec2 modify-instance-attribute \
+  --instance-id i-1234567890abcdef0 \
+  --source-dest-check 
+```
+
+Disabling the source/destination check is useful when you want to utilize the instance for Network Address Translation (NAT) or as a load balancer. 
