@@ -459,3 +459,36 @@ aws ec2 modify-instance-attribute \
 ```
 
 Disabling the source/destination check is useful when you want to utilize the instance for Network Address Translation (NAT) or as a load balancer. 
+
+### EC2 System Log
+
+EC2 Management Console allows users to observe the system log for an EC2 instance. This is useful if you are trying to troubleshoot an instance on boot, to see if anything is wrong.
+
+![AWS EC2 System Log](./images/aws-ec2-system-log.png)
+
+Some Marketplace and community AMIs will write the default user name and password for software in the system log for initial logins. 
+
+Logs can be delivered to CloudWatch Logs installing the CloudWatch Unified Agent and can be accessed through a CloudWatch Log Group of the same name as the instance.
+
+Logs that woule be collected from an EC2 instance is CloudWatch Unified Agent is running and the EC2 instance is permitted to write to CloudWatch logs:
+
+- `/var/log/ssm/amazon-ssm-agent.log/`
+- `/var/log/audit/audit.log`
+- `/var/log/cloud-init-output.log`
+- `/var/log/cfn-init.log`
+- `/var/log/cfn-init-cmd.log`
+- `/var/log/cloud-init.log` (AL1 / AL2 only)
+- `/var/log/cron`
+- `/var/log/maillog`
+- `/var/log/messages`
+- `/var/log/secure`
+- `/var/log/spooler`
+- `/var/log/yum.log`
+- `/var/log/zypper.log`
+- `/var/log/auth.log`
+- `/var/log/dpkg.log`
+- `/var/log/syslog`
+- `/var/log/aws/ams/bootstrap.log`
+- `/var/log/aws/ssm/build.log`
+
+
