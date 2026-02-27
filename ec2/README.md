@@ -281,3 +281,63 @@ aws iam get-instance-profile \
   --instance-profile-name MyInstanceProfile
 ```
 
+### EC2 Instance Lifecycle
+
+Instance Lifecycle refers to the different states an EC2 instance can be in during its lifetime.
+
+![AWS EC2 Instance Lifecycle](./images/aws-ec2-instance-lifecycle.png)
+
+#### Actions
+
+- **Launch**: Create and start an EC2 instance based on an AMI.
+- **Stop**: Turn off but not delete the current EC2 instance.
+- **Start**: Turn on a previously stopped EC2 instance.
+- **Terminate**: Delete the EC2 instance.
+- **Reboot**: Perform a soft reboot of the EC2 instance.
+- **Retire**: Notifies when an instance is scheduled for retirement due to hardware failure or end-of-life; it must be replaced or migrated.
+- **Recover**: Automatically recovers failed instances on new hardware if enabled, keeping the instance id and other configs as they were.
+
+#### States
+
+- **Pending**: The instance is preparing to enter the running state. 
+- **Running**: The instance is running and ready for use.
+- **Stopping**: The instance is preparing to be stopped.
+- **Stopped**: The instance is shut down and cannot be used unless started again.
+- **Shutting-down**: The instance is preparing to be terminated.
+- **Terminated**: The instance has been permanently deleted and cannot be started.
+
+To prevent the instance from being terminated, you can enable the **Termination Protection** setting(defaut is off):
+
+```bash
+aws ec2 modify-instance-attribute \
+  --instance-id i-1234567890abcdef0 \
+  --disable-api-termination \
+  --region us-east-1
+```
+
+To prevent the instance from being stopped, you can enable the **Stop Protection** setting(defaut is off):
+
+```bash
+aws ec2 modify-instance-attribute \
+  --instance-id i-1234567890abcdef0 \
+  --disable-api-stop \
+  --region us-east-1
+```
+
+To configure shutdown behavior, you can use the **Shutdown Behavior** setting(defaut is stop):
+
+```bash
+aws ec2 modify-instance-attribute \
+  --instance-id i-1234567890abcdef0 \
+  --instance-initiated-shutdown-behavior stop \
+  --region us-east-1
+```
+
+To configure auto-recovery behavior, for instance whether to automatically recover an instance when a system status check fails, you can use the **Auto Recovery** setting(defaut is enabled):
+
+```bash
+aws ec2 modify-instance-attribute \
+  --instance-id i-1234567890abcdef0 \
+  --auto-recovery disabled \
+  --region us-east-1
+```
