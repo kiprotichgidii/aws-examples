@@ -821,3 +821,16 @@ aws ec2 modify-image-attribute \
 ```
 AMIs can be sold in the AWS Marketplace.
 
+### AMI - Virtualization Types
+
+| Description | Hardware Virtual Machine (HVM) | Paravirtual (PV) |
+| --- | --- | --- |
+| **Virtualization** | Full virtualization with hardwar assistance | Software-assisted virtualization that requires OS modifications |
+| **Hardware Assisted** | Uses hardware assisted technology from the host's system CPU | Relies on a hypervisor to emulate hardware |
+| **Performance** | Potentially higher, especially for applications that require direct access to hardware | Initially had better performance for some workloads due to low overhead, but has been surpassed by HVM advancements |
+| **OS Support** | Broader, can run unmodified operating systems, any OS that can run on physical hardware can run on HVM | Limited to OSs modified for paravirtualization, cannot run unmodified operating systems |
+| **Boot Method** | Can boot from an EBS volume or an instance store | Can only boot from an instance store |
+| **Usage** | Recommended for modern OSs and applications requiring specific hardware features | Historically used for certain workloads and older instance types. Less commonly used for new deployments |
+
+
+
