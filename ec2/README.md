@@ -746,3 +746,78 @@ aws ec2 copy-image \
   --region <destination-region>
 ```
 
+### AMI - Store and Restore
+
+You can store an AMI in an S3 bucket and restore it later. The reason you would want to do this is if you want to copy AMIs from one AWS partition to another. This is also useful for backing up AMIs and for sharing AMIs with other AWS accounts.
+
+Storing an AMI to S3:
+
+```bash
+# Store an AMI in an S3 bucket
+aws ec2 create-instance-export-task \
+  --instance-id i-0123456789abcdef0 \
+  --target-environment vmware \
+  --export-to-s3-task DiskImageFormat=VMDK,S3Bucket=my-ami-backup-bucket,S3Prefix=exported-ami/
+```
+
+Restoring an AMI from S3:
+
+```bash
+# Restore an AMI from an S3 bucket
+aws ec2 import-image \
+  --description "Imported AMI" \
+  --disk-containers "Format=VMDK,S3Bucket=my-ami-backup-bucket,S3Key=exported-ami/my-exported-vm.vmdk"
+```
+
+#### Why use this over Copying an AMI?
+
+- Cheaper long-term storage
+- Lifecycle management of AMIs
+- Disaster recovery
+- Auditing and compliance
+
+### AMI Deprecate, Disable, and Deregister
+
+**Deprecating** an AMI allows users to mark a date when the AMI will no longer be available for use. 
+
+```bash
+# Deprecate an AMI
+aws ec2 enable-image-deprecation \
+  --image-id <ami-id> \
+  --deprecate-at <date> 
+```
+
+**Disabling** an AMI prevents users from using the AMI to launch new instances. It can be re-enabled at a later date.
+
+```bash
+# Disable an AMI
+aws ec2 disable-image \
+  --image-id <ami-id> 
+```
+
+**Deregistering** an AMI is when the user is done with an AMI and would like to prevent any new instances from being launched with the AMI. Deregistering does not delete the snapshots associated with the AMI. 
+
+```bash
+# Deregister an AMI
+aws ec2 deregister-image \
+  --image-id <ami-id>
+
+aws ec2 delete-snapshot \
+  --snapshot-id <snapshot-id>
+```
+
+### AMI - Sharing
+
+AMIs can have the following settings:
+- **Public**: any AWS account can launch the AMI
+- **Explicit**: specific AWS accounts, Organizations/Organization Units, can launch the AMI
+- **Implicit**: only the AWS account that created the AMI can launch it
+
+```bash
+# Share an AMI with specific AWS accounts
+aws ec2 modify-image-attribute \
+  --image-id <ami-id> \
+  --launch-permission "Add=[{Group=all}]"
+```
+AMIs can be sold in the AWS Marketplace.
+
