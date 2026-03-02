@@ -156,3 +156,6 @@ aws cloudwatch put-metric-alarm \
   --unit Percent
 ```
 
+When using Simple Scaling Policies, it is recommended to set a cooldown period. The cooldown period is the amount of time that the ASG should wait before performing another scaling action after a scaling action has been performed. 
+
+It also not recommended to use **Simple Scaling Policies** and cooldown periods together, and instead opt for **Step Scaling Policies** or **Target Tracking Scaling Policies**.
