@@ -521,3 +521,46 @@ EC2 Placement Groups allow users to choose the logical placement of EC2 instance
 
 ![AWS EC2 Spread Placement Group](./images/aws-ec2-spread-placement-group.png)
 
+### EC2 Connect
+
+There are a lot of ways to connect to an EC2 instance. The most common ways are:
+
+1. SSH
+2. EC2 Instance Connect
+3. Session Manager
+4. Fleet Manager Remote Desktop
+5. EC2 Serial Console
+
+#### SSH Client
+
+- Connect from your local computer via an SSH connection using a public and private key
+- You generate the public and private key pair on AWS and download the private key to your local computer
+- Port 22 needs to be allowed in the Security Group in order to connect to the instance
+
+```bash
+ssh -i /path/to/private-key.pem ec2-user@<public-ip-address>
+```
+
+#### EC2 Instance Connect
+
+Short-lived SSH keys controlled by IAM policies, works only with Linux and not all instances.
+
+#### Session Manager
+
+- Connection to a Linux or Windows computer via a reverse connection.
+- Windows will log into PowerShell and Linuc will log into bash.
+- Does not require open ports, access is controlled via IAM policies.
+- Supports audit tails for logins.
+
+#### Fleet Manager Remote Desktop
+
+- Fleet Manager allows you to connect to Windows machines via a remote desktop connection within the browser.
+- It uses the SSM agent to establish a connection to the instance.
+- It is a good alternative to RDP or VNC.
+
+#### EC2 Serial Console
+
+- Allows you to connect to an instance via a serial connection.
+- Useful for troubleshooting boot issues.
+- Requires the instance to be configured to allow serial console access.
+
