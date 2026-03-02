@@ -700,4 +700,49 @@ UEFI is a modern firmware interface for computers, designed to replace the older
 
 Unless specifically required for some reason, it's always recommended to use UEFI.
 
+### AMI Elastic Network Adapter (ENA)
+
+Elastic Network Adapter (ENA) is a network interface for EC2 instances that provides high-performance networking. It supports network speeds of upto 100Gbps for supported instance types. All instances based on Nitro System use ENA for enhanced networking.
+
+![AWS EC2 ENA](./images/aws-ec2-ena.png)
+
+### Root Device Type
+
+An AMI root device is the device that is used to boot the instance. It can be either an EBS-backed volume or an instance-backed volume.
+
+#### EBS-backed Instance
+
+An EBS volume is automatically attached at launch time. The storage is independent of the instance and the instance can be stopped or terminated without loss of data.
+
+![AWS EC2 EBS-backed Instance](./images/aws-ec2-ebs-backed-instance.png)
+
+#### Instance store-backed Instance
+
+The native volumes of the instance store are used as the root device. When the instance is stopped or terminated, all data is lost. Instance store-backed AMIs are less common than EBS-backed AMIs.
+
+![AWS EC2 Instance store-backed Instance](./images/aws-ec2-instance-store-backed-instance.png)
+
+### AMI - Creating an Copying
+
+You can create an AMI from an existing EC2 instance that os either running or stopped.
+
+```bash
+# Create an AMI from an existing EC2 instance
+aws ec2 create-image \
+  --instance-id <instance-id> \
+  --name "<ami-name>" \
+  --description "<ami-description>"
+```
+
+You can also copy an AMI across to another region. At the same time you can encrypt a non-encrypted AMI during the copy.
+
+```bash
+# Copy an AMI to another region
+aws ec2 copy-image \
+  --source-image-id <ami-id> \
+  --source-region <source-region> \
+  --name "<ami-name>"
+  --encrypted \
+  --region <destination-region>
+```
 
