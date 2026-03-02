@@ -564,3 +564,76 @@ Short-lived SSH keys controlled by IAM policies, works only with Linux and not a
 - Useful for troubleshooting boot issues.
 - Requires the instance to be configured to allow serial console access.
 
+### EC2 Amazon Linux
+
+Amazon Linux is AWS's managed Linux distribution, which is based on CentOS and Fedora Linux, which are in turn based on Red Hat Enterprise Linux (RHEL). 
+
+Amazon Linux has three versions:
+
+1. Amazon Linux 1 (AL1)
+2. Amazon Linux 2 (AL2)
+3. Amazon Linux 2023 (AL2023)
+
+**Amazon Linux 1** is deprecated and no longer supported. **Amazon Linux 2** is also deprecated and no longer supported. **Amazon Linux 2023** is the current version and is supported until December 31, 2029. Standard support will be until June 30, 2027, followed by a maintenance phase until June 30, 2029.
+
+Amazon Linux uses the `yum` and `dnf` tools for package management.
+
+```bash
+# Update all packages
+sudo yum update -y
+
+# Install a package
+sudo yum install -y <package-name>
+
+# Remove a package
+sudo yum remove -y <package-name>
+
+# Search for a package
+sudo yum search <package-name>
+
+# List all installed packages
+sudo yum list installed
+```
+
+#### Amazon Linux Extras
+
+**Amazon Linux Extras** is a feature of Amazon Linux 2 that allows users to install additional software packages on their instances. Amazon Linux 2 was packaged with significantly fewer than Amazon Linux 1, hence the vital need for Amazon Linux Extras. **Amazon Linux 2023** has significanyly more packages than **Amazon Linux 2**, so it does not need Amazon Linux Extras.
+
+```bash
+# List all available extras
+sudo amazon-linux-extras list
+
+# Install an extra
+sudo amazon-linux-extras install <extra-name>
+
+# Remove an extra
+sudo amazon-linux-extras remove <extra-name>
+
+# Search for an extra
+sudo amazon-linux-extras search <extra-name>
+
+# List all installed extras
+sudo amazon-linux-extras list installed
+```
+
+#### Amazon Linux and EPEL
+
+Extra Packages for Enterprise Linux (EPEL) is a repository of additional packages for Red Hat Enterprise Linux (RHEL) and its derivatives, from Fedora sources. EPEL provides packages that are not available in the default repositories of RHEL and its derivatives, but are available in the default repositories of other Linux distributions.
+
+#### Amazon Linux 2 vs Amazon Linux 2023
+
+Amazon Linux 2023 is a major upgrade over Amazon Linux 2, with a number of improvements and new features. Amazon Linux 2023 is based on Amazon Linux 2, but with a number of improvements and new features. Amazon Linux 2023 is also based on Amazon Linux 2, but with a number of improvements and new features.
+
+| Amazon Linux 2 (AL2) | Amazon Linux 2023 (AL2023) |
+|---|---|
+| Limited Packages but can be extended with Amazon Linux Extras | Has thousands of packages available |
+| Python 2.7 | Python 3.9 |
+| `yum` package manager | `dnf` package manager |
+| Security Enhanced Linux (SELinux) disabled by default | Security Enhanced Linux (SELinux) enabled by default |
+| OpenSSL 1.0.2 | OpenSSL 3 |
+| Sourcing CentOS 7 | Sourcing RHEL Stream 9 |
+| gp2 volumes be default | gp3 volumes be default |
+| Cronie installed by default to have crontab | Cronie not installed by default |
+| OpenJDK | Amazon Corretto |
+
+
