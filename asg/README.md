@@ -52,3 +52,107 @@ aws autoscaling set-desired-capacity \
   --honor-cooldown
 ```
 An ASG will always launch instances to meet the minimum size capacity. Changing the min, maxz and desired capacities is considered "manual scaling", since you have to manually change these numbers to change the capacity of the ASG. 
+
+### ASG Health Check Replacements
+
+**Health Check Replacement** is when an ASG replaces instances that have been determined to be unhealthy. There are two types of health checks: 
+- **EC2 Health Checks**: If the EC2 instance fails either of it's EC2 health checks, the ASG will replace it.
+- **ELB Health Checks**: ASG will perform a health check based on the ELB health check. ELB pings a HTTP endpoint at a specific path, port and status code.
+
+```bash
+aws autoscaling update-auto-scaling-group \
+  --auto-scaling-group-name <asg-name> \
+  --health-check-type ELB \
+  --health-check-grace-period 300 \
+  --vpc-zone-identifier "subnet-0123456789abcdef0, subnet-0123456789abcdef1, subnet-0123456789abcdef2"
+```
+
+![ASG Health Check Replacement](./images/aws-asg-health-check-replacement.png)
+
+### ASG ELB Integration
+
+An Elastic Load Balancer can be attached to an Auto Scaling Group (ASG):
+
+```bash
+aws autoscaling attach-load-balancer-target-groups \
+  --auto-scaling-group-name <asg-name> \
+  --target-group-arns <target-group-arn> \
+  --target-group-port 80
+```
+
+![ASG ELB Integration](./images/aws-asg-elb-integration.png)
+
+An attached ELB means that the ASG will use the ELB health checks to determine if an instance is healthy. 
+
+### ASG Dynamic Scaling Policies
+
+**Dynamic Scaling Policies** are how much ASGs should change the capacity. They allow you to automatically adjust the size of an ASG based on demand. There are three dynamic scaling policies:
+
+- **Simple Scaling**: A single CloudWatch alarm triggers a single scaling action.
+- **Step Scaling**: A CloudWatch alarm triggers a scaling action based on the size of the alarm breach.
+- **Target Tracking Scaling**: A CloudWatch alarm triggers a scaling action to maintain a target value for a metric.
+
+Adjustment types determine how capacity should change (only applicable to Simple and Step Scaling):
+- **ChangeInCapacity**: Change capacity based on the scaling adjustment
+- **ExactCapacity**: Change capacity to an exact number
+- **PercentChangeInCapacity**: Change capacity by a percentage
+
+### Simple Scaling Policy
+
+**Simple Scaling Policies** simply change capacity in either direction by a certain amount when a CloudWatch alarm is triggered.
+ 
+Create the scale-in/scale-out policies:
+
+```bash
+# Scale Out
+aws autoscaling put-scaling-policy \
+  --auto-scaling-group-name  my-asg \
+  --policy-name my-simple-scale-out-policy \
+  --scaling-adjustment 30 \
+  --adjustment-type PercentageChangeInCapacity 
+
+# Scale In
+aws autoscaling put-scaling-policy \
+  --auto-scaling-group-name my-asg \
+  --policy-name my-simple-scale-in-policy \
+  --scaling-adjustment -1 \
+  --adjustment-type ChangeInCapacity \
+  --cooldown 300
+```
+
+Create the CloudWatch alarms:
+
+```bash
+# Scale Out
+aws cloudwatch put-metric-alarm \
+  --alarm-name my-simple-scale-out-alarm \
+  --alarm-description "Scale out when CPU > 70%" \
+  --metric-name CPUUtilization \
+  --namespace AWS/EC2 \
+  --statistic Average \
+  --period 60 \
+  --evaluation-periods 2 \
+  --threshold 70 \
+  --comparison-operator GreaterThanThreshold \
+  --alarm-actions <scale-out-policy-arn> \
+  --dimensions Name=AutoScalingGroupName,Value=my-asg \
+  --unit Percent
+```
+
+```bash
+# Scale In
+aws cloudwatch put-metric-alarm \
+  --alarm-name my-simple-scale-in-alarm \
+  --alarm-description "Scale in when CPU < 30%" \
+  --metric-name CPUUtilization \
+  --namespace AWS/EC2 \
+  --statistic Average \
+  --period 60 \
+  --evaluation-periods 2 \
+  --threshold 30 \
+  --comparison-operator LessThanThreshold \
+  --alarm-actions <scale-in-policy-arn> \
+  --dimensions Name=AutoScalingGroupName,Value=my-asg \
+  --unit Percent
+```
+
