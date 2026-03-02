@@ -20,3 +20,5 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [Simple Storage Service(S3)](./s3/README.md)
 - [Virtual Private Cloud(VPC)](./vpc/README.md)
 - [Identity and Access Management(IAM)](./iam/README.md)
+- [Elastic Compute Cloud(EC2)](./ec2/README.md)
+- [Auto Scaling Group(ASG)](./asg/README.md)

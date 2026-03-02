@@ -832,5 +832,3 @@ AMIs can be sold in the AWS Marketplace.
 | **Boot Method** | Can boot from an EBS volume or an instance store | Can only boot from an instance store |
 | **Usage** | Recommended for modern OSs and applications requiring specific hardware features | Historically used for certain workloads and older instance types. Less commonly used for new deployments |
 
-
-
