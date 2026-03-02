@@ -636,4 +636,68 @@ Amazon Linux 2023 is a major upgrade over Amazon Linux 2, with a number of impro
 | Cronie installed by default to have crontab | Cronie not installed by default |
 | OpenJDK | Amazon Corretto |
 
+### EC2 AMI
+
+Amazon Machine Image (AMI) is a snapshot of a virtual machine (VM) that is used to create and launch EC2 instances. You can turn your EC2 instance into an AMI and use it to create new instances.
+
+An AMI holds the following information:
+
+- A template for the root volume for the instance (EBS Snapshot or Instance Store template) eg. an operating system, an application server, and applications
+- Launch permissions that control which AWS accounts can use the AMI to launch instances
+- Block device mappings that specify the volumes to attach to the instance when it is launched
+
+![AWS EC2 AMI](./images/aws-ec2-ami.png)
+
+AMIs are region specific.
+
+#### Use Cases
+
+- AMIs help keep incremental changes to the OS, application code, and system packages.
+- Using Systems Manager Automation, AMIs can be patched with security updates and baked.
+- AMIs are used with **Launch Configurations** and **Launch Templates** to manager AMI revisions.
+
+### AWS Marketplace
+
+The AWS Marketplace allows users to purchase subscriptions to vendor-managed AMIs. Security-hardened AMIs are a popular choice for users on the AWS Marketplace. eg. Center of Internet Security (CIS).
+
+![AWS EC2 Marketplace](./images/aws-ec2-marketplace.png)
+
+### Choosing an AMI
+
+It's important to note that the AMI ID will be different for each region. So it's very important to always use the correct AMI ID for the region you are deploying to. 
+
+![AWS EC2 AMI Types](./images/aws-ec2-ami-types.png)
+
+Some AMIs will have multiple architecture options with alternate AMI IDs. AMIs can be selected based on the following:
+- Region
+- Operating System
+- Architecture (x86 or ARM)
+- Launch Permissions
+- Root Device Volume
+  - EBS-backed AMI
+  - Instance Store-backed AMI
+
+### AMI Boot Modes
+
+AMIs have two possible boot modes:
+
+1. Legacy BIOS (Basic Input/Output System)
+2. UEFI (Unified Extensible Firmware Interface)
+
+#### Legacy BIOS (Basic Input/Output System)
+   
+The traditional firmware interface for computers, that has been around for decades. It initializes hardware during the boot-up process and provides runtime services for operating systems and programs.
+- No support for Secure Boot
+- May be required when using legacy OSs or legacy software
+
+#### UEFI (Unified Extensible Firmware Interface)
+   
+UEFI is a modern firmware interface for computers, designed to replace the older BIOS firmware interface.
+- Supports Secure Boot
+- Faster boot times
+- Supports larger disks 
+- Pre-boot environment with a GUI and network capabilities
+
+Unless specifically required for some reason, it's always recommended to use UEFI.
+
 
