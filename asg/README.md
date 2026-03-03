@@ -97,7 +97,7 @@ Adjustment types determine how capacity should change (only applicable to Simple
 - **ExactCapacity**: Change capacity to an exact number
 - **PercentChangeInCapacity**: Change capacity by a percentage
 
-### Simple Scaling Policy
+#### Simple Scaling Policy
 
 **Simple Scaling Policies** simply change capacity in either direction by a certain amount when a CloudWatch alarm is triggered.
  
@@ -159,3 +159,54 @@ aws cloudwatch put-metric-alarm \
 When using Simple Scaling Policies, it is recommended to set a cooldown period. The cooldown period is the amount of time that the ASG should wait before performing another scaling action after a scaling action has been performed. 
 
 It also not recommended to use **Simple Scaling Policies** and cooldown periods together, and instead opt for **Step Scaling Policies** or **Target Tracking Scaling Policies**.
+
+#### ASG Step Scaling Policy
+
+**Step Scaling Policies** changes capacity in either direction by a certain amount at different thresholds (steps), when a CloudWatch alarm is repeatedly triggered. 
+
+```bash
+aws autoscaling put-scaling-policy \
+  --auto-scaling-group-name my-asg \
+  --policy-name my-step-scale-out-policy \
+  --policy-type StepScaling \
+  --adjustment-type PercentChangeInCapacity \
+  --metric-aggregation-type Average \
+  --step-adjustments MetricIntervalLowerBound=0.0,MetricIntervalUpperBound=15.0,ScalingAdjustment=10 \
+                     MetricIntervalLowerBound=15.0,MetricIntervalUpperBound=25.0,ScalingAdjustment=20 \
+                     MetricIntervalLowerBound=25.0,ScalingAdjustment=30 \
+  --min-adjustment-magnitude 1
+```
+
+#### ASG Target Tracking Scaling Policy
+
+**Target Tracking Scaling Policies** automatically adjust capacity based on the target metric value.
+
+```bash
+aws autoscaling put-scaling-policy \
+  --auto-scaling-group-name my-asg \
+  --policy-name my-target-tracking-policy \
+  --policy-type TargetTrackingScaling \
+  --target-tracking-configuration file://config.json
+```
+
+**config.json**:
+
+```json
+{
+  "TargetValue": 70,
+  "PredefinedMetricSpecification": {
+    "PredefinedMetricType": "ASGCPUUtilization"
+  }
+}
+```
+
+**Metric Types**
+
+- ASGAverageCPUUtilization
+- ASGAverageNetworkIn
+- ASGAverageNetworkOut
+- ALBrequestCountPerTarget
+- Custom Metric
+
+**Target Tracking Scaling Policy** will create two CloudWatch alarms whereas with **Simple Scaling Policy** and **Step Scaling Policy** you have to create the CloudWatch alarms manually, unless using the AWS Console which creates the alarms automatically for you.
+
