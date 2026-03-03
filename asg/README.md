@@ -210,3 +210,51 @@ aws autoscaling put-scaling-policy \
 
 **Target Tracking Scaling Policy** will create two CloudWatch alarms whereas with **Simple Scaling Policy** and **Step Scaling Policy** you have to create the CloudWatch alarms manually, unless using the AWS Console which creates the alarms automatically for you.
 
+#### ASG Predictive Scaling Policy
+
+**Predictive Scaling Policies** triggers scaling by analyzing historical load data to detect daily and weekly patterns in traffic flow. It then uses this analysis to predict future load and adjust capacity accordingly.
+
+- Reuires a 24 hour forecast of CloudWatch data before it can be used.
+- Predictive Scaling Policy will continuosly use the last 14 days of data to tweak the policy
+- It will produce hourly forecast for capacity requirements for the next 48 hours
+- It will update every 6 hours using the latest CloudWatch data
+
+```bash
+aws autoscaling put-scaling-policy \
+  --auto-scaling-group-name my-asg \
+  --policy-name my-predictive-scaling-policy \
+  --policy-type PredictiveScaling \
+  --target-tracking-configuration file://config.json
+```
+
+**config.json**:
+
+```json
+# Forecast Only
+{
+  "MetricSpecifications": [
+    {
+      "TargetValue": 40,
+      "PredefinedMetricSpecification": {
+        "PredefinedMetricType": "ASGCPUUtilization"
+      }
+    }
+  ],
+  "Mode": "ForecastOnly"
+}
+
+# Forecast and Scale
+```json
+{
+  "MetricSpecifications": [
+    {
+      "TargetValue": 40,
+      "PredefinedMetricSpecification": {
+        "PredefinedMetricType": "ASGCPUUtilization"
+      }
+    }
+  ],
+  "Mode": "ForecastAndScale"
+}
+```
+
