@@ -455,3 +455,57 @@ Resources:
           - "app.mysaasapp.com"
 ```
 
+### Route 53 Record Sets
+
+Record sets are a collection of records which determine where to send traffic. Route 53 supports the following record types:
+
+- A record
+- AAAA record
+- CAA record 
+- CNAME record
+- DS record
+- MX record
+- NAPTR record
+- NS record
+- PTR record
+- SOA record
+- SRV record
+- SPF record
+- TXT record
+
+Record sets are always changes in batch via the API:
+
+```bash
+aws route53 change-resource-record-sets \
+  --hosted-zone-id "Z1234567890" \
+  --change-batch file://change-batch.json
+```
+
+The `change-batch.json` file:
+
+```json
+{
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "blog.example.com",
+        "Type": "CNAME",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "news.example.com"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+There are three action types for record sets:
+
+- `CREATE` - Creates a resource record set that has the specified values.
+- `DELETE` - Deletes an existing resource record set that has the specified values.
+- `UPSERT` - Updates an existing resource record set that has the specified values, or creates a resource record set that has the specified values if it does not exist.
+
