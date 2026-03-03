@@ -625,3 +625,42 @@ The `change-batch.json` file:
 }
 ```
 
+#### Weighted Routing Policies
+
+**Weighted Routing Policies** let users split up traffic based on the specified weight values assigned to each record. This allows users to send a certain percentage of traffic to one server and have any other traffic directed to a completely different server.
+
+```json
+{
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.example.com",
+        "Type": "A",
+        "TTL": 300,
+        "WeightRoutingPolicy": {
+          "ResourceRecords": [
+            {
+              "Value": "34.229.79.211",
+              "Weight": 10
+            },
+            {
+              "Value": "18.221.14.120",
+              "Weight": 20
+            },
+            {
+              "Value": "3.208.76.100",
+              "Weight": 30
+            }
+          ],
+          "FallbackBehavior": "NON_FAILOVER"
+        }
+      }
+    }
+  ]
+}
+```
+For instance, if we had an ALB running experimental features, we could test against a small amount of traffic to minimize the impact of effect. 
+
+![Weighted Routing Policy](images/aws-route53-weighted-routing-policy.png)
+
