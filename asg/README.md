@@ -664,3 +664,52 @@ For instance, if we had an ALB running experimental features, we could test agai
 
 ![Weighted Routing Policy](images/aws-route53-weighted-routing-policy.png)
 
+#### Latency-Based Routing Policies
+
+**Latency-Based Routing Policies** let users route traffic based on the lowest latency possible for the end-user based on their region. This requires a latency resource record to be set for EC2 or ELB resource that hosts the application in each region.
+
+```json
+{
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.example.com",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": "dualstack.myalb1.us-east-1.elb.amazonaws.com",
+          "EvaluateTargetHealth": false,
+          "HostedZoneId": "Z1234567890"
+        },
+        "SetIdentifier": "us-east-1",
+        "Region": "us-east-1",
+        "LatencyRoutingPolicy": {
+          "Region": "us-east-1"
+        }
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.example.com",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": "dualstack.myalb2.us-west-1.elb.amazonaws.com",
+          "EvaluateTargetHealth": false,
+          "HostedZoneId": "Z1234567890"
+        },
+        "SetIdentifier": "us-west-1",
+        "Region": "us-west-1",
+        "LatencyRoutingPolicy": {
+          "Region": "us-west-1"
+        }
+      }
+    },
+ //...
+```
+
+For instance, we have two copies of a web application backed by an ALB in two different regions. One in Virginia and one in California. A request from a user in Richmond, will be routed to Virginia since it will have low latency. A request from a user in San Francisco, will be routed to California since it will have low latency.
+
+#### FailOver Routing Policies
+
+
