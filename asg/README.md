@@ -258,3 +258,30 @@ aws autoscaling put-scaling-policy \
 }
 ```
 
+### ASG Termination Policies
+
+**ASG Termination Policies** decide the order for terminating instances during scale-in events.
+
+AWS provides predefied termination policies:
+
+1. Default
+2. AllocationStrategy
+3. OldestLaunchTemplate
+4. OldestLaunchConfiguration
+5. OldestInstance
+6. NewestInstance
+7. ClosestToNextInstanceHour
+
+**Custom Termination Policy**
+
+```bash
+aws autoscaling put-termination-policy \
+  --auto-scaling-group-name my-asg \
+  --termination-policies \
+  "OldestInstance" \
+  "NewestInstance" \
+  "ClosestToNextInstanceHour" \
+  "AllocationStrategy" 
+```
+
+You can create a custom termination policy by invoking a Lambda Function.
