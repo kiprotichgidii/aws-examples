@@ -710,6 +710,101 @@ For instance, if we had an ALB running experimental features, we could test agai
 
 For instance, we have two copies of a web application backed by an ALB in two different regions. One in Virginia and one in California. A request from a user in Richmond, will be routed to Virginia since it will have low latency. A request from a user in San Francisco, will be routed to California since it will have low latency.
 
-#### FailOver Routing Policies
+#### Failover Routing Policies
 
+**Failover Routing Polcies** allow users to create active/passive setups in situations where they want a primary endpoint and a secondary endpoint. Route 53 automatically monitors the health of the primary endpoint and will route traffic to the secondary endpoint if the primary endpoint becomes unhealthy. 
+
+```json
+{
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.example.com",
+        "Type": "A",
+        "SetIdentifier": "us-east-1",
+        "FailoverRoutingPolicy": {
+          "FailoverBehavior": "PRIMARY"
+        },
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "34.229.79.211"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.example.com",
+        "Type": "A",
+        "SetIdentifier": "us-west-1",
+        "FailoverRoutingPolicy": {
+          "FailoverBehavior": "SECONDARY"
+        },
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "18.221.14.120"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+For example, if we have a primary and secondary web application backed by an ALB, Route 53 determines our primary endpoint to be healthy, it will route traffic to the secondary endpoint.
+
+![Failover Routing Policy](images/aws-route53-failover-routing-policy.png)
+
+#### Geolocation Routing Policies
+
+**Geolocation Routing Policies** allow users to direct traffic based on the Geographic location of where the request originated from. 
+
+```json
+{
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.example.com",
+        "Type": "A",
+        "SetIdentifier": "US-EAST",
+        "GeolocationRoutingPolicy": {
+          "CountryCode": "US"
+        },
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "34.229.79.211"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.example.com",
+        "Type": "A",
+        "SetIdentifier": "EU-WEST",
+        "GeolocationRoutingPolicy": {
+          "CountryCode": "EU"
+        },
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "18.221.14.120"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+For instance, this would let you route all traffic coming from North America to servers located in the North American regions, whereas queries from other regions could be redirected to servers located in those regions (potentially with pricing and language specific to those regions). 
+
+![Geolocation Routing Policy](images/aws-route53-geolocation-routing-policy.png)
 
