@@ -808,3 +808,11 @@ For instance, this would let you route all traffic coming from North America to 
 
 ![Geolocation Routing Policy](images/aws-route53-geolocation-routing-policy.png)
 
+#### Geo-proximity Routing Policies
+
+**Geoproximity Routing Policies** allows users to direct traffic based on the geographic location of the users and the AWS resources. Users can route more or less traffic to a specific resource by specifying a 'Bias' value. **Bias** values expand or shrink the size of the geographic region from which traffic is routed to.
+
+**Users must use Route 53 Traffic Flow to use Geo-proximity Routing Policies**.
+
+![Geo-proximity Routing Policy](images/aws-route53-geo-proximity-routing-policy.png)
+
