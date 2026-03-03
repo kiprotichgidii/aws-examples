@@ -285,3 +285,173 @@ aws autoscaling put-termination-policy \
 ```
 
 You can create a custom termination policy by invoking a Lambda Function.
+
+## Elastic Load Balancer (ELB)
+
+A **Load Balancer** is a service that distributes incoming traffic across multiple targets, such as EC2 instances, containers, and IP addresses. They can balance the load via different rules which vary based on the type of load balancer.
+
+**Elastic Load Balancer** is a suite of load balancers used to distribute traffic to multiple EC2, ECS, Fargate, and EKS instances. 
+
+### Types of Load Balancers
+
+There are four types of load balancers:
+
+1. **Application Load Balancer (ALB)**
+   - Operates at OSI Layer 7 (Application Layer)
+   - Suitable for HTTP/HTTPS traffic
+   - Capable of routing based on HTTP information, can leverage Web Application Firewall (WAF)
+2. **Network Load Balancer (NLB)**
+   - Operates at OSI Layer 3/4 (Transport Layer)
+   - Suitable for TCP/UDP traffic
+   - Designed for large throughput of low-level traffic
+3. **Gateway Load Balancer (GWLB)**
+   - Routes traffic to virtual appliances before it reaches the target
+   - Used as a security layer for traffic in transit
+4. **Classic Load Balancer (CLB)**
+   - Operates on OSI layer 7 and 3/4
+   - Doesn't use target groups, it directly attaches to targets
+   - Previous generation of LBs that is only used in legacy cases where clients have not migrated to ALB or NLB.
+
+### ELB Traffic Rules
+
+For a **Classic Load Balancer(CLB)**, traffic is sent to the listeners. When the port matches, it forwards the traffic to any EC2 instances that are registered to the Classic Load Balancer. CLB does not allow application of rules to the listeners.
+
+![CLB Traffic Rules](images/aws-elb-traffic-rules.png)
+
+### Application Load Balancer (ALB)
+
+- **ALB** is designed to balance HTTP and HTTPS traffic
+- It operates at layer 7 of the OSI model
+- It has a feature called request routing, which allows addition of routing rules to the listeners based on the HTTP protocol
+- Supports Web Sockets and HTTP/2 for real-time, bi-directional communication applications
+- It can handle authentication and authorization of HTTP requests
+- Can only be accessed via it's hostname. If a static IP is required, forward an NLB to the ALB
+- AWS Web Application Firewall (WAF) can be placed in front of ALB for OWASP Protection
+- AWS Certificate Manager (ACM) can be attached to listeners to server custom domains over SSL/TLS for HTTPS
+- Global Accelerator can be placed in front of ALB to improve global availability
+- Amazon CloudFront can be placed in front of ALB to improve global caching of common HTTP requests
+- Amazon Cognito can be used to authenticate users via incoming HTTP requests
+
+#### ALB Use Cases
+
+1. Microservices and Containerized Applications
+2. e-commerce and retail websites
+3. Corporate Website and Web Applications
+4. SaaS Applications
+
+### Network Load Balancer (NLB)
+
+- NLB is designed to balance TCP/UDP traffic
+- It operates at layer 3/4 of the OSI model
+- It can handle millions of requests per second while still maintaining extremely low latency
+- Global Accelerator can be placed in front of NLB to improve global availability
+- Preserves the client's source IP
+- When a static IP is required for a Load Balancer
+
+#### NLB Use Cases
+
+1. High-Performanc Computing and Big Data Applications
+2. Real-Time and Multiplayer Gaming Platforms
+3. Financial Trading Platforms
+4. IoT and Smart Device Ecosystems
+5. Telecommunications Networks
+
+### Classic Load Balancer (CLB)
+
+- CLB is AWS's first Load Balancer (legacy)
+- Can balance HTTP, HTTPS, or TCP traffic (not at the same time)
+- It can use Layer 7(OSI Model) specific features such as sticky sessions
+- It can also use strict Layer 4(OSI Model) balancing for purely TCP applications
+
+CLB is not recommended for use, instead opt for NLB or ALB.
+
+## AWS Route 53
+
+**Route 53** is a highly available and scalable cloud Domain Name System (DNS) web service. Think GoDaddy or NameCheap, but with integrations with AWS Services. 
+
+Route 53 can be used to:
+
+1. Register domain names
+2. Create various record sets on a domain
+3. Implement complex traffic flows eg. blue/green deployments, failovers
+4. Continuously monitor records via health checks
+5. Resolve VPCs outside of AWS
+
+### Route 53 Use Cases
+
+Route 53 is used to map your custom domain name to your AWS resources eg. EC2, ALB, NLB, etc. 
+
+![Route 53](images/aws-route-53-use-cases.png)
+
+1. Incoming internet traffic
+2. Route traffic to our web app backend by ALB
+3. Route traffic an instance we use to tweak our AMI
+4. Route traffic to an API Gateway which powers our API
+5. Route traffic to CloudFront which serves our S3 static-hosted website
+6. Route traffic to an Elastic IP, which is a static IP that hosts the companies Minecraft Server
+
+### Route 53 Hosted Zones
+
+A **hosted zone** is a container that holds the DNS record sets, scoped to route traffic for a specific domain or subdomains. 
+
+There are two types of hosted zones:
+
+1. **Public Hosted Zone**
+   - Used to route traffic for domains that are accessible on the internet
+   - Contains NS and SOA records
+   
+   ```bash
+   aws route53 create-hosted-zone \
+     --name "example.com" \
+     --caller-reference "$(date +%s)" \
+     --hosted-zone-config Comment="My Public Hosted Zone"
+   ```
+
+2. **Private Hosted Zone**
+   - Used to route traffic for domains that are only accessible within a VPC
+   - Contains NS and SOA records
+
+   ```bash
+   aws route53 create-hosted-zone \
+     --name "vpc.example.com" \
+     --vpc VPCRegion=ca-central-1,VPCId=vpc-12345678 \
+     --caller-reference "$(date +%s)" \
+     --hosted-zone-config PrivateZone=true
+   ```
+
+Let's say we wanted to build a SaaS product where each customer gets their own subdomain on the app subdomain. eg. customer1.app.mysaasapp.com.
+
+1. Create a hosted zone domain
+   - Create a record set to the subdomain pointing to the nameservers of the subdomain
+2. Create a hosted zone for the subdomain eg. App
+   - Create a record set for the wildcard to send traffic back to the root of the subdomain.
+
+```yaml
+Resources:
+  DomainHZ:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: mysaasapp.com
+    SubdomainHZ:
+      Type: AWS::Route53::HostedZone
+      Properties:
+        Name: app.mysaasapp.com
+    RecordSet:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        HostedZoneId: !Ref DomainHZ
+        Name: "*.app.mysaasapp.com"
+        Type: A
+        TTL: 300
+        ResourceRecords:
+          - !GetAtt SubdomainHZ.NameServers
+    WildcardRecordSet:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        HostedZoneId: !Ref SubdomainHZ
+        Name: "*.app.mysaasapp.com"
+        Type: A
+        ResourceRecords:
+          - "app.mysaasapp.com"
+```
+
