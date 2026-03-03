@@ -381,7 +381,7 @@ Route 53 can be used to:
 
 Route 53 is used to map your custom domain name to your AWS resources eg. EC2, ALB, NLB, etc. 
 
-![Route 53](images/aws-route-53-use-cases.png)
+![Route 53](images/aws-route53-use-cases.png)
 
 1. Incoming internet traffic
 2. Route traffic to our web app backend by ALB
@@ -508,4 +508,120 @@ There are three action types for record sets:
 - `CREATE` - Creates a resource record set that has the specified values.
 - `DELETE` - Deletes an existing resource record set that has the specified values.
 - `UPSERT` - Updates an existing resource record set that has the specified values, or creates a resource record set that has the specified values if it does not exist.
+
+### Route 53 Alias Record
+
+AWS has it's own special **Alias Record** which extends the DNS functionality. It will route traffic to a specific AWS resource. Alias Records are smart, where they can detect the change of an IP address and continuously keep that endpoint pointed to the correct resource. 
+
+In most cases, you want to be using an Alias when routing traffic to AWS resources. Alias Records are type A records, with Alias Target configured:
+
+```bash
+aws route53 change-resource-record-sets \
+  --hosted-zone-id "Z1234567890" \
+  --change-batch file://change-batch.json
+```
+
+The `change-batch.json` file:
+
+```json
+{
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "example.com",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": "s3-website.us-east-1.amazonaws.com",
+          "HostedZoneId": "Z1234567890"
+        }
+      }
+    }
+  ]
+}
+```
+
+Alias targets can point to:
+
+- CloudFront - d111111abcdef8.cloudfront.net
+- Elastic Beanstalk Environment - example.elasticbeanstalk.com
+- ELB load balancer - example.us-east-2.elb.amazonaws.com
+- S3 Website endpoint - s3-website.us-east-2.amazonaws.com
+- Resource Record set - www.example.com
+- VPC endpoint - example.us-east-2.vpc2.amazonaws.com
+- API Gateway endpoint custom regional api - d-abcde1234.execute-api.us-west-2.amazonaws.com
+
+### Route 53 Traffic Flow
+
+Route 53 Traffic Flow is a visual editor that allows users to create complex routing configurations for their AWS resources using existing routing types. 
+
+![Route 53 Traffic Flow](images/aws-route53-traffic-flow.png)
+
+Supports versioning, so you can roll out or roll back updates easily. 
+
+It costs $50 per policy per month.
+
+### Route 53 Routing Policies
+
+There are 7 different types of routing policies:
+
+1. Simple Routing
+   - Default route policy
+   - Multilple addre
+2. Weighted Routing
+   - Route traffic based on weighted values to split traffic across multiple endpoints
+3. Latency-Based Routing
+   - Route traffic to resource region with lowest latency
+4. Geolocation Routing
+   - Route traffic based on user's geographic location
+5. Geo-proximity Routing
+   - Route traffic based on reource location and, optionally, shift traffic from resources in one location to resources in another location
+6. Failover Routing
+   - Route traffic to a secondary endpoint when the primary endpoint is unhealthy
+7. Multi-value Answer Routing
+   - Responds to DNS queries with up to 8 healthy records selected at random
+
+#### Simple Routing Policies
+
+**Simple Routing Policies** are the most basic routinh policies in Route 53. It is also the default routing policy for Route 53. You create 1 record and provide multiple IP addresses.
+
+When multiple values are specified for one record, Route53 will return all values back to the user in a random order. 
+
+![Simple Routing Policy](images/aws-route53-simple-routing-policy.png)
+
+For instnace, if we had a record for www.example.com with 3 different IP address values, users would be directed randomly to one of them when visiting the domain. 
+
+```bash
+aws route53 change-resource-record-sets \
+  --hosted-zone-id "Z1234567890" \
+  --change-batch file://change-batch.json
+```
+
+The `change-batch.json` file:
+
+```json
+{
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.example.com",
+        "Type": "A",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "34.229.79.211"
+          },
+          {
+            "Value": "18.221.14.120"
+          },
+          {
+            "Value": "3.208.76.100"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
 
