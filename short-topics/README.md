@@ -82,7 +82,7 @@ There are four functions for **Lambda@Edge**:
 - Updating URLs in HTML for versioning
 - Customizing error responses from the origin
 
-**Lambda@Edge** functions are written in Python and JavaScript. They are deployed at Regional Edge Caches.
+**Lambda@Edge** functions support Python and Node.js. They are deployed at Regional Edge Caches.
 
 #### Example Viewer Request Function
 
@@ -249,3 +249,97 @@ function handler(event) {
     return response;
 }
 ```
+### CloudFront Functions vs Lambda@Edge
+
+| Feature | CloudFront Functions | Lambda@Edge |
+| --- | --- | --- |
+| **Programming Languages** | JavaScript (ECMAScript 5.1 compliant) | Python and Node.js |
+| **Event Sources** | Viewer Request<br>Viewer Response | Viewer Request<br>Viewer Response<br>Origin Request<br>Origin Response |
+| **Scale** | 10M+ requests per second | Up to 10K requests per second per region |
+| **Function Duration** | Submillisecond | Up to 5 seconds( viewer request and response)<br>Up to 30 seconds (origin request and response) |
+| **Max Memory** | 2MB | 128 - 3008 MB |
+| **Max Size Function Code+Libs** | 10KB | 1MB (viewer request and response)<br>50MB (origin request and response) |
+| **Network, File System, & Request Body Access** | No | Yes |
+| **Geolocation and device data access** | Yes | No (viewer request)<br>Yes (viewer response, origin request & response) |
+| **Build & Test within CloudFront** | Yes | No |
+| **Function Logging & Metrics** | Yes | Yes |
+| **Pricing** | Charged per request; Free tier available | Charged per request, function duration; No free tier |
+| **Deployment** | Deployed at Edge Locations | Deployed at Regional Edge Caches |
+|
+
+
+![CloudFront Functions vs Lambda@Edge](./images/cloudfront-functions-vs-lambda@edge.png)
+
+### CloudFront Origin
+
+**CloudFront Origin** is the source where CloudFront will send requests for content that is not served from the cache. It can be an Amazon S3 bucket, an Amazon EC2 instance, or any other web server.
+
+This information is provided when creating the CloudFront distribution.
+
+```json
+{
+    "Origins": {
+        "Quantity": 1,
+        "Items": [
+            {
+                "Id": "awsexamplebucket.s3.amazonaws.com-cli-example",
+                "DomainName": "awsexamplebucket.s3.amazonaws.com",
+                "OriginPath": "",
+                "CustomHeaders": {
+                    "Quantity": 0
+                },
+                "S3OriginConfig": {
+                    "OriginAccessIdentity": ""
+                }
+            }
+        ]
+    }
+}
+```
+
+- **Domain Name**: the address to the origin.
+- **Origin Path**: The path at the specified address to the origin.
+- **Custom Headers**: The custom headers to be sent to the origin.
+- **S3OriginConfig**: The S3 origin configuration.
+  - Amazon S3
+- **CustomOriginConfig**: The custom origin configuration.
+  - AWS Elemental MediaStore Container
+  - Application Load Balancer
+  - Lambda function URL
+  - HTTP server eg. Amazon EC2 instance
+  - CloudFront Origins Group
+
+
+## Amazon Elastic Block Store (EBS)
+
+**What is IOPS?**
+
+**IOPS** is an acronym for **Input/Output Operations Per Second**. It is the speed at which non-contagious reads and writes can be performed on a storage medium. The higher the IOPS, the faster the storage device can perform read and write operations. A high I/O = lots of small, fast read and writes.
+
+**What is Throughput?**
+
+**Throughput** is the transfer rate to and from the stoarge medium in megabytes per second (MBps).
+
+**What is Bandwidth?**
+
+**Bandwidth** is the maximum rate at which data can be transferred between two points in a network.
+
+**What is EBS?**
+
+**Elastic Block Store** is a highly available and durable block storage attaching persistent block storage volumes to Amazon EC2 instances. Volums are automatically replicated within their Availability Zone to protect against instance failure. 
+
+Types of volumes that can be deployed:
+
+- **General Purpose SSD (gp2)**: For general usage without specific requirements.
+- **General Purpose SSD (gp3)**: Up to 20% cheaper per GB than **gp2**.
+- **Provisioned IOPS SSD (io1)**: For very fast input/output operations.
+- **Provisioned IOPS SSD (io2)**: For more durability than **io1**
+- **io2 Block Express**: Higher throughput and IOPS with support for larger capacity.
+- **Throughput Optimized HDD (st1)**: Magnetic drive optimised for quick throughput.
+- **Cold HDD (sc1)**: Low cost HDD for infrequently accessed workloads.
+- **Magnetic (standard)**: Precious generation HDD.
+
+All **io2** volumes created after November 21, 2023 are **io2 Block Express volumes**. **io2** volumes created before November 21, 2023 can be converted to **io2 Block Express volumes**.
+
+### EBS Volume Type Usage
+
