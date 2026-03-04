@@ -816,3 +816,54 @@ For instance, this would let you route all traffic coming from North America to 
 
 ![Geo-proximity Routing Policy](images/aws-route53-geo-proximity-routing-policy.png)
 
+### Route 53 Multi-Value Answer Policies
+
+**Multi-Value Answer Policies** allow users to configure Route 53 to return multiple values such as IP addresses of your web servers, in response to DNS queries. 
+
+Multiple values can be specified for almost any record. Route 53 automatically performs health checks on the resources and only returns the IP addresses of healthy resources. 
+
+```json
+{
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.example.com",
+        "Type": "A",
+        "TTL": 60,
+        "MultiValueAnswerRoutingPolicy": {
+          "EvaluateTargetHealth": true
+        },
+        "ResourceRecords": [
+          {
+            "Value": "34.229.79.211"
+          },
+          {
+            "Value": "18.221.14.120"
+          },
+          {
+            "Value": "3.208.76.100"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+It is similar to **Simple Routing Policies** but with the added **Health Checks** for the record set of resources.
+
+![Multi-Value Answer Policy](images/aws-route53-multi-value-answer-policy.png)
+
+### Route 53 Health Checks
+
+**Route 53 Health Checks** allow users to monitor the health of their resources and to route traffic to healthy resources. 
+
+- Checks resource health every 30s, but can be reduced to 10s
+- A health check can initiate a **failover** if the status returns as unhealthy
+- A CloudWatch alarm can be configured to alert when status is unhealthy
+- A health check can monitor other health checks to create a chain of reactions
+- Can creat upto 50 health checks for AWS endpoints within or linked to the same AWS account
+
+![Route 53 Health Checks](images/aws-route53-health-checks.png)
+
