@@ -36,3 +36,150 @@ Amazon CloudFront can be fronted with AWS WAF for OWASP top 10 protection. Amazo
 
 ![AWS CloudFront](./images/aws-cloudfront.png)
 
+### CloudFront Core Components
+
+1. **Origin**: Location where all of the original files are located. eg. an S3 bucket, EC2 Instance, ELB, or Route53
+2. **Edge Location**: compute located strategically close to the end users.
+3. **Regional Caches**: compute located in broad geographic locations to speed up requests for edge locations.
+4. **Distribution**: A collection of edge locations and regional caches that define how cached content should be delivered.
+
+![AWS CloudFront Core Components](./images/aws-cloudfront-components.png)
+
+### CloudFront Lambda@Edge
+
+**Lambda@Edge** is a serverless compute service that allows you to run code at the edge of the network. They are Lambda functions to override the default behavior of requests and responses. 
+
+There are four functions for **Lambda@Edge**:
+
+1. **Viewer Request**: When CloudFront receives a request from a viewer, it sends the request to the Lambda function.
+2. **Viewer Response**: Before CloudFront sends a response to a viewer, it sends the response to the Lambda function.
+3. **Origin Request**: Before CloudFront forwards a request to the origin, it sends the request to the Lambda function.
+4. **Origin Response**: When CloudFront receives a response from the origin, it sends the response to the Lambda function.
+
+![AWS CloudFront Lambda@Edge](./images/aws-cloudfront-lambda@edge.png)
+
+#### Viewer Request Use Cases
+
+- Redirecting HTTP to HTTPS
+- Inspecting cookies for authentication
+- Modifying headers for A/B testing
+
+#### Viewer Response Use Cases
+
+- Adding security headers
+- Setting cookies for client-side tracking
+- Customizing error messages
+
+#### Origin Request Use Cases
+
+- Rewriting URLs for SEO or routing
+- Injecting headers for origin authentication
+- Selective content serving based on user-agent 
+
+#### Origin Response Use Cases
+
+- Modifying headers to control acching
+- Updating URLs in HTML for versioning
+- Customizing error responses from the origin
+
+**Lambda@Edge** supports the following languages:
+- Node.js
+- Python
+
+**Lambda@Edge** functions are deployed at Regional Edge Caches.
+
+#### Example Viewer Request Function
+
+Redirecting HTTP to HTTPS:
+
+```python
+def lambda_handler(event, context):
+    request = event['Records'][0]['cf']['request']
+    # Perform operations on the request: Redirect HTTP to HTTPS
+    if request['headers']['cloudfront-forwarded-proto'][0]['value'] == 'https':
+        response = {
+            'status': 301,
+            'statusDescription': 'Moved Permanently',
+            'headers': {
+                'location': [
+                    {
+                        'key': 'Location',
+                        'value': 'https://' + request['headers']['host'][0]['value'] + request['uri']
+                    }
+                ]
+            }
+        }
+    # Return the original request for CloudFront to process
+    return request
+```
+
+### Example Viewer Response Function
+
+Adding security headers:
+
+```python
+def lambda_handler(event, context):
+    response = event['Records'][0]['cf']['response']
+    # Perform operations on the response: Add security headers to the response
+    headers = response['headers']
+    headers['x-content-type-options'] = [
+        {
+            'key': 'X-Content-Type-Options',
+            'value': 'nosniff'
+        }
+    ]
+    headers['x-frame-options'] = [
+        {
+            'key': 'X-Frame-Options',
+            'value': 'DENY'
+        }
+    ]
+    headers['x-xss-protection'] = [
+        {
+            'key': 'X-XSS-Protection',
+            'value': '1; mode=block'
+        }
+    ]
+    # Return the modified response
+    return response
+```
+
+#### Example Origin Request Function
+
+Serving different version based on user-agent:
+
+```python
+def lambda_handler(event, context):
+    request = event['Records'][0]['cf']['request']
+    # Perform operations on the request: Serve different version based on user-agent
+    user_agent = request['headers'].get('user-agent', [{'value': ''}])[0]['value']
+    if 'mobile' in user_agent.lower():
+        request['uri'] = '/mobile' + request['uri']
+    else:
+        request['uri'] = '/desktop' + request['uri']
+    # Return the modified request
+    return request
+```
+
+#### Example Origin Response Function
+
+Change 404 to 200 and provide response body:
+
+```python
+def lambda_handler(event, context):
+    response = event['Records'][0]['cf']['response']
+    # Perform operations on the response: Check 404 status and modify the response
+    if response['status'] == '404':
+        response['status'] = '200'
+        response['statusDescription'] = 'OK'
+        response['body'] = 'Custom error page content'
+        response['headers']['content-type'] = [
+            {
+                'key': 'Content-Type',
+                'value': 'text/html'
+            }
+        ]
+    # Return the modified response
+    return response
+```
+
