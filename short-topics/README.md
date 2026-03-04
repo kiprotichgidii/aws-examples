@@ -113,7 +113,7 @@ def lambda_handler(event, context):
     return request
 ```
 
-### Example Viewer Response Function
+#### Example Viewer Response Function
 
 Adding security headers:
 
@@ -182,4 +182,6 @@ def lambda_handler(event, context):
     # Return the modified response
     return response
 ```
+
+### CloudFront Functions
 
