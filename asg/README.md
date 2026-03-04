@@ -867,3 +867,41 @@ It is similar to **Simple Routing Policies** but with the added **Health Checks*
 
 ![Route 53 Health Checks](images/aws-route53-health-checks.png)
 
+### Route 53 Resolver
+
+**Amazon Route 53 Resolver** is a DNS server that allows users to resolve DNS queries for resources between their VPCs and on-premises networks. It is a managed service that is available in all AWS regions and can be used to resolve DNS queries for both public and private DNS names. **Route 53 Resolver** was originally known as **.2 resolver and Amazon DNS Server**.
+
+- **Inbound Resolver Endpoints** allow DNS queries to a VPC from on-premise networks or other VPCs.
+- **Outbound Resolver Endpoints** allow DNS queries from a VPC to on-premise networks or other VPCs.
+
+![Route 53 Resolver](images/aws-route53-resolver.png)
+
+### DNSSEC with Route 53
+
+**Domain Name System Security Extensions (DNSSEC)** are a suite of extension specifications by the **Internet Engineering Task Force (IETF)** for securing data exchanged in the d
+Domain Naming System (DNS) in Internet Protocols (IP) networks.
+
+**DNSSEC** signing lets DNS resolvers validate that a DNS response came from Amazon Route 53 and has not been tampered with.
+
+Create a KSK sigining key:
+
+```bash
+aws route53 create-key-signing-key \
+  --region us-east-1 \
+  --hosted-zone-id $HOSTED_ZONE_ID \
+  --key-management-service-arn $CMK_ARN \
+  --name $KSK_NAME \
+  --status ACTIVE \
+  --caller-reference $UNIQUE_STRING
+```
+
+Enable DNSSEC signing: 
+
+```bash
+aws route53 enable-hosted-zone-dnssec \
+  --region us-east-1 \
+  --hosted-zone-id $HOSTED_ZONE_ID
+```
+
+Enabling DNSSEC is a more involved process than just the two API calls. It's important to enable DNSSEC on domains so that no one can impersonate your domain and redirect traffic to malicious sites.
+
