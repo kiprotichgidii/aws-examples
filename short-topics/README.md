@@ -82,11 +82,7 @@ There are four functions for **Lambda@Edge**:
 - Updating URLs in HTML for versioning
 - Customizing error responses from the origin
 
-**Lambda@Edge** supports the following languages:
-- Node.js
-- Python
-
-**Lambda@Edge** functions are deployed at Regional Edge Caches.
+**Lambda@Edge** functions are written in Python and JavaScript. They are deployed at Regional Edge Caches.
 
 #### Example Viewer Request Function
 
@@ -185,3 +181,71 @@ def lambda_handler(event, context):
 
 ### CloudFront Functions
 
+**CloudFront Functions** are lightweight edge functions for high scale, latency-sensitive CDN customizations. CloudFront functions are cheaper, faster, but more limited compared to Lambda@Edge functions.
+
+CloudFront functions have two `functions`:
+
+1. **Viewer Request**: When CloudFront receives a request from a viewer, it sends the request to the Lambda function.
+2. **Viewer Response**: Before CloudFront sends a response to a viewer, it sends the response to the Lambda function.
+
+CloudFront functions are written in JavaScript and are deployed at Edge Locations. 
+
+#### Use Cases
+
+- Cache key normalization
+- Header Manipulation
+- Status code modification & body generation
+- URL redirects or rewrites
+- Request authorization
+
+#### Example Viewer Request Function
+
+Redirect HTTP to HTTPS:
+
+```javascript
+function handler(event) {
+    var request = event.request;
+    var headers = request.headers;
+    // Check is viewer request is using HTTP
+    if (request.uri.startsWith('http://')) {
+        // Generate an HTTP redirect response to HTTPS
+        var response = {
+            statusCode: 301,
+            statusDescription: 'Moved Permanently',
+            headers: {
+                "location": {
+                    value: "https://" + headers.host.value + request.uri
+                }
+            }
+        };
+        return response;
+    }
+    return request;
+}
+```
+
+#### Example Viewer Response Function
+
+Add security headers:
+
+```javascript
+function handler(event) {
+    var response = event.response;
+    var headers = response.headers;
+    // Add security headers to the response
+    headers['x-content-type-options'] = {
+        value: 'nosniff'
+    };
+    headers['x-frame-options'] = {
+        value: 'DENY'
+    };
+    headers['x-xss-protection'] = {
+        value: '1; mode=block'
+    };
+    headers['referrer-policy'] = {
+        value: 'same-origin'
+    };
+    // Return the modified response
+    return response;
+}
+```
