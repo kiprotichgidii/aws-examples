@@ -265,7 +265,6 @@ function handler(event) {
 | **Function Logging & Metrics** | Yes | Yes |
 | **Pricing** | Charged per request; Free tier available | Charged per request, function duration; No free tier |
 | **Deployment** | Deployed at Edge Locations | Deployed at Regional Edge Caches |
-|
 
 
 ![CloudFront Functions vs Lambda@Edge](./images/cloudfront-functions-vs-lambda@edge.png)
