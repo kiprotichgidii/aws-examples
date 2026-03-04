@@ -905,3 +905,42 @@ aws route53 enable-hosted-zone-dnssec \
 
 Enabling DNSSEC is a more involved process than just the two API calls. It's important to enable DNSSEC on domains so that no one can impersonate your domain and redirect traffic to malicious sites.
 
+### Route 53 Zonal Shift
+
+**Zonal Shift** is a feature of **Route 53 Application Recovery Controller(Route 53 ARC)** that allows users to shift a load balancer resource away from an **impaired Availability Zone (AZ)** to other healthy AZs with a single action. 
+
+- Zonal shifts are only supported on Application Load Balancer and Network Load Balancers with cross-zone load balancing disabled
+- Zonal shift isn't supported when using an Application Load Balancer as an accelerator endpoint in AWS Global Accelerator
+- You can start a Zonal Shift for a specific load balancer only for a singel AZ. You can't start a Zonal Shift for multiple AZs
+
+![Route 53 Zonal Shift](images/aws-route53-zonal-shifts.png)
+
+### Route 53 Profiles
+
+**Route 53 Profiles** allow users to apply and managed DNS-related Route 53 configurations across many VPCs and in different AWS Accounts. 
+
+The following reources can be associated with a Route 53 Profile:
+
+- Private Hosted Zones
+- Route 53 Resolver Rules
+- DNS Firewall Rule Groups
+
+```bash
+# Create a Route 53 Profile
+aws route53profiles create-profile \
+  --name my-profile \
+  --region us-east-1
+
+# Associate resource to profile
+aws route53profiles associate-profile-to-profile \
+  --name test-resource-association \
+  --profile-id rp-47agb56sgdye4 \
+  --resource-arn arn:aws:route53resolver:us-east-1:123456789012:firewall-group/rslvr-frwlg-12345678901234567 \
+  --resource-properties "{\"priority\": 102}"
+
+# Associate Route 53 profile
+aws route53profiles associate-profile \
+  --name test-association \
+  --profile-id rp-47agb56sgdye4 \
+  --resource-id vpc-12345678901234567
+```
