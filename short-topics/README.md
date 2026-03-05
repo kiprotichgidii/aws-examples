@@ -535,3 +535,35 @@ It includes the Amazon EFS mount helper, which makes it easier to mount EFS file
 
 Amazon EFS does not support mounting from Amazon EC2 Windows instances. Before EFS mount helper, standard Linux NFS client was used to mount EFS file systems. 
 
+- Mount helper defines a new network file system type called `efs`, which is fully compatible with the standard `mount` command in Linux. 
+- Mount helper also supports automating mounting an EFS file system at boot using the `/etc/fstab` configuration file.
+- The `_netdev` option is used to identify network file systems when mounting file systems automatically, and if omitted, EC2 instance might stop responding.
+
+EFS can be mounted with the following:
+
+- File System DNS name
+- File System ID
+- Mount target IP address
+
+```bash
+sudo mount -t efs -o tls fs-example.efs.us-west-2.amazonaws.com:/ /mnt/efs
+
+sudo mount -t efs -o tls fs-0123456789abcdef0:/ /mnt/efs
+
+sudo mount -t efs -o tls,accesspoint=fsap-0123456789abcdef0 203.0.113.28:/ /mnt/efs
+```
+
+EFS Management Console will provide the mount command to mount the EFS file system via the Attach button.
+
+EFS mount helper will use the following mount options:
+
+- `nfsvers=4.1`: Used when mounting on EC2 Linux instances.
+- `nfsvers=4.0`: Used when mounting on supported EC2 Mac instances running macOS Big Sur, Monterey, and Ventura.
+- `rsize=1048576`: Sets the maximum number of bytes of data that the NFS client can receive for each network READ request to 1048576, the largest available, to avoid diminished performance.
+- `wsize=1048576`: Sets the maximum number of bytes of data that the NFS client can send for each network WRITE request to 1048576, the largest available, to avoid diminished performance.
+- `hard`: Sets the recovery behavior of the NFS client after an NFS request times out, so that NFS requests are retried indefinitely until the server replies, to ensure data integrity.
+- `timeo=600`: Sets the timeout value that the NFS client uses to wait for a response from the server before it retries an NFS request, to 600 deciseconds(60secs), to avoid diminished performance.
+- `retrans=2`: Sets to 2 the number of times that the NFS client retries an NFS request before it attempts other recovery methods.
+- `noresvport`: Tells the NFS client to use a non-privileged TCP source port when a network connection is reestablished. Using the `noresvport` option helps to ensure that a file system has uninterrupted availability after a reconnection or network recovery event.
+- `mountport=2049`: Only used when mounting on EC2 Mac instances running macOS Big Sur, Monterey, and Ventura.
+
