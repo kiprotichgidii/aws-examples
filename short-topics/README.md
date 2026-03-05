@@ -464,6 +464,8 @@ These are the most common and are compatible with the serial ATA interface, used
 
 **NVMe SSDs** use the PCIe interface offering significantly higher performance compared to **SATA SSDs**. They are designed to take full advantage of the high speeds of flash-based torage technologies. **NVMe** drives are found in the form of M.2 SSDs but can also be added to a computer using PCIe expansions slot.
 
+![NVMe SSD](./images/aws-nvme-ssd.png)
+
 #### Peripheral Component Interconnect Express (PCIe) SSDs
 
 These SSDs are add-on cards that fit into the PCI slot on the motherboard. They can offer high performance, especially in configurations that support NVMe. They are a good option for users looking to upgrade the storage of an older system or for specialized high-performance computing tasks.
@@ -482,4 +484,20 @@ PCIe slots on a motherboard come in different sizes, including x1, x4, x8, and x
 | PCIe 5.0             | 2019     | 4 GB/s                 | 64 GB/s                |
 | PCIe 6.0             | 2022     | 8 GB/s                 | 128 GB/s               |
 
-#### 
+#### M.2 SSDs
+
+**M.2 SSDs** are small, compact SSDs that are designed to fit into the M.2 slot on a motherboard. They are commonly used in laptops and other small form factor computers. M.2 SSDs can use either the SATA or NVMe interface.
+
+#### U.2 SSDs
+
+**U.2 SSDs** are similar in performance to M.2 NVMe SSDs but with a 2.5-inch form factor. They are designed for 2.5-inch drive bays and are mainly used in enterprise and server environments. They generally connect via a U.2 port.
+
+![U.2 SSD](./images/aws-u2-ssd.png)
+
+### Magnetic Tape
+
+**Magnetic Tapes** are sequential access storage devices that use magnetic tape to store data. A tape drive is used to write data to the tape. Medium and large-sized data centers use magnetic tapes for long-term storage and backup purposes due to their low cost and high storage density. They normally come in the form of cassettes. 
+
+- Durable for decades (good for at least up to 30 years)
+- Cheap to produce
+
