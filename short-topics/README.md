@@ -342,3 +342,17 @@ All **io2** volumes created after November 21, 2023 are **io2 Block Express volu
 
 ### EBS Volume Type Usage
 
+| Feature | General Purpose SSD Volumes | Provisioned IOPS SSD Volumes  | Throughput Optimized HDD | Cold HDD | Magnetic |
+| --- | --- | --- | --- | --- | --- |
+| **Volume Type** |  <ul><li>gp2</li><li>gp3</li></ul> | <ul><li>io1</li><li>io2 Block Express</li></ul> | st1 | sc2 | standard |
+| **Use Cases** | <ul><li>Transactional Workloads<li>Virtual Desktops<li>Medium-sized, single-instance databases<li>Low-latency interactice applications<li>Boot volumes<li>Development & testing environments</li></ul> | **io1** <ul><li>Large, in-memory databases</li><li>Mission-critical transactional databases</li><li>Other I/O intensive applications</li></ul><br>**io2 Block Express** <ul><li>Large, in-memory databases</li><li>Mission-critical transactional databases</li><li>Other I/O intensive applications</li></ul> | <ul><li>Big Data and analytics</li><li>Data warehouses</li><li>Log processing</li></ul> | <ul><li>Throughput-oriented storage for data that is infrequently accessed</li><li>Where lowest storage cost is important</li></ul> | <ul><li>Infrequently Accessed data workloads</li></ul> |
+| **Durability** | 99.8% - 99.9% | **io1** 99.8% - 99.9%<br>**io2 Block Express** 99.999% | 99.8% - 99.9% | 99.8% - 99.9% | N/A |
+| **Volume Size** | 1GiB - 16GiB | **io1** 4GiB - 16TiB<br>**io2 Block Express** 4GiB - 64TiB | 125 GiB - 16 TiB | 125 GiB - 16 TiB | 1 GiB - 1 TiB | 
+| **Max IOPS** | 16,000 (16 KiB I/O)| **io1** 16,000 (16 KiB I/O)<br>**io2 Block Express** 256,000 (256 KiB I/O) | 500 (1 MiB I/O)| 250 (1 MiB I/O)| 40 - 200 (1 MiB I/O) |
+| **Max Throughput** | **gp2** 250 MiB/s<br>**gp3** 1,000 MiB/s | **io1** 250 MiB/s<br>**io2 Block Express** 4,000 MiB/s | 500 (1 MiB/s)| 250 (1 MiB/s)| 40 - 90 (1 MiB/s |
+| **EBS Multi-attach** | Not supported for either gp2 or gp3 | Supported for both io1 and io2 Block Express | Not Supported | Not Supported | N/A |
+| **NVMe Reserve** | Not supported for either gp2 or gp3 | Supported only for io2 Block Express | N/A | N/A | N/A |
+| **Boot Volume** | Supported for both gp2 and gp3 | Supported for both io1 and io2 Block Express | Not Supported | Not Supported | N/A |
+
+### EBS HDD 
+
