@@ -501,3 +501,37 @@ PCIe slots on a motherboard come in different sizes, including x1, x4, x8, and x
 - Durable for decades (good for at least up to 30 years)
 - Cheap to produce
 
+![Magnetic Tape](./images/aws-magnetic-tape.png)
+
+## Amazon Elastic File System (EFS)
+
+**Elastic File System** is a managed file storage service provided by Amazon Web Services (AWS). It is a fully managed, scalable, and highly available file storage service that can be used by multiple EC2 instances at the same time. It is based on the Network File System (NFS) protocol and is designed to work with Linux-based workloads. EFS is a good choice for workloads that require shared file storage, such as web servers, content management systems, and big data analytics.
+
+- Storage capacity grows(up to petabytes) and shrinks automatically based on the data stored(elastic).
+- **Multiple instances** in the **same VPC** can mount a **single EFS volume**.
+- EC2 instances install the **NFSv4 client** to mount the EFS volume.
+- EFS uses the Network File System version 4(**NFSv4**) protocol.
+- EFS creates multiple mount targets in VPCs.
+- EFS is charged per space used starting at $0.30 GB/month.
+
+![EFS](./images/aws-efs.png)
+
+### Amazon EFS Client
+
+`amazon-efs-utils` package is an open-source collection of Amazon EFS tools also known as the Amazon EFS Client. It provides a set of tools to manage EFS volumes and mount targets.
+
+- EFS client enables the ability to use Amazon CloudWatch to monitor an EFS file system's mount status.
+- Amazon EFS client needs to be installed on the EC2 instance prior to mounting an EFS file system.
+
+It includes the Amazon EFS mount helper, which makes it easier to mount EFS file systems. Mount helper is a program used when mounting a specific type of file system. EFS mount helper provides the following options:
+
+- Mounting on supported EC2 instances
+- Mounting with IAM authorization
+- Mounting with Amazon EFS access points
+- Mounting with an on-premise Linux client
+- Auto-mounting EFS file systems when EC2 instances start
+- Mounting file system when creating an new EC2 instance
+- Mounting either Linux or MacOS
+
+Amazon EFS does not support mounting from Amazon EC2 Windows instances. Before EFS mount helper, standard Linux NFS client was used to mount EFS file systems. 
+
