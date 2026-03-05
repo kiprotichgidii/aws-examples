@@ -354,5 +354,132 @@ All **io2** volumes created after November 21, 2023 are **io2 Block Express volu
 | **NVMe Reserve** | Not supported for either gp2 or gp3 | Supported only for io2 Block Express | N/A | N/A | N/A |
 | **Boot Volume** | Supported for both gp2 and gp3 | Supported for both io1 and io2 Block Express | Not Supported | Not Supported | N/A |
 
-### EBS HDD 
+### Hard Disk Drive (HDD) 
 
+**HDD** is a magnetic storage device that uses rotating platters to, an actuator arm, and a magnetic head to read and write data(similar to a record player). **HDD** is very good at writing a continuous amount of data. **HDD** is not great for writing many small reads and writes. 
+
+- Better for throughput
+- Physical Moving Part
+
+![EBS HDD](./images/aws-ebs-hdd.png)
+
+#### RPMs (Revolutions Per Minute)
+
+- The speed at which the drive's platters are spinning. Faster RPMs mean faster access times and slower RPMs mean better cost-savings.
+
+##### 7200 RPM Drives
+
+These are standard for desktops and high-performance external drives, offering a good balance of performance, cost and power consumption.
+
+##### 5400 RPM Drives
+
+These are commonly found in laptops, external drives, and applications where lower power consumption and heat are prioritized over top performance.
+
+##### 10000 RPM Drives
+
+These are typically used in enterprise environments, or high-end workstations where performance is critical. These drives have become less common due to the rise of Solid State Drives (SSDs).
+
+#### HDD RAID
+
+**RAID (Redundant Array of Independent Disks)** is a data storage virtualization technology that combines multiple physical disk drive components into one or more logical units for the purposes of storing redundant data across disks, performance improvement, or both. 
+
+Since HDD has to do with mechanical parts, it is prone to failure, hence the need for RAID.
+
+1. **RAID 0(stripping)**
+   - No redundancy; data is split across disks for high performance.
+   - It increases speed and capacity but offers no fault tolerance.
+   - Requires a minimum of 2 disks.
+
+2. **RAID 1(mirroring)**
+   - Data is duplicated across 2 or more disks, offering high redundancy.
+   - If one disk fails, the other disk(s) can be used to restore the data.
+   - It increases fault tolerance but reduces capacity.
+   - Requires a minimum of 2 disks.
+
+3. **RAID 5(stripping with parity)**
+   - Combines stripping and parity, spreading data across disks while also storing parity information.
+   - It increases fault tolerance and capacity but reduces speed.
+   - It can withstand the failure of one disk, without data loss.
+   - Requires a minimum of 3 disks.
+
+4. **RAID 6(stripping with double parity)**
+   - Combines stripping and double parity, spreading data across disks while also storing parity information.
+   - It can withstand the failure of two disks, without data loss.
+   - Requires a minimum of 4 disks.
+
+5. **RAID 10(1+0)**
+   - Combines RAID 0(stripping) and RAID 1(mirroring), offering redundancy and increased performance.
+   - Requires a minimum of 4 disks.
+
+### Solid State Drive (SSD)
+
+**SSDs** are much faster than HDDs because they use integrated circuit(IC) assemblies as memory to store data persistently, typically using flash memory chips. They are also more durable because they don't have any moving parts. However, they are more expensive than HDDs.
+
+![EBS SSD](./images/aws-ebs-ssd.png)
+
+**SSDs** are more resistant to physical shock and vibration than HDDs because they don't have any moving parts, hence run silently and have quicker access time and lower latency. This makes them ideal for use in laptops, tablets, and other portable devices.
+
+- Very good frequent read/write operations
+- No physical moving parts
+
+#### SSD Types
+
+1. **SATA SSDs**
+   - Uses the SATA interface to connect to the motherboard.
+   - Slower than NVMe SSDs but faster than HDDs due to the SATA interface limitations.
+   - Good for general-purpose computing.
+
+2. **NVMe SSDs**
+   - Uses the PCIe interface for higher performance.
+   - Much faster than SATA SSDs.
+   - Ideal for intensive data tasks and gaming.
+   - Available in M.2 or PCIe card form factors.
+
+3. **M.2 SSDs**
+   - Uses SATA or NVMe interfaces.
+   - Compact, suitable for laptops and compact PCs.
+   - Installed directly on the motherboard.
+
+4. **U.2 SSDs**
+   - Similar to M.2 NVMe SSDs but with a 2.5-inch form factor.
+   - Designed for 2.5-inch drive bays.
+   - Mainly used in enterprise and server environments.
+
+5. **Portable SSDs**
+   - External drives for easy portability
+   - Uses the USB interface to connect to the motherboard.
+   - Offers SSD speed and durability on the go.
+
+6. **PCIe SSDs**
+   - Add-on cards that provide high performance for older systems or specialized tasks.
+   - Uses the PCIe interface to connect to the motherboard.
+
+#### Serial Advanced Technology Attachment (SATA) SSDs
+
+These are the most common and are compatible with the serial ATA interface, used by most desktop and laptop computers. They are relatively easy to install and offer good performance, though they are typically slower than their NVMe counterparts due to the limitations of the SATA interface.
+
+![SATA SSD](./images/aws-sata-ssd.png)
+
+#### Non-Volatile Memory Express (NVMe) SSDs
+
+**NVMe SSDs** use the PCIe interface offering significantly higher performance compared to **SATA SSDs**. They are designed to take full advantage of the high speeds of flash-based torage technologies. **NVMe** drives are found in the form of M.2 SSDs but can also be added to a computer using PCIe expansions slot.
+
+#### Peripheral Component Interconnect Express (PCIe) SSDs
+
+These SSDs are add-on cards that fit into the PCI slot on the motherboard. They can offer high performance, especially in configurations that support NVMe. They are a good option for users looking to upgrade the storage of an older system or for specialized high-performance computing tasks.
+
+PCIe slots on a motherboard come in different sizes, including x1, x4, x8, and x16. The larger the slot, the more data can be transferred between the SSD and the motherboard.
+
+![PCIe SSD](./images/aws-pcie-ssd.png)
+
+| PCIe slot generation | Releases | Max Bandwidth per lane | Max Bandwidth x16 Slot |
+|----------------------|----------|------------------------|------------------------|
+| PCIe 1.0             | 2003     | 250 MB/s               | 4 GB/s                 |
+| PCIe 1.1             | 2005     | 250 MB/s               | 4 GB/s                 |
+| PCIe 2.0             | 2007     | 500 MB/s               | 8 GB/s                 |
+| PCIe 3.0             | 2010     | 1 GB/s                 | 16 GB/s                |
+| PCIe 4.0             | 2017     | 2 GB/s                 | 32 GB/s                |
+| PCIe 5.0             | 2019     | 4 GB/s                 | 64 GB/s                |
+| PCIe 6.0             | 2022     | 8 GB/s                 | 128 GB/s               |
+
+#### 
