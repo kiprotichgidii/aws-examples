@@ -632,3 +632,22 @@ It is compatible with the most popular Linux-based AMIs:
 
 It integrates with AWS Batch via EC2 launch templates and also AWS Thinkbox Deadline; for creative studios used to scale rendering workloads
 
+## AWS Backup
+
+**AWS Backup** allows you to centrally manage backups across AWS Services. 
+
+- **Backup Plan**: A backup policy defines the backup schedule, backup window and backup lifecycle
+- **Backup Vault**: Backups are stored in a backup vault
+  - AWS Backup Vault Lock allows for Write-Once-Read-Many (WORM) to set a retention period
+  - **Standard Vault(default)**: backups are always initially stored in the standard vault
+  - **Air-Gapped Vault**: backups can be moved to a logically air-gapped vault for additional security
+- AWS resources can be assigned a backup plan using AWS resource tags
+- Resources on a plan can be backed up to other AWS Regions or AWS accounts
+- Backup Plans can be managed centrally from a centralized account across entire AWS Organization
+- Backups are incremental, only the differences are stored instead of the full backups, saving on costs
+- AWS Backups can use independent KMS encryption keys from those of AWS resources
+- Associated charges for AWS Backups appear as 'Backup' under Cost Explorer
+- AWS Backups are immutable to prevent them from being tempered with
+
+**AWS Backup Audit Manager** is built-in reporting and auditing for AWS Backups.
+
