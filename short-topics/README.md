@@ -651,3 +651,38 @@ It integrates with AWS Batch via EC2 launch templates and also AWS Thinkbox Dead
 
 **AWS Backup Audit Manager** is built-in reporting and auditing for AWS Backups.
 
+## AWS Snow Family
+
+AWS Snow Family are storage and compute devices used to physically move data in or out of the cloud, when moving data over the internet or a private connection is too slow, difficult, or costly.
+
+### Snowcone
+
+**AWS Snowcone** is a small, portable, rugged, and secure device for edge computing and data transfer. Snowcone can send data to AWS in two ways:
+
+- Physically shipping the device back to AWS.
+- AWS Datasync which runs on the device's compute.
+
+Snowcone is available in two configurations:
+
+- **Snowcone**: 8 TB HDD
+- **Snowcone SSD**: 14 TB SSD
+
+- The devices can run edge computing workloads that use EC2 instances
+- They are small and lightweight enough to carry in a backpack
+- With lighweight workloads at 25% CPU usage, the device can run on battery for up to approximately 6 hours 
+- Uses the Wi-fi interface to gather sensor data (only in North America regions)
+- Offers an interface with Network File System (NFS) support for Windows, Linux, and macOS
+- Multiple layers of security encryption capabilities
+- Can be used in space-constrained environments where Snowball Edge devices don't fit
+- Can collect IoT data using AWS IoT Greengrass
+
+![AWS FSx Snowcone](images/aws-fsx-snowcone.png)
+
+For ports:
+
+- 2 RJ45 Jacks
+  - 10/100 GB
+- USB-C 
+- USB-C Power Delivery 
+  - USB-C connection using a suitable power adapter that can supply at least 45 W.
+
