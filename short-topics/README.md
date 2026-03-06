@@ -567,3 +567,68 @@ EFS mount helper will use the following mount options:
 - `noresvport`: Tells the NFS client to use a non-privileged TCP source port when a network connection is reestablished. Using the `noresvport` option helps to ensure that a file system has uninterrupted availability after a reconnection or network recovery event.
 - `mountport=2049`: Only used when mounting on EC2 Mac instances running macOS Big Sur, Monterey, and Ventura.
 
+## Amazon FSx
+
+**Amazon FSx** allows users to deploy scale feature-rich, high performance file systems in the cloud. FSx supports a variety of file system protocols.
+
+1. **Amazon FSX for NetApp ONTAP**
+   - Proprietary enterprise storage platform known for handling petabytes of data.
+2. **Amazon FSX for OpenZFS**
+   - Open-source storage platform originally developed by Sun Microsystems.
+3. **Amazon FSX for Windows File Server (WFS)**
+   - File storage on a Windows server supporting native Windows features for Windows developers.
+4. **Amazon FSX for Lustre**
+   - Open-source file system for parallel computing
+
+### Amazon FSx for Windows File Server (WFS)
+
+**Amazon FSx for Windows File Server(WFS)** is a fully managed shared storage solutions built on Windows Server. Amazon FSx for WFS offers the following:
+
+- Native support for Windows File systems eg. SMB
+- Native Windows compatibility
+- Enterprise performance and features
+- Consistent sub-millisecond latency
+- Tools for Windows developers and admins today continue to work unchanged
+- Storage backed by SSD, HDD, or both
+- Integration with Microsoft Active Directory
+
+**Amazon FSx for WFS** can be used for:
+
+- Business Applications
+- Home directories
+- Web serving
+- Content management
+- Data analytics
+- Software build setups
+- Media Processing Workloads
+
+To run Amazon FSx it requires:
+
+- An EC2 instance
+- Workspace Instance
+- AppStream 2.0
+or
+- VMWare Cloud on AWS
+
+### Amazon File Cache
+
+**Amazon File Cache** is a high-speed cache for datasets stored anywhere, accelerate cloud bursting workloads. Amazon File Cache is found under the **Amazon FSx Management Console**. 
+
+It serves as a temporary, high-performance storage location for data stored in: 
+
+- On-premise file systems
+- AWS file systems
+- Amazon S3 buckets
+
+Makes dispersed datasets available to file-based applications on AWS with a unified view, and at high-speeds-sub-millisecond latency and high throughput. Amazon File Cache is accessible to EC2, ECS, and EKS.
+
+It is compatible with the most popular Linux-based AMIs:
+
+- Amazon Linux (AL2,AL2023)
+- RHEL
+- CentOS
+- Rocky Linux
+- Ubuntu
+
+It integrates with AWS Batch via EC2 launch templates and also AWS Thinkbox Deadline; for creative studios used to scale rendering workloads
+
