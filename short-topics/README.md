@@ -686,3 +686,28 @@ For ports:
 - USB-C Power Delivery 
   - USB-C connection using a suitable power adapter that can supply at least 45 W.
 
+### Snowball Edge
+
+**Snowball Edge** is similar to Snowcone but with more local processing, edge computing workloads, and device configuration options. 
+
+#### Snowball Edge features
+
+Generally comes in two types:
+
+- **Snowball Edge Storage Optimized**: 80 TB of HDD storage
+- **Snowball Edge Compute Optimized**: 42 TB of SSD storage
+
+- LCD display of shipping information and other functionalities
+- Can be used in clusters groups of 3 - 16 nodes
+- Supports data transfer protocols:
+  - NFSv3, NFSv4, NFSv4.1
+  - Amazon S3 over HTTP or HTTPS
+
+There are 5 device configuration options:
+1. **Storage-Optimized(for data transfer)**: 100TB(80TB Usable)
+2. **Storage-Optimized 210TB**: 210TB of usable storage
+3. **Storage-Optimized with EC2-Compatible Compute**: Up to 80TB usable storage, 40 vCPUS, and 80GB of memory
+4. **Compute-Optimized**: Up to 104 vCPUs, 416GB of memory, and 28TB of dedicated NVMe SSD storage.
+5. **Compute-Optimized with GPU**: Has the addition of GPUs equivalent to the one available in the Instance Type P3. 
+
+![AWS FSx Snowball Edge](images/aws-fsx-snowball-edge.png)
