@@ -711,3 +711,4 @@ There are 5 device configuration options:
 5. **Compute-Optimized with GPU**: Has the addition of GPUs equivalent to the one available in the Instance Type P3. 
 
 ![AWS FSx Snowball Edge](images/aws-fsx-snowball-edge.png)
+
