@@ -725,3 +725,18 @@ There are 5 device configuration options:
 
 ![AWS FSx Snowmobile](images/aws-fsx-snowmobile.png)
 
+### AWS Snow Family Comparison
+
+| Feature                  | Snowcone                  | Snowball Edge             | Snowmobile               |
+| ------------------------ | ------------------------- | ------------------------- | ------------------------ |
+| Usable HDD Storage       | 8TB                       | 80TB                      | No                       |
+| Usable SSD Storage       | 14TB                      | 1TB, 210TB NVMe, 28TB     | No                       |
+| Usable vCPUs             | 2 vCPUs                   | 40 vCPUs, 104 vCPUs       | N/A                      |
+| Usable Memory            | 4GB                       | 40 vCPUs, 256GB           | N/A                      |
+| Transfer Rate            | 100Mbps                   | 100Mbps                   | 100Mbps                  |
+| Device Size              | 227mm x 148.6mm x 82.65mm | 548mm x 320mm x 501mm     | 45 ft. shipping container|
+| Device Weight            | 4.5 lbs. (2.1Kg)          | 49.7 lbs. (22.3Kg)        | N/A                      |
+| Storage Clustering       | No                        | No, 3/16 nodes for compute| N/A                      |
+| 256-bit Encryption       | Yes                       | Yes                       | Yes                      |
+| HIPPA Compliant          | No                        | Yes, Eligible             | Yes, Eligible            |
+
