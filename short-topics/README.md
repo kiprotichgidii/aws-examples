@@ -756,3 +756,15 @@ Common ports for these protocols:
 - FTPS: port 990
 - AS2: port 443
 
+### Transfer Family Managed File Transfer Workflows
+
+**Transfer Family Managed File Transfer Workflows (MFTW)** is a fully managed, serverless File Transfer Workflow service to set up, run, automate, and monitor processing of files uploaded using AWS Transfer Family.
+
+Workflows allow you to perform the following after a file is uploaded:
+
+- **Copy File** - Copy to another S3 destination
+- **Tag File** - Apply metadata tagging for S3
+- **Delete File** - Delete File from S3 or EFS
+- **Custom File-processing step** - Pass file to a lambda to be processed
+- **Decrypt File** - Automatically decrypt file using PGP after uploaded to S3 or EFS
+
