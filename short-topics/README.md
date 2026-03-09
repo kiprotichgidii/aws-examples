@@ -751,7 +751,7 @@ There are 5 device configuration options:
 
 Common ports for these protocols:
 
-- FTP: port 20
+- FTP: port 20 (control commands) and port 21 (data transfer)
 - SFTP: port 22
 - FTPS: port 990
 - AS2: port 443
