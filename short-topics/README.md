@@ -740,3 +740,19 @@ There are 5 device configuration options:
 | 256-bit Encryption       | Yes                       | Yes                       | Yes                      |
 | HIPPA Compliant          | No                        | Yes, Eligible             | Yes, Eligible            |
 
+### AWS Transfer for SFTP
+
+**AWS Transfer family** offers fully managed support for the transfer of files over SFTP, AS2, FTPS, and FTP to and from Amazon S3 or Amazon EFS. It eliminates the need for you to manage file transfer servers, patching, or scaling. It is a fully managed service that is available 24x7 with high availability and automatic scaling. It supports the following protocols:
+
+- **FTP(File Transfer Protocol)**: An early network protocol without encryption, used for transfering files over a network.
+- **SFTP(Secure File Transfer Protocol)**: Uses SSH to provide a secure encryption connection for transferring files.
+- **FTPS(FTP Secure or FTP-SSL)**: Extends FTP with support for SSL/TLS encryption.
+- **AS2(Applicability Statement 2)**: Enables secure and reliable messaging over HTTP/S, often used for EDI (Electronic Data Interchange) transactions. Used in industries like e-commerce and retail that require proof of compliant data transfers.
+
+Common ports for these protocols:
+
+- FTP: port 20
+- SFTP: port 22
+- FTPS: port 990
+- AS2: port 443
+
