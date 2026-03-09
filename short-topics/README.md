@@ -768,3 +768,21 @@ Workflows allow you to perform the following after a file is uploaded:
 - **Custom File-processing step** - Pass file to a lambda to be processed
 - **Decrypt File** - Automatically decrypt file using PGP after uploaded to S3 or EFS
 
+### AWS Migration Hub
+
+**AWS Migration Hub** is a singel place to discover your existing servers, applications, and databases, and plan migrations and track their status during migration to AWS. AWS Migration Hub can monitor migration statuses from migration services:
+
+- Application Migration Service (AMS)
+- Database Migration Service (DMS)
+
+1. **AWS Discovery Agent**: An agent installed on your VM of servers to help discover and migrate servers
+2. **Migration Evaluator Collector**: You submit a request to AWS help assess a migration
+
+#### AWS Migration Hub Refactor
+
+Bridges networking across AWS accounts so that legacy and new services can communicate while they maintain the independence of separate accounts.
+
+#### AWS Migration Hub Journey
+
+Guided templates for end-to-end migration.
+
