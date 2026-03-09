@@ -712,3 +712,16 @@ There are 5 device configuration options:
 
 ![AWS FSx Snowball Edge](images/aws-fsx-snowball-edge.png)
 
+### Snowmobile 
+
+**Snowmobile** is a 45-foot-long ruggedized shipping container, pulled by a semi-truck, that can transfer petabytes of data to AWS. It can transfer up to 100PB per snowmobil. AWS personnel will help you connect your network to the Snowmobile, and when data transfer is complete, they'll drive it back to AWS to import into S3 or Glacier.
+
+#### Security Features
+
+1. GPS Tracking
+2. Alarm Monitoring
+3. 24/7 Video Surveillance
+4. Escort Security Vehicle while in transit
+
+![AWS FSx Snowmobile](images/aws-fsx-snowmobile.png)
+
