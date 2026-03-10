@@ -952,7 +952,27 @@ AWS SCT is not available on macOS but can be installed on:
 - Next.js
 - Vue
 
-**AWS Amplify(Gen2)** is currently in preview, and may completely change the experience of **AWS Amplify**. 
-**AWS Amplify** is a service that has never lived up to delivering on Developer Experience(DX).
+**AWS Amplify(Gen2)** is currently in preview, and may completely change the experience of **AWS Amplify**. **AWS Amplify** is a service that has never lived up to delivering on Developer Experience(DX).
 
+## Amazon AppFlow
+
+**Amazon AppFlow** is a managed integration service for data transfer between data sources. With Amazon AppFlow, you can easily exchange data with over 80+ cloud services by specifying a source and destination.
+
+![Amazon AppFlow](./images/aws-amazon-appflow.png)
+
+Flow triggers:
+
+- **Run on demand**: Users manually run the flow as needed
+- **Run on event**: Amazon AppFlow runs the flow in response to an event from an SaaS application
+- **Run on schedule**: Amazon AppFlow runs the flow on a recurring schedule
+
+#### Amazon AppFlow Features
+
+1. Create dataflows between applications in minutes
+2. Aggregate data from multiple sources
+3. Encrypt data at-rest and in-transit
+4. Optimize query performance with partition and aggregation settings
+5. Develop **custom connectors** via the Amazon AppFlow Custom Connector SDKs
+6. Create **private flow** via AWS PrivateLink
+7. Catalog data transfered to S3 via AWS Glue Data Catalog
 
