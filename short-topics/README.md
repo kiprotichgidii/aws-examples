@@ -822,7 +822,7 @@ Guided templates for end-to-end migration.
 
 **AWS Database Migration Service** allows users to quickly migrate one database to another. **DMS** can be used to migrate on-premise databases to AWS cloud. 
 
-![AWS DMS](images/aws-database-migration-service.png)
+![AWS Database Migration Sservice](images/aws-database-migration-service.png)
 
 - **AWS Schema Conversion** is used in many cases to automatically convert a source database schema to a target database schema. 
 - For data warehouses, the desktop application **AWS Schema Conversion** tool is used.
@@ -882,4 +882,15 @@ Possible Targets:
   - Must have VPC endpoints to access some AWS Services eg. S3, Kinesis, DynmoDB, OpenSearch
   - Limited selection of possible sources and target databases
   - Does not support views with selection and transformation rules
+
+### AWS Schema Conversion Tool
+
+**AWS Schema Conversion Tool** is a stand-alone desktop application used to convert existing database schema and a majority of the custom code from one database engine to another.
+
+AWS SCT is not available on macOS but can be installed on:
+
+- Linux (Fedora/Ubuntu)
+- Windows
+
+![AWS Schema Conversion Tool](./images/aws-schema-conversion-tool.png)
 
