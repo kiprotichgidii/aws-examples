@@ -894,3 +894,27 @@ AWS SCT is not available on macOS but can be installed on:
 
 ![AWS Schema Conversion Tool](./images/aws-schema-conversion-tool.png)
 
+## AWS Auto Scaling
+
+**AWS Auto Scaling** is a service that can discover scaling resources within an AWS account, and quickly add scaling plans to those scaling resources. A central inventory can be used for all scaling resources.
+
+**AWS Auto Scaling** can manage and make recommendations for the following scaling resources:
+
+- EC2 Auto Scaling Groups
+- ECS EC2
+- Amazon Aurora
+- Amazon DynamoDB
+- Spot fleet
+
+#### Dynamic Scaling
+
+**AWS Auto Scaling** ensures that, when a metric changes, so does the capacity.
+
+![AWS Dynamic Scaling](./images/aws-dynamic-scaling.png)
+
+#### Predictive Scaling
+
+**AWS Auto Scaling** analyses historical load data, generates a forecast, and scales based ont the generated forecast.
+
+![AWS Predictive Scaling](./images/aws-predictive-scaling.png)
+
