@@ -1083,3 +1083,13 @@ Caching requires an instance provisioned on-demand, as it is not serverless.
 - `APPSYNC_JS`: JavaScript
 - `VTL`: Velocity Template Language 
 
+## AWS Batch
+
+**AWS Batch** plans, schedules, and execute your batch computing workfloads across the full range of AWS compute services. It can also utilize Spot Instance to save money. 
+
+- **Jobs**: A named unit of work, eg. shell script, docker container image
+- **Jobs Definitions**: Defines how the job is run eg. amount of compute and memory
+- **Job Queues**: A collection of jobs that determine the job priority
+- **Job Scheduler**: Evaluates, when, where, and how to run jobs that are submitted to a job queue.
+- Defaults to First-In-First-Out (FIFO)
+
