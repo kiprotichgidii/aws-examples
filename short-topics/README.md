@@ -916,3 +916,43 @@ AWS SCT is not available on macOS but can be installed on:
 
 ![AWS Auto Scaling](./images/aws-auto-scaling.png)
 
+## AWS Amplify
+
+**AWS Amplify** is an opinionated framework and fully-managed infrastructure to allow developers to focus on building web and mobile applications. 
+
+1. **AWS Amplify CLI**
+   - Unified toolchain to create, integrate, and managed AWS cloud services
+2. **AWS Amplify SDK**
+   - Connects AWS services to the client-side code
+3. **AWS Amplify UI**
+   - A collection of accessible, themeable, performant, react components that connect directly to the cloud.
+4. **AWS Amplify Hosting**
+   - A static website hosting platform
+5. **AWS Amplify Studio**
+   - A visual development environment for building full stack web and mobile applications.
+
+**AWS Amplify** directly integrates with:
+
+- **Amazon Cognito**: For authenticating signin and signup
+- **API Gateway**: For rest APIs
+- **AppSync**: For GraphQL APIs
+- **S3**: For storage or static web hosting
+- **DynamoDB**: For a backend database
+- **AWS Lambda**: For custom resolvers
+
+**AWS Amplify** works with the following frameworks:
+
+- React
+- JavaScript
+- Flutter
+- Swift
+- Android
+- React Native
+- Angular
+- Next.js
+- Vue
+
+**AWS Amplify(Gen2)** is currently in preview, and may completely change the experience of **AWS Amplify**. 
+**AWS Amplify** is a service that has never lived up to delivering on Developer Experience(DX).
+
+
