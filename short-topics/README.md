@@ -1093,3 +1093,38 @@ Caching requires an instance provisioned on-demand, as it is not serverless.
 - **Job Scheduler**: Evaluates, when, where, and how to run jobs that are submitted to a job queue.
 - Defaults to First-In-First-Out (FIFO)
 
+AWS Batch can run jobs on:
+
+- EC2
+- Fargate
+- EKS
+
+**Job Types**
+
+1. **Array Jobs**: A job that shares common parameters such as the job definition, vCPUs, memory
+2. **Multi-node Parallel Jobs**: run single jobs that span multiple Amazon EC2 instances
+3. **GPU Jobs**: jobs that run on GPU-based EC2 instances
+
+**Job Dependencies** allow users to specify a job id to another job, such that the other job will only be scheduled to process after the other job completes.
+
+## Amazon OpenSearch Service
+
+**Amazon OpenSearch Service** is a managed full-text search service that makes it easy to deploy, operate and scale OpenSearch. **OpenSearch** is an open-source search and analytics engine.
+
+With **Amazon OpenSearch Service**, two engines can be depoyed:
+
+1. OpenSearch
+2. ElasticSearch
+
+**OpenSearch** is a community-driven, open-source search and analytics suite that makes it easy to ingest, search, visualize, and analyze data. It is an open-source fork of open-source ElasticSearch and Kibana. The project was created after Elastic NV changed the license of new versions of this software away from the open-source Apache License in favor of the Server Side Public License (SSPL). AWS was responsible for the development and fork of OpenSearch.
+
+**ElasticSearch** is a distributed search and analytics engine built on Apache Lucene. Since its release in 2010, Elasticsearch has quickly become the most popular search engine and is commonly used for log analytics, full-text search, security intelligence, business analytics, and operational intelligence use cases.
+
+### ELK Stack
+
+**ELK stack** is an acronym used to describe a stack that comprises three popular projects: Elasticsearch, Logstash, and Kibana. Often referred to as Elasticsearch, the ELK stack gives you the ability to aggregate logs from all your systems and applications, analyze these logs, and create visualizations for application and infrastructure monitoring, faster troubleshooting, security analytics, and more.
+
+- ElasticSearch - full-text search and analytics engine
+- Logstash - data processing pipeline
+- Kibana - visualization layer for data stored
+
