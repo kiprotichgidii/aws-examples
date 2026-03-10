@@ -1128,3 +1128,29 @@ With **Amazon OpenSearch Service**, two engines can be depoyed:
 - Logstash - data processing pipeline
 - Kibana - visualization layer for data stored
 
+## AWS Device Farm
+
+**AWS Device Farm** is an application testing service that allows users to tst iOS, Android, and web applications on real smartphones, tablets, and desktop web browsers. The service allows you to concurrently run your tests on multiple desktop browsers or real devices to speed up the execution of your test suite, and Device Farm generates videos and logs to help you quickly identify issues with your application.
+
+### Mobile Device Testing
+
+- Users can test Native iOS (.ipa) or Android (.apk), or Mobile Web-Apps
+- Users can utilize built-in test Fuzz which will randomly test actions
+- Videos will be capture of mulitple runs
+- Screenshots will be capture of a single run
+- Multiple devices can be chosen; AWS owns physical phones that can be connectec to, virtually
+- Users can remotely connect to a phone and upload applications to do general troubleshooting against real phones
+- Users have access to a test suite with Appium:
+  - Appium Java Junit
+  - Appium Test NG
+  - Appium Test Python
+  - Appium Node.js
+  - Appium Ruby
+
+### Desktop Browser Testing
+
+- Users can test web applications against multiple web browsers
+- Users use Seleium to write their tests
+
+![AWS Device Farm](./images/aws-device-farm.png)
+
