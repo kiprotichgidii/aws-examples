@@ -1046,14 +1046,14 @@ Amazon AppFlow supports 80+ applications for data exchange.
 
 **AWS AppSync** can support real-time APIs via GraphQL subscriptions feature.
 
-#### API Types
+**API Types**
 
 1. **GraphQL APIs**: Single API from multiple data sources
 2. **Merged APIs**: 
    - A collection of GraphQL APIs that act as one API
    - Useful if one has multiple teams that managed their own API but need to treat all the APIs as a single API.
 
-#### Data Sources
+**Data Sources**
 
 - DynamoDB Table
 - Amazon OpenSearch
@@ -1062,6 +1062,24 @@ Amazon AppFlow supports 80+ applications for data exchange.
 - Amazon EventBridge
 - Relational Database (RDS HTTP endpoint)
 
-#### Caching Options
+**Caching Options**
 
-- 
+- **None**: No caching, resolvers will always fetch data from the data sources.
+- **Full Request Caching**: Cache all requests
+- **Per-resolver Caching**: Specific operations or field defined in a resolver will return responses from cache. 
+
+Caching requires an instance provisioned on-demand, as it is not serverless.
+
+**Authorization Types**
+
+- API Key
+- AWS IAM
+- Amazon Cognito User Pools
+
+**AWS AppSync** supports custom domains, and has a query editor built into the UI. 
+
+**Resolver Runtimes**
+
+- `APPSYNC_JS`: JavaScript
+- `VTL`: Velocity Template Language 
+
