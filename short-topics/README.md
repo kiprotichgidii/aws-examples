@@ -1036,3 +1036,32 @@ Amazon AppFlow supports 80+ applications for data exchange.
     }
    }
    ```
+## AWS AppSync
+
+**AWS AppSync** is a fully managed GraphQL service. 
+
+![AWS AppSync](./images/aws-appsync.png)
+
+- **Resolvers**: Attached to specific fields within the types in a schema, used to implement the state-changing operations for query, mutation, and subscription field operations.
+
+**AWS AppSync** can support real-time APIs via GraphQL subscriptions feature.
+
+#### API Types
+
+1. **GraphQL APIs**: Single API from multiple data sources
+2. **Merged APIs**: 
+   - A collection of GraphQL APIs that act as one API
+   - Useful if one has multiple teams that managed their own API but need to treat all the APIs as a single API.
+
+#### Data Sources
+
+- DynamoDB Table
+- Amazon OpenSearch
+- AWS Lambda Function
+- HTTP endpoint
+- Amazon EventBridge
+- Relational Database (RDS HTTP endpoint)
+
+#### Caching Options
+
+- 
