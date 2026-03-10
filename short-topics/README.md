@@ -976,3 +976,63 @@ Flow triggers:
 6. Create **private flow** via AWS PrivateLink
 7. Catalog data transfered to S3 via AWS Glue Data Catalog
 
+Amazon AppFlow supports 80+ applications for data exchange.
+
+## GraphQL
+
+**GraphQL** is an open-source query adaptor that allows users to query data from multiple diffrent data sources. **GraphQL** is used to build APIs where clients will send a query of nested data. **GraphQL** mitigates the issue of versioned or rapidly changing APIs compared to REST API because users can request the data they want.
+
+**GraphQL** schemas are written in the GraphQL SDL(Schema Definition Language) composed of:
+
+- Types
+- Fields
+- Queries
+- Mutations
+- Subscriptions
+
+1. **Type**
+   - Represents objects and their *fields*.
+
+   ```sql
+   type Query {
+    me: User
+   }
+   
+   type User {
+    id: ID
+    name: string
+   }
+   ```
+2. **Queries**
+   - Defines the exact shape of the data needed by the client.
+
+   ```sql
+   query CurrentUser {
+    currentUser {
+        name
+        age
+    }
+   }
+   ```
+3. **Mutations**
+   - Allows for data to be created, updated, or deleted.
+
+   ```sql
+   mutation CreateUser ($name: String!, $age: Int!) {
+    createUser (userName: $name, age: $age) {
+        name
+        age
+    }
+   }
+   ```
+4. **Subscriptions**
+   - Supports live updates sent from the server to the client.
+
+   ```sql
+   subscription {
+    newPerson {
+        name
+        age
+    }
+   }
+   ```
