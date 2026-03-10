@@ -818,3 +818,49 @@ Guided templates for end-to-end migration.
 - IBM Cloud Object Storage
 - Seagate Lyve Cloud 
 
+## Database Migration Service (DMS)
+
+**AWS Database Migration Service** allows users to quickly migrate one database to another. **DMS** can be used to migrate on-premise databases to AWS cloud. 
+
+![AWS DMS](images/aws-database-migration-service.png)
+
+- **AWS Schema Conversion** is used in many cases to automatically convert a source database schema to a target database schema. 
+- For data warehouses, the desktop application **AWS Schema Conversion** tool is used.
+- Each migration path requires a bit of research because not all combinations of sources and targets are possible.
+
+Possible Sources:
+
+- Oracle Database
+- Microsoft SQL
+- MySQL
+- MariaDB
+- PostgreSQL
+- MongoDB
+- SAP ASE
+- IMDB Db2
+- Azure SQL Database
+- Amazon RDS
+- Amazon S3
+- Amazon Aurora
+- Amazon Document DB
+
+Possible Targets:
+
+- Oracle Database
+- Microsoft SQL
+- MySQL
+- MariaDB
+- PostgreSQL
+- Redis
+- SAP ASE
+- Amazon Redshift
+- Amazon RDS
+- Amazon DynamoDB
+- Amazon Aurora
+- Amazon S3
+- Amazon OpenSearch Service
+- Amazon ElasticCache for Redis
+- Amazon Document DB
+- Amazon Neptune
+- Amazon Kafka
+
