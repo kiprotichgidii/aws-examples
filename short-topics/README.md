@@ -864,3 +864,22 @@ Possible Targets:
 - Amazon Neptune
 - Amazon Kafka
 
+### DMS Migration Methods
+
+#### Homogenous Data Migration
+
+- Migrate data with native tools. eg. `pg_dump`, `pg_restore`
+- A migration project can be created in DMS, which will perform the migration using a serverless compute(pay as you go model).
+
+#### Instance Replication
+
+- Provisioning an instance with a chosen instance type to perform the replications between the databases.
+
+#### Serverless Replication (DMS Serverless)
+
+- Offers serverless replication with a pay as you go model, but with some limitations:
+  - Does not have public IPs
+  - Must have VPC endpoints to access some AWS Services eg. S3, Kinesis, DynmoDB, OpenSearch
+  - Limited selection of possible sources and target databases
+  - Does not support views with selection and transformation rules
+
