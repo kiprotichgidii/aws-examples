@@ -910,11 +910,9 @@ AWS SCT is not available on macOS but can be installed on:
 
 **AWS Auto Scaling** ensures that, when a metric changes, so does the capacity.
 
-![AWS Dynamic Scaling](./images/aws-dynamic-scaling.png)
-
 #### Predictive Scaling
 
 **AWS Auto Scaling** analyses historical load data, generates a forecast, and scales based ont the generated forecast.
 
-![AWS Predictive Scaling](./images/aws-predictive-scaling.png)
+![AWS Auto Scaling](./images/aws-auto-scaling.png)
 
