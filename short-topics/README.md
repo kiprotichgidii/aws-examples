@@ -786,3 +786,35 @@ Bridges networking across AWS accounts so that legacy and new services can commu
 
 Guided templates for end-to-end migration.
 
+### AWS DataSync
+
+**AWS DataSync** is a data transfer service that simpliefies data migration to, from, and between Cloud Storage services. **AWS DataSync** works with the following protocols:
+
+- Network File System (NFS)
+- Server Message Block (SMB)
+- Hadoop Distributed File System (HDFS)
+- Object Storage
+
+**AWS DataSync** works with the following AWS services:
+
+- Amazon S3
+- Amazon EFS
+- FSx for Windows File Server, Lustre, OpenZFS, NetApp ONTAP
+- Amazon Snowcone
+- Amazon S3 Compatible Snowball Edge
+
+**AWS DataSync** supports the following cloud storage services:
+
+- Google Cloud Storage
+- Microsoft Azure Blob Storage
+- Microsoft Azure Files
+- Wasabi Cloud Storage
+- DigitalOcean Spaces
+- Oracle Cloud Infrastructure Object Storage
+- CloudFlare R2 Storage
+- Backblaze B2 Cloud Storage
+- NEVER Cloud Object Storage
+- Alibaba Cloud Object Storage Service
+- IBM Cloud Object Storage
+- Seagate Lyve Cloud 
+
