@@ -1287,3 +1287,139 @@ Destinations are the subscribers who can receive messages.
      - AWS Chatbot
      - PagerDuty
 
+### SNS Topics
+
+SNS topics are the logical access point for communication. 
+
+| Feature | Standard | First-In-First-Out(FIFO) |
+| --- | --- | --- |
+| **Throughput** | High throughput | Lower throughput compared to Standard |
+| **Delivery** | At least once | Exactly Once |
+| **Ordering** | No ordering guarantees | Messages are delivered in the order the are sent within a message group |
+| **Use-case** | Where the volume of messages is high and exact ordering/delivery isn't critical:<br><ul><li>Alerts</li><li>Notifications</li></ul> | Where the order and exact delivery of messages is crucial:<br><ul><li>Banking Transactions</li><li>Ordered Data Processing</li></ul> |
+| **Message Grouping** | N/A | Supports message grouping, allowing multiple ordered streams within the same topic. |
+
+### Publishing Messages
+
+The most common way to publish messages to SNS is to use the AWS SDK, where an application programmatically publishes messages to the SNS topic.
+
+#### Ruby Example
+
+```ruby
+require 'aws-sdk-sns'
+
+# Initialize the SNS client
+sns_client = Aws::SNS::Client.new
+
+# Specify the SNS topic ARN
+topic_arn = 'arn:aws:sns:us-east-1:123456789012:my-topic'
+
+# The message to publish
+message = 'Hello, World!'
+
+# Publish the message
+begin
+  resp = sns_client.publish({
+    topic_arn: topic_arn, 
+    message: message
+  })
+
+  puts "Message published successfully! Message ID: #{resp.message_id}"
+rescue Aws::SNS::Errors::ServiceError => error
+  puts "Error publishing message: #{error}"
+end
+```
+
+#### Python Example
+
+```python
+import boto3
+
+# Initialize the SNS client
+sns_client = boto3.client('sns')
+
+# Specify the SNS topic ARN
+topic_arn = 'arn:aws:sns:us-east-1:123456789012:my-topic'
+
+# The message to publish
+message = 'Hello, World!'
+
+# Publish the message
+try:
+    response = sns_client.publish(
+        TopicArn=topic_arn,
+        Message=message
+    )
+    print(f"Message published successfully! Message ID: {response['MessageId']}")
+except Exception as e:
+    print(f"Error publishing message: {e}")
+```
+
+### Publishing Large Messages
+
+To publish large messages to SNS, these libraries can be used:
+
+- Amazon SNS Extended Client Library for Java/Python.
+  - https://github.com/awslas/amazon-sns-python-extended-client-lib
+
+These liraries are useful for messages that are larger than the current maximum of 256KB, with a maximum of 2GB. Both libraries save the actual payload to an S3 bucket, and publish the reference of the stored S3 object to the SNS topic. 
+
+#### Python Example
+
+```python
+import boto3
+import sns_extended_client
+
+sns = boto3.client('sns')
+sns.large_payload_support = 'bucket_name'
+
+# boto SNS topic resource
+resource = boto3.resource('sns')
+topic = resource.Topic('topic-arn')
+platform_endpoint = resource.PlatformEndpoint('endpoint-arn')
+platform_endpoint.large_payload_support = 'my_bucket_name'
+
+# To keep it enabled at all times
+platform_endpoint.always_through_s3 = True
+
+# Publish the Large Message
+sns.publish(
+    Message="message",
+    MessageAttribute = {
+        "S3Key": {
+            "DataType": "String",
+            "StringValue": "--S3--Key--",
+        }
+    },
+)
+```
+### Message Attributes
+
+SNS supports the delivery of message attributes, which let's users provide structured metadata items about the message. SNS supports the following data types for message attributes:
+
+- String
+- String.Array
+- Number
+- Binary
+
+#### Example:
+
+```bash
+aws sns publish \
+  --topic-arn "arn:aws:sns:region:account-id:topic-name" \
+  --message "Notifications with various attribute data types" \
+  --message-attributes message-attributes.json
+```
+
+**message-attributes.json**
+
+```json
+{
+    ...
+    "OrderNumber": {
+        "DataType": "numebr",
+        "NumeberValue": "4515262", 
+    }
+...    
+}
+```
