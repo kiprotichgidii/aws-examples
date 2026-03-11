@@ -1171,3 +1171,32 @@ With **Amazon OpenSearch Service**, two engines can be depoyed:
 - **ACID Transactions**: Ensures database integrity with transactions that are atomic, consistent, isolated, and durable.
 - **Journal Storage**: Records change sequentially in a document-oriented format, for structured data handling.
 
+## AWS Elastic Transcoder
+
+**AWS Elastic Encoder** is a fully-managed video-transcoding service that converts audio and video files from their source format into versions compatible with various devices like smartphones, tablets, and PCs. It is designed for simplicity, cost-effectiveness, and scalability, supporting formats like MP4, WebM, and FLV.
+
+**AWS Elastic Encoder** cannot be used via AWS CloudFormation. Automation is only possible via the **AWS CLI** or **AWS SDK**. To use it, create a pipeline, with a job, choose a preset, and the source and destination S3 buckets.
+
+**Audio/Video Presets**
+
+- Audio AAC; 256k,160k,128k,64k
+- Audio MP3; 320k,192k,160k,128k
+- Audio WAV 44100 Hz, 16bit, 8bit
+- Amazon Kindle Fire HDX, HD 8.9, HD
+- Apple TV 3G, 2G Roku HD/2 XD
+- FLAC; CD
+- Full HD 1080i50/i60, 1080i50/i60 XDCAM422
+- Generic 1080p, 720p, 480p 16:9, 480p 4:3, 360p 16:9, 360p 4:3, 320x240
+- Gif(Animated)
+- HLS v3
+- MPEG-DASH Audio 128k
+- MPEG-DASH Video 600/1200/2400/4800 k
+- NTSC
+- PAL
+- Smooth Streaming, 3/2/1.5/1 mib/s
+- Smooth Streaming 800,600,500,400 kib/s
+- Web: Facebook, SmugMug, Vimeo, YouTube, Flash
+- Webm 720p, VP9 720p, VP9 360p
+
+**AWS Elemental MediaConvert** is a modern version of **Elastic Encoder**. AWS Elastic Encoder only exists for legacy customers who have not migrated to MediaConvert. 
+
