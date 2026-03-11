@@ -17,9 +17,9 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 4. Design Cost-Optimized Architectures (20%): Right-sizing resources, using Savings Plans/Reserved Instances, and monitoring costs with AWS Cost Explorer.
 
 **AWS Services**
-- [Simple Storage Service(S3)](./s3/README.md)
-- [Virtual Private Cloud(VPC)](./vpc/README.md)
-- [Identity and Access Management(IAM)](./iam/README.md)
-- [Elastic Compute Cloud(EC2)](./ec2/README.md)
-- [Auto Scaling Group(ASG)](./asg/README.md)
+- [Simple Storage Service(S3)](https://github.com/kiprotichgidii/aws-examples/blob/main/s3/README.md#aws-s3-cli)
+- [Virtual Private Cloud(VPC)](https://github.com/kiprotichgidii/aws-examples/blob/main/vpc/README.md#aws-virtual-private-cloud-vpc)
+- [Identity and Access Management(IAM)](https://github.com/kiprotichgidii/aws-examples/blob/main/iam/README.md#aws-identity-and-access-management-iam)
+- [Elastic Compute Cloud(EC2)](https://github.com/kiprotichgidii/aws-examples/blob/main/ec2/README.md#amazon-elastic-compute-cloud-ec2)
+- [Auto Scaling Group(ASG)](https://github.com/kiprotichgidii/aws-examples/blob/main/asg/README.md#auto-scaling-group-asg)
 - [AWS Global Accelerator](https://github.com/kiprotichgidii/aws-examples/tree/main/bundled#aws-global-accelerator)
