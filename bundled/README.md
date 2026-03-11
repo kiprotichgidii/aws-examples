@@ -756,7 +756,7 @@ Common ports for these protocols:
 - FTPS: port 990
 - AS2: port 443
 
-### Transfer Family Managed File Transfer Workflows
+## Transfer Family Managed File Transfer Workflows
 
 **Transfer Family Managed File Transfer Workflows (MFTW)** is a fully managed, serverless File Transfer Workflow service to set up, run, automate, and monitor processing of files uploaded using AWS Transfer Family.
 
@@ -768,7 +768,7 @@ Workflows allow you to perform the following after a file is uploaded:
 - **Custom File-processing step** - Pass file to a lambda to be processed
 - **Decrypt File** - Automatically decrypt file using PGP after uploaded to S3 or EFS
 
-### AWS Migration Hub
+## AWS Migration Hub
 
 **AWS Migration Hub** is a singel place to discover your existing servers, applications, and databases, and plan migrations and track their status during migration to AWS. AWS Migration Hub can monitor migration statuses from migration services:
 
@@ -786,7 +786,7 @@ Bridges networking across AWS accounts so that legacy and new services can commu
 
 Guided templates for end-to-end migration.
 
-### AWS DataSync
+## AWS DataSync
 
 **AWS DataSync** is a data transfer service that simpliefies data migration to, from, and between Cloud Storage services. **AWS DataSync** works with the following protocols:
 
