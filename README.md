@@ -22,4 +22,6 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [Identity and Access Management(IAM)](https://github.com/kiprotichgidii/aws-examples/blob/main/iam/README.md#aws-identity-and-access-management-iam)
 - [Elastic Compute Cloud(EC2)](https://github.com/kiprotichgidii/aws-examples/blob/main/ec2/README.md#amazon-elastic-compute-cloud-ec2)
 - [Auto Scaling Group(ASG)](https://github.com/kiprotichgidii/aws-examples/blob/main/asg/README.md#auto-scaling-group-asg)
+- [Elastic Load Balancer](https://github.com/kiprotichgidii/aws-examples/blob/main/asg/README.md#elastic-load-balancer-elb)
+- [AWS Rout53](https://github.com/kiprotichgidii/aws-examples/blob/main/asg/README.md#aws-route-53)
 - [AWS Global Accelerator](https://github.com/kiprotichgidii/aws-examples/tree/main/bundled#aws-global-accelerator)
