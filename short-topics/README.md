@@ -1423,3 +1423,47 @@ aws sns publish \
 ...    
 }
 ```
+
+### Batch Publishing
+
+`BatchPublish` action can publish up to 10 messages at a time:
+
+```ruby
+require 'aws-sdk-sns'
+
+sns_client = AWS::SNS::Client.new(region: 'us-west-2')
+
+topic_arn = 'arn:aws:sns:us-west-2:123456789012:my-topic'
+
+messages = [
+    {
+        id: "msg1",
+        message: "First message",
+        message_attributes: {
+            "AttributeKey1" => {
+                data_type: "String", 
+                string_value: "AttributeValue1"
+            }
+        }
+    },
+    {
+        id: "msg2",
+        message: "Second message",
+        message_attributes: {
+            "AttributeKey2" => {
+                data_type: "Number", 
+                string_value: "1234"
+            }
+        }
+    }
+]
+
+sns_client.publish_batch (
+    {
+        topic_arn: topic_arn,
+        publish_batch_request_entries: messages
+    }
+)
+```
+
+Sending messages in batches can help you reduce the SNS costs by a factor of 10.
