@@ -1495,3 +1495,20 @@ aws sns publish --topic-arn "arn:aws:sns:region:account-id:topic-name" \
   --message-structure json \
   --message file://message.json
 ```
+
+### SNS Subscriptions
+
+To receive any messages from a topic, a subscription is required. A subscription can only subscribe to one protocol and one topic.
+
+![SNS Subscriptions](./images/aws-sns-subscription.png)
+
+**Subscription Protocols**:
+
+- **HTTP** and **HTTPS** create webhooks to the applications
+- **Email** is good for internal email notifications (only supports plaintext)
+- **Email-JSON** sends JSON via email
+- **Amazon SQS** places SNS message into SQS queue
+- **AWS Lambda** triggers a Lambda function
+- **SMS** sends a text message
+- **Platform application endpoints** mobile push
+
