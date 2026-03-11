@@ -1511,3 +1511,55 @@ To receive any messages from a topic, a subscription is required. A subscription
 - **AWS Lambda** triggers a Lambda function
 - **SMS** sends a text message
 - **Platform application endpoints** mobile push
+
+### SNS Filter Policy
+
+**SNS Filter Policy** allows users to filter a subset of messages only to be delivered.
+
+For MessageBody you'd set `--attribute-value MessageBody`:
+
+```bash
+aws sns set-subscription-attributes \
+  --subscription-arn ... \
+  --attribute-name FilterPolicy \
+  --attribute-value file://policy.json
+```
+
+The `polisy.json` file:
+
+```json
+{
+    "store": ["example_corp"],
+    "event": [{"anything-but": "order-cancelled"}],
+    "customer_interests": [
+        "rugby",
+        "football",
+        "baseball"
+    ],
+    "price_usd": [{"numeric": [">=", 100]}]
+}
+```
+**Filter Policy Scope**:
+
+- **MessageAttributes**: filter based on message attributes
+- **MessageBody**: filter based on message body
+
+**Filtering Options**:
+
+- AND Logic
+- OR Logic
+- OR Operator
+- Key Matching
+- Numeric value exact matching
+- Numeric value anything-but matching
+- Numeric values range matching
+- String values exact matching
+- String value anything-but matching
+- String value matching using prefix with anything-but matching
+- String value equals-ignore case
+- String value IP address matching
+- String value prefix matching
+- String value suffix matching
+
+### SNS Message Data Protection
+
