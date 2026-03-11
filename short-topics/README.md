@@ -1200,3 +1200,37 @@ With **Amazon OpenSearch Service**, two engines can be depoyed:
 
 **AWS Elemental MediaConvert** is a modern version of **Elastic Encoder**. AWS Elastic Encoder only exists for legacy customers who have not migrated to MediaConvert. 
 
+## AWS Elemental MediaConvert
+
+**AWS MediaConvert** is 
+AWS MediaConvert is a fully-managed video-transcoding service that transcodes file-based content into live stream assets quickly and reliably. MediaConvert combines advanced video and audio capabilities with a web services interface and pay-as-you-go pricing. With cloud-based transcoding, you can focus on delivering compelling media experiences and worry less about maintaining video processing infrastructure.
+
+**Video Correction**
+
+- Color Space
+- Sample Range
+- Timecode Source
+- Embedded timecode override
+- Rotation
+- Scan Type
+- Pad Video
+
+**Input Filtering**
+
+- Sharpening
+- Adding Texture
+
+**AWS MediaConvert** lets users define a job, inputs and outputs. A job is the container with all the settings for a single transcoding job. **AWS MediaConvert** will pull videos from a source bucket, transcode, and then place them in a destination S3 bucket.
+
+**Other Features**
+
+- Select Audio Tracks to be input
+- Select Captions tracks to be input
+- Transcode only portions of the video (clips)
+- Video Cropping
+- Black Baring
+- Video Overlaying
+- Inserting Images
+- Adding Signaling
+- Partner Integrations
+
