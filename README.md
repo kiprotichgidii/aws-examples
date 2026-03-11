@@ -22,3 +22,4 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [Identity and Access Management(IAM)](./iam/README.md)
 - [Elastic Compute Cloud(EC2)](./ec2/README.md)
 - [Auto Scaling Group(ASG)](./asg/README.md)
+- [AWS Global Accelerator](https://github.com/kiprotichgidii/aws-examples/tree/main/bundled#aws-global-accelerator)

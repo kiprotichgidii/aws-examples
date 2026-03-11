@@ -1511,4 +1511,3 @@ To receive any messages from a topic, a subscription is required. A subscription
 - **AWS Lambda** triggers a Lambda function
 - **SMS** sends a text message
 - **Platform application endpoints** mobile push
-
