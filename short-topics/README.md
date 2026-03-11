@@ -1154,3 +1154,20 @@ With **Amazon OpenSearch Service**, two engines can be depoyed:
 
 ![AWS Device Farm](./images/aws-device-farm.png)
 
+## Amazon Quantum Ledger Database
+
+**Amazon QLDB** is a fully managed ledger database that maintains a complete, immutable record of every change committed to the database. **Amazon QLDB** is useful when a record of the history of financial transactions is required.
+
+### Features
+
+- **Immutable Logs**: Data cannot be altered or deleted once it has been committed to the database.
+- **Cryptographic Verification**: Utilizes SHA-256 hashing for secure, verifiable transaction histories.
+- **Fully Managed**: Automated management of infrastructure allows users to focus on application development without worrying about the underlying infrastructure.
+- **Serverless**: Scales automatically with application demand, enhancing efficiency and cost-effectiveness.
+- **SQL-like Queries**: Supports PartiQL for flexible, SQL-compatible data querying.
+- **Central Governance**: Managed under a central trusted authority, ideal for applications needing a reliable transaction log.
+- **High Throughput and Scalability**: Design for rapid and frequent updates, with minimal latency.
+- **AWS Integration**: Works seamlessly with other AWS Services for improved functionality and simpler management.
+- **ACID Transactions**: Ensures database integrity with transactions that are atomic, consistent, isolated, and durable.
+- **Journal Storage**: Records change sequentially in a document-oriented format, for structured data handling.
+
