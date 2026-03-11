@@ -1234,3 +1234,24 @@ AWS MediaConvert is a fully-managed video-transcoding service that transcodes fi
 - Adding Signaling
 - Partner Integrations
 
+## Pub/Sub
+
+**Publish-Subcribe** is a pattern usually implemented in messaging systems. In a pub/sub system, the sender of messages (publishers) does not send their messages directly to the receivers but instead send them to an event bus. The event bus then categorizes their messages into 
+groups, and the receivers (subscribers) subscribe to these groups. Whenever new messages appear within their subscription, the messages are delivered to them immediately. 
+
+![Pub/Sub](./images/aws-pub-sub.png)
+
+In Pub/Sub systems:
+
+- Publishers have no knowledge of who their subscribers are. 
+- Subscribers do not pull for messages.
+- Messages are instead automatically and immediately pushed to subscribers.
+- Messages and events are interchangeable terms.
+
+#### Use Cases
+
+- Real-time chat systems
+- Web-hook systems
+
+## Amazon Simple Notification Service (SNS)
+
