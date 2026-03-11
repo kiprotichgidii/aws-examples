@@ -1467,3 +1467,31 @@ sns_client.publish_batch (
 ```
 
 Sending messages in batches can help you reduce the SNS costs by a factor of 10.
+
+### SNS Message Structure
+
+In the case where a user wants to send different messages to different kinds of subscribers, the message structure is set to JSON and a JSON file is supplied as the message.
+
+#### Example
+
+The json file, `message.json`:
+
+```json
+{
+    "default": "Default Message",
+    "email": "Email Message",
+    "sms": "SMS Message",
+    "sqs": "SQS Message",
+    "http": "HTTP Message",
+    "https": "HTTPS Message",
+    "application": "Application Messafe"
+}
+```
+
+Then set message structure to JSON and supply the above JSON file as the message:
+
+```bash
+aws sns publish --topic-arn "arn:aws:sns:region:account-id:topic-name" \
+  --message-structure json \
+  --message file://message.json
+```
