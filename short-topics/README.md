@@ -1255,3 +1255,35 @@ In Pub/Sub systems:
 
 ## Amazon Simple Notification Service (SNS)
 
+**Simple Notification Service (SND)** is a highly available, durable, secure, fully-managed **pub/sub messaging** service that allows users to decouple microservices, distributed systems, and serverless applications.
+
+![AWS Simple Notification Service](./images/aws-sns.png)
+
+- **Publishers**: Who will send messages
+- **SNS Topic**: Logical access point for communication
+- **Subscriptions**: Who will receive messages
+
+### SNS Sources
+
+These are AWS services that can publish events to Amazon SNS standards. Most of the AWS services can publish to Amazon SNS topics FIFO. 
+
+### SNS Destinations
+
+Destinations are the subscribers who can receive messages.
+
+1. **Application-to-Application(A2A)**
+   - Supports subscribers from AWS services of web applications:
+     - Data Firehose
+     - Lambda Functions
+     - SQS Queue
+     - HTTP/S Endpoint
+     - AWS Event Fork Pipelines
+    
+2. **Application-to-Person**
+   - Supports subscribers from human-entities:
+     - Mobile Applications
+     - Mobile Phone Numbers
+     - Email Address
+     - AWS Chatbot
+     - PagerDuty
+
