@@ -36,3 +36,41 @@ In this scenario, both apps are using the AWS SDK to interact with the SQS queue
 
 ### Sending Large Messages
 
+To send large messages to SQS, these libraries can be used:
+
+- Amazon SQS Extended Client Library for Java/Python.
+  - https://github.com/awslas/amazon-sqs-python-extended-client-lib
+
+![SQS Large Messages](./images/aws-sqs-sending-large-messages.png)
+
+These libraries are useful for messages that are larger than the current maximum of 256KB, with a maximum of 2GB. Both libraries save the actual payload to an S3 bucket, and publish the reference of the stored S3 object to the SNS topic. 
+
+#### Python Example
+
+```python
+import boto3
+import sns_extended_client
+
+sns = boto3.client('sns')
+sns.large_payload_support = 'bucket_name'
+
+# boto SNS topic resource
+resource = boto3.resource('sns')
+topic = resource.Topic('topic-arn')
+platform_endpoint = resource.PlatformEndpoint('endpoint-arn')
+platform_endpoint.large_payload_support = 'my_bucket_name'
+
+# To keep it enabled at all times
+platform_endpoint.always_through_s3 = True
+
+# Publish the Large Message
+sns.publish(
+    Message="message",
+    MessageAttribute = {
+        "S3Key": {
+            "DataType": "String",
+            "StringValue": "--S3--Key--",
+        }
+    },
+)
+```
