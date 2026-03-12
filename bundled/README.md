@@ -1713,4 +1713,3 @@ A Queue policy will need to be configured to allow SNS to send events to the SQS
 ![Application as Subscriber](images/aws-sns-application-as-subscriber.png)
 
 Push notification messages sent to a mobile endpoint can appear in the mobile app as message alerts, badge updates, or even sound alerts.
-
