@@ -133,3 +133,62 @@ rescue Aws::SQS::Errors::ServiceError => e
   puts "Error sending messages: #{e}"
 end
 ```
+### SQS FIFO Queue
+
+**AWS SQS FIFO Queue** allows users to process a certain number of transactions per second (tps). It guarantees that the messages are received in the order that they were sent and that there are no duplicates.
+
+![SQS FIFO Queue](./images/aws-sqs-fifo-queue.png)
+
+- FIFO queues are limited to 300 transactions per second (tps).
+- Messages have a unique duplication ID to ensure there are no duplicate messages in the queue.
+- FIFO queues ensure Exactly-Once processing.
+- Messages are ordered based on Message Group IDs.
+- To endure that order is preserved, each producer must have their own unique Message Group ID.
+- To request (poll) messages, consumers have to specify a Message Group ID.
+- FIFO queues support reading upto 10 messages at a time.
+- SQS FIFO manages data in partitions across multiple AZs, all managed by AWS.
+- With batching, each partition supports up to 3000 messages per second (tps), or up to 300 messages per second for send, receive, and delete operations.
+- An existing Standard Queue cannot be converted to a FIFO Queue.
+
+#### Example
+
+When sending a message to a FIFO queue, the `message_group_id` and `Message_duplication_id` parameters must be specified:
+
+```ruby
+require 'aws-sdk-sqs'
+
+# Create an SQS client
+sqs_client = Aws::SQS::Client.new(region: 'us-east-1')
+queue_url = 'https://sqs.us-est-1.amazonaws.com/123456789012/my-queue'
+message_body = 'Hello, FIFO World!'
+message_group_id = 'myMessageGroup1'
+message_deduplication_id = 'myMessageDeduplicationId1'
+
+# Send a message to the queue
+begin
+  sqs_client.send_message(
+    queue_url: queue_url, 
+    message_body: message_body, 
+    message_group_id: message_group_id, 
+    message_deduplication_id: message_deduplication_id
+  )
+  puts "Message sent to FIFO queue successfully."
+rescue Aws::SQS::Errors::ServiceError => e
+  puts "Error sending message to FIFO queue: #{e}"
+end
+```
+
+#### FIFO High Throughput
+
+**High Throughput** allows FIFO queues to process up to 3000 messages per second (tps) with batching(10x greater than SQS FIFO without high throughput). It can be enabled by setting `FifoThroughputLimit=perMessageGroupId`.
+
+```bash
+aws sqs set-queue-attributes \
+    --queue-url "https://sqs.us-east-1.amazonaws.com/123456789012/my-queue.fifo" \
+    --attributes \
+    FifoQueue=true, \
+    ContentBasedDeduplication=true, \
+    DeduplicationScope="messageGroup", \
+    FifoThroughputLimit="perMessageGroupId"
+```
+
