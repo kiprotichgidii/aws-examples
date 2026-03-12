@@ -191,4 +191,38 @@ aws sqs set-queue-attributes \
     DeduplicationScope="messageGroup", \
     FifoThroughputLimit="perMessageGroupId"
 ```
+### SQS Attribute-based Access Control (ABAC)
+
+**Attribute-based Access Control (ABAC)** is a method of controlling access to resources based on attributes of the user, and AWS resources. It defines permissions based on the tags that are attached to the user, and AWS resources. 
+
+SQS supports ABAC by allowing users to control access to Amazon SQS Queues based on the tags and aliases that are associated with an Amazon SQS Queue. 
+
+#### Example
+
+Example of denying production resources(tagged with prod) from sending, receiving or deleting messages to a queue:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyAccessForProd",
+      "Effect": "Deny",
+      "Action": "sqs:*",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:ResourceTag/environment": "prod"
+        }
+      }
+    }
+  ]
+}
+```
+
+Possible condition tags:
+
+- `aws:ResourceTag`
+- `aws:RequestTag`
+- `aws:TagKeys`
 
