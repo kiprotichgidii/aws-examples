@@ -1621,3 +1621,18 @@ aws sns put-data-protection-policy \
   --resource-arn arn:aws:sns:us-east-1:123456789012:my-topic \
   --data-protection-policy file://policy.json
 ```
+
+### Raw Message Delivery 
+
+**Ram Message Delivery** avoids having Amazon Data FireHose, Amazon SQS, and HTTP/S endpoints process the JSON formatting of messages.
+
+```bash
+aws sns set-subscription-attributes \
+  --subscription-arn arn:aws:sns:us-east-1:123456789012:my-topic:12345678-1234-1234-1234-123456789012 \
+  --attribute-name RawMessageDelivery \
+  --attribute-value true
+```
+
+- **Data FireHose & SQS**: Metadata is stripped from the published message and the message is sent as it is.
+- **HTTP/S Endpoint**: HTTP header `x-amz-sns-rawdelivery` with value set to `true` is added to the HTTP request, indicating the message should not be formatted.
+
