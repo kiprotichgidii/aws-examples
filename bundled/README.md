@@ -1563,3 +1563,61 @@ The `polisy.json` file:
 
 ### SNS Message Data Protection
 
+**Message Data Protection** safeguards the data that is published to Amazon SNS topics using data protection policies to audit, mask, redact, or block the sensitive information moving between applications or AWS services.  It is only supported for standard SNS topics.
+
+Using data identifiers, it scans for:
+
+- Personally Identifiable Information (PII)
+- Protected Health Information (PHI)
+
+Users can choose to use predefined data identifiers or create custom data identifiers:
+
+- Name
+- Address
+- Credit Card Numbers
+
+**Message Data Protection** supports the following actions:
+
+- **Audit**: Audit upto 99% of data published then send findings to CloudWatch, S3, FireHose
+- **De-identify**: Mask or redact data
+- **Deny**: Block data from being sent
+
+Message Data Protection can help reduce financial, legal, and regulatory risks by complying with privacy regulations such as HIPPA, GDPR, PCI, and FedRAMP.
+
+#### Example
+
+Example Data protection policy that will mask credit card numbers with the pound policy:
+
+```json
+{
+    "Name": "__example_data_protection_policy",
+    "Description": "Example Data Protection Policy",
+    "Version": "2021-06-01",
+    "Statement": [
+        {
+            "DataDirection": "Inbound",
+            "Principal": [
+                "arn:aws:iam::123456789012:user/ExampleUser"
+            ],
+            "DataIdentifier": [
+                "arn:aws:data-protection::aws:data-identifier/CreditCardNumber"
+            ],
+            "Operation": {
+                "Deidentify": {
+                    "MaskConfig": {
+                        "MaskWithCharacter": "#"
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+
+Then provide the `policy.json` file as follows:
+
+```bash
+aws sns put-data-protection-policy \
+  --resource-arn arn:aws:sns:us-east-1:123456789012:my-topic \
+  --data-protection-policy file://policy.json
+```
