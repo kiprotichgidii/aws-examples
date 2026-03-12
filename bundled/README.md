@@ -1691,3 +1691,18 @@ There are four options of `backoffFunction`:
 - linear
 - geometric
 
+### SNS Dead Letter Queue (DLQ)
+
+**SNS Dead Letter Queue** is an Amazon SQS queue where SNS delivers messages that failed to be delivered to the subscriber. The topic and the Queue type need to match, for it to work. ie. standard SNS topic only works with standard SQS Queue, and FIFO SNS topic only works with FIFO SQS Queue.
+
+An SNS Topic can be configured to send to a DLQ via the AWS CLI:
+
+```bash
+aws sns set-topic-attributes \
+  --topic-arn arn:aws:sns:us-east-1:123456789012:my-topic \
+  --attribute-name RedrivePolicy \
+  --attribute-value deadLetterTargetArn=<SQS ARN>
+```
+
+A Queue policy will need to be configured to allow SNS to send events to the SQS Queue.
+
