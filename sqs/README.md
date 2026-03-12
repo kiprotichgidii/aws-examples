@@ -74,3 +74,62 @@ sns.publish(
     },
 )
 ```
+
+### SQS Standard Queue
+
+**AWS SQS Standard Queue** allows users to process a nearly-unlimited number of transactions per second (tps). It guarantees at-least-once delivery, but does not guarantee the order of messages.
+
+![SQS Standard Queue](./images/aws-sqs-standard-queue.png)
+
+- **AWS SQS Standard Queues** guarantee that a message will be delivered at least once.
+- More than one copy of a message could be delivered out of order. Senders need to ensure that consumers can process messages that arrive more than once and out of order.
+- Provides best-effort ordering that helps ensure that messages are delivered in the order they are sent.
+
+#### Example
+
+Sending a message to the SQS Queue using the AWS SDK in ruby:
+
+```ruby
+require 'aws-sdk-sqs'
+
+# Create an SQS client
+sqs_client = Aws::SQS::Client.new(region: 'us-east-1')
+queue_url = 'https://sqs.us-est-1.amazonaws.com/123456789012/my-queue'
+message_body = 'Hello, world!'
+
+# Send a message to the queue
+begin
+  sqs_client.send_message(queue_url: queue_url, message_body: message_body)
+  puts "Message sent successfully."
+rescue Aws::SQS::Errors::ServiceError => e
+  puts "Error sending message: #{e}"
+end
+```
+
+Sending a batch of messages to the SQS queue using the AWS SDK in ruby:
+
+```ruby
+require 'aws-sdk-sqs'
+
+# Create an SQS client
+sqs_client = Aws::SQS::Client.new(region: 'us-east-1')
+queue_url = 'https://sqs.us-est-1.amazonaws.com/123456789012/my-queue'
+
+messages = [
+    {id: 'message1', message_body: 'First Message'},
+    {id: 'message2', message_body: 'Second Message'},
+    {id: 'message3', message_body: 'Third Message'},
+    {id: 'message4', message_body: 'Fourth Message'}
+]
+
+# Send a batch of messages to the queue
+begin
+  sqs_client.send_message_batch(
+    queue_url: queue_url,
+    entries: messages.map { |msg| {id: msg[:id], message_body: msg[:message_body]}}
+  )
+  puts "Messages sent successfully."
+rescue Aws::SQS::Errors::ServiceError => e
+  puts "Error sending messages: #{e}"
+end
+```
