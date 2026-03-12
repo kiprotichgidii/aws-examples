@@ -1636,3 +1636,58 @@ aws sns set-subscription-attributes \
 - **Data FireHose & SQS**: Metadata is stripped from the published message and the message is sent as it is.
 - **HTTP/S Endpoint**: HTTP header `x-amz-sns-rawdelivery` with value set to `true` is added to the HTTP request, indicating the message should not be formatted.
 
+### SNS Delivery Policy
+
+**SNS Delivery Policy** define how SNS retries the delivery of messages to subscribers when server-side errors occur. Each delivery protocol has it's own delivery policy.
+
+When the delicery policy is exhausted, SNS stops retrying the delivery and discards the message unless a dead-letter queue (DLQ) is configured for the subscription.
+
+| Retry Policy                     | A2A (Data Firehose, Lambda, SQS) | A2P (SMTP, SNS, Mobile Push) |
+|----------------------------------|----------------------------------|------------------------------|
+| Immediate Retry Phase (No Delay) | 3 times, without delay           | 0 times, without delay       |
+| Pre-Backoff Phase                | 2 times, 1 second apart          | 2 times, 10 seconds apart    |
+| Backoff Phase                    | 10 times, with exponential backoff, from 1 - 20 seconds | 10 times, with exponential backoff, from 10 - 600 seconds |
+| Post-Backoff Phase               | 100,000 times, 20 seconds apart          | 38 times, 600 seconds apart |
+
+These data policies cannot be changed except HTTP/S.
+
+#### Example
+
+A user can set their own delivery policy for HTTP/S endpoint as follows:
+
+```bash
+aws sns set-subscription-attributes \
+  --subscription-arn arn:aws:sns:us-east-1:123456789012:my-topic:12345678-1234-1234-1234-123456789012 \
+  --attribute-name DeliveryPolicy \
+  --attribute-value file://policy.json
+```
+
+Where `policy.json` is as follows:
+
+```json
+{
+    "healthyRetryPolicy": {
+        "minDelayTarget": 1,
+        "maxDelayTarget": 60,
+        "numRetries": 50,
+        "numNoDelayRetries": 3,
+        "numMinDelayRetries": 2,
+        "numMaxDelayRetries": 10,
+        "backoffFunction": "exponential"
+    },
+    "throttlePolicy": {
+        "maxReceviesPerSecond": 10
+    },
+    "requestPolicy": {
+        "headerContentType": "application/json" 
+    }
+}
+```
+
+There are four options of `backoffFunction`:
+
+- arithmetic
+- exponential
+- linear
+- geometric
+
