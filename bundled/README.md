@@ -1706,3 +1706,11 @@ aws sns set-topic-attributes \
 
 A Queue policy will need to be configured to allow SNS to send events to the SQS Queue.
 
+### Application As Subscriber
+
+**SNS Application as Subscriber** is a feature that allows users to send push notifications directly to apps on mobile devices. 
+
+![Application as Subscriber](images/aws-sns-application-as-subscriber.png)
+
+Push notification messages sent to a mobile endpoint can appear in the mobile app as message alerts, badge updates, or even sound alerts.
+
