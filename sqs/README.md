@@ -418,4 +418,39 @@ consumer.start();
 - Can be created and deleted without additional costs.
 - They are API-compatible with static (normal) Amazon SQS queues.
 
+### SQS - Short Vs Long Polling
+
+**Polling** is a method of retrieving messages from an SQS queue.
+
+| Short Polling (default) | Long Polling |
+| --- | --- |
+| Returns messages instantly, even if the message queue being polled is empty | Waits until message arrives in the queue or untill long poll timeout expires |
+| When you need a message right away | When you need to save money by reducing how often you poll |
+
+**WaitTimeSeconds** determines polling:
+
+- ShortPolling: 0 seconds
+- Long Polling: > 0 seconds
+- Max Long Polling is 20 seconds
+
+#### Example
+
+Example of long polling with AWS Ruby SDK v3:
+
+```ruby
+require 'aws-sdk-sqs'
+
+sqs = Aws::SQS::Client.new(region: 'us-east-1')
+queue_url = 'https://sqs.us-east-1.amazonaws.com/123456789012/my-queue'
+
+# Long polling (wait up to 20 seconds for messages)
+response = sqs.receive_message(
+  queue_url: queue_url,
+  wait_time_seconds: 20
+)
+
+response.messages.each do |message|
+  puts "Received message: #{message.body}"
+end
+```
 
