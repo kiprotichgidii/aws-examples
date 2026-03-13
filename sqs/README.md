@@ -326,11 +326,11 @@ Where `message-attributes.json` is:
 
 **Visibility Timeout** is the amount of time that a message is hidden from other consumers after it has been received. It is used to prevent multiple consumers from processing the same message.
 
-- Default 30 seconds
-- Minimum 0 seconds
-- Maximum 4200 seconds (12 hours)
+- Default Value: 30 seconds
+- Minimum Value: 0 seconds
+- Maximum Value: 4200 seconds (12 hours)
 
-Set **VisibilityTimeout** when creating a queue:
+Set **VisibilityTimeout** via the AWS CLI:
 
 ```bash
 aws sqs set-queue-attributes \
@@ -339,4 +339,24 @@ aws sqs set-queue-attributes \
 ```
 
 A message is only hidden after it has been consumed from the queue.
+
+### SQS Delay Queues
+
+**Delay Queues** allows users to postpone the delivery of new messages to customers for a specified amount of time, when an app needs more time to process a message. Any messages that are sent to a delay queue remain invisible to consumers for the duration of the delay period.
+
+- Default Value: 0 seconds
+- Maximum Value: 900 seconds (15 minutes)
+
+1. **Standard Queue**
+   - Per-queue delay setting will only apply to the new messages in the queue.
+2. **FIFO Queue**
+   - Per-queue delay setting will apply to all messages in the queue, including messages that were already in the queue before the delay setting was changed.
+
+Set the DelaySeconds attribute via the AWS CLI:
+
+```bash
+aws sqs set-queue-attributes \
+    --queue-url "https://sqs.region.amazonaws.com/123456789012/my-queue" \
+    --attributes '{"DelaySeconds":"60"}'
+```
 
