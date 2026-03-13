@@ -382,3 +382,40 @@ The Message Timer also uses the `DelaySeconds` parameter, similar to Delay Queue
 
 FIFO Queues do not support Message Timers on individual messages.
 
+### SQS Temporary Queues
+
+**Temporary Queues** are high-throughput, cost-effective, application-managed queues when using common message patterns such as request-response.
+
+The Temporary Queue Client (Java) let's users create a lightweight queues that are deleted automatically when they are no longer in use. 
+
+- https://github.com/awslabs/amazon-sqs-java-temporary-queues-client
+
+#### Example
+
+```java
+AmazonSQS sqs = AmazonSQSClientBuilder.defaultClient();
+AmazonSQSResponder responder = AmazonSQSResponderClientBuilder.standard()
+    .withAmazonSQS(sqs)
+    .build();
+
+SQSMessageConsumer consumer = SQSMessageConsumerBuilder.standard()
+    .withAmazonSQS(responder.getAmazonSQS())
+    .withQueueUrl(queueUrl)
+    .withConsumer(message -> {
+      int x = ThreadLocalRandom.current().nextInt(10) + 1;
+      String responseBody = "Here are " + x + " more widgets. Enjoy! ";
+      System.out.println("Sending reply: " + responseBody);
+      responder.sendResponseMessage(MessageContent.fromMessage(message),
+      new MessageContent(responseBody));
+    })
+    .build();
+consumer.start();
+```
+
+#### Benefits of Temporary Queues
+
+- They serve as lightweight communication channels for specific threads or processes.
+- Can be created and deleted without additional costs.
+- They are API-compatible with static (normal) Amazon SQS queues.
+
+
