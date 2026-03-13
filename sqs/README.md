@@ -360,3 +360,25 @@ aws sqs set-queue-attributes \
     --attributes '{"DelaySeconds":"60"}'
 ```
 
+A message is hidden when it's first added to the queue, and will be visible to consumers after the delay period has expired.
+
+### SQS Message Timers
+
+**Message Timers** allows users to specify an initial invisibility period for an individual message, when sending to the queue. It is set using the `DelaySeconds` parameter in the `SendMessage` API call.
+
+- Default Value: 0 seconds
+- Maximum Value: 900 seconds (15 minutes)
+
+#### Example
+
+```bash
+aws sqs send-message \
+    --queue-url "https://sqs.region.amazonaws.com/123456789012/my-queue" \
+    --message-body "Your Message Text" \
+    --delay-seconds 10
+```
+
+The Message Timer also uses the `DelaySeconds` parameter, similar to Delay Queues, but it is set on a per-message basis, rather than on a per-queue basis.
+
+FIFO Queues do not support Message Timers on individual messages.
+
