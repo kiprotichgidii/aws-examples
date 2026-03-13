@@ -26,5 +26,77 @@ Amazon MQ has a similar offering to SQS however MQ can handle more complex deliv
 | **Transaction Support** | Basic transaction support | Advanced support for JMS transactions.|
 | **Flexibility Support** | Highly flexible due to support for multiple messaging protocols and extensive client library support. | Flexible, especially with Java environments due to JMS. <br> Offers a broad range of connectors for different systems. |
 
-### AMQP
+### Advance Message Queueing Protocol (AMQP)
 
+**AMQP** is an open standard wire-level protocol for message-oriented middleware. It is a messaging protocol that enables applications to communicate with each other by sending and receiving messages. AMQP is a reliable, flexible, and widely supported protocol that is used in a variety of applications.
+
+![Amazon AMQP](./images/aws-amqp.png)
+
+- Messages are published to **Exchanges**
+- **Exchanges** route message copies to **Queues** using rules called **bindings**
+- The **Broker** pushes messages to subscribed **Consumers**, or the consumer pull messages from the queue
+- Messages can have **metadata** attached to them
+- Messages are only removed from the queue when a consumer ACKs(acknowledges) the broker. 
+
+There are four types of exchanges:
+- **Direct (Default)**: Routes messages to queues based on a routing key
+- **Topic**: Routes messages to queues based on a topic pattern
+- **Fanout**: Routes messages to all queues
+- **Headers**: Routes messages to queues based on message headers
+
+#### Example
+
+AWS Ruby SDK has a library called bunny which is RabbitMQ client that uses the AMQP protocol.
+
+Publishing to a queue example:
+
+- Create a channel
+- Create or set a queue
+- Get an exchange
+- Publish a message
+
+```ruby
+require 'bunny'
+
+# Start a connection to RabbitMQ
+connection = Bunny.new
+connection.start
+
+# Create a channel
+channel = connection.create_channel
+
+# Set a queue
+queue = channel.queue('hello')
+
+# Get an exchange
+exchange = channel.default_exchange
+
+# Publish a message
+exchange.publish('Hello World!', routing_key: queue.name)
+puts ' [x] Sent "Hello World!"'
+
+connection.close
+```
+
+Subscribing to a queue example:
+
+```ruby
+require 'bunny'
+
+connection = Bunny.new
+connection.start
+
+channel = connection.create_channel
+queue = channel.queue('hello')
+
+begin
+  puts ' [*] Waiting for messages. To exit press CTRL+C'
+  queue.subscribe(block: true) do |_delivery_info, _properties, body|
+    puts "Received #{body}"
+  end
+rescue Interrupt => _
+  channel.close
+  connection.close
+  exit(0)
+end
+```
