@@ -148,3 +148,51 @@ rescue => e
 end
 ```
 
+### Simple Text Oriented Messaging Protocol (STOMP)
+
+**STOMP (Simple Text Oriented Messaging Protocol)** is a simple, text-based messaging protocol that allows clients to communicate with almost any message broker. **STOMP** is so simple that it can be used with a telnet client. 
+
+#### Example Publisher
+
+```ruby
+require 'stomp'
+
+client = Stomp::Client.new{
+    hosts: [{
+        login: 'guest', passcode: 'guest',
+        host: 'localhost', port: 61613,
+        ssl: false
+    }]
+}
+# (queue or topic)
+dest = "queue/test"
+# Publish a message
+client.publish(dest, 'Hello STOMP')
+puts "Published message to #{dest}"
+client.close
+```
+
+#### Example Subscriber
+
+```ruby
+require 'stomp'
+
+client = Stomp::Client.new{
+    hosts: [{
+        login: 'guest', passcode: 'guest',
+        host: 'localhost', port: 61613,
+        ssl: false
+    }]
+}
+# (queue or topic)
+dest = "queue/test"
+# Subscribe to a message
+client.subscribe(dest) do |message|
+    puts "Received message: #{message.body}"
+    client.acknowledge(message)
+end
+
+puts "Subscribed to #{dest}"
+puts "Press CTRL+C to exit"
+sleep
+```
