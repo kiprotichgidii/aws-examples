@@ -265,3 +265,59 @@ An example of letting an SNS topic send, receive, and delete messages to an SQS 
   ]
 }
 ```
+
+### SQS Message Metadata
+
+**Message Metadata** is a set of key-value pairs that are attached to a message. It is used to store information about the message, such as the message type, message priority, and message timestamp. Message metadata allows users to attach metadata to SQS messages.
+
+Possible logical data types:
+
+- String 
+- Number
+- Binary
+- Custom
+  - Append a `custom-type` label to any data eg.
+    - Number.byte, Number.short, Number.long, Number.float, Number.double, Number.
+    - Binary.gif, Binary.jpg, Binary.png, Binary.pdf, Binary.zip
+
+#### Example
+
+Sending a message with metadata:
+
+```bash
+aws sqs send-message \
+    --queue-url "https://sqs.region.amazonaws.com/123456789012/my-queue" \
+    --message-body "Your Message Text" \
+    --message-attributes file://message-attributes.json
+```
+
+Where `message-attributes.json` is:
+
+```json
+{
+  "OrderID": {
+    "DataType": "String",
+    "StringValue": "1234567890"
+  },
+  "CustomerEmail": {
+    "DataType": "String",
+    "StringValue": "customer@example.com"
+  },
+  "PurchaseDate": {
+    "DataType": "String",
+    "StringValue": "2022-01-01"
+  },
+  "IsPriority": {
+    "DataType": "String",
+    "StringValue": "true"
+  },
+  "OrderTotal": {
+    "DataType": "Number",
+    "NumberValue": 100.00
+  },
+  "OrderItems": {
+    "DataType": "Binary",
+    "BinaryValue": "TmV3IFJlYWwgT2ZmbGluZyBmb3IgY29udGVudC4gVGhpcyBpcyBhIHRlc3QgZm9yIHRoaXMgc2VhcmNoIG1lc3NhZ2Uu"
+  }
+}
+```
