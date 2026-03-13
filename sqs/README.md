@@ -226,3 +226,42 @@ Possible condition tags:
 - `aws:RequestTag`
 - `aws:TagKeys`
 
+### SQS Access Policy
+
+**Access Policy** allows users to grant other principals permission to send, receive, or delete messages to an SQS queue. It is attached to the queue and specifies the permissions that are granted to other principals.
+
+Common actions:
+
+- SendMessage
+- ReceiveMessage
+- DeleteMessage
+
+#### Example
+
+An example of letting an SNS topic send, receive, and delete messages to an SQS queue:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowCrossAccountAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "sns.amazonaws.com"
+      },
+      "Action": [
+        "sqs:SendMessage",
+        "sqs:ReceiveMessage",
+        "sqs:DeleteMessage"
+      ],
+      "Resource": "arn:aws:sqs:region:account-id:queue-name"
+      "Condition": {
+        "ArnEquals": {
+          "aws:SourceArn": "arn:aws:sns:region:account-id:topic-name"
+        }
+      }
+    }
+  ]
+}
+```
