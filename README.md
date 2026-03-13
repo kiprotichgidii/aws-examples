@@ -46,3 +46,4 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [AWS Elastic Transcoder](https://github.com/kiprotichgidii/aws-examples/blob/main/bundled/README.md#aws-elastic-transcoder)
 - [AWS MediaConvert](https://github.com/kiprotichgidii/aws-examples/blob/main/bundled/README.md#aws-elemental-mediaconvert)
 - [Amazon Simple Notification Service](https://github.com/kiprotichgidii/aws-examples/blob/main/bundled/README.md#amazon-simple-notification-service-sns)
+- [Amazon Simple Queueing Service](https://github.com/kiprotichgidii/aws-examples/tree/main/sqs#amazon-simple-queueing-service-sqs)
