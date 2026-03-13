@@ -321,3 +321,22 @@ Where `message-attributes.json` is:
   }
 }
 ```
+
+### SQS Visibility Timeout
+
+**Visibility Timeout** is the amount of time that a message is hidden from other consumers after it has been received. It is used to prevent multiple consumers from processing the same message.
+
+- Default 30 seconds
+- Minimum 0 seconds
+- Maximum 4200 seconds (12 hours)
+
+Set **VisibilityTimeout** when creating a queue:
+
+```bash
+aws sqs set-queue-attributes \
+    --queue-url "https://sqs.region.amazonaws.com/123456789012/my-queue" \
+    --attributes '{"VisibilityTimeout":"60"}'
+```
+
+A message is only hidden after it has been consumed from the queue.
+
