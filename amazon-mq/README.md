@@ -100,3 +100,51 @@ rescue Interrupt => _
   exit(0)
 end
 ```
+
+### Message Queuing Telemetry Transport (MQTT)
+
+**MQTT (MQ Telemetry Transport)** is a lightweight messaging protocol that is designed for use in constrained environments, such as the Internet of Things (IoT). It is a publish-subscribe protocol that is used to exchange messages between devices and applications.
+
+**MQTT** uses minimal network bandwidth and is ideal for IoT devices with limited processing power and memory, or real-time messaging apps. It i suitable for machine-to-machine communication, remote monitoring, and event-driven applications.
+
+![Amazon MQTT](./images/aws-mqtt.png)
+
+- To publish or subscribe, an MQTT client is used
+- A topic name is used to publish and subscribe eg. /hello/5/world
+
+
+Publisher:
+
+```ruby
+require 'mqtt'
+host = 'localhost'
+topic = 'test/topic'
+message = 'Hello MQTT'
+
+begin
+  MQTT::Client.connect(host) do |client|
+    client.publish(topic, message)
+  end
+rescue => e
+  puts "Failed: #{e.message}"
+end
+```
+
+Subscriber:
+```ruby
+require 'mqtt'
+host = 'localhost'
+topic = 'test/topic'
+
+begin
+  MQTT::Client.connect(host) do |client|
+    client.get(topic) do |topic, message|
+      puts topic
+      puts message
+    end
+  end
+rescue => e
+  puts "Failed: #{e.message}"
+end
+```
+
