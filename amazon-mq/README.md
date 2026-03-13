@@ -57,25 +57,26 @@ Publishing to a queue example:
 
 ```ruby
 require 'bunny'
-
-# Start a connection to RabbitMQ
-connection = Bunny.new
+connection_string = "amqps://admin:Testing123456!@b-7cc94b99-4432-4a9c-ae14-9ab61199a0d7.mq.us-east-1.amazonaws.com:5671"
+connection = Bunny.new(connection_string)
 connection.start
 
-# Create a channel
+
 channel = connection.create_channel
-
-# Set a queue
 queue = channel.queue('hello')
-
-# Get an exchange
 exchange = channel.default_exchange
 
-# Publish a message
-exchange.publish('Hello World!', routing_key: queue.name)
-puts ' [x] Sent "Hello World!"'
 
-connection.close
+begin
+    exchange.publish("Hello World!", routing_key: queue.name)
+    channel.close
+    connection.close
+rescue => e
+    puts e.inspect
+    channel.close
+    connection.close
+    exit(0)
+end
 ```
 
 Subscribing to a queue example:
@@ -83,21 +84,22 @@ Subscribing to a queue example:
 ```ruby
 require 'bunny'
 
-connection = Bunny.new
+
+connection_string = "amqps://admin:Testing123456!@b-7cc94b99-4432-4a9c-ae14-9ab61199a0d7.mq.us-east-1.amazonaws.com:5671"
+connection = Bunny.new(connection_string)
 connection.start
 
 channel = connection.create_channel
 queue = channel.queue('hello')
-
 begin
-  puts ' [*] Waiting for messages. To exit press CTRL+C'
   queue.subscribe(block: true) do |_delivery_info, _properties, body|
-    puts "Received #{body}"
+    puts body
   end
-rescue Interrupt => _
-  channel.close
-  connection.close
-  exit(0)
+rescue => e
+    puts e.inspect
+    channel.close
+    connection.close
+    exit(0)
 end
 ```
 
@@ -117,23 +119,25 @@ Publisher:
 
 ```ruby
 require 'mqtt'
-host = 'localhost'
+
+host = 'mqtts://admin:Testing123456!@b-6b39d23f-d358-4850-bfd4-a7784795fa05-1.mq.us-east-1.amazonaws.com:8883'
 topic = 'test/topic'
-message = 'Hello MQTT'
+message = "Hello World! MQTT"
 
 begin
   MQTT::Client.connect(host) do |client|
-    client.publish(topic, message)
+    client.publish(topic,message)
   end
-rescue => e
-  puts "Failed: #{e.message}"
+rescue =>  e
+  puts e.inspect
 end
 ```
 
 Subscriber:
 ```ruby
 require 'mqtt'
-host = 'localhost'
+
+host = 'mqtts://admin:Testing123456!@b-6b39d23f-d358-4850-bfd4-a7784795fa05-1.mq.us-east-1.amazonaws.com:8883'
 topic = 'test/topic'
 
 begin
@@ -143,8 +147,8 @@ begin
       puts message
     end
   end
-rescue => e
-  puts "Failed: #{e.message}"
+rescue =>  e
+  puts e.inspect
 end
 ```
 
@@ -157,18 +161,25 @@ end
 ```ruby
 require 'stomp'
 
-client = Stomp::Client.new{
-    hosts: [{
-        login: 'guest', passcode: 'guest',
-        host: 'localhost', port: 61613,
-        ssl: false
-    }]
+login = 'admin'
+passcode = 'Testing123456!'
+host = 'b-6b39d23f-d358-4850-bfd4-a7784795fa05-1.mq.us-east-1.amazonaws.com'
+port = 61614
+
+config = {
+  hosts: [
+    login: login, 
+    passcode: passcode, 
+    host: host, 
+    port: port, 
+    ssl: true
+  ]
 }
-# (queue or topic)
-dest = "queue/test"
-# Publish a message
-client.publish(dest, 'Hello STOMP')
-puts "Published message to #{dest}"
+
+client = Stomp::Client.new(config)
+
+dest = '/queue/test'
+client.publish(dest,"Hello World! STOMP!")
 client.close
 ```
 
@@ -177,22 +188,27 @@ client.close
 ```ruby
 require 'stomp'
 
-client = Stomp::Client.new{
-    hosts: [{
-        login: 'guest', passcode: 'guest',
-        host: 'localhost', port: 61613,
-        ssl: false
-    }]
-}
-# (queue or topic)
-dest = "queue/test"
-# Subscribe to a message
-client.subscribe(dest) do |message|
-    puts "Received message: #{message.body}"
-    client.acknowledge(message)
-end
+login = 'admin'
+passcode = 'Testing123456!'
+host = 'b-6b39d23f-d358-4850-bfd4-a7784795fa05-1.mq.us-east-1.amazonaws.com'
+port = 61614
 
-puts "Subscribed to #{dest}"
-puts "Press CTRL+C to exit"
-sleep
+config = {
+  hosts: [
+    login: login, 
+    passcode: passcode, 
+    host: host, 
+    port: port, 
+    ssl: true
+  ]
+}
+
+client = Stomp::Client.new(config)
+dest = '/queue/test'
+client.subscribe(dest) do |message|
+  puts 'subbed'
+  puts message
+  client.acknowledge(message)
+end
+client.join
 ```
