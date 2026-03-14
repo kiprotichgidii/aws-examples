@@ -11,10 +11,7 @@ The **AWS Service Catalog** is an alternative to granting direct access AWS reso
 3. Fine-grained access control
 4. Extensibility and version control
 
-### Service Catalog Users
-
-- **Administrative User**: Manages the catalog 
-- **End Users**: Uses the service catalog to launch products
+### Service Catalog Architecture
 
 ![AWS Service Catalog](./images/aws-service-catalog-users.png)
 
@@ -34,4 +31,42 @@ The **AWS Service Catalog** is an alternative to granting direct access AWS reso
 7. **Service Actions**
    - SSM documents that can be executed on the stacks.
 
-   
+### Service Catalog Users
+
+There are two types of catalog users:
+
+1. **Catalog Administrator**: Manages the catalog 
+2. **End Users**: Uses the service catalog to launch products
+
+#### Catalog Administrator
+
+A **Catalog Administrator** manages a catalog of products and services, organizing them into portfolios and controlling access to end users. An administrators technical responsibilities include:
+
+- Preparing CloudFormation templates
+- Configuring constraints
+- Managing IAM roles assigned to products
+
+#### End Users
+
+**End Users** use the AWS Management Console to launch products that the administartors have granted them access to.
+
+### Administrator Product
+
+A **product** is a CloudFormation template that defines the resources that will be launched.
+
+```yaml
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0c55b159cbfafe1f0
+      InstanceType: t2.micro
+      Tags:
+        - Key: Name
+          Value: MyEC2Instance
+```
+
+- Users can create or associate an AWS Budget to a product.
+- Once a product is created, it cannot be deleted, but only edited.
+- A product must be removed from the portfolio and not provisioned by a user in order to delete.
+- In order for products to be visible to end users, they must be added to a portfolio.
