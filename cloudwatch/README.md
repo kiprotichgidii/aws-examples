@@ -64,3 +64,16 @@ CloudWatch Logs is the basis for many CloudWatch services.
 
 Most AWS Services are integrated with CloudWatch Logs. Logging of services ***sometimes needs to be turned** on or requires the IAM Permission to CloudWatch Logs.
 
+### CloudWatch Log Groups
+
+**Log Groups** are a collection of log streams. It's very common to name log groups with a forward slash syntax:
+
+- `/aws/example/prod/app`
+- `/aws/example/prod/db`
+- `/aws/example/dev/app`
+- `/aws/example/dev/db`
+
+![CloudWatchLog Groups](./images/aws-cloudwatch-log-groups.png)
+
+### CloudWatch Log Streams
+
