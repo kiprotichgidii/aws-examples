@@ -70,3 +70,21 @@ Resources:
 - Once a product is created, it cannot be deleted, but only edited.
 - A product must be removed from the portfolio and not provisioned by a user in order to delete.
 - In order for products to be visible to end users, they must be added to a portfolio.
+
+### Administrator Portfolio
+
+A **portfolio** is a collection of products. Constraints are used to restrict how products in a portfolio can be used. Products are associated with Groups, roles, or users, to determine who can see and launch the products.
+
+![Administrator Portfolio](./images/aws-administrator-portfolio.png)
+
+To grant access so that end users can see products in the catalog, users need to associate to a portfolio Groups, role, Users or roles.
+
+- All products in the portfolio will be shared to the added identities.
+- Users cannot limit some products to some users in a portfolio.
+
+![Administrator Portfolio](./images/aws-administrator-portfolio-2.png)
+
+### Administratot Constraints
+
+
+
