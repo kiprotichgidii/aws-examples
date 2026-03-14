@@ -108,3 +108,24 @@ Users are required to choose the constraint type to apply to the selected produc
 
 ### End User Products
 
+The End User experiences a user-friendly interface in the AWS Management Console when opening up AWS Service Catalog. They can see two things, **Products** and **Provisioned Products**.
+
+#### Steps to launch a product
+
+1. End users can see catalog products.
+
+2. End users review details and launch products.
+
+3. End users fill in parameters(specified in CloudFormation template) and finish launching the product.
+
+4. End users name and choose product version.
+
+![End User Catalog Products](./images/aws-end-user-catalog-products.png)
+
+Just before launching a product, users can choose to create a **Provisioned Product Plan**. The plan includes the list of resources that will be created or modified, before the product is launched.
+
+It is essentially a CloudFormation change set.
+
+![End User Provisioned Product Plan](./images/aws-end-user-provisioned-product-plan.png)
+
+
