@@ -128,4 +128,15 @@ It is essentially a CloudFormation change set.
 
 ![End User Provisioned Product Plan](./images/aws-end-user-provisioned-product-plan.png)
 
+### End User Provisioned Products
+
+**Provisioned Products** are the resources that have been launched and can be monitored and managed by end users.
+
+![End User Provisioned Products](./images/aws-end-user-provisioned-products.png)
+
+### Service Actions
+
+Service actions are a set of actions that can be performed on a provisioned product. They are essentially SSM documents that can be executed on the stacks.
+
+![Service Actions](./images/aws-service-actions.png)
 
