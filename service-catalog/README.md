@@ -13,3 +13,25 @@ The **AWS Service Catalog** is an alternative to granting direct access AWS reso
 
 ### Service Catalog Users
 
+- **Administrative User**: Manages the catalog 
+- **End Users**: Uses the service catalog to launch products
+
+![AWS Service Catalog](./images/aws-service-catalog-users.png)
+
+1. **Portfolio**
+   - A container for products, permissions and constraints.
+2. **Product**
+   - A CloudFormation template or a set of templates that define the resources to be provisioned.
+3. **Permissions**
+   - Who can view and launch products.
+4. **Constraints**
+   - A constraint is a rule that is applied to a provisioned product.
+5. **Catalog**
+   - A user-friendly console to view and launch products.
+6. **Provisioned Product**
+   - A provisioned product is a product that has been launched by a user.
+   - They are CloudFormation stacks.
+7. **Service Actions**
+   - SSM documents that can be executed on the stacks.
+
+   
