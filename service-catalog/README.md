@@ -86,5 +86,25 @@ To grant access so that end users can see products in the catalog, users need to
 
 ### Administratot Constraints
 
+Users can create constraints on products in a portfolio. Constraints are used to restrict how products in a portfolio can be used.
 
+![Administrator Constraints](./images/aws-administrator-constraints.png)
+
+#### Constraint Types
+
+Users are required to choose the constraint type to apply to the selected product when creating a constraint.
+
+1. **Launch**
+   - Use a specified IAM role instead of the end-user credentials. This way, users don't have to grant end-user permissions to services directly, which is less permissive and more secure.
+2. **Notifications**
+   - Send product notifications to stack.
+3. **Template**
+   - Limit the options that are presented to the end user during product launching.
+   - Set restrictions on the underlying CloudFormation parameter inputs. eg. Only allow t2.micro instances types.
+4. **StackSet**
+   - Allows users to configure product deployment across accounts and regions using AWS CloudFormation StackSets.
+5. **TagUpdate**
+   - Allow or disallow end users to update tags on resources associated with a provisioned product.
+
+### End User Products
 
