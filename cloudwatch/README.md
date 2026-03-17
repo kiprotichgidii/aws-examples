@@ -76,4 +76,3 @@ Most AWS Services are integrated with CloudWatch Logs. Logging of services ***so
 ![CloudWatchLog Groups](./images/aws-cloudwatch-log-groups.png)
 
 ### CloudWatch Log Streams
-
