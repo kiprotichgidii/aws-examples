@@ -268,3 +268,11 @@ Then restart the CloudWatch Agent to apply the changes:
 ```bash
 sudo systemctl restart awslogs
 ```
+
+### Installing CloudWatch Agent
+
+The CloudWatch Agent can be installed using AWS Systems Manager (SSM) Run Command onto the target EC2 instance. 
+
+![CloudWatch Agent Installation](./images/aws-cloudwatch-agent-installation.png)
+
+The CloudWatchAgentServerRole IAM role needs to be attached to the EC2 instance to be able to run the agent on the instance.
