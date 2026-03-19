@@ -327,3 +327,64 @@ EventBridge supports two types of schedules:
 
 ![EventBridge Scheduled Expressions](./images/aws-eventbridge-scheduled-expressions.png)
 
+### CloudTrail Events
+
+Not all AWS services emit CloudWatch events to EventBridge. For those services that don't, you can use CloudTrail events to trigger EventBridge rules. Turning on CloudTrail allows EventBridge to track changes to AWS Services made by API Calls or by AWS Users.
+
+The Detail Type of CloudTrail wii be called: "**AWS API Call via CloudTrail**"
+
+```json
+{
+   ...
+   "detail-type": "AWS API Call via CloudTrail",
+   "source": "aws.cloudtrail",
+   "detail": {
+      "eventVersion": "1.08",
+      "userIdentity": {
+         "type": "IAMUser",
+         "principalId": "AIDA12345678901234567",
+         "arn": "arn:aws:iam::123456789012:user/my-user",
+         "accountId": "123456789012",
+         "sessionContext": {
+            "attributes": {
+               "mfaAuthenticated": "false",
+               "creationDate": "2022-01-01T00:00:00Z"
+            }
+         }
+      },
+      "eventTime": "2022-01-01T00:00:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "PutObject",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "100.100.100.100",
+      "userAgent": "S3Console/0.4",
+      "requestParameters": {
+         "bucketName": "my-bucket",
+         "key": "my-object"
+      },
+      "responseElements": {
+         "ETag": "\"12345678901234567\""
+      },
+      "requestID": "12345678901234567",
+      "eventID": "12345678901234567",
+      "eventType": "AwsApiCall",
+      "resources": [
+         {
+            "type": "AWS::S3::Object",
+            "id": "my-bucket/my-object",
+            "ARN": "arn:aws:s3:::my-bucket/my-object"
+         }
+      ],
+      "tlsDetails": {
+         "cipherSuite": "TLS_AES_256_GCM_SHA384",
+         "protocol": "TLSv1.3",
+         "certificateIssuedBy": "Amazon",
+         "certificateIssuerEndDate": "2022-01-01T00:00:00Z",
+         "certificateIssuerStartDate": "2022-01-01T00:00:00Z",
+         "certificateSerialNumber": "12345678901234567"
+      }
+   }
+}
+```
+
+AWS API calls that are larger than **256KB** in size are not supported.
