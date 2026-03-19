@@ -313,3 +313,17 @@ The top level fields listed will always be present in an event. The `detail` fie
  - `resources`: JSON array containing the ARNs of the resources that are involved in the event
  - `detail`: JSON object containing the data provided by the AWS service. Can contain 50 fields nested several levels deep.
 
+### Scheduled Expressions
+
+Users can create EventBridge rules with scheduled expressions to trigger events at specific times or intervals. The syntax is similar to cron expressions but with some differences. They are like serverless Cron Jobs.
+
+- All scheduled events use UTC timezone
+- The Minimum Precision for schedules is 1 minute
+
+EventBridge supports two types of schedules:
+
+1. Cron expressions
+2. Rate expressions
+
+![EventBridge Scheduled Expressions](./images/aws-eventbridge-scheduled-expressions.png)
+
