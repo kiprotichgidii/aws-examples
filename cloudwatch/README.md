@@ -276,3 +276,40 @@ The CloudWatch Agent can be installed using AWS Systems Manager (SSM) Run Comman
 ![CloudWatch Agent Installation](./images/aws-cloudwatch-agent-installation.png)
 
 The CloudWatchAgentServerRole IAM role needs to be attached to the EC2 instance to be able to run the agent on the instance.
+
+## AWS EventBridge
+
+**AWS EventBridge** is a serverless event bus service that makes it easier to connect applications together using data from your own applications, integrated SaaS applications, and AWS services.
+
+### Anatomy of an Event
+
+The top level fields listed will always be present in an event. The `detail` field will vary based on the AWS service that emits the event.
+
+```json
+{
+  "version": "0",
+  "id": "6f8f3c4a-3f8f-4f8f-8f8f-8f8f8f8f8f8f",
+  "detail-type": "EC2 Instance State-change Notification",
+  "source": "aws.ec2",
+  "account": "123456789012",
+  "time": "2022-01-01T00:00:00Z",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:ec2:us-east-1:123456789012:instance/i-12345678901234567"
+  ],
+  "detail": {
+    "instance-id": "i-12345678901234567",
+    "state": "running"
+  }
+}
+```
+ - `version`: set to zero by default in all events
+ - `Id`: A unique value generated for every event
+ - `detail-type`: identifies fields and values that appear in the detail field
+ - `source`: identifies the service that sourced the event
+ - `account`: 12-digit AWS account ID
+ - `time`: the event timestamp
+ - `region`: the AWS region where the event originated
+ - `resources`: JSON array containing the ARNs of the resources that are involved in the event
+ - `detail`: JSON object containing the data provided by the AWS service. Can contain 50 fields nested several levels deep.
+
