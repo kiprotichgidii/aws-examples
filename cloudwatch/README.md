@@ -76,3 +76,135 @@ Most AWS Services are integrated with CloudWatch Logs. Logging of services ***so
 ![CloudWatchLog Groups](./images/aws-cloudwatch-log-groups.png)
 
 ### CloudWatch Log Streams
+
+**Log Streams** represent a sequence of events from an application or instance being monitored. Log Streams can be created manually, but generally they are created automatically by the service sending logs to CloudWatch Logs.
+
+![CloudWatchLog Streams](./images/aws-cloudwatch-log-streams.png)
+
+#### Lambda Log Streams
+
+Here is a Log Group of a Lambda function. We can see here the Log Streams are named after the running instance. Lambdas frequency run on new instances, so the log streams contain timestamps.
+
+![Lambda Log Streams](./images/aws-cloudwatch-lambda-log-streams.png)
+
+#### EC2 Application Log Streams
+
+Here is a Log Group of an application running on EC2. We can see here the Log Streams are named after the running instance's ID.
+
+![EC2 Application Log Streams](./images/aws-cloudwatch-ec2-application-log-streams.png)
+
+#### AWS Glue
+
+Here is a Log Group of an AWS Glue job. We can see here the Log Streams are named after the Glue Jobs.
+
+![AWS Glue Log Streams](./images/aws-cloudwatch-aws-glue-log-streams.png)
+
+### CloudWatch Log Events
+
+**Log Events** represent a single event in a log file. Log events can be seen within a Log Stream.
+
+![CloudWatch Log Events](./images/aws-cloudwatch-log-events.png)
+
+Filter events can be used to filter log events based on simple or pattern matching syntax:
+
+![Filter Log Events](./images/aws-cloudwatch-filter-log-events.png)
+
+### CloudWatch Logs Insights
+
+**CloudWatch Logs Insights** enables users to interactively search and analyze log data in CloudWatch Logs. It allows users to query their log data using a powerful query language, and visualize the results in charts and graphs.
+
+**Advantages**
+
+- More ribust filtering compared to using simple filter events on log streams
+- Less burdensome that having to export logs to S3 and analyze them via Athena
+
+CloudWatch Logs Insights supports all types of logs. CloudWatch Logs Insights is often used via the console to do ad-hoc queries against Log Groups.
+
+![CloudWatch Logs Insights](./images/aws-cloudwatch-logs-insights.png)
+
+CloudWatch Insights has its own language called **CloudWatch Logs Insights Query Syntax**:
+
+```text
+filter action="REJECT"
+| stats count(*) as numRejections by srcAddr
+| sort numRejections desc
+| limit 20
+```
+- A single request can query up to 20 log groups
+- Queries timeout after 15 minutes if they have not completed
+- Query results are available for 7 days
+
+AWS provides sample queries for common use cases, and to ease learning the query syntax:
+
+![CloudWatch Logs Insights Sample Queries](./images/aws-cloudwatch-logs-insights-sample-queries.png)
+
+Users can create custom queries to analyze their log data, and save them for future use.
+
+### CloudWatch Discovered Fields
+
+When CloudWatch Logs Insights reads log data, it will first analyze the log events and try to structure the content by generating fields that can be used in a query. CloudWatch Logs Insights inserts the @ symbol at the start of the fields it generates.
+
+Five system fields are automatically generated:
+
+- @timestamp - the event timestamp contained in the log event's timestamp field
+- @message - the raw unparsed log event 
+- @ingestionTime - the time when the log event was received by CloudWatch Logs
+- @logStream - the name of the log stream that the log event belongs to
+- @log - a log group identifier in the form of `account-id:log-group-name`
+
+CloudWatch Log Insights automatically discovers fields in logs of AWS services such as:
+
+- **Amazon VPC Flow Logs**: @timestamp, @logStream, @message, accountId, endTime, startTime, version, action, bytes, interfaceId, srcAddr, dstAddr, srcPort, dstPort, protocol, packets, logStatus
+- **Amazon Route53**: @timestamp, @logStream, @message, edgeLocation, hostZoneId, protocol, queryName, queryTimestamp, resolverIp, responseCode, version
+- **AWS Lambda**: @timesstamp, @logStream, @message, @requestId, @duration, @billedDuration, @type, @maxMemoryUsed, @memorySize, @xrayTraceId, @xraySegmentId 
+- **AWS CloudTrail**: evenVersion, evenTime, eventSource, eventName, awsRegion, sourceIPAddress, userAgent, etc.
+- **JSON Logs**: The fields of a JSON Log are turned into fields
+- **Other Types of Logs**: Fields that CloudWatch Logs Insights doesn't automatically discover can be parsed using the `parse` command in the query syntax. 
+
+You can see all the discovered fields by CloudWatch Insights here:
+
+![CloudWatch Discovered Fields](./images/aws-cloudwatch-discovered-fields.png)
+
+### CloudWatch Metrics
+
+**CloudWatch Metrics** represent a time-ordered set of data points. They are used to monitor the performance and health of your resources and applications. CloudWatch Metrics are collected by CloudWatch Agents, which are installed on your resources and applications. CloudWatch Metrics are stored in CloudWatch Logs, which are then used to create CloudWatch Dashboards and CloudWatch Alarms.
+
+CloudWatch comes with many predefined metrics that are generally name spaced by AWS service.
+
+**EC2 Per-Instance Metrics**
+
+- CPUUtilization
+- DiskReadOps
+- DiskWriteOps
+- DiskReadBytes
+- DiskWriteBytes
+- NetworkIn
+- NetworkOut
+- NetworkPacketsIn
+- NetworkPacketsOut
+
+![CloudWatch Namespaced Metrics](./images/aws-cloudwatch-namespaced-metrics.png)
+
+Users can publish their own custom metrics using the AWS CLI or SDK:
+
+```bash
+aws cloudwatch put-metric-data \
+    --namespace "MyNamespace" \
+    --metric-name "MyMetric" \
+    --unit Bytes \
+    --value 2347237 \
+    --dimensions "Name=MyDimension,Value=MyValue"
+```
+
+When you publish a custom metric, the resolution can be defined as either:
+
+- standard (1 minute)
+- high (>1 minute - 1 second)
+
+With high resolution, you can track it in terms of:
+
+- 1 second
+- 5 seconds
+- 10 seconds
+- 30 seconds
+- multiple of 60 seconds
