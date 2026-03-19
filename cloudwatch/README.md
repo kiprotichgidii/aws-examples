@@ -208,3 +208,38 @@ With high resolution, you can track it in terms of:
 - 10 seconds
 - 30 seconds
 - multiple of 60 seconds
+
+### Availability of Data
+
+When an AWS Services emits data to AWS CloudWatch, the availability of the data varies based on the service. Some services emit data every 5 minutes, while others emit data every 1 minute.
+
+Majority of AWS services data availability is 1 minute.
+
+![CloudWatch Data Availability](./images/aws-cloudwatch-data-availability.png)
+
+### CloudWatch Agent an Host Level Metrics
+
+There are some agents you might think are tracked by default for EC2 instances, but they are not. They require installed the CloudWatch Agent. 
+
+1. **Host Level Metrics**
+
+These are what you get without installing the CloudWatch Agent:
+
+- CPU Usage
+- Network Usage
+- Disk Usage
+- Status Checks
+  - Underlying Hypervisor status
+  - Underlying EC2 Instance status
+
+2. **Agent Level Metrics**
+
+These are what you get with the CloudWatch Agent:
+
+- Memory Utilization
+- Disk Swap Utilization
+- Disk Space Utilization
+- Page file Utilization
+- Log Collection
+
+The CloudWatch Agent is also used to collect various logs from an EC2 instance and send them to a CloudWatch Log group.
