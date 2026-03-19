@@ -242,4 +242,29 @@ These are what you get with the CloudWatch Agent:
 - Page file Utilization
 - Log Collection
 
-The CloudWatch Agent is also used to collect various logs from an EC2 instance and send them to a CloudWatch Log group.
+The CloudWatch Agent is also used to collect various logs from an EC2 instance and send them to a CloudWatch Log Group.
+
+### CloudWatch Agent - Log Collection
+
+The CloudWatch Agent can be configured to collect various logs from a running EC2 instance and send them to a CloudWatch Log Group. To send logs:
+
+- the agent configuration needs to be updated to include the logs
+- the CloudWatch Agent needs to be restarted
+
+The Agent's configuration file is located at `/opt/awslogs/awslogs.conf`.
+
+You specify the location of the log file and the log group you want to send the logs to in the configuration file.
+
+```config
+# sample_application_logs
+log_group_name = sample/python/logs/production
+log_stream_name = {instance_id}
+datetime_format = %Y-%m-%d %H:%M:%S
+file = /var/www/my-app/current/log/production.log
+```
+
+Then restart the CloudWatch Agent to apply the changes:
+
+```bash
+sudo systemctl restart awslogs
+```
