@@ -302,6 +302,16 @@ When the alarm changes state, we can define what action it should trigger.
 
 ![CloudWatch Alarm Actions](./images/aws-cloudwatch-alarm-actions.png)
 
+#### CloudWatch Alarm Anatomy
+
+![CloudWatch Alarm Anatomy](./images/aws-cloudwatch-alarm-anatomy.png)
+
+- **Threshold Condition**: Defines when a data point is breached.
+- **Data Point**: Represents the metric's measurement at a given period.
+- **Metric**: The actual data being measured.
+- **Evaluation Periods**: Number of previous periods.
+- **Period**: How often it checks to evaluate the alarm.
+- **Datapoints to Alarm**: Number of data points that need to be in ALARM state to trigger the alarm.
 
 ## AWS EventBridge
 
