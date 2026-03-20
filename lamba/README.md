@@ -187,3 +187,52 @@ The OS-Only runtimes:
 - Amazon Linux 2: provided.al2
 - Amazon Linux 2023: provided.al2023
 
+### Deployment Packages
+
+A **deployment package** is the package which contains the function code that Lambda will deploy. Lambda supports two types of deployment packages: 
+
+- ZIP (zip archive)
+- IMAGE (container image)
+
+1. **Zip Archive**: Zip the contents of your code and additional libraries and dependencies. 
+   - AWS will upload the contents to an AWS managed S3 buckat.
+   - Or, upload the contents to an S3 bucket and reference the object address to Lambda. ZIPs larger than 50 MB have to be uploaded to an S3 Bucket first.
+   - You rely on Lambda runtimes and are limited to these runtime environments.
+
+   To utilize ZIP Deployments, you specify runtime and set the `PackageType` to `ZIP`:
+
+   ```yaml
+   AWSTemplateFormatVersion: '2010-09-09'
+   Transform: AWS::Serverless-2016-10-31
+   Resources:
+     InlineLambda:
+       Type: AWS::Serverless::Function
+       Properties:
+         Handler: function_handler
+         Runtime: pyton3.12
+         PackageType: Zip
+         CodeURI: "./function"
+   ```
+You'll need to specify where the archive or code to be zipped is located, locally or an S3 bucket.
+
+2. **Container Image**: You build a container.
+   - Create a Dockerfile
+   - Build the Image
+   - Push the image to Amazon ECR
+   - Reference the container image to Lambda
+
+   For IMAGE deployments, no runtime is specified, instead the Dockerfile or container image url is specified. eg. ECR
+
+   ```yaml
+   AWSTemplateFormatVersion: '2010-09-09'
+   Transform: AWS::Serverless-2016-10-31
+   Resources:
+     InlineLambda:
+       Type: AWS::Serverless::Function
+       Metadata:
+         DockerContext: "../"
+         Dockerfile: Dockerfile
+       Properties:
+         PackageType: Image
+   ```
+   The `PackageType` is set to `Image`.
