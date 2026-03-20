@@ -535,3 +535,26 @@ Multiple matching rules are combined into a more complex event pattern:
    }
 }
 ```
+
+### EventBridge Rules
+
+**EventBridge Rules** are used to filter events and route them to targets. They are created by providing an event pattern and a list of targets. You can specify up to 5 targets for a single rule. Commonly targeted AWS Service include:
+
+- Lambda Function
+- SQS Queue
+- SNS Topic
+- Firehose Delivery Stream
+- ESC Task
+
+There might be some additional fields to select the target, depending on the target service. eg. Lambda Function, Lambda Alias, Lambda Version.
+
+![EventBridge Rules](./images/aws-eventbridge-rules.png)
+
+You can also specify what gets passed along, by changing **configure input**, which acts as a filter.
+
+![EventBridge Configure Input](./images/aws-eventbridge-configure-input.png)
+
+**Match Events**
+
+The entire event pattern text is passed to the target when the rule is triggered.
+
