@@ -277,6 +277,32 @@ The CloudWatch Agent can be installed using AWS Systems Manager (SSM) Run Comman
 
 The CloudWatchAgentServerRole IAM role needs to be attached to the EC2 instance to be able to run the agent on the instance.
 
+### CloudWatch Alarms
+
+A CloudWatch Alarm monitors a CloudWatch Metric based on a defined threshold.
+
+![CloudWatch Alarm](./images/aws-cloudwatch-alarm.png)
+
+When an alarm breaches (goes outside the defined threshold), it changes state.
+
+**Metric Alarm States**
+
+- OK: The metric or expression is within the defined threshold.
+- ALARM: The metric or expression is outside of the defined threshold.
+- INSUFFICIENT_DATA:
+  - The alarm has just started.
+  - The metric is not available.
+  - Not enough data is available.
+
+When the alarm changes state, we can define what action it should trigger.
+
+- Notifications
+- Auto Scaling Group
+- EC2 Action
+
+![CloudWatch Alarm Actions](./images/aws-cloudwatch-alarm-actions.png)
+
+
 ## AWS EventBridge
 
 **AWS EventBridge** is a serverless event bus service that makes it easier to connect applications together using data from your own applications, integrated SaaS applications, and AWS services.
@@ -599,5 +625,19 @@ A **schema** is an outline, diagram, or model. Schemas are often used to decribe
 
 ![EventBridge Schema Registry](./images/aws-eventbridge-schema-registry.png)
 
-It will monitor events within the EventBus.
+It will monitor events within the EventBus. 
+
+A schema of events in your EventBridge bus allows you to see if the structure of the events have changed over time. This makes it easier for developers to know what data to expect from a type of event so it's easier to integrate into applications.
+
+![EventBridge Schema Registry](./images/aws-eventbridge-schema-registry-1.png)
+
+With a schema of events in your EventBridge bus you can download Code Bindings for various programming languages to make it easier for developers to work with events in their code. 
+
+![EventBridge Schema Registry Code Bindings](./images/aws-eventbridge-schema-registry-code-bindings.png)
+
+A **Code Binding** is when the schema is wrapped in a programming object. This standardizes how to work with event data in the code leading to fewer bugs and easier discovery of data.
+
+By installing the **AWS Toolkit** for VSCode, we can easily view schemas and install code bindings.
+
+![EventBridge Schema Registry VSCode](./images/aws-eventbridge-schema-registry-vscode.png)
 
