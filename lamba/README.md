@@ -201,7 +201,7 @@ A **deployment package** is the package which contains the function code that La
 
    To utilize ZIP Deployments, you specify runtime and set the `PackageType` to `ZIP`:
 
-   ```yaml
+   ```yml
    AWSTemplateFormatVersion: '2010-09-09'
    Transform: AWS::Serverless-2016-10-31
    Resources:
@@ -223,7 +223,7 @@ You'll need to specify where the archive or code to be zipped is located, locall
 
    For IMAGE deployments, no runtime is specified, instead the Dockerfile or container image url is specified. eg. ECR
 
-   ```yaml
+   ```yml
    AWSTemplateFormatVersion: '2010-09-09'
    Transform: AWS::Serverless-2016-10-31
    Resources:
