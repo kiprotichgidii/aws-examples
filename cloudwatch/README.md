@@ -338,7 +338,16 @@ But using a Anomaly Detection, a **band** can be defined as a threshold.
 
 #### Composite Alarms
 
+**Composite Alarms** are alarms that watch other alarms. Using composite alarms help reduce alarm noise.
 
+Imagine you have two Alarms and configured to have no action:
+
+- CPU Utilization
+- NetworkIn
+
+![CloudWatch Alarm Composite](./images/aws-cloudwatch-alarm-composite.png)
+
+The only action that can be configured for a composite alarm is an **SNS topic**. 
 
 ## AWS EventBridge
 
