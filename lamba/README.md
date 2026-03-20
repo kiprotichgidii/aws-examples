@@ -165,3 +165,25 @@ The identifier `nodejs22.1` is used to tell which runtime to use.
 
 Code is delivered as a ZIP archive when using Lambda runtimes.
 
+#### OS-Only Runtimes
+
+OS-Only Runtimes is when there is no pre-installed programming langauge or language specific libraries when you want to compile your language or programs to be used. There are three use cases for os-only runtimes:
+
+1. **Native Ahead-of-Time (AOT) Compilation**
+   Languages such as Go, Rust, C++, .NET Native AOT, and Java GraalVM Native, compile natively to an axecutable binary, which doesn't require a dedicated langauge runtime.
+   - Must include a runtime interface client libary in the binary
+   - Must compile binary for a Linux environment for the same instruction set architecture
+
+2. **Third-Party runtimes**
+   - Runtimes such as Bref for PHP
+   - Swift AWS Lambda Runtime for Swift
+
+3. **Custom Runtimes**
+   - Build your own runtime for a language or language version
+   - When Lambda doesn't provide a managed runtime
+
+The OS-Only runtimes:
+
+- Amazon Linux 2: provided.al2
+- Amazon Linux 2023: provided.al2023
+
