@@ -349,9 +349,35 @@ Imagine you have two Alarms and configured to have no action:
 
 The only action that can be configured for a composite alarm is an **SNS topic**. 
 
+### CloudWatch Dashboards
+
+**CloudWatch Dashboards** allows you to visualize your Cloud Metrics in the form of various graphs. Users can create widgets, choose, and configure a metric and add to CloudWatch dashboard.
+
+![CloudWatch Dashboard](./images/aws-cloudwatch-dashboard.png)
+
 ## AWS EventBridge
 
-**AWS EventBridge** is a serverless event bus service that makes it easier to connect applications together using data from your own applications, integrated SaaS applications, and AWS services.
+**What is an event bus?**
+
+An event bus recives events from a source and routes events to targets based on rules.
+
+![Event Bus](./images/aws-eventbridge-event-bus.png)
+
+**AWS EventBridge** is a serverless event bus service that is used for application integration by streaming real-time data to applications. EventBridge was formerly known as **Amazon Cloudwatch Events**.
+
+### EventBridge Core Components
+
+![EventBridge Core Components](./images/aws-eventbridge-core-components.png)
+
+- **Event Bus**: Holds events, defines rules on an event bus to react to events.
+  - **Default Event Bus**: Receives events from an AWS account.
+  - **Custom Event Bus**: Receives events from multiple AWS accounts or other AWS Accounts.
+  - **SaaS Event Bus**: Receives events from third-party SaaS providers.
+- **Events**: Data emitted by services i.e JSON objects that travel within the event bus.
+- **Rules**: Determines what events to capture and pass to targets.
+- **Targets**: AWS Services that consume events.
+- **Producers**: AWS Services that emit events.
+- **Partner Sources**: Third party applications that can emit events to an event bus.
 
 ### Anatomy of an Event
 
