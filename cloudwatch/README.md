@@ -554,7 +554,34 @@ You can also specify what gets passed along, by changing **configure input**, wh
 
 ![EventBridge Configure Input](./images/aws-eventbridge-configure-input.png)
 
+
+### EventBridge Configure Input
+
 **Match Events**
 
 The entire event pattern text is passed to the target when the rule is triggered.
+
+**Part of the Matched Event**
+
+Only the part of the event text that is specified is passed to the target.
+
+**Constant (JSON text)**
+
+Send static content instead of the matched event data. (mocked JSON)
+
+![EventBridge Configure Input Constant](./images/aws-eventbridge-configure-input-1.png)
+
+**Input Transformer**
+
+You can transform for the event text a different format of a string or JSON object.
+
+![EventBridge Input Transformers](./images/aws-eventbridge-input-transformers.png)
+
+You can match fields from the event data to variables, then use those variables in a string or JSON object and that is what get passed along to the target.
+
+The following variable names are reserved by AWS and cannot be used:
+
+- aws.events.rule-arn
+- aws.events.rule-name
+- aws.events.events
 
