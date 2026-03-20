@@ -388,3 +388,150 @@ The Detail Type of CloudTrail wii be called: "**AWS API Call via CloudTrail**"
 ```
 
 AWS API calls that are larger than **256KB** in size are not supported.
+
+### Event Patterns
+
+Event patterns are used to filter what events should be used to pass along to a target. You can filter events by providing the same fields and values found found in the original event. The only difference is that you don't need to provide the values for the fields you want to filter on.
+
+**Example**
+
+```json
+{
+  "version": "0",
+  "id": "6f8f3c4a-3f8f-4f8f-8f8f-8f8f8f8f8f8f",
+  "detail-type": "EC2 Instance State-change Notification",
+  "source": "aws.ec2",
+  "account": "123456789012",
+  "time": "2022-01-01T00:00:00Z",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:ec2:us-east-1:123456789012:instance/i-12345678901234567"
+  ],
+  "detail": {
+    "instance-id": "i-12345678901234567",
+    "state": "terminated"
+  }
+}
+```
+
+Let's say we want to create an EventBridge rule that triggers when an EC2 instance is terminated. We would just supply the following as the Event Pattern:
+
+```json
+{
+  "source": ["aws.ec2"],
+  "detail-type": ["EC2 Instance State-change Notification"],
+  "detail": {
+    "state": ["terminated"]
+  }
+}
+```
+
+![EventBridge Event Pattern](./images/aws-eventbridge-event-pattern.png)
+
+#### Prefix Matching
+
+Prefix matching allows you to match events on the prefix of an event source. For example, if you want to match all events that start with "ca-", you can use the following event pattern:
+
+```json
+"region": [
+   {
+      "prefix": "ca-"
+   }
+]
+```
+
+#### Anything-but Matching
+
+Matches anything execpt what's specified in the rule.
+
+```json
+{
+  "source": [
+    {
+      "anything-but": [
+         "stopped",
+         "overloaded"
+      ]
+    }
+  ]
+}
+```
+
+#### Numeric Matching
+
+Matches against numeric operator for "<", ">", "=", "<=", ">=":
+
+```json
+{
+  "detail": {
+    "cpu": [
+      {
+        "numeric": [
+          ">",
+          80
+        ]
+      }
+    ]
+  }
+}
+```
+
+#### IP Address Matching
+
+Matches against IPv4 and IPv6 addresses:
+
+```json
+{
+  "detail": {
+    "sourceIPAddress": [
+      {
+        "cidr": "192.168.1.0/24"
+      }
+    ]
+  }
+}
+```
+
+#### Exists Matching
+
+Works on the presence or absence of a field in the JSON event:
+
+```json
+{
+  "detail": {
+    "c-count": [
+      {
+        "exists": true
+      }
+    ]
+  }
+}
+```
+
+#### Empty Value Matching
+
+For string, use "" to match empty strings, for other values, use null.
+
+```json
+# String
+"eventVersion": [""]
+
+# Other values
+"responseElements": [null]
+```
+
+#### Complex Multiple Matching
+
+Multiple matching rules are combined into a more complex event pattern:
+
+```json
+{
+   "time": [{ "prefix": "2017-10-02" }],
+   "detail": {
+      "state": [{ "anything-but": "intializing" }],
+      "c-count": [{ "numeric": [">", 10] }],
+      "source-ip": [{ "cidr": "[IP_ADDRESS]" }],
+      "x-limit": [{ "anything-but": [ 100, 200, 300 ] }]
+   }
+}
+```
