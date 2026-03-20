@@ -144,3 +144,24 @@ For a program to run a specific architecture, the language has to turn into a ma
 
 ### Lambda Runtimes
 
+A **Lambda Runtime** is a preconfigured environment to run specific programming languages. Runtimes are useful since they don't require users to configure a container or OS configuration. Runtimes are fully-managed and security-hardened by AWS. 
+
+Lambda Runtimes are released as stable programming language verisons are released. Older runtimes are deprecated, which forces users to upgrade their Lambdas and code to run on more recent runtime versions.
+
+A runtime will specify: 
+- A named version: eg. Node.js 22
+- Identifier: eg. nodejs22.x
+- Operating System: eg. Amazon Linux 2023
+
+```bash
+aws lambda create-function \
+--function-name my-nodejs-function \
+--runtime nodejs22.1 \
+--handler lambda_function.lambda_handler \
+--role arn:aws:iam::123456789012:role/lambda-execution-role \
+--zip-file fileb://function.zip
+```
+The identifier `nodejs22.1` is used to tell which runtime to use.
+
+Code is delivered as a ZIP archive when using Lambda runtimes.
+
