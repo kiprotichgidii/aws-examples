@@ -313,6 +313,33 @@ When the alarm changes state, we can define what action it should trigger.
 - **Period**: How often it checks to evaluate the alarm.
 - **Datapoints to Alarm**: Number of data points that need to be in ALARM state to trigger the alarm.
 
+#### Conditions
+
+When an alarm is created, the threshold must be defined. The most common type is **Static Threshold**. Then you define the condition of the alarm and then the value.
+
+![CloudWatch Alarm Static Threshold](./images/aws-cloudwatch-alarm-condition.png)
+
+**Example**
+
+A user can create a CloudWatch Alarm to avoid unexpected charges. 
+
+- The `EstimatedCharges` metric must be used.
+- Threshold type is set to Static.
+- Alarm condition set to Greater.
+- Threshold value set to $50.
+
+User may have reocurring data points that breach a static threshold, which would not be considered as unusual behavior. For example, Every morning all company employees login to the system, so traffic spikes for 30 mins. Using a Static Threshold type would trigger ALARM STATE and these would be false positives.
+
+![CloudWatch Alarm Static Threshold False Positives](./images/aws-cloudwatch-alarm-static-false-positives.png)
+
+But using a Anomaly Detection, a **band** can be defined as a threshold.
+
+![CloudWatch Alarm Band Threshold](./images/aws-cloudwatch-alarm-band-threshold.png)
+
+#### Composite Alarms
+
+
+
 ## AWS EventBridge
 
 **AWS EventBridge** is a serverless event bus service that makes it easier to connect applications together using data from your own applications, integrated SaaS applications, and AWS services.
