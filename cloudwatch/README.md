@@ -585,3 +585,19 @@ The following variable names are reserved by AWS and cannot be used:
 - aws.events.rule-name
 - aws.events.events
 
+### Partner Event Sources
+
+A list of third-party service providers can be integrated to work with EventBridge. Events will emit from these third-party service providers into your Event Bus.
+
+![EventBridge Partner Event Sources](./images/aws-eventbridge-partner-event-sources.png)
+
+### EventBridge Schema Registry
+
+**EventBridge Schema Registry** allows you to create, discover, and manage OpenAPI schemas for events of EventBridge.
+
+A **schema** is an outline, diagram, or model. Schemas are often used to decribe the structure of different types of data. 
+
+![EventBridge Schema Registry](./images/aws-eventbridge-schema-registry.png)
+
+It will monitor events within the EventBus.
+
