@@ -96,7 +96,7 @@ Input:
 ```json
 {
     "Type": "Pass",
-    "Parameter": {
+    "Parameters": {
         "ship": "enterprise"
     },
     "Result": {
@@ -106,6 +106,10 @@ Input:
     "Next": "End"
 }
 ```
+- **Parameters** - Key value pair that will be passed as input.
+- **Result** - A virtual task to be passed to the next state.
+- **ResultPath** - Where to place the output of the virtual task.
+
 Output:
 
 ```json
@@ -117,3 +121,48 @@ Output:
 }
 ```
 
+#### Task State
+
+Represents a single unit of work performed by a state machine. A task performs work by:
+
+1. Using an AWS Lambda Function
+2. Passing Parameters to API actions of other services
+3. Using an activity
+
+**Task Lambda Function**
+
+You provide the Lambda ARN as the resource:
+
+```json
+"LambdaState": {
+    "Type": "Task",
+    "Resource": "arn:aws:lambda:us-east-1:123456789012:function:MyFunction",
+    "Next": "NextState"
+}
+```
+
+**A Supported AWS Service**
+
+You pass the ARN of the service as the source. Parameters vary per service:
+
+```json
+{
+    "StartAt": "BATCH_JOB",
+    "States": {
+        "BATCH_JOB": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::batch:submitJob.sync",
+            "Parameters": {
+                "JobName": "PerprocessingBatchJob",
+                "JobQueue": "SecondaryQueue",
+                "JobDefinition": "Preprocessing",
+                "Parameters.$": "$.batchjob.parameters",
+                "RetryStrategy": {
+                    "attempts": 5
+                }
+            },
+            "End": true
+        }
+    }
+}
+```
