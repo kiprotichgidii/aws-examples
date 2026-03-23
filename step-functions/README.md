@@ -84,3 +84,36 @@ States are configured using Amazon States Language (JSON):
 
    ![Media Processing](./images/aws-step-functions-use-case-6.png)
 
+### Step Functions States
+
+#### Pass State
+
+- Passes it's input to it's output, without performing any tasks. (dummy work).
+- Useful when constructing and debugging state machines.
+
+Input:
+
+```json
+{
+    "Type": "Pass",
+    "Parameter": {
+        "ship": "enterprise"
+    },
+    "Result": {
+        "government": "federation",
+    },
+    "ResultPath": "$.politics",
+    "Next": "End"
+}
+```
+Output:
+
+```json
+{
+    "ship": "enterprise",
+    "politics": {
+        "government": "federation"
+    }
+}
+```
+
