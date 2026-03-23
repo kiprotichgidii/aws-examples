@@ -143,6 +143,18 @@ You provide the Lambda ARN as the resource:
 
 **A Supported AWS Service**
 
+Support Services:
+
+- Lambda
+- AWS Watch
+- DynamoDB
+- ECS/Farget
+- SNS
+- SQS
+- SageMaker
+- EMR
+- StepFunctions
+
 You pass the ARN of the service as the source. Parameters vary per service:
 
 ```json
@@ -166,3 +178,66 @@ You pass the ARN of the service as the source. Parameters vary per service:
     }
 }
 ```
+
+#### Task Activities
+
+Activities enable orchestration of external, long-running tasks by allowing decoupled workers (e.g., on EC2, ECS, on-premise, or mobile) to poll for tasks, perform work, and return results using tokens. They support long-running processes, human-in-the-loop approvals, and provide task heartbeats for monitoring.
+
+When Step Functions reaches an activity task state, the workflow waits for an activity worker to poll for a task.
+
+```ruby
+activity = StepFunctions::Activity.new(
+    {
+        credentials: credentials,
+        region: region,
+        activity_arn: activity_arn,
+        workers_count: 1,
+        pollers_count: 1,
+        heartbeat_delay: 30
+    }
+)
+activity.start do | input |
+  # do something
+  { result: : SUCCESS, echo: input['value']}
+end
+```
+![Task Activities](./images/aws-step-functions-task-activities.png)
+
+#### Choice State
+
+Adds conditional logic (if/else) to a state machine, allowing the workflow to branch to different "Next" states based on the input data. It evaluates one or more conditions against the current state's input and routes execution to the first matching branch.
+
+```json
+"AlienChooser": {
+    "Type": "Choice",
+    "Choices": [
+        {
+            "Not": {
+                "Variable": "$.skin",
+                "StringEquals": "Pink",
+                "Next": "Andosiana"
+            },
+            {
+                "Variable": "$.hearts",
+                "NumericEquals": 2,
+                "Next": "Kligons"
+            },
+            {
+                "And": [
+                    {
+                        "Variable": "$.legs",
+                        "NumericGreaterThanEquals": 2,
+                    },
+                    {
+                        "Variable": "$.mouths",
+                        "NumericLessThan": 1
+                    }
+                ],
+                "Next": "Tholians"
+            }
+        }
+    ],
+    "Default": "Vulcans"
+}
+```
+
