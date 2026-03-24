@@ -577,3 +577,21 @@ Only works with Pass, Task, Parallel, and Map States.
 ```
 
 **OutputPath** enables users to select a portion of the state's output to pass to the next state. 
+
+## AWS Compute Optimizer
+
+AWS Compute Optimizer is a machine learning-based service that analyzes historical utilization metrics from Amazon CloudWatch to recommend optimal configurations for EC2 instances, Auto Scaling groups, EBS volumes, Lambda functions, ECS services on Fargate, and RDS instances. It helps right-size resources to improve performance and reduce costs by up to 25%. It analyzes over a period of 14 days.
+
+It can recommend for:
+
+- EC2 instance
+- Auto Scaling Groups
+- EBS Volumes
+- Lambda Functions
+- ECS services on Fargate
+- SQL Server Licences
+
+It will recommend specific configuration changes to save money.
+
+![AWS Compute Optimizer](./images/aws-compute-optimizer.png)
+
