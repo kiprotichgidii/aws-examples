@@ -294,3 +294,38 @@ Because Fail States always exit the state machine, they have no Next Filed, and 
 
 It is used to execute multiple fixed branches of a workflow concurrently. It is ideal for running independent tasks at the same time—such as sending a notification while simultaneously writing to a database—to reduce the overall execution time.
 
+The state machine does not move forward until both states complete:
+
+![Parallel State](./images/aws-step-functions-parallel-state.png)
+
+```json
+{
+    "Comment": "Paralle Example.",
+    "StartAt": "LookUpCustomerInfo",
+    "States": {
+        "LookUpCustomerInfo": {
+            "Type": "Task",
+            "End": true,
+            "Branches": [{
+                "StartAt": "LookUpAddress",
+                "States": {
+                    "LookUpAddress": {
+                        "Type": "Task",
+                        "Resource": "arn:aws:lambda:us-east-1:123456789012:function:AddressFinder",
+                        "End": true
+                    }
+                },
+                "StartAt": "LookUpPhone",
+                "States": {
+                    "LookUpPhone": {
+                        "Type": "Task",
+                        "Resource": "arn:aws:lambda:us-east-1:123456789012:function:PhoneFinder",
+                        "End": true
+                    }
+                }
+            }]
+        }    
+    }
+}
+```
+
