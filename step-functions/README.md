@@ -241,3 +241,56 @@ Adds conditional logic (if/else) to a state machine, allowing the workflow to br
 }
 ```
 
+#### Wait State
+
+**Wait State** is a mechanism for pausing a workflow's execution for a specified duration or until a specific time or event before proceeding to the next step.
+
+##### Examples
+
+Wait for 10 seconds:
+
+```json
+"wait_ten_seconds": {
+    "Type": "Wait",
+    "Seconds": 10,
+    "Next": "NextState"
+}
+```
+
+Wait until:
+
+```json
+"wait_until": {
+    "Type": "Wait",
+    "Timestamp": "2026-03-24T14:30:00Z", 
+    "Next": "NextState"
+}
+```
+#### Succeed State
+
+It is a terminal state that stops the execution of a state machine and marks it as a success. It is one of the basic state types in the Amazon States Language used for defining workflows.
+
+```json
+"SuccessState": {
+    "Type": "Succeed"
+}
+```
+
+#### Fail State
+
+It is a terminal state that stops the execution of the state machine and marks it as a failure. It is primarily used to handle errors that cannot be recovered from or to explicitly terminate a workflow when specific business conditions aren't met.
+
+```json
+"FailState": {
+    "Type": "Fail",
+    "Error": "Wapcore",
+    "Cause": "Overloading"
+}
+```
+
+Because Fail States always exit the state machine, they have no Next Filed, and do not require and End File.
+
+#### Parallel State
+
+It is used to execute multiple fixed branches of a workflow concurrently. It is ideal for running independent tasks at the same time—such as sending a notification while simultaneously writing to a database—to reduce the overall execution time.
+
