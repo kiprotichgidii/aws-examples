@@ -43,7 +43,7 @@ States are configured using Amazon States Language (JSON):
         ]
     }
 },
-...
+// ...
 ```
 
 ### Use Cases
@@ -469,5 +469,89 @@ What will be passed:
 ```json
 {
     "name": "my-bucket"
+}
+```
+
+#### Parameters
+
+**Parameters** allow users to construct a collection of key-value pairs that are passed as input. It is a way to manipulate the input to a step before it is processed by the step.
+
+When you want to use JSONPath for Parameters, you need to add `.$` to the key name. eg.
+
+```json
+"States": {
+    "CurrentStep": {
+        "Type": "Pass",
+        "Parameters": {
+            "bucketName.$": "$.detail.bucket.name",
+            "objectKey.$": "$.detail.object.key",
+            "author": "Gedion"
+        },
+        "Next": "NextStep"
+    }
+},
+// ...
+```
+
+Tasks that call AWS resources may expect specific parameters:
+
+```json
+"LambdaState": {
+    "Type": "Task",
+    "Resource": "arn:aws:states:::lambda:invoke",
+    "OutputPath": "$.Payload",
+    "Parameters": {
+        "FunctionName": "arn:aws:lambda:us-east-1:function:HelloWorld:$LATEST",
+        "Payload.$": "$"
+    },
+    "Next": "NextStep"
+}
+```
+
+#### ResultSelector
+
+**ResultSelector** let's users create a collection of key-value pairs, where the values are static or selected from the state's result. It only works for Map, Parallel or Task States.
+
+Example:
+
+```json
+{
+    "Comment": "A Step Function state machine that processs data from an S3 event using EC2."
+    "StartAt": "Process Data",
+    "States": {
+        "ProcessData": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:region:account-id:function:function-name",
+            "Parameters": {
+                "bucket.$": "$.detail.bucket.name",
+                "key.$": "$.detail.object.key",
+            },
+            "ResultPath": "$.processData",
+            "Next": "Run EC2 Task"
+        },
+        "Run EC2 Task": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::elasticmapreduce:addStep.sync",
+            "Parameters": {
+                "ClusterId": "YourCclusterId",
+                "Step": {
+                    "Name": "Process S3 Data on EC2",
+                    "ActionOnFailure": "CONTINUE",
+                    "HadoopJarStep": {
+                        "Properties": [],
+                        "Jar": "command-runner.jar",
+                        "Args.$": "States.Array('aws', 's3', 'cp', $.processData.S3Uri, '/mnt/tmp')"
+                    }
+                }
+            },
+            // ResultSelector is used to select a portion of the state's result.
+            // It only works for Map, Parallel or Task States.
+            "ResultSelector": {
+                "InstanceId.$": "$.processData.InstanceId",
+                "OutputLocation.$": "$.processData.S3Uri"
+            },
+            "End": true
+        }
+    }
 }
 ```
