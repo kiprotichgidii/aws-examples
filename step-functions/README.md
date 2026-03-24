@@ -415,3 +415,59 @@ $..[?(@.size > 1000)]
 $..[?(@.etag && @.size)]
 ```
 
+A **reference path** is a path whose syntax is limited in such a way that it can only a single node in a JSON structure.
+
+#### InputPath
+
+**InputPath** allows users to select what they plan to pass to the current step. 
+
+**Example**
+
+```json
+{
+    "input": {
+        "version": "0",
+        "id": "6fcde692-e648-4df7-8b38-505399172839",
+        "details-type": "Object Created",
+        "source": "aws.s3",
+        "account": "123456789012",
+        "time": "2025-01-01T00:00:00Z",
+        "region": "us-east-1",
+        "resources": [
+            "arn:aws:s3:::my-bucket/my-object"
+        ],
+        "detail": {
+            "version": "0",
+            "bucket": {
+                "name": "my-bucket"
+            },
+            "object": {
+                "key": "inputs/my-object",
+                "size": 4879,
+                "eTag": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
+                "sequencer": "1234567890123456789012345678901234567890123456789012345678901234"
+            }
+        }
+    }
+}
+```
+
+Using `InputPath`:
+
+```json
+"States": {
+    "CurrentStep": {
+        "Type": "Pass",
+        "InputPath": "$.detail.bucket",
+        "Next": "NextStep"
+    }
+}
+```
+
+What will be passed:
+
+```json
+{
+    "name": "my-bucket"
+}
+```
