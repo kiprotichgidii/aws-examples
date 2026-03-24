@@ -329,3 +329,89 @@ The state machine does not move forward until both states complete:
 }
 ```
 
+### Inputs and Outputs
+
+Step Functions will receieve JSON event data as input and pass JSON as output.
+
+![Inputs and Outputs](./images/aws-step-functions-inputs-&-outputs.png)
+
+The JSON payload can be manipulated as follows:
+
+- `InputPath`: Select a portion of the state intput.
+- `Parameters`: Create a collection of key-value pairs that are passed as input.
+- `ResultSelector`: Manipulate a state's result before ResultPath is applied.
+- `ResultPath`: Determines what should be outputted, the input, task output, or both.
+- `OutputPath`: Select a portion of the state output to pass to the next state.
+
+Amazon State Language uses **JSONPath** Syntax to identify JSON components. **JSONPath** is a query language for **JSON**, similar to **XPath** for **XML**.
+
+Example JSON data:
+
+```json
+{
+    "input": {
+        "version": "0",
+        "id": "6fcde692-e648-4df7-8b38-505399172839",
+        "details-type": "Object Created",
+        "source": "aws.s3",
+        "account": "123456789012",
+        "time": "2025-01-01T00:00:00Z",
+        "region": "us-east-1",
+        "resources": [
+            "arn:aws:s3:::my-bucket/my-object"
+        ],
+        "detail": {
+            "version": "0",
+            "bucket": {
+                "name": "my-bucket"
+            },
+            "object": {
+                "key": "inputs/my-object",
+                "size": 4879,
+                "eTag": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
+                "sequencer": "1234567890123456789012345678901234567890123456789012345678901234"
+            }
+        }
+    }
+}
+```
+
+- Expressions begin with a `$` which represents the root object.
+- Children can be selected using dot notation.
+- Children can be selected using bracket notation.
+
+```json
+// dot notation
+$.detail.bucket.name
+// bracket notation
+$.detail['bucket']['name']
+```
+
+JSONPath evaluator can be used to test JSONPath syntax against a JSON file.
+
+```json
+// The root object
+$
+
+// Dot notation and square notation
+$.detail['object']['key']
+
+// All 'object' elements at any depth
+$...object
+
+// All children of the 'input' object
+$.input.*
+
+// First element of 'resources' array
+$.resources[0]
+
+// All elements of 'resources' array
+$.resources[*]
+
+// All elements with 'size' greater than 1000
+$..[?(@.size > 1000)]
+
+// All elements with both 'etag' and 'size' properties
+$..[?(@.etag && @.size)]
+```
+
