@@ -391,28 +391,28 @@ JSONPath evaluator can be used to test JSONPath syntax against a JSON file.
 
 ```json
 // The root object
-$
+"$"
 
 // Dot notation and square notation
-$.detail['object']['key']
+"$.detail['object']['key']"
 
 // All 'object' elements at any depth
-$...object
+"$...object"
 
 // All children of the 'input' object
-$.input.*
+"$.input.*"
 
 // First element of 'resources' array
-$.resources[0]
+"$.resources[0]"
 
 // All elements of 'resources' array
-$.resources[*]
+"$.resources[*]"
 
 // All elements with 'size' greater than 1000
-$..[?(@.size > 1000)]
+"$..[?(@.size > 1000)]"
 
 // All elements with both 'etag' and 'size' properties
-$..[?(@.etag && @.size)]
+"$..[?(@.etag && @.size)]"
 ```
 
 A **reference path** is a path whose syntax is limited in such a way that it can only a single node in a JSON structure.
@@ -555,3 +555,25 @@ Example:
     }
 }
 ```
+
+#### ResultPath
+
+ResultPath allows users to decide to:
+- Use only the output from a task
+- Use the input as the output
+- Use the output and add or have it replace an existing key in the input and have that as the output.
+
+Only works with Pass, Task, Parallel, and Map States.
+
+```json
+// the output will be whatever is returned from the task
+"ResultPath": "$"
+
+// the output will be input
+"ResultPath": "null"
+
+// the output from the task will replace a key 'mydata' or create a new key 'mydata' on the input data
+"ResultPath": "$.mydata"
+```
+
+**OutputPath** enables users to select a portion of the state's output to pass to the next state. 
