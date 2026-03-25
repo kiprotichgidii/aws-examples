@@ -325,3 +325,53 @@ def lambda_handler(event, context):
 ```
 
 AWS Lambda has a blueprint for transforming data using Lambda.
+
+#### Dynamic Partitioning
+
+Dynamic partitioning enables you to continuously partition streaming data in Firehose by using keys within data (for example, customer_id or transaction_id) and then deliver the data grouped by these keys into corresponding Amazon Simple Storage Service (Amazon S3) prefixes. This makes it easier to run high performance, cost-efficient analytics on streaming data in Amazon S3 using various services such:
+
+- Amazon Athena
+- Amazon EMR
+- Amazon Redshift Spectrum
+- Amazon QuickSight
+
+ In addition, AWS Glue can perform more sophisticated extract, transform, and load (ETL) jobs after the dynamically partitioned streaming data is delivered to Amazon S3, in use-cases where additional processing is required.
+
+ Partitioning your data minimizes the amount of data scanned, optimizes performance, and reduces costs of your analytics queries on Amazon S3. It also increases granular access to your data.
+
+ To select the key and values for partitioning, you have two ways:
+
+ - Inline Partitioning - Provide a JQ expression to parse JSON
+ - Lambda Function - Have a Lambda function parse the data and return the keys and values
+
+ Once enabled, Dynamic Partitioning cannot be turned off for a Firehose Stream.
+
+ Let's say you have the following JSON payload:
+
+ ```json
+ {
+   "type": {
+      "device": "mobile",
+      "event": "click"
+   },
+   "data": {
+      "customer_id": "1234567890",
+      "event_timestamp": "2022-01-01T00:00:00Z",
+      "region": "pdx"
+   }
+ }
+ ```
+
+ With Inline, you add the keys and JQ Expressions.
+
+ ![Dynamic Partitioning](./images/aws-kinesis-data-firehose-dynamic-partitioning.png)
+
+ Data Firehose can convert JSON data into different file formats before being delivered to S3. eg.
+
+ - Apache Parquet
+ - Apache ORC 
+
+ ![Data Transformation](./images/aws-kinesis-data-firehose-data-transformation-1.png) 
+
+AWS Glue table if often used to specify the schema of your source records for Convert Record Format.
+
