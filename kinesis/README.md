@@ -46,7 +46,6 @@ multiple Availability Zones.
 | Management | Automatically scales | Customer manages shards |
 | Billing | Volume of data ingested and retrieved | Number of shards, data transfer |
 | Capacity | Writes 200 MiB per second, 200K records per second.<br> Reads 400 MiB per second per consumer<br> 2 consumers by default<br> Enhanced Fan-Out to add 20 more consumers | Writes 1 MiB per second per shard, 1K records per second per shard<br> Reads 2 MiB per second per shard<br>200 max shards |
-|
 
 Capacity Modes can be changed at any time in any direction.
 
