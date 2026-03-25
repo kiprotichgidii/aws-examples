@@ -94,4 +94,45 @@ A **Sequence Number** is a unique, AWS-assigned identifier for each record withi
 
 Sequence numbers for the same partition key generally increase over time. The longer the time period between write requests, the larger the sequence numbers become.
 
-#### 
+#### Data Retention
+
+**Retention Period** is how long data will remain in the stream until it is released(deleted). Amazon Kinesis Data Streams retention period defaults to 24 hours, but can be configured to store data from 24 hours up to 365 days (8,760 hours). Data is accessible for consumption throughout this period, with options to extend retention for reprocessing historical data or compliance needs.
+
+The retention period can be adjusted using the AWS CLI:
+
+```sh
+aws kinesis increase-stream-retention-period \
+  --stream-name <stream-name> \
+  --retention-period-hours <retention-period-hours>
+```
+
+It takes a couple of minutes for the retention period to change, and incoming records will follow the previous retention period until the change is complete. Retention periods greater then 24 hours incur additional charges.
+
+#### Data Streams CLI
+
+Using the AWS CLI, the `PutRecord` API call can be used to send data to the stream. The data must be base64 encoded.
+
+```sh
+echo 'Send Reinforcement Learning to Kinesis Data Stream' | base64
+aws kinesis put-record \
+  --stream-name $DATA_STREAM_NAME \
+  --partition-key $DATA_STREAM_PARTITION_KEY \
+  --data U2VuZCBSZWluZm9yY2VtZW50IExlYXJuaW5nIHRvIEtpbmVzaXMgRGF0YSBTdHJlYW0=
+```
+`PutRecords` can be used for batch records.
+
+Using the AWS CLI `GetRecords` API call, we can retrieve records from the stream. The `ShardIterator` is used to specify the starting point for reading records from the stream. 
+
+```sh
+export SHARD_ITERATOR=$(aws kinesis get-shard-iterator \
+  --shard-id $DATA_STREAM_SHARD_ID \
+  --shard-iterator-type TRIM_HORIZON \
+  --stream-name $DATA_STREAM_NAME \
+  --query 'Shard Iterator')
+aws kinesis get-records \
+  --shard-iterator $SHARD_ITERATOR \
+  --limit 10
+```
+
+### Enhanced Fan Out (EFO)
+
