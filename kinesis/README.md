@@ -152,6 +152,8 @@ The Kinesis Producer Library (KPL) is an open-source Java library that simplifie
 
 KPL is a Java Library. The use of KPL has to be implemented in Java.
 
+**Example KPL Producer**
+
 ```java
 public class KPLClickEventsToKinesis extends AbstractClickEventsToKinesis {
 
@@ -182,4 +184,34 @@ public class KPLClickEventsToKinesis extends AbstractClickEventsToKinesis {
 ### Kinesis Client Library (KCL)
 
 The Kinesis Client Library (KCL) is a software Java library from Amazon Web Services (AWS) that simplifies the development of applications that consume and process data from Amazon Kinesis Data Streams.
+
+KCL is a Java Library, but via the MultiLang Daemon, other languages such as Ruby and Python can also be used.
+
+**Example KCL Consumer**
+
+```python
+from amazon_kclpy import kcl
+import json, base64
+
+class RecordProcessor(kcl.RecordProcessorBase):
+
+   def initialize(self, initialization_input):
+      pass
+
+   def process_records(self, process_records_input):
+      pass
+
+   def lease_lost(self, lease_lost_input):
+      pass
+
+   def shard_unexpectedly_closed(self, shard_unexpectedly_closed_input):
+      pass
+
+   def shutdown(self, shutdown_input):
+      pass
+
+if __name__ == "__main__":
+   kclprocess = kcl.KCLProcess(RecordProcessor())
+   kclprocess.run()
+```
 
