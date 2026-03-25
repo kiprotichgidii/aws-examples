@@ -391,3 +391,13 @@ Kinesis Video Streams isn't only storage for video data. You can use it to watch
 
 You can use Kinesis Video Streams to capture massive amounts of live video data from millions of sources, including smartphones, security cameras, webcams, cameras embedded in cars, drones, and other sources. You can also send non-video, time-serialized data such as audio data, thermal imagery, depth data, and RADAR data.
 
+### Managed Service for Apache Flink
+
+**Managed Service for Apache Flink** is a fully managed Amazon service that allows users to run queries against data flowing through Kinesis Data Streams or Kinesis Data Firehose t create reports and analysis on emerging data. First, you program your Apache Flink application, and then you create your Managed Service for Apache Flink application.
+
+An Apache Flink application is a Java or Scala application that is created with the Apache Flink framework. The Apache Flink application is built and authored locally. 
+
+- You can get specific Firehose or Data Streams as input and an output.
+- Data that passes through Data Analytics is run through custom SQL provided by the user, and the results are then output.
+
+![Managed Service for Apache Flink](./images/aws-kinesis-data-analytics-managed-service-for-apache-flink.png)
