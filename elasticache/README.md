@@ -77,9 +77,9 @@ redis:6379> GET mykey
 
 Atomic counter can be applied to strings that represent a number:
 
-- INC - add 1
-- DECR - subtract 1
-- INCBY - add a certain amount eg. 10
+- `INC` - add 1
+- `DECR` - subtract 1
+- `INCBY` - add a certain amount eg. 10
 
 ```sh
 redis:6379> SET mykey "10"
@@ -93,10 +93,10 @@ redis:6379> GET mykey
 ```
 The most common string commands are:
 
-- SET - set a string at a key
-- GET - Get a string by it's key
-- APPEND - append additional text to the string
-- EXISTS - check if a string exists at specified key
+- `SET` - set a string at a key
+- `GET` - Get a string by it's key
+- `APPEND` - append additional text to the string
+- `EXISTS` - check if a string exists at specified key
 
 #### Lists
 
@@ -114,10 +114,10 @@ redis:6379> LRANGE mylist 0 -1
 
 Common list commands:
 
-- LPUSH - adds a string to the end of the list
-- LPOP - removes and returns first element of the list
-- RPOP - removes last element from the list
-- LPOS - returns the index of the specified string
+- `LPUSH` - adds a string to the end of the list
+- `LPOP` - removes and returns first element of the list
+- `RPOP` - removes last element from the list
+- `LPOS` - returns the index of the specified string
 
 #### Sets
 
@@ -137,10 +137,10 @@ redis:6379> SMEMBERS myset
 
 Common set commands:
 
-- SADD - adds one or more members to the set
-- SMEMBERS - returns all members of the set
-- SMOVE - moves a member from one set to another
-- SPOP - removes and returns a random member from the set
+- `SADD` - adds one or more members to the set
+- `SMEMBERS` - returns all members of the set
+- `SMOVE` - moves a member from one set to another
+- `SPOP` - removes and returns a random member from the set
 
 #### Hashes
 
@@ -163,13 +163,13 @@ redis:6379> HGET user:1 city
 
 Common hash commands:
 
-- HSET - sets a field and value in a hash
-- HGET - gets a field and value from a hash
-- HDEL - deletes a field and value from a hash
-- HMSET - set multipe hash fields to multiple values
-- HMGET - gets multiple fields and values from a hash
-- HVALS - Get all the values
-- HKEY - Get all the fields in a hash
+- `HSET` - sets a field and value in a hash
+- `HGET` - gets a field and value from a hash
+- `HDEL` - deletes a field and value from a hash
+- `HMSET` - set multipe hash fields to multiple values
+- `HMGET` - gets multiple fields and values from a hash
+- `HVALS` - Get all the values
+- `HKEY` - Get all the fields in a hash
 
 #### Sorted Sets
 
@@ -194,9 +194,11 @@ redis:6379> ZRANGE leaderboard 0 -1 WITHSCORES
 ```
 Common Sorted Sets commands:
 
-- ZADD - adds an element to the set with an associated score
-- ZREM - removes an element from the sorted set
-- ZRANGE - returns the specified range of elements in the sorted set stored
-- ZRANK - returns the rank of a member in the sorted set stored 
-- ZSCORE - returns the score of a member in the sorted set
+- `ZADD` - adds an element to the set with an associated score
+- `ZREM` - removes an element from the sorted set
+- `ZRANGE` - returns the specified range of elements in the sorted set stored
+- `ZRANK` - returns the rank of a member in the sorted set stored 
+- `ZSCORE` - returns the score of a member in the sorted set
+
+### Memcached
 
