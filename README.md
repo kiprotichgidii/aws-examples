@@ -48,4 +48,6 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [Amazon Simple Notification Service](https://github.com/kiprotichgidii/aws-examples/blob/main/bundled/README.md#amazon-simple-notification-service-sns)
 - [Amazon Simple Queueing Service](https://github.com/kiprotichgidii/aws-examples/tree/main/sqs#amazon-simple-queueing-service-sqs)
 - [AWS Lambda](https://github.com/kiprotichgidii/aws-examples/tree/main/lamba#aws-lambda)
-
+- [AWS Step Functions](https://github.com/kiprotichgidii/aws-examples/blob/main/step-functions/README.md#aws-step-functions)
+- [Amazon Kinesis](https://github.com/kiprotichgidii/aws-examples/blob/main/kinesis/README.md#aws-kinesis)
+- [Amazon ElastiCache](https://github.com/kiprotichgidii/aws-examples/blob/main/elasticache/README.md#amazon-elasticache)
