@@ -136,3 +136,50 @@ aws kinesis get-records \
 
 ### Enhanced Fan Out (EFO)
 
+Enhanced fan-out allows developers to scale up the number of stream consumers (applications reading data from a stream in real-time) by offering each stream consumer its own read throughput. It allows up to 20 consumers to receive records from a stream with throughout of up to 2 MiB of data per shard. Consumers that utilize EFO have dedicated througput per consumer.
+
+![AWS Kinesis Enhanced Fan Out](./images/aws-kinesis-enhanced-fan-out.png)
+
+Consumers must be configured using KCL or Streams API to utilize EFO.
+
+### Kinesis Producer Library (KPL)
+
+The Kinesis Producer Library (KPL) is an open-source Java library that simplifies the development of producer applications for Amazon Kinesis Data Streams by managing complex tasks like data aggregation, retries, and monitoring. This enables developers to achieve high write throughput and focus on their application's core business logic.
+
+- When you need to send multiple records per second (mps)
+- When you need your producer to vertically scale by 100X
+- When you need a producer that is highly efficient of underlying compute resourecs
+
+KPL is a Java Library. The use of KPL has to be implemented in Java.
+
+```java
+public class KPLClickEventsToKinesis extends AbstractClickEventsToKinesis {
+
+   private final KinesisProducer kinesis;
+
+   public KPLClickEventsToKinesis(BlockingQueue<ClickEvent> inputQueue) {
+      super(inputQueue);
+      kinesis = new KinesisProducer(new KinesisProducerConfiguration()
+              .setRegion(REGION)
+              .setRecordMaxBufferedTime(5000));
+   }
+
+   @Override
+   protected void runOnce() throws Exception {
+      ClickEvent event = inputQueue.take();
+      String partitionkey = event.getSessionId();
+      ByteBuffer data = ByteBuffer.wrap(
+              event.getPayload().getBytes("UTF-8"));
+      while (kinesis.getOutstandingRecordsCount() > 5e4) {
+         Thread.sleep(1);
+      }
+      kinesis.addUserRecord(STREAM_NAME, partitionKey, data);
+      recordsPut.getAndIncrement();
+   }
+}
+```
+
+### Kinesis Client Library (KCL)
+
+The Kinesis Client Library (KCL) is a software Java library from Amazon Web Services (AWS) that simplifies the development of applications that consume and process data from Amazon Kinesis Data Streams.
+
