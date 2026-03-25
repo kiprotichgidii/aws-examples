@@ -41,3 +41,60 @@ Standard can be deployed on-prem via AWS Outposts.
    - It's very good for leaderboards and keeping track of unread notification data.
    - It's very fast, but arguably not as fast as Memcached.
 
+## Redis
+
+**Redis** ia an open-source in-memory key–value database, used as a distributed cache and message broker, with optional durability. Because it holds all data in memory and because of its design, Redis offers low-latency reads and writes, making it particularly suitable for use cases that require a cache. Data loss is possible because all data is stored in memory. 
+
+Redis is so fast, that it can deliver content from it's store with single to double digit millisecond latency. Redis supports the following data structures:
+
+- Strings
+- Sets
+- Sorted Sets
+- lists
+- Hashes
+- Bitmaps
+- Bitfields
+- HyperLogLog
+- Geospatial Indexes
+- Streams
+
+### Strings
+
+Redis strings are the most basic value. They are binary-safe, so they can contain any kind of data, such as a JSON object, an image, or a serialized object. Strings can have a maximum size of 512 MB.
+
+```sh
+redis:6379> GET nonexisting
+(nil)
+redis:6379> SET mykey "Hello World"
+OK
+redis:6379> GET mykey
+"Hello World"
+redis:6379> DEL mykey
+(integer) 1
+redis:6379> GET mykey
+(nil)
+```
+
+Atomic counter can be applied to strings that represent a number:
+
+- INC - add 1
+- DECR - subtract 1
+- INCBY - add a certain amount eg. 10
+
+```sh
+redis:6379> SET mykey "10"
+OK
+redis:6379> INCR mykey
+(integer) 11
+redis:6379> DECR mykey
+(integer) 10
+redis:6379> GET mykey
+"10"
+```
+The most common string commands are:
+
+- SET - set a string at a key
+- GET - Get a string by it's key
+- APPEND - append additional text to the string
+- EXISTS - check if a string exists at specified key
+
