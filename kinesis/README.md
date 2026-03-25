@@ -375,3 +375,19 @@ Dynamic partitioning enables you to continuously partition streaming data in Fir
 
 AWS Glue table if often used to specify the schema of your source records for Convert Record Format.
 
+#### Compression
+
+Amazon Data Firehose allows you to compress your data before delivering it to Amazon S3. The service currently supports GZIP, ZIP, and SNAPPY compression formats. Only GZIP is supported if the data is further loaded to Amazon Redshift.
+
+![Compression](./images/aws-kinesis-data-firehose-compression.png)
+
+### Kinesis Video Streams
+
+**Amazon Kinesis Video Streams** is a fully managed AWS service, that allows users to stream live video from devices to the AWS Cloud, or build applications for real-time video processing or batch-oriented video analytics.
+
+Kinesis Video Streams isn't only storage for video data. You can use it to watch your video streams in real time as they are received in the cloud. You can either monitor your live streams in the AWS Management Console, or develop your own monitoring application that uses the Kinesis Video Streams API library to display live video.
+
+![Kinesis Video Streams](./images/aws-kinesis-video-streams.png)
+
+You can use Kinesis Video Streams to capture massive amounts of live video data from millions of sources, including smartphones, security cameras, webcams, cameras embedded in cars, drones, and other sources. You can also send non-video, time-serialized data such as audio data, thermal imagery, depth data, and RADAR data.
+
