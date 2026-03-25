@@ -215,3 +215,40 @@ if __name__ == "__main__":
    kclprocess.run()
 ```
 
+### Amazon Data Firehose (Kinesis Data Firehose)
+
+**Amazon Data Firehose** (formerly Kinesis Data Firehose) is a fully managed, serverless service designed to reliably capture, transform, and deliver real-time streaming data to destinations like Amazon S3, Redshift, OpenSearch, and HTTP endpoints. It handles scaling, data buffering, compression, and format conversion (e.g., JSON to Parquet) automatically.
+
+![Amazon Data Firehose](./images/aws-kinesis-data-firehose.png)
+
+- Users pick one consumer from a predefined list
+- Data immediately dissappears once it's consumed
+- Incoming data can be converted into other file formats and compress then secure the data
+- Users pay only for data that is ingested
+
+#### Data Firehose Sources
+
+Data Firehose allows users to easily configure a source or sources of data oftent with little or no programming skills. Users are not forced to learn Java to best leverage Firehose like Kinesis Data Streams.
+
+Ruby Example:
+
+```ruby
+require 'aws-sdk-firehose'
+
+# Initialize a Kinesis Client
+client = AWS::Firehose::Client.new
+
+stream_name = 'My-Firehose'
+
+# Prepare Records
+10.times.map do | i |
+  data = {hello: "world: #{i}"}.to_json
+  response = client.put_record(
+   delivery_stream_name: stream_name,
+   record: {data: data}
+  )
+  # binding.pry
+  puts "Response: #{response.inspect}"
+end
+```
+
