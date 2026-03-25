@@ -66,3 +66,32 @@ Capacity Modes can be changed at any time in any direction.
 - **Kinesis Data Firehose**<br>Send data to Firehose, which in turn directly integrates delivery to other AWS services. It automatically captures, transforms, and delivers data to destinations like Amazon S3, Redshift, and OpenSearch with low-latency buffering, scaling automatically to handle high-volume data streams.
 - **Amazon Kinesis Client Library**<br>a software library for building applications that read and process data from an Amazon Kinesis Data Stream. It manages the complexities of distributed processing, allowing developers to focus solely on their business logic.
 
+#### Data Stream Shards
+
+**Shards**
+
+A Kinesis Data Stream is made up of one or more shards. A Kinesis Data Stream shard is the base throughput unit of an Amazon Kinesis Data Stream, defining capacity as 1 MB/s (1,000 records/s) for writes and 2 MB/s for reads. Shards provide ordered data ingestion and are managed manually in provisioned mode or automatically in on-demand mode.
+
+- Each shard can support up to 5 transactions per second for threads
+- Up to a maximum total data read rate of 2 MiB per second
+- Up to 1K records per second for writes
+- Up to a maximum total data write rate of 1 MiB per second
+- Each shard has a sequence of data records. Each data record has a sequence number assigned by Kinesis Data Stream
+- With an increase in data rates, you can increase or decrease the number of shards allocated to the sream
+
+**Partition Keys**
+
+A **partition key** is a string provided by the data producer with each record to determine which shard the record is stored in. 
+
+- Used to group data by shard within a stream
+- Partition keys are unicode strings, which a maximum length of 256 characters for each key
+- AWS uses an MD5 hash function to map the partition key to a 128-bit integer value, which in turn maps to a specific shard's hash key range.
+- When an application puts data into a stream, it must specify a partition key
+
+**Sequence Number**
+
+A **Sequence Number** is a unique, AWS-assigned identifier for each record within a specific shard, acting as a strict ordering index. It is generated upon PutRecord or PutRecords API calls, with values increasing over time for the same partition key. Sequence numbers allow for precise data replay and stream positioning.
+
+Sequence numbers for the same partition key generally increase over time. The longer the time period between write requests, the larger the sequence numbers become.
+
+#### 
