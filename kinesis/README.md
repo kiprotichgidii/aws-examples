@@ -251,4 +251,77 @@ stream_name = 'My-Firehose'
   puts "Response: #{response.inspect}"
 end
 ```
+**Sources**
 
+The following sources can send data to Firehose:
+
+- Kinesis Data Streams
+- Amazon Managed Streaming for Apache Kafka, but destination can only be S3.
+- Direct PUT via the AWS CLI or the many supported services.
+  - Lamda, CloudWatch Logs, CloudWatch Events, Cloud Metric Streams, IOT, EventBridge, SNS, etc.
+
+#### Data Firehose Destinations
+
+Data Firehose can send to specific AWS services, third party services, or an HTTP endpoint. 
+
+**AWS Services Destinations**
+
+- Amazon S3
+- Amazon RedShift
+- Amazon OpenSearch Service
+- Amazon OpenSearch Serverless
+
+**Third Party Destination**
+
+- Coralogix
+- Datadog
+- Dynatrace
+- Elastic
+- Honeycomb
+- Logic Monitor
+- Logz.io
+- MongoDB Cloud
+- New Relic
+- Splunk
+- Splunk Observability Cloud
+- Sumo Logic
+- Snowflake
+
+Each destination has different configuration options, and more often than not, third-party applications require an API key from the provider. 
+
+#### Data Transformation
+
+Before data is sent to the destination, it can be transformed using AWS Lambda. 
+
+![Data Transformation](./images/aws-kinesis-data-firehose-data-transformation.png)
+
+When enabled, Firehose will buffer incoming data. The buffer size can be changed from 0.2 to 3 MB, and the interval between 0-900 seconds. There is a payload size limit of 6 MB for both the Lambda request and the response.
+
+When transforming, data, ensure that you return a JSON payload with the following:
+
+- `RecordId` - the original record id passed from data Firehose
+- `Result` - `Ok`, `Dropped` or `ProcessingFailed`
+- `Data` - The transformed data, base64 encoded
+
+```python
+import base64
+def lambda_handler(event, context):
+   output = []
+   for record in event['records']:
+      print(record['recordId'])
+      payload = base64.b64decode(record['data']).decode('utf-8')
+ 
+      # Do Custom Processing on the Payload here  
+
+      output_record = {
+         'recordId': record['recordId'],
+         'result': 'Ok',
+         'data': base64.b64encode(payload.encode('utf-8')).decode('utf-8')
+      }
+      output.append(output_record)
+
+   print("Successfully processed {} records.".format(len(event['records'])))
+   return {'records': output}
+```
+
+AWS Lambda has a blueprint for transforming data using Lambda.
