@@ -106,3 +106,41 @@ Redshift can asynchronously replicate snapshots to S3 in a different region.
 **Data Transfer**
 
 - Billed only for transfers within a VPC, not outside of it.
+
+### Security
+
+- Data in transit is encrypted using SSL
+- Data at rest is encrypted using AES-256 encryption
+- Database encryption can be applied using;
+  - Key Management Service (KMS) multi-tenant HSM
+  - CloudHSM single-tenant HSM
+
+![Redshift Database Encryption](./images/aws-redshift-database-encryption.png)
+
+### Availability
+
+Redshift is singe-AZ, to run Redshift multi-AZ, you would need to run multiple clusters of Redshift in different AZs with the same input. Snapshots can be restored to a different AZ in the case of an outage.
+
+![Redshift Availability](./images/aws-redshift-availability.png)
+
+### Redshift Cheatsheet
+
+- Data can be loaded from S3, EMR, DynamoDB, or multiple data sources on remote hosts.
+- Redshift is a **Columnar Store** database, which can run SQL-like queries and is an OLAP.
+- Redshift can handle petabytes worth of data, and is for data warehousing.
+- Redshift most common use case in Business Intelligence.
+- Redshift can mostly run in a single-AZ, but snapshots can be restored to a different AZ in the case of an outage.
+- Redshift can run via a single or multiple nodes(cluster).
+- A single node is 160 GB in size
+- A multi-node (cluster) is comprised of a leader node and multiple compute nodes.
+- You are billed per hour for each compute node.
+- You are not billed for the leader node.
+- You can have up to 128 compute nodes.
+- Redshift has two types of nodes, i.e. Dense Compute (dc) and Dense Storage (ds).
+- Redshift attempte to backup 3 copies of user's data, i.e. original copy, replica on the compute nodes, and backup copy in S3.
+- Similar data is stored on disk sequentially for faster reads.
+- Redshift database can be encrypted via KMS or CloudHSM.
+- Backup retention defaults to 1 day, but can be increased to a max of 35 days.
+- Redhsift can asynchronously backup your snapshot to another region delivered to S3.
+- Redshift uses Massively Paralle Processing (MPP) to distribute queries and data across all loads.
+- In the case of an empty table, Redshift will sample data while importing to create a schema.
