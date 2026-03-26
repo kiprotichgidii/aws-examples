@@ -261,3 +261,11 @@ mc.prepend('message', 'Hello')
 # Get varous statistics about the datastore
 stats = mc.get_stats()
 ```
+## Amazon MemoryDB
+
+Amazon MemoryDB is a fully managed, Redis OSS- and Valkey-compatible, in-memory database designed for high-performance applications. It provides microsecond read and
+single-digit millisecond write latency while ensuring strong consistency and durability by storing data across multiple Availability Zones using a Multi-AZ transactional log.
+
+- MemoryDB's additional persistence guarantees over Elasticache making MemoryDB suitable as a primary database.
+- MemoryDB writes are in the milliseconds whereas ElastiCache writes are in the microseconds. You get slower writes but a guarantee of durability.
+- MemoryDB is more expensive than ElastiCache.
