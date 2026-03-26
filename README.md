@@ -51,3 +51,5 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [AWS Step Functions](https://github.com/kiprotichgidii/aws-examples/blob/main/step-functions/README.md#aws-step-functions)
 - [Amazon Kinesis](https://github.com/kiprotichgidii/aws-examples/blob/main/kinesis/README.md#aws-kinesis)
 - [Amazon ElastiCache](https://github.com/kiprotichgidii/aws-examples/blob/main/elasticache/README.md#amazon-elasticache)
+- [AWS CloudTrail](https://github.com/kiprotichgidii/aws-examples/blob/main/cloudtrail/README.md#aws-cloudtrail)
+- [Amazon Redshift](https://github.com/kiprotichgidii/aws-examples/blob/main/redshift/README.md#amazon-redshift)
