@@ -57,3 +57,52 @@ Multi-node mode can be used to launch a cluster of nodes.
 
 ### Node Types and Sizes
 
+There are two types of nodes: 
+
+- **Dense Compute (dc)** - Optimized for compute-intensive workloads. Best for high performance, but with less storage. 
+- **Dense Storage (ds)** - Optimized for storage-intensive workloads. Best for large datasets, but with less compute power.
+
+The smallest node you can select is `dc2.large`.
+
+### Compression
+
+- Redshift uses multiple compression techniques to achieve significant compression relative to traditional relationa data stores.
+- Similar data is scored sequentially on disk.
+- Does not require indexes or materialized views, which saves a lot of space, compared to traditional systems.
+- When loading data to an empty table, data is sampled, and the most appropriate compression scheme is selected automatically.
+
+### Processing
+
+- Redshift uses **Massively Parallel Processing (MPP)** to process queries. 
+- Automatically distributes data and query loads across all nodes.
+- Allows users to easily add new nodes to a data warehouse while still maintaining fast query performance.
+
+![MPP](./images/aws-redshift-mpp.png)
+
+### Backups
+
+Backups are enabled by default with a 1-day retention period. The retention period can be adjusted up to 35 days. Redshift always attempts to maintain at least 3 copies of the users data. ie.
+
+- The original copy
+- Replica on the compute nodes
+- Backup copy in S3
+
+Redshift can asynchronously replicate snapshots to S3 in a different region. 
+
+![Redshift Backups](./images/aws-redshift-backups.png)
+
+### Billing
+
+**Compute Node Hours**
+
+- The total number of hours ran across all nodes in the billing period
+- Billed for 1 unite per node per hour
+- No charges for Leader Node hours, only compute nodes incur charges
+
+**Backup**
+
+- Backups are stored on S3 and are charged at S3 rates.
+
+**Data Transfer**
+
+- Billed only for transfers within a VPC, not outside of it.
