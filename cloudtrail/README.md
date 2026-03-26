@@ -10,7 +10,7 @@ AWS CloudTrail is used to monitor API Calls and Action made on an AWS account, t
 - Who - user, user agent
 - What - region, resource, action
 - Where - source IP Address
-- When - event time 
+- When - event time
 
 CloudTrail already logs by default and will collect logs for 90 days, via Event History. For longer retention, users can create a trail. Trails are output to S3 and do not have
 a GUI like Event Hisory. To analyze a Trails you'd have to use Amazon Athena. 
