@@ -245,5 +245,19 @@ mc.decr("counter", 1)
 
 # Write a key, but only if it doesn't already exist
 mc.add("unique_key", "Unique Value")
-```
 
+# Overwrite key name at a given key
+mc.replace("existing_key", "New Value")
+
+# Delete all keys along with their values. It can be delayed by providing a value in seconds
+mc.flush_all(delay=10)
+
+# Add data to the end of a value at a given key
+mc.append('message', 'World')
+
+# Add data to the front of a value at a given key
+mc.prepend('message', 'Hello')
+
+# Get varous statistics about the datastore
+stats = mc.get_stats()
+```
