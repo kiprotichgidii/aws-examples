@@ -202,3 +202,48 @@ Common Sorted Sets commands:
 
 ### Memcached
 
+Memcached is an open-source distributed memory object caching system, used to speed up dynamic web applications by alleviating database load. It is a simple key/value store, but it is very fast. It is not as feature-rich as Redis, but it is a good choice for simple caching needs.
+
+Memcached is a key/value store, which supports Strings, and can increment/decrement the string is they represent an unsigned 64bit integer. You can use an SDK for your preferred language to interact with Memcached. 
+
+```python
+import ssl
+from pymemcache.client.base import Client
+		
+# Create a TLS context
+context = ssl.create_default_context()
+# Get the cluster endpoint from the AWS CLI / console
+cluster_endpoint = "<To be taken from the AWS CLI / console>"
+# Default port for Memcached
+target_port = 11211
+# Create a client
+memcached_client = Client(("{cluster_endpoint}", target_port), tls_context=context)
+# Set a value
+memcached_client.set("key", "value", expire=500, noreply=False)
+# Get a value
+assert self.memcached_client.get("key").decode() == "value"
+```
+
+### Examples
+
+```python
+# Write a given value at a given key. It will overwrite existing values
+mc.set ("another_key", "another values",)
+
+# Read a value at a given key
+value = mc.get("some_key")
+
+# Delete the key and it's value
+mc.delete("some_key")
+
+# Increment a value
+mc.set("counter", 100)
+mc.incr("counter", 1)
+
+# Decrement a value
+mc.decr("counter", 1)
+
+# Write a key, but only if it doesn't already exist
+mc.add("unique_key", "Unique Value")
+```
+
