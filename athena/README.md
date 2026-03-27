@@ -85,3 +85,32 @@ FROM "AWSDataCatalog"."DATABASE_NAME"."TABLE_NAME"
 WHERE "COLUMN_NAME" = 'VALUE'
 LIMIT 10;
 ```
+
+Tables are most likely to be created in the default database called "default". 
+
+Using SQL, you'll specify:
+
+- How to pass each row of data, (possibly with regex) 
+- Specify the location of the data.
+
+```sql
+CREATE EXTERNAL TABLE IF NOT EXISTS cloudfront_logs(
+    `Date` Date,
+    Time String,
+    Location String,
+    Bytes INT,
+    RequestIP String,
+    Method String,
+    Host String,
+    Uri String,
+    Status INT,
+    Referrer String,
+    OS String,
+    Browser String,
+    BrowserVersion String,
+) ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
+WITH SERDEPROPERTIES (
+    'input.regex' = '([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*)'
+)
+LOCATION 's3://aws-athena-examples-us-east-1-123456789012/cloudfront/plaintext/';
+```
