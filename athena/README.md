@@ -114,3 +114,20 @@ WITH SERDEPROPERTIES (
 )
 LOCATION 's3://aws-athena-examples-us-east-1-123456789012/cloudfront/plaintext/';
 ```
+### Athena SQL SerDe
+
+**SerDe** is a serialization and deserialization library that is used for parsing data from different data formats, such as CSV, JSON, Parquet, and ORC, to Athena tables. It is the specified SerDe that defines the table schema and not the DDL configurations. In other words, the SerDe can override the DDL configurations that you specify in Athena when you create your table. 
+
+There are several SerDe built-in and supported by Athena.
+
+```sh
+ROW FORMAT SERDE 'org.apache.hadoop.live.serde2.lazy.LazySimpleSerDe' # CSV
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' # CSV
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe' # Avro
+ROW FORMAT SERDE 'com.amazonaws.glue.serde.GrokSerDe' # Grok
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.JsonSerDe' # JSON
+ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe' # JSON
+ROW FORMAT SERDE 'com.amazonaws.ionhive.IonHiveSerDe' # JSON
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe' # Regex
+```
+Each SerDe is configured differently.
