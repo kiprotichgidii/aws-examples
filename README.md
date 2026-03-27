@@ -53,3 +53,4 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [Amazon ElastiCache](https://github.com/kiprotichgidii/aws-examples/blob/main/elasticache/README.md#amazon-elasticache)
 - [AWS CloudTrail](https://github.com/kiprotichgidii/aws-examples/blob/main/cloudtrail/README.md#aws-cloudtrail)
 - [Amazon Redshift](https://github.com/kiprotichgidii/aws-examples/blob/main/redshift/README.md#amazon-redshift)
+- [Amazon Athena](https://github.com/kiprotichgidii/aws-examples/blob/main/athena/README.md#amazon-athena)
