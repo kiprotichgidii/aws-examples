@@ -1,6 +1,8 @@
 ## Amazon CodeGuru
 
-**Amazon CodeGuru** is a suite of machine learning developer tools designed to improve code quality and application performance through intelligent recommendations. It offers two main components: **CodeGuru Reviewer** (for automated code reviews in Java and Python) and **CodeGuru Profiler** (to optimize runtime performance, identify bottlenecks, and reduce infrastructure costs).
+**Amazon CodeGuru** is a suite of machine learning developer tools designed to improve code quality and application performance through intelligent recommendations. It offers
+two main components: **CodeGuru Reviewer** (for automated code reviews in Java and Python) and **CodeGuru Profiler** (to optimize runtime performance, identify bottlenecks, and
+reduce infrastructure costs).
 
 CodeGuru has three services:
 
@@ -27,7 +29,8 @@ CodeGuru supports the following languages:
 
 ## Amazon Comprehend
 
-**Amazon Comprehend** is a fully managed, natural language processing (NLP) service that uses machine learning to extract insights, sentiment, and entities from text without requiring prior ML expertise. It processes documents, customer feedback, and social media to identify topics, languages, and sensitive data (PII).
+**Amazon Comprehend** is a fully managed, natural language processing (NLP) service that uses machine learning to extract insights, sentiment, and entities from text without
+requiring prior ML expertise. It processes documents, customer feedback, and social media to identify topics, languages, and sensitive data (PII).
 
 Amazon Comprehend can analyze text and extract the following:
 - **Entities** - eg. Person, Organization, Location
@@ -75,7 +78,9 @@ puts "Mixed: #{sentiment_response.sentiment_scores.mixed}"
 ```
 ## Amazon Forecast
 
-**Amazon Forecast** is a fully managed AWS service that uses machine learning (ML) to deliver highly accurate time-series forecasts without requiring prior ML experience. It automates data preparation, model training, and tuning to predict business metrics like inventory demand, workforce staffing, and financial, based on historical data and related variables (e.g., weather, holidays).
+**Amazon Forecast** is a fully managed AWS service that uses machine learning (ML) to deliver highly accurate time-series forecasts without requiring prior ML experience. It
+automates data preparation, model training, and tuning to predict business metrics like inventory demand, workforce staffing, and financial, based on historical data and related
+variables (e.g., weather, holidays).
 
 You need to upload your dataset to S3 with:
 - Historical Data
@@ -100,13 +105,17 @@ Amazon Forecast will produce a visual graph:
 
 ## Amazon Fraud Detector
 
-**Amazon Fraud Detector** is a fully managed fraud detection service that automates the detection of potentially fraudulent activities online. These activities include unauthorized transactions and the creation of fake accounts. Amazon Fraud Detector works by using machine learning to analyze your data. It does this in a way that builds off of the seasoned expertise of more than 20 years of fraud detection at Amazon.
+**Amazon Fraud Detector** is a fully managed fraud detection service that automates the detection of potentially fraudulent activities online. These activities include
+unauthorized transactions and the creation of fake accounts. Amazon Fraud Detector works by using machine learning to analyze your data. It does this in a way that builds off of
+the seasoned expertise of more than 20 years of fraud detection at Amazon.
 
 You upload your dataset for data model training to an S3 bucket which will then be referenced by Fraud Detector. 
 
 **Amazon Fraud Detector** comes with the following predefined models, which you'll train your data against:
-- **Online Fraud Insights**: Optimized to detect fraud when little historical data is available about the entity being evaluated. eg. New customers registering online for an account.
-- **Transaction Fraud Insights**: Testing fraud use cases where the e ntity that is being evaluated might a history of intercations that the model cqn analyze to improve prediction accuracy.
+- **Online Fraud Insights**: Optimized to detect fraud when little historical data is available about the entity being evaluated. eg. New customers registering online for an
+account.
+- **Transaction Fraud Insights**: Testing fraud use cases where the e ntity that is being evaluated might a history of intercations that the model cqn analyze to improve
+prediction accuracy.
 - **Account Takeover Insights**: If an account was compromised by phishing attacks or any other type of attack.
 
 Using the AWS SDK, real-time fraud detection systems can be architected using AWS Step Functions, Amazon Kinesis, AWS Lambda and other AWS Application integration services. 
@@ -188,9 +197,12 @@ Events contain the data and rules that will be analyzed by the model.
 
 ## Amazon Kendra
 
-Amazon Kendra is a fully managed, machine-learning search engine service that uses natural language processing (NLP) and machine learning to find answers within large, decentralized data repositories. It enables organizations to index unstructured/semi-structured data (PDFs, docs, Wikis) across various sources (S3, SharePoint, Google Drive) to provide accurate, context-driven search results.
+Amazon Kendra is a fully managed, machine-learning search engine service that uses natural language processing (NLP) and machine learning to find answers within large,
+decentralized data repositories. It enables organizations to index unstructured/semi-structured data (PDFs, docs, Wikis) across various sources (S3, SharePoint, Google Drive) to
+provide accurate, context-driven search results.
 
-Instead of key-word matching, Amazon Kendra uses semantic and contextual understanding to search a query. It's like interacting with a human expert who can understand the context of your question and provide a relevant answer. Amazon Lex Chatbot can be used as an interface to Amazon Kendra.
+Instead of key-word matching, Amazon Kendra uses semantic and contextual understanding to search a query. It's like interacting with a human expert who can understand the
+context of your question and provide a relevant answer. Amazon Lex Chatbot can be used as an interface to Amazon Kendra.
 
 Amazon Kendra has the following components:
 - **Index**: A table that holds the index of documets to make them searchable.
@@ -244,3 +256,81 @@ The Developer Edition has free tier with upto 750hrs first 30 days.
      --index-id index-id \
      --query-text "What is the capital of France?"
    ```
+
+## Amazon Lex
+
+**Amazon Lex** is a fully managed AWS service for building conversational AI interfaces into applications using voice and text. Powered by the same deep learning technology as
+Alexa, it enables developers to create sophisticated, natural language chatbots for FAQ, customer service, and transactional tasks, incorporating generative AI for improved user
+experiences.
+
+Amazon Lex Version 2 provides:
+- Natural Language Understanding (NLU)
+- Automatic Speech Recognition (ASR)
+
+AWS Provides multiple bot templates for common industries as a starting point.
+- Provide transcripts to create new bots
+- Use GenAI to build a bot by describing what you want.
+- Choose a target language, you can choose from multiple AWS provided voices.
+
+Amazon Lex integrates with AWS Lambda to connect with various AWS Services.
+
+#### Amazon Lex Network of Bots
+
+Amazon Lex has a feature that adds multiple bots to a single network. A network can intelligently route a query to the appropriate bot. This provides a unified experience for
+customers and reduces duplication of intent configuration for multiple specialized bots.
+
+### Components of a Bot
+
+1. **Bot**: A bot performs automated tasks such as ordering a pizza, booking a hotel, ordering flowers, and so on. An Amazon Lex V2 bot is powered by automatic speech
+recognition (ASR) and natural language understanding (NLU) capabilities.
+2. **Language**: An Amazon Lex V2 bot can converse in one or more languages. Each language is independent of the others, you can configure Amazon Lex V2 to converse with a user
+using native words and phrases.
+3. **Version**: A version is a numbered snapshot of your work that you can publish for use in different parts of your workflow, such as development, beta deployment, and
+production. Once you create a version, you can use a bot as it existed when the version was made. After you create a version, it stays the same while you continue to work on
+your application.
+4. **Alias**:  An alias is a pointer to a specific version of a bot. With an alias, you can update the version the your client applications are using. For example, you can point
+an alias to version 1 of your bot. When you are ready to update the bot, you publish version 2 and change the alias to point to the new version. Because your applications use
+the alias instead of a specific version, all of your clients get the new functionality without needing to be updated.
+5. **Intent**: An intent represents an action that the user wants to perform. You create a bot to support one or more related intents. For example, you might create an intent
+that orders pizzas and drinks. For each intent, you provide the following required information:
+   - **Intent name** – A descriptive name for the intent. For example, OrderPizza.
+   - **Sample utterances** – How a user might convey the intent. For example, a user might say "Can I order a pizza" or "I want to order a pizza."
+   - **How to fulfill the intent** – How you want to fulfill the intent after the user provides the necessary information. We recommend that you create a Lambda function to fulfill the intent.
+6. **Slot**: An intent can require zero or more slots, or parameters. You add slots as part of the intent configuration. At runtime, Amazon Lex V2 prompts the user for specific
+slot values. The user must provide values for all required slots before Amazon Lex V2 can fulfill the intent.
+7. **Slot Type**: Slot type – Each slot has a type. You can create your own slot type, or you can use built-in slot types. For example, you might create and use the following
+slot types for the OrderPizza intent:
+   - Size – With enumeration values Small, Medium, and Large.
+   - Crust – With enumeration values Thick and Thin.
+
+## Amazon Personalize
+
+Amazon Personalize is a fully managed AI service that enables developers to deliver real-time, customized recommendations and user segmentation at scale, using the same
+technology as the Amazon patform. It creates individualized experiences—such as product recommendations, tailored searches, and content feeds—without requiring extensive machine
+learning expertise.
+
+1. Create a **dataset** group
+2. Upload **dataset** to a data group (csv files)
+   - Provide multiple data sets ie.
+     - User Item Interaction data
+     - User Data
+     - Item Data
+  - Provide a JSON schema mapping for the CSV files
+  - Reference the dataset location from an S3 object location
+3. **Solutions** and **Recipes** allow users to fine tune the model
+4. **Event Trackers** - Using the Ingestion SDK, users can track user events and feed them to the model in real-time.
+5. **Filters** allow users to remove certain items from the recommendations based on rules
+6. Launch a campaign to allo applications to get recommendations from the solutions.
+
+#### Datasets
+
+- **User Interaction Data** - Core dataset that is used to train a custom model. At a minimum, this dataset must include three attributes. ie.
+  - `USER_ID`: A unique identifier of the user
+  - `ITEM_ID`: A uniue identifier for the item
+  - `TIMESTAMP`: The Unix timestamp of the interaction
+- **User Data** - Contains metadat about the users, which can be used to improve the recommendation quality.
+  - The only required attribute for this dataset is the `USER_ID` which must correspond to the `USER_ID` in the User Item Interaction Data.
+- **Item Data** - Contains metadata about the items eg. categories, price, or brand.
+  - Must include an `ITEM_ID` which matches the `ITEM_ID` in the User Item Interaction Data.  
+  - Must be called `CATEGORY_L1` (graphic to left is wrong)
+
