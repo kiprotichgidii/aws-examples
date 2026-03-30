@@ -32,4 +32,14 @@ CodeGuru supports the following languages:
 Amazon Comprehend can analyze text and extract the following:
 - **Entities** - eg. Person, Organization, Location
 - **Key Phrases** - Text that appear important eg. <u>Pay</u> the amount of <u>$220.00</u> by <u>August 8th</u>.
-- 
+- **Language** - confidence of the language being spoken eg. English
+- **Personal Identifiable Information (PII)** - eg. Social Security Number, Email Address, Phone Number
+- **Sentiment** - eg. Positive, Negative, Neutral, Mixed
+- **Targeted Sentiment** - Specific words and their attitude eg. Awful 1.0 Negative
+- **Syntax** - Identify parts of a language.
+- **Custom Models** - upload training data to analyze and extract custom text
+  - **Amazon Comprehend Flywheel** - automate the training of model versions fos custom models
+
+- Amazon Comprehend is serverless, you pay based on the size of the requests, in units. eg. 1 unit = 100 characters.
+- Real-time analysis can be peformed via an endpoint.
+- Analysis jobs allow for batch jobs.
