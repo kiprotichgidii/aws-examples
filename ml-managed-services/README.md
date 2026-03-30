@@ -120,7 +120,7 @@ To create a model:
 
 ```python
 import boto3
-fraudDetector = boto3.client('frauddetector', region_name='us-east-1')
+fraudDetector = boto3.client('frauddetector')
 
 fraudDetector.create_model_version(
   modelId = 'sample_fraud_detection_model',
@@ -145,3 +145,67 @@ fraudDetector.create_model_version(
   }
 )    
 ```
+
+After reviewing mode performance, we set it to active to deploy the model for real-time detection.
+
+```python
+import boto3
+fraudDetector = boto3.client('frauddetector')
+
+fraudDetector.update_model_version_status(
+  modelId = 'sample_fraud_detection_model',
+  modelType = 'ONLINE_FRAUD_INSIGHTS',
+  modelVersionNumber = '1.0.0',
+  status = 'ACTIVE'
+) 
+```
+
+### Fraud Detector Components
+
+![Amazon Fraud Detector](images/amazon-fraud-detector-components.png)
+
+- **Models**: ML models that are trained on your data to detect fraud.
+- **Thresholds**: Thresholds are used to determine the risk level of a given event. 
+- **Scores**: Numerical values that represent the risk level that a given event is being fraudulent. Different models use different scoring.
+- **Rules**: The decision logic that interprets the model’s risk score. Rules determine the final outcome (e.g., Approve, Review, Reject)
+  - Variable or List - What data to operate on
+  - Expression - rule language eg. operators, regex
+  - Outcome - the outcome return
+- **Detector**: A detector is a container for models, rules, and outcomes. 
+- **Outcomes**: The actionable result of a rule eg.
+  - risk levels (high_risk, medium_risk, low_risk)
+  - actions (approve, review)
+
+To define an event type, you need to define Labels, Entities, and Variables.
+
+![Amazon Fraud Detector](images/amazon-fraud-detector-event-type.png)
+
+- **Labels**: Classify an event as fraudulent or legitimate, used to train supervised machine learning models.
+- **Entities**: Represents the doer of the event eg. Customer
+- **Variables**: Data elements extracted from the event, such as email address, IP address, phone number, or transaction amount.
+
+Events contain the data and rules that will be analyzed by the model.
+
+## Amazon Kendra
+
+Amazon Kendra is a fully managed, machine-learning search engine service that uses natural language processing (NLP) and machine learning to find answers within large, decentralized data repositories. It enables organizations to index unstructured/semi-structured data (PDFs, docs, Wikis) across various sources (S3, SharePoint, Google Drive) to provide accurate, context-driven search results.
+
+Instead of key-word matching, Amazon Kendra uses semantic and contextual understanding to search a query. It's like interacting with a human expert who can understand the context of your question and provide a relevant answer. Amazon Lex Chatbot can be used as an interface to Amazon Kendra.
+
+Amazon Kendra has the following components:
+- **Index**: A table that holds the index of documets to make them searchable.
+- **Data Source**: Where the documents are stored. eg. S3, Sharepoint, Box, Postgres, you need to define a schema
+  - **Data Source Template Schemas**: AWS Provides around 40 schema templates for common AWS Services or third party cloud storage services.
+- **Document Addition API**: An API to add documents directly to an index.
+
+Amazon Kendra has two versions which provide all features but with different limitations:
+
+| Feature | Developer Edition | Enterprise Edition |
+| --- | --- | --- |
+| 5 indexes with up to 5 data sources each | 5 indexes with up to 50 data sources each |
+| 10K documents or 3GB of extracted text | |
+| 4K queries per day or 0.05 queries per second | 8K queries per day or 0.1 queries per second |
+| Runs in 1 AZ | Runs in 3 AZs |
+ 
+The Developer Edition has free tier with upto 750hrs first 30 days.
+
