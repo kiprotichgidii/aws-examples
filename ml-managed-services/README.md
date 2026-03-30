@@ -334,3 +334,30 @@ learning expertise.
   - Must include an `ITEM_ID` which matches the `ITEM_ID` in the User Item Interaction Data.  
   - Must be called `CATEGORY_L1` (graphic to left is wrong)
 
+To configure recommendations, you can use the AWS SDK with your preferred programming language. For example, using the AWS Python SDK:
+
+```python
+import boto3
+
+# Initialize the Personalize runtime client
+personalize_runtime = boto3.client('personalize_runtime')
+
+# Campaign ARN
+campaign_arn = 'arn:aws:personalize:us-east-1:123456789012:campaign/my-campaign'
+
+# User Id to get recommendations
+user_id = 'your_user_id'
+
+try:
+    response = personalize_runtime.get_recommendations(
+        campaignArn=campaign_arn,
+        userId=user_id
+    )
+
+    # Print the recommended items
+    print("Recommended items:")
+    for item in response['itemList']:
+        print(item['itemId'])
+except Exception as e:
+    print(f"Error: {e}")
+```
