@@ -338,26 +338,26 @@ To configure recommendations, you can use the AWS SDK with your preferred progra
 
 ```python
 import boto3
+from botocore.config import Config
 
-# Initialize the Personalize runtime client
-personalize_runtime = boto3.client('personalize_runtime')
+my_config = Config(
+    region_name = 'ca-central-1'
+)
+client = boto3.client('personalize-runtime', config=my_config)
 
-# Campaign ARN
-campaign_arn = 'arn:aws:personalize:us-east-1:123456789012:campaign/my-campaign'
+campaign_arn = 'arn:aws:personalize:ca-central-1:982383527471:campaign/my-campaign'
+user_id = '127'
+item_id='9910'
+# context = {'itemId': 'item-id-for-context'}
 
-# User Id to get recommendations
-user_id = 'your_user_id'
+resp = client.get_recommendations(
+  campaignArn=campaign_arn,
+  userId=user_id,
+  itemId=item_id,
+  # context=context
+)
 
-try:
-    response = personalize_runtime.get_recommendations(
-        campaignArn=campaign_arn,
-        userId=user_id
-    )
-
-    # Print the recommended items
-    print("Recommended items:")
-    for item in response['itemList']:
-        print(item['itemId'])
-except Exception as e:
-    print(f"Error: {e}")
+# Print out the recommendation results
+for item in resp['itemList']:
+  print(f"Item ID: {item['itemId']} Score: {item.get('score', 'N/A')}")
 ```
