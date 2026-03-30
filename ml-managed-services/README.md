@@ -209,3 +209,38 @@ Amazon Kendra has two versions which provide all features but with different lim
  
 The Developer Edition has free tier with upto 750hrs first 30 days.
 
+1. Create Index:
+
+   ```sh
+   aws kendra create-index \
+     --name my-index \
+     --description "My Index" \
+     --role-arn arn:aws:iam::123456789012:role/KendraIndexRole
+   ```
+2. Create Data Source:
+   
+   ```sh
+   aws kendra create-data-source \
+     --index-id index-id \
+     --name my-data-source \
+     --role-arn arn:aws:iam::123456789012:role/KendraDataSourceRole \
+     --type S3 \
+     --configuration '{"S3Configuration": {"BucketName": "bucket-name"}}'
+  # different data source would use a template to define the schema
+  # --type TEMPLATE \
+  # --configuration '{"TemplateConfiguration": {"TemplateId": {JSON Schema}}}'
+  ```
+3. Sync the data source to the Index (update the index):
+
+   ```sh
+   aws kendra start-data-source-sync-job \
+     --index-id index-id \
+     --id data-source-id
+   ```
+4. Query Kendra index for results:
+
+   ```sh
+   aws kendra query \
+     --index-id index-id \
+     --query-text "What is the capital of France?"
+   ```
