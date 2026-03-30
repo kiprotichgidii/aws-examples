@@ -361,3 +361,13 @@ resp = client.get_recommendations(
 for item in resp['itemList']:
   print(f"Item ID: {item['itemId']} Score: {item.get('score', 'N/A')}")
 ```
+
+## Amazon Polly
+
+**Amazon Polly** is a fully-managed service that generates voice on demand, converting any text to an audio stream. Using deep learning technologies to convert articles, web pages, PDF documents, and other text-to-speech (TTS). Polly provides dozens of lifelike voices across a broad set of languages for you to build speech-activated applications that
+engage and convert.
+
+Meet diverse linguistic, accessibility, and learning needs of users across geographies and markets. Powerful neural networks and generative voice engines work in the background, synthesizing speech for you.
+
+Engine Types:
+- **Standard**: 
