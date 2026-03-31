@@ -404,22 +404,22 @@ aws polly synthesize-speech \
 **Amazon Polly** supports the following **SSML**:
 
 ```xml
-- <speak> : the root element
-- <break> : pause
-- <emphasis> : emphasis words eg. Strong, Moderate, Reduced, or None
-- <lang> : specify a different language
-- <mark> : a custom tag for metadata
-- <p> : pause between paragraphs
-- <phoneme> : phonetic pronunciation of specific text
-- <prosody> : change the pitch, rate, or volume of the speech
-- <s> : add a pause between sentences
-- <sub> : substitute text eg. W3C -> World Wide Web Consortium
-- <say-as> : control how special types of words are spoken
-- <w> : spcify parts of speech
-- <amazon:breath> and <amazon:auto-breaths> : add breathing sounds
-- <amazon:domain name="news"> : newscaster speaking style (only available for neural)
-- <amazon:effect name="drc"> : adding dynamic range compression
-- <amazon:effect name="whispered"> : whispering
-- <amazon:effect phonation="soft"> :speaking softly
-- <amazon:effect vocal-tract-length> : controlling timbre
+<speak> : the root element
+<break> : pause
+<emphasis> : emphasis words eg. Strong, Moderate, Reduced, or None
+<lang> : specify a different language
+<mark> : a custom tag for metadata
+<p> : pause between paragraphs
+<phoneme> : phonetic pronunciation of specific text
+<prosody> : change the pitch, rate, or volume of the speech
+<s> : add a pause between sentences
+<sub> : substitute text eg. W3C -> World Wide Web Consortium
+<say-as> : control how special types of words are spoken
+<w> : spcify parts of speech
+<amazon:breath> and <amazon:auto-breaths> : add breathing sounds
+<amazon:domain name="news"> : newscaster speaking style (only available for neural)
+<amazon:effect name="drc"> : adding dynamic range compression
+<amazon:effect name="whispered"> : whispering
+<amazon:effect phonation="soft"> :speaking softly
+<amazon:effect vocal-tract-length> : controlling timbre
 ```
