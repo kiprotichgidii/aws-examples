@@ -507,16 +507,32 @@ accurately extracting text, handwriting, tables, and other data with no manual e
 
 ### Features
 
-1. **Custom Queries**: Amazon Textract provides you the ability to customize the pretrained Queries feature and improve extraction accuracy on your business specific document types while you maintain control and ownership of your data.
-2. **Layout**: Amazon Textract provides you with the ability to extract layout elements such as paragraphs, titles, lists, headers, footers, and more from documents. Layout is a feature type in the Analyze Document API. Customers can use Layout as a stand-alone feature or in combination with other Analyze Document feature types.
-3. **Optical Character Recognition**: Amazon Textract OCR automatically detects printed and handwritten text from documents and images. Textract’s ML powered OCR can recognize text in various fonts and styles, and it can also handle noisy or distorted text.
-4. **Analyze Lending**: Analyze Lending API is a managed, preconfigured intelligent document processing API that fully automates the extraction of information from loan packages. Customers simply upload their mortgage loan documents to the Analyze Lending API and its prebuilt machine learning models will classify and split the document package by document type.
-5. **Form Extraction**: You can detect key-value pairs in document images automatically and retain the context without manual intervention. A key-value pair is a set of linked data items. For instance, in a document, the field “First Name” is the key and “Jane” is the value. This makes it easy to import the extracted data into a database or provide it as a variable in an application.
-6. **Table Extraction**: Amazon Textract preserves the composition of data stored in tables during extraction. This is helpful for documents that are largely composed of structured data, such as financial reports or medical records with tables in columns and rows. You can automatically load the extracted data into a database using a predefined schema.
-7. **Signature Detection**: Amazon Textract provides the ability to detect signatures on any document or image. This makes it easy to automatically detect signatures on documents such as checks, loan application forms, and claims forms. The location of the signatures and associated confidence scores are included in the API response.
-8. **Query-based Extraction**: Amazon Textract provides you with the flexibility to specify the data you need to extract from documents using queries. You can specify the information you need in the form of natural language questions (e.g., “What is the customer name”) and receive the exact information (e.g., ”John Doe”) as part of the API response.
-9. **Invoices and Receipts**: Invoices and receipts can have a wide variety of layouts, which makes it difficult and time-consuming to manually extract data at scale. Amazon Textract uses machine learning (ML) to understand the context of invoices and receipts and automatically extracts relevant data such as vendor name, invoice number, item prices, total amount, and payment terms.
-10. **Identity documents**: Amazon Textract uses machine learning (ML) to understand the context of identity documents such as U.S. passports and driver’s licenses without the need for templates or configuration. You can automatically extract specific information such as date of expiry and date of birth, as well as intelligently identify and extract implied information such as name and address.
+1. **Custom Queries**: Amazon Textract provides you the ability to customize the pretrained Queries feature and improve extraction accuracy on your business specific document
+types while you maintain control and ownership of your data.
+2. **Layout**: Amazon Textract provides you with the ability to extract layout elements such as paragraphs, titles, lists, headers, footers, and more from documents. Layout is a
+feature type in the Analyze Document API. Customers can use Layout as a stand-alone feature or in combination with other Analyze Document feature types.
+3. **Optical Character Recognition**: Amazon Textract OCR automatically detects printed and handwritten text from documents and images. Textract’s ML powered OCR can recognize
+text in various fonts and styles, and it can also handle noisy or distorted text.
+4. **Analyze Lending**: Analyze Lending API is a managed, preconfigured intelligent document processing API that fully automates the extraction of information from loan
+packages. Customers simply upload their mortgage loan documents to the Analyze Lending API and its prebuilt machine learning models will classify and split the document package
+by document type.
+5. **Form Extraction**: You can detect key-value pairs in document images automatically and retain the context without manual intervention. A key-value pair is a set of linked
+data items. For instance, in a document, the field “First Name” is the key and “Jane” is the value. This makes it easy to import the extracted data into a database or provide it
+as a variable in an application.
+6. **Table Extraction**: Amazon Textract preserves the composition of data stored in tables during extraction. This is helpful for documents that are largely composed of
+structured data, such as financial reports or medical records with tables in columns and rows. You can automatically load the extracted data into a database using a predefined
+schema.
+7. **Signature Detection**: Amazon Textract provides the ability to detect signatures on any document or image. This makes it easy to automatically detect signatures on
+documents such as checks, loan application forms, and claims forms. The location of the signatures and associated confidence scores are included in the API response.
+8. **Query-based Extraction**: Amazon Textract provides you with the flexibility to specify the data you need to extract from documents using queries. You can specify the
+information you need in the form of natural language questions (e.g., “What is the customer name”) and receive the exact information (e.g., ”John Doe”) as part of the API
+response.
+9. **Invoices and Receipts**: Invoices and receipts can have a wide variety of layouts, which makes it difficult and time-consuming to manually extract data at scale. Amazon
+Textract uses machine learning (ML) to understand the context of invoices and receipts and automatically extracts relevant data such as vendor name, invoice number, item prices,
+total amount, and payment terms.
+10. **Identity documents**: Amazon Textract uses machine learning (ML) to understand the context of identity documents such as U.S. passports and driver’s licenses without the
+need for templates or configuration. You can automatically extract specific information such as date of expiry and date of birth, as well as intelligently identify and extract
+implied information such as name and address.
 
 
 ### Example
@@ -540,4 +556,32 @@ resp = client.analyze_document(
     # required, accepts TABLES, FORMS, QUERIES, SIGNATURES, LAYOUT
     FeatureTypes=["TABLES"],
 )
+```
+
+## Amazon Translate
+
+**Amazon Translate** is a neural machine translation service for translating text to and from English across a breadth of supported languages. Powered by deep-learning
+technologies, Amazon Translate delivers fast, high-quality, and affordable language translation. 
+
+It provides a managed, continually trained solution so you can easily translate company and user-authored content or build applications that require support across multiple
+languages. The machine translation engine has been trained on a wide variety of content across different domains to produce quality translations that serve any industry need.
+
+Processing Modes:
+- Real-time translation
+- Async Batch Processioning
+
+Example translation from English to Spanish:
+
+```python
+import boto3
+
+client = boto3.client("translate")
+
+text = "Hello, This is Andrew Brown, Utilizing Amazon Translate."
+resp = client.translate_text(
+    Text=text,
+    SourceLanguageCode="en",  # required
+    TargetLanguageCode="es",  # required
+)
+print(resp["TranslatedText"])
 ```
