@@ -570,6 +570,8 @@ Processing Modes:
 - Real-time translation
 - Async Batch Processioning
 
+### Example
+
 Example translation from English to Spanish:
 
 ```python
