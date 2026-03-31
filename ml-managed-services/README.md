@@ -391,7 +391,7 @@ aws polly synthesize-speech \
   hello_world.mp3
 ```
 
-**Speech Synthesis Markup Language** is and XML-based markup language for speech synthesis applications. It is used to control the way that Amazon Polly synthesizes speech. 
+**Speech Synthesis Markup Language(SSML)** is and XML-based markup language for speech synthesis applications. It is used to control the way that Amazon Polly synthesizes speech. 
 
 ```xml
 <speak>
@@ -400,4 +400,24 @@ aws polly synthesize-speech \
   in a whisper.
 </speak>
 ```
+
+**Amazon Polly** supports the following **SSML**:
+- <speak> : the root element
+- <break> : pause
+- <emphasis> : emphasis words eg. Strong, Moderate, Reduced, or None
+- <lang> : specify a different language
+- <mark> : a custom tag for metadata
+- <p> : pause between paragraphs
+- <phoneme> : phonetic pronunciation of specific text
+- <prosody> : change the pitch, rate, or volume of the speech
+- <s> : add a pause between sentences
+- <sub> : substitute text eg. W3C -> World Wide Web Consortium
+- <say-as> : control how special types of words are spoken
+- <w> : spcify parts of speech
+- <amazon:breath> and <amazon:auto-breaths> : add breathing sounds
+- <amazon:domain name="news"> : newscaster speaking style (only available for neural)
+- <amazon:effect name="drc"> : adding dynamic range compression
+- <amazon:effect name="whispered"> : whispering
+- <amazon:effect phonation="soft"> :speaking softly
+- <amazon:effect vocal-tract-length> : controlling timbre
 
