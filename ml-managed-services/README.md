@@ -629,3 +629,23 @@ Users can immediately search and query cataloged data using:
 
 ### AWS Glue Jobs
 
+There are three engines for AWS Glue Jobs:
+- Python Shell Engine
+- Ray Job
+- Spark Job
+
+AWS Glue Jobs can be created in:
+- Visual ELT (AWS Glue Studio)
+- Jupyter Notebooks
+- Script Editor (within AWS)
+
+AWS Glue Jobs are charged based on the number of data processing units (DPUs).
+- AWS Glue allocates 10 DPUs to each Spark Job
+- 2 DPUs to each Spark Streaming Job
+- AWS Glue allocates 6 M-DPUs to each Ray Job
+A combination of Work Type and Number of Workers will determine DPUs.
+
+![AWS Glue Jobs](./images/amazon-glue-jobs.png)
+
+### AWS Glue Studio
+
