@@ -602,3 +602,30 @@ Data sets pricing can be:
 
 **Open Data on AWS** program is a collection of over 300 free, publicly available datasets that are hosted on AWS. These datasets are available to anyone with an AWS account and can be used for various purposes, such as research, development, and commercial use.
 
+## AWS Glue
+
+**AWS Glue** is a serverless, scalable data integration service that makes it easier to discover, prepare, move, and integrate data from multiple sources for **analytics**,
+**machine learning**, and **application development**. 
+
+With generative AI assistance, AWS Glue provides all the capabilities needed for data integration, so you can gain insights and put your data to use in minutes instead of
+months. With AWS Glue, there is no infrastructure to set up or manage. You pay only for the resources consumed while your jobs are running.
+
+### Use cases
+
+1. **Simplify ETL Pipeline Management**: Remove infrastructure management with automatic provisioning and worker management, and consolidate all data integration needs into
+a single service.
+2. **Data Analytics**: Using AWS Glue interactive sessions, data engineers can interactively explore and prepare data using the integrated development environment (IDE) or
+notebook of their choice. 
+3. **Discover Data Efficiently**: Quickly identify data across AWS, on premises, and other clouds, and then make it instantly available for querying and transforming. 
+4. **Support Various Data Processing Frameworks and Workloads**: More easily support various data processing frameworks, such as ETL and ELT, and various workloads, including
+batch, micro-batch, and streaming.
+
+**AWS Glue** allows users to visually create, run, and monitor, transform, and load (ETL) pipelines to load data into data lakes, data warehouses, and other data stores.
+
+Users can immediately search and query cataloged data using:
+- Amazon Athena
+- Amazon EMR
+- Amazon Redshift Spectrum
+
+### AWS Glue Jobs
+
