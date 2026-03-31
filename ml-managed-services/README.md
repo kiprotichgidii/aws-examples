@@ -649,3 +649,24 @@ A combination of Work Type and Number of Workers will determine DPUs.
 
 ### AWS Glue Studio
 
+**AWS Glue Studio** also known as the **Visual ETL**, allows users to visually build ETL pipelines. It provides a visual interface for creating, running, and monitoring ETL jobs.
+
+A pipeline is composed of nodes:
+- **Sources**: The data you plan to use
+- **Transforms**: What you want to do to the data
+- **Targets**: Where you want to send the data
+
+Users can version control the pipelines using:
+- AWS Code Commit
+- GitHub
+- GitLab
+- BitBucket
+
+The primary function for **AWS Glue Studio** is to prepare a Glue Job, with little to no coding involved.
+
+![AWS Glue Studio](./images/amazon-glue-studio.png)
+
+The Visual ETL will produce a Python script that you can download and execute using Python to run the script in your ETL tool or will be used as a job in AWS Glue. You'll have to install the required [AWS Glue Libraries](https://github.com/awslabs/aws-glue-libs).
+
+![AWS Glue Python Code](./images/amazon-glue-python-code.png)
+
