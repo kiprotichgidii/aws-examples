@@ -370,4 +370,34 @@ engage and convert.
 Meet diverse linguistic, accessibility, and learning needs of users across geographies and markets. Powerful neural networks and generative voice engines work in the background, synthesizing speech for you.
 
 Engine Types:
-- **Standard**: 
+- **Standard($)**: The original engine using concatenative synthesis (stringing together phonemes). It is suitable for basic applications and offers a broad range of languages.
+- **Long From($$)**: Specialized for extended content such as audiobooks, articles, and training materials. This engine focuses on maintaining listener engagement and high quality over longer durations.
+- **Neural($$$)**: Supports a Newscaster speaking style that is tailored to news narration use cases. Utilizes sequence-to-sequence neural networks to produce highly natural-sounding, human-like speech. This engine offers a balance between high quality and broad usability.
+
+There is a variation between voices, depending on the text being spoken, no standard speed (word per minute) is available for Amazon Polly voices.
+
+- **Lexicons** - A lexicon is a collection of custom pronunciations for words that you provide to Amazon Polly. A lexicon file (`.xml`, `.pls`) with up to 40K characters and up to 100 pronunciation rules.
+
+- **Speech Marks** - Speech marks are metadata that describe the speech that you synthesize, such as where a sentence or word starts and ends in the audio stream. When you request speech marks for your text, Amazon Polly returns this metadata instead of synthesized speech. By using speech marks in conjunction with the synthesized speech audio stream, you can provide your applications with an enhanced visual experience.
+
+Example:
+
+```sh
+aws polly synthesize-speech \
+  --engine neural \
+  --text "Hello, world!" \
+  --output-format mp3 \
+  --voice-id Joanna \
+  hello_world.mp3
+```
+
+**Speech Synthesis Markup Language** is and XML-based markup language for speech synthesis applications. It is used to control the way that Amazon Polly synthesizes speech. 
+
+```xml
+<speak>
+  He was caugth up in the game. <break time="1s"> In the middle of the 10/03/2014 <sub alias="World Wide Web Consortium">W3C</sub> meeting,
+  he shouted, "Nice Job!" quite loudly. When his boss stared at him, he repeated <amazon:effect name="whispered">"Nice Job,"</amazon:effect> 
+  in a whisper.
+</speak>
+```
+
