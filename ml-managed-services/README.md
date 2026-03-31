@@ -402,6 +402,8 @@ aws polly synthesize-speech \
 ```
 
 **Amazon Polly** supports the following **SSML**:
+
+```xml
 - <speak> : the root element
 - <break> : pause
 - <emphasis> : emphasis words eg. Strong, Moderate, Reduced, or None
@@ -420,4 +422,4 @@ aws polly synthesize-speech \
 - <amazon:effect name="whispered"> : whispering
 - <amazon:effect phonation="soft"> :speaking softly
 - <amazon:effect vocal-tract-length> : controlling timbre
-
+```
