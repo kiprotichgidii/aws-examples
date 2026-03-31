@@ -587,3 +587,18 @@ resp = client.translate_text(
 )
 print(resp["TranslatedText"])
 ```
+
+## AWS Data Exchange
+
+**AWS Data Exchange** is a service that makes it easy for AWS customers to securely find, subscribe to, and use third-party data in the cloud. It offers a centralized catalog where data providers publish their data sets, and subscribers can access them through various delivery methods.
+
+- You upload your own dataset for sale in the AWS Marketplace.
+- Data grants allow users to control access to their data sets.
+
+Data sets pricing can be:
+- Free
+- Upfront Commitment
+- Usage Based
+
+**Open Data on AWS** program is a collection of over 300 free, publicly available datasets that are hosted on AWS. These datasets are available to anyone with an AWS account and can be used for various purposes, such as research, development, and commercial use.
+
