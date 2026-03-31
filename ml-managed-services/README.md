@@ -423,3 +423,33 @@ aws polly synthesize-speech \
 <amazon:effect phonation="soft"> : speaking softly
 <amazon:effect vocal-tract-length> : controlling timbre
 ```
+
+## Amazon Rekoginition
+
+**Amazon Rekognition** is a cloud-based image and video analysis service that makes it easy to add advanced computer vision capabilities to your applications. The service is
+powered by proven deep learning technology and it requires no machine learning expertise to use. Amazon Rekognition includes a simple, easy-to-use API that can quickly analyze
+any image or video file that’s stored in Amazon S3.
+
+You can add features that detect objects, text, unsafe content, analyze images/videos, and compare faces to your application using Rekognition's APIs. With Amazon Rekognition's
+face recognition APIs, you can detect, analyze, and compare faces for a wide variety of use cases, including user verification, cataloging, people counting, and public safety.
+
+**Amazon Rekognition** has the following prebuilt models:
+- Object Detection
+- Face Detection
+- Searching faces in connection
+- People pathing
+- Detecting Personal Protective Equipment (PPE)
+- Recognizing Celebrities
+- Moderating content
+- Detecting Text
+- Detecting Video segments
+- Detecting face liveness
+
+For image requirements:
+- JPGs or PNGs
+- Base64 encoding when passed via the HTTP API
+  - AWS SDKs for Java, JavaScript, Python, and PHP will automatically base64 encode.
+- Can access images from S3 bucket.
+
+**Amazon Rekognition Custom Labels** can identify the objects, logos, and scenes that are specific to your business. For example, you can train a model to identify specific car models, car parts, or car brands. You can also train a model to identify specific products, product categories, or product brands.
+
