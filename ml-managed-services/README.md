@@ -50,31 +50,34 @@ Amazon Comprehend can analyze text and extract the following:
 
 The primary way of using Amazon Comprehend is via the AWS SDK:
 
-Example for analyzing text for language and sentiment using Ruby:
+Example for analyzing text for language and sentiment using Python:
 
-```ruby
-require 'aws-sdk-comprehend'
+```python
+import boto3
 
-client = Aws::Comprehend::Client.new(region: 'us-east-1')
-text = "Hello World, this is Gedion Kiprotich from Kenya. I am a DevOps engineer and I am passionate about automation."
+client = boto3.client("comprehend", region_name="us-east-1")
+text = (
+    "Hello World, this is Gedion Kiprotich from Kenya. "
+    "I am a DevOps engineer and I am passionate about automation."
+)
 
 # Detect the dominant language
-language_response = client.detect_dominant_language(text: text)
-language_code = language_response.languages.max_by(&:score).language_code
-puts "Dominant Language: #{language_code}"
+language_response = client.detect_dominant_language(Text=text)
+language_code = max(language_response["Languages"], key=lambda x: x["Score"])["LanguageCode"]
+print(f"Dominant Language: {language_code}")
 
 # Detect sentiment
-sentiment_response = client.detect_sentiment({
-  text: text, 
-  language_code: language_code
-})
+sentiment_response = client.detect_sentiment(
+    Text=text,
+    LanguageCode=language_code,
+)
 
 # Print the sentiment analysis results
-puts "Sentiment: #{sentiment_response.sentiment}"
-puts "Positive: #{sentiment_response.sentiment_scores.positive}"
-puts "Negative: #{sentiment_response.sentiment_scores.negative}"
-puts "Neutral: #{sentiment_response.sentiment_scores.neutral}"
-puts "Mixed: #{sentiment_response.sentiment_scores.mixed}"
+print(f"Sentiment: {sentiment_response['Sentiment']}")
+print(f"Positive: {sentiment_response['SentimentScore']['Positive']}")
+print(f"Negative: {sentiment_response['SentimentScore']['Negative']}")
+print(f"Neutral: {sentiment_response['SentimentScore']['Neutral']}")
+print(f"Mixed: {sentiment_response['SentimentScore']['Mixed']}")
 ```
 ## Amazon Forecast
 
@@ -457,42 +460,41 @@ For image requirements:
 
 Detecting objects using `detect_labels`:
 
-```ruby
-require 'aws-sdk-rekognition'
-bucket = 'rekog-example-1422' # the bucket name without s3://
-photo  = 'andrew.jpg' # the name of file
-client   = Aws::Rekognition::Client.new region: 'us-east-1'
+```python
+import boto3
+
+bucket = "rekog-example-1422"  # the bucket name without s3://
+photo = "andrew.jpg"  # the name of file
+client = boto3.client("rekognition", region_name="us-east-1")
 attrs = {
-  image: {
-    s3_object: {
-      bucket: bucket,
-      name: photo
+    "Image": {
+        "S3Object": {
+            "Bucket": bucket,
+            "Name": photo,
+        },
     },
-  },
-  max_labels: 10
+    "MaxLabels": 10,
 }
-response = client.detect_labels attrs
-puts "Detected labels for: #{photo}"
-response.labels.each do |label|
-puts "Label:      #{label.name}"
-puts "Confidence: #{label.confidence}"
-puts "Instances:"
-label['instances'].each do |instance|
-  box = instance['bounding_box']
-  puts "  Bounding box:"
-  puts "    Top:        #{box.top}"
-  puts "    Left:       #{box.left}"
-  puts "    Width:      #{box.width}"
-  puts "    Height:     #{box.height}"
-  puts "  Confidence: #{instance.confidence}"
-end
-puts "Parents:"
-label.parents.each do |parent|
-  puts "  #{parent.name}"
-end
-puts "------------"
-puts ""
-end
+response = client.detect_labels(**attrs)
+print(f"Detected labels for: {photo}")
+for label in response.get("Labels", []):
+    print(f"Label:      {label.get('Name')}")
+    print(f"Confidence: {label.get('Confidence')}")
+    print("Instances:")
+    for instance in label.get("Instances", []):
+        box = instance.get("BoundingBox", {})
+        print("  Bounding box:")
+        print(f"    Top:        {box.get('Top')}")
+        print(f"    Left:       {box.get('Left')}")
+        print(f"    Width:      {box.get('Width')}")
+        print(f"    Height:     {box.get('Height')}")
+        print(f"  Confidence: {instance.get('Confidence')}")
+    print("Parents:")
+    for parent in label.get("Parents", []):
+        print(f"  {parent.get('Name')}")
+    print("------------")
+    print("")
+
 ```
 ## Amazon Textract
 
@@ -517,3 +519,25 @@ accurately extracting text, handwriting, tables, and other data with no manual e
 10. **Identity documents**: Amazon Textract uses machine learning (ML) to understand the context of identity documents such as U.S. passports and driver’s licenses without the need for templates or configuration. You can automatically extract specific information such as date of expiry and date of birth, as well as intelligently identify and extract implied information such as name and address.
 
 
+### Example
+
+Analyzing a document using the AWS Python SDK:
+
+```python
+import boto3
+
+client = boto3.client("textract", region_name="ca-central-1")
+bucket = "textract-exp-41241"
+name = "tax-doc.png"
+resp = client.analyze_document(
+    Document={  # required
+        "S3Object": {
+            "Bucket": bucket,
+            "Name": name,  # ,
+            # "Version": "S3ObjectVersion",
+        }
+    },
+    # required, accepts TABLES, FORMS, QUERIES, SIGNATURES, LAYOUT
+    FeatureTypes=["TABLES"],
+)
+```
