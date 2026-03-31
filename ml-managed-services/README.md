@@ -670,3 +670,45 @@ The Visual ETL will produce a Python script that you can download and execute us
 
 ![AWS Glue Python Code](./images/amazon-glue-python-code.png)
 
+### AWS Glue Data Catalog
+
+**AWS Glue Data Catalog** is a centralized, serverless metadata repository for all your data assets across various data sources, including data lakes in Amazon S3, databases,
+and third-party systems. It provides a unified view and helps in discovering, managing, and securing data for analytics and machine learning applications.
+
+AWS Glue Data Catalog is serverless, so you only pay for what you use. It integrates with:
+- Amazon S3
+- Amazon Redshift
+- Amazon RDS
+- Amazon Athena
+- Amazon Glue ETL
+- Amazon EMR
+
+- **AWS Glue Database** is a container for multiple AWS Glue tables.
+- ***AWS Glue Table** is the metadata definition that represents your data, including it's schema. A table can be used as a source or a target in a job definition.
+- **AWS Glue Crawler** automatically scans data in sources like S3, JDBC databases, or DynamoDB to infer schemas, formats, and partitioning information. It creates or updates
+table metadata in the Glue Data Catalog, allowing services like Athena and Redshift to query the data immediately without manual schema definition
+
+There are two table formats:
+1. Standard AWS Glue Table
+   - You must specify the data format eg. Avro, CSV, JSON, XML, Parquet, ORC
+   - Data can be sourced from; S3, Kinesis, Kafka
+2. Apache Iceberg Table
+   - Uses it's own expressive SQL data format
+
+### AWS Glue Data Catalog Crawlers
+
+**AWS Glue Data Catalog Crawler** is a tool that is used to analyze a targeted data source to determine it's schema and generate AWS Glue Data Tables. The Crawler can be connected to the following data sources:
+- Amazon S3
+- Java Database Connectivity (JDBC)
+  - Amazon Redshift
+  - Snowflakes
+  - Amazon RDS
+- DynamoDB
+- MongoDB Client
+  - MongoDB server, MongoDB Atlas, DocumentDB
+- Delta Lake
+- Apache Iceberg Tables stored in S3
+- Hudi Tables stored in S3
+
+Data Crawler can be run on a schedule or on demand. It can also be run as part of a Glue Job.
+
