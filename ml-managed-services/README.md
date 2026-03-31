@@ -579,7 +579,7 @@ import boto3
 
 client = boto3.client("translate")
 
-text = "Hello, This is Andrew Brown, Utilizing Amazon Translate."
+text = "Hello, This is Gedion Kiprotich, Utilizing Amazon Translate."
 resp = client.translate_text(
     Text=text,
     SourceLanguageCode="en",  # required
