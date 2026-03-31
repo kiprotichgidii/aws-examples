@@ -296,21 +296,21 @@ S3 One Zone-IS is designed for data that is less frequently accessed and has add
 
 1. **S3 Glacier 'Vault'**
 
-S3 Glacier is a stand-alone service from S3 that uses vaults over buckets to store data long term. S3 Glacier is the original vault service:
-  - It has vault control policies
-  - Most interactions are via the AWS CLI
-  - S3 Glacier is still used by big enterprises for compliance and archival purposes.
+   S3 Glacier is a stand-alone service from S3 that uses vaults over buckets to store data long term. S3 Glacier is the original vault service:
+    - It has vault control policies
+    - Most interactions are via the AWS CLI
+    - S3 Glacier is still used by big enterprises for compliance and archival purposes.
 
-S3 Glacier Deep Archive is part of S3 Glacier 'Vault'.
+   S3 Glacier Deep Archive is part of S3 Glacier 'Vault'.
 
 2. **S3 Glacier Storage Class**
 
-S3 Glacier Storage Classes offer simila functionality to S3 Glacier but with greater convenience and flexibility all within AWS S3 buckets.
+   S3 Glacier Storage Classes offer simila functionality to S3 Glacier but with greater convenience and flexibility all within AWS S3 buckets.
 
-**S3 Glacier Storage Classes**
-  - S3 Glacier Instant Retrieval
-  - S3 Glacier Flexible Retrieval
-  - S3 Glacier Deep Archive
+   **S3 Glacier Storage Classes**
+    - S3 Glacier Instant Retrieval
+    - S3 Glacier Flexible Retrieval
+    - S3 Glacier Deep Archive
 
 #### S3 Glacier Instant Retrieval
 
