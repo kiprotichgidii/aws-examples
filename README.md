@@ -57,4 +57,4 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [ML Managed Services](https://github.com/kiprotichgidii/aws-examples/blob/main/ml-managed-services/README.md#amazon-codeguru)
 - [AWS Data Exchange](https://github.com/kiprotichgidii/aws-examples/blob/main/ml-managed-services/README.md#aws-data-exchange)
 - [AWS Glue](https://github.com/kiprotichgidii/aws-examples/blob/main/ml-managed-services/README.md#aws-glue)
-
+- [AWS Lake Formation](https://github.com/kiprotichgidii/aws-examples/blob/main/lake-formation/README.md#aws-lake-formation)
