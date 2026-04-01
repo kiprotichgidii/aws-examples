@@ -112,47 +112,47 @@ Syntax: `x-amazon-apigateway-extension`
 
 1. Example using the `-policy` extension to define IAM Policy for API Paths:
 
-```yaml
----
-x-amazon-apigateway-policy:
-  Version: '2012-10-17'
-  Statement: 
-  - Effect: Allow
-    Principal: "*"
-    Action: execute-api:Invoke
-    Resource: 
-    - execute-api:/*
-  - Effect: Deny
-    Principal: "*"
-    Action: execute-api:Invoke
-    Resource: 
-    - execute-api:/*
-    Condition: 
-      IpAddress:
-        aws:SourceIp: 
-        - 192.0.2.0/24
-```
+   ```yaml
+   ---
+   x-amazon-apigateway-policy:
+     Version: '2012-10-17'
+     Statement: 
+     - Effect: Allow
+       Principal: "*"
+       Action: execute-api:Invoke
+       Resource: 
+       - execute-api:/*
+     - Effect: Deny
+       Principal: "*"
+       Action: execute-api:Invoke
+       Resource: 
+       - execute-api:/*
+       Condition: 
+         IpAddress:
+           aws:SourceIp: 
+           - 192.0.2.0/24
+   ```
 
 2. Example using the `-cors` extension to define CORS for the API:
 
-```yaml
---- 
-x-amazon-apigateway-cors:
-  corsConfiguration:
-    allowOrigins:
-      - "https://example.com"
-    allowCredentials: true
-    allowHeaders:
-      - x-apigateway-header
-      - x-amz-date
-      -content-type
-    allowMethods:
-      - "GET"
-      - "POST"
-      - "OPTIONS"
-    exposeHeaders:
-      - x-apigateway-header
-      - x-amz-date
-      -content-type
-    maxAge: 300
-```
+   ```yaml
+   --- 
+   x-amazon-apigateway-cors:
+     corsConfiguration:
+       allowOrigins:
+         - "https://example.com"
+       allowCredentials: true
+       allowHeaders:
+         - x-apigateway-header
+         - x-amz-date
+         -content-type
+       allowMethods:
+         - "GET"
+         - "POST"
+         - "OPTIONS"
+       exposeHeaders:
+         - x-apigateway-header
+         - x-amz-date
+         -content-type
+       maxAge: 300
+   ```
