@@ -247,7 +247,6 @@ The Developer Edition has free tier with upto 750hrs first 30 days.
   ```
 3. Sync the data source to the index:
 
-   ```sh
    aws kendra start-data-source-sync-job \
      --index-id index-id \
      --id data-source-id
