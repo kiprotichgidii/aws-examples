@@ -246,7 +246,25 @@ Syntax: `x-amazon-apigateway-extension`
   - Mock
   - AWS Service
   - VPC Link
-5. **Stage** - A stage is a snapshot of the API at a specific point in time. It can be used to deploy the API to different environments such as development, testing, and
+5. **Stage** - A stage is a version, a snapshot of the API at a specific point in time. It can be used to deploy the API to different environments such as development, testing, and
    production. It must be deployed in order to be accesible.
 
+### HTTP API Components
 
+![HTTP API Components](./images/amazon-api-gateway-http-api-components.png)
+
+1. **API** - A collection of routes and integrations that can be exposed through a custom domain name or a stage.
+2. **Routes** - A route is a combination of a HTTP method and a resource path that is invoked by clients. For example, a route can be a GET method on a /users resource. Routes
+   are nested within other routes. 
+   - You choose the method
+   - You define your endpoint
+3. **Integration** - The integration is the backend service that is invoked by the API Gateway. It can be a Lambda function, an EC2 instance, or any other HTTP endpoint.
+   - Lambda function (AWS Proxy)
+   - HTTP
+   - AWS Service (limited to specific services)
+     - EventBridge, SQS, AppConfig, Kinesis Data Streams, Step Functions 
+   - VPC Link
+4. **Stage** - A stage is a version, a snapshot of the API at a specific point in time. It can be used to deploy the API to different environments such as development, testing
+   and production. It must be deployed in order to be accesible.
+
+   
