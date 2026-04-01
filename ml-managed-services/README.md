@@ -246,6 +246,8 @@ The Developer Edition has free tier with upto 750hrs first 30 days.
      # --configuration '{"TemplateConfiguration": {"TemplateId": {JSON Schema}}}'
   ```
 
+
+
 3. Sync the data source to the index:
 
    ```sh
