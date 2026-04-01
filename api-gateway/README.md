@@ -228,3 +228,25 @@ Syntax: `x-amazon-apigateway-extension`
 | Mock integrations | Yes | No |
 | Response Streaming | Yes | No |
 
+### REST API Components 
+
+![REST API Components](./images/amazon-api-gateway-rest-api-components.png)
+
+1. **API** - A collection of resources and methods that can be exposed through a custom domain name or a stage.
+2. **Resources** - A resource represents an endpoint that can be accessed by clients. Resources are nested within other resources. 
+3. **Methods** - A method is a HTTP method that can be invoked on a resource. For example, a method can be a GET, POST, PUT, PATCH, or DELETE method. Methods allow users to
+   customize request and response.
+  - Method Request
+  - Integration Request
+  - Method Response
+  - Integration Response
+4. **Integration** - The integration is the backend service that is invoked by the API Gateway. It can be a Lambda function, an EC2 instance, or any other HTTP endpoint.
+  - Lambda function (AWS Proxy)
+  - HTTP
+  - Mock
+  - AWS Service
+  - VPC Link
+5. **Stage** - A stage is a snapshot of the API at a specific point in time. It can be used to deploy the API to different environments such as development, testing, and
+   production. It must be deployed in order to be accesible.
+
+
