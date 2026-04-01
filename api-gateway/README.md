@@ -156,3 +156,75 @@ Syntax: `x-amazon-apigateway-extension`
          -content-type
        maxAge: 300
    ```
+
+### Rest vs HTTP APIs
+
+#### Endpoint Type
+
+| Endpoint Type | REST API | HTTP API |
+| --- | --- | --- |
+| Edge-optimized | Yes | No |
+| Regional | Yes | Yes |
+| Private | Yes | No |
+
+#### Security
+
+| Security Features | REST API | HTTP API |
+| --- | --- | --- |
+| Mutual TLS authentication | Yes | Yes |
+| Certificates for backend authentication | Yes | No |
+| AWS WAF | Yes | No |
+
+#### Authorization
+
+| Authorization Options | REST API | HTTP API |
+| IAM | Yes | Yes |
+| Resource Policies | Yes | No |
+| Amazon Cognito | Yes | Yes |
+| Custom Authorization with a Lambda Function | Yes | Yes |
+| JSON Web Token | No | Yes |
+
+#### API Management
+
+| Features | REST API | HTTP API |
+| Custom domains | Yes | Yes |
+| API Keys | Yes | No |
+| Per-client rate limiting | Yes | No |
+| Per-client usage throttling | Yes | No |
+| Developer Portal | Yes | No |
+
+#### Development
+
+| Features | REST API | HTTP API |
+| CORS Configuration | Yes | Yes |
+| Test Invocations | Yes | No |
+| Caching | Yes | No | 
+| User-controlled deployments | Yes | Yes |
+| Automatic deployments | No | Yes |
+| Custom gateway responses | Yes | No |
+| Custom release deploymets | Yes | No |
+| Request Validation | Yes | No |
+| Request parameter transformation | Yes | Yes |
+| Request Body transformation | Yes | No |
+
+#### Monitoring 
+
+| Feature | REST API | HTTP API |
+| Amazon CloudWatch Metrics | Yes | Yes |
+| Access logs to CloudWatch Logs | Yes | Yes |
+| Access logs to Amazon Data Firehose | Yes | No |
+| Execution logs | Yes | No |
+| AWS X-Ray tracing | Yes | No |
+
+#### Integrations 
+
+| Feature | REST API | HTTP API |
+| Public HTTP endpoints | Yes | Yes |
+| AWS Services | Yes | Yes |
+| AWS Lambda Functions | Yes | Yes |
+| Private integrations with Network Load Balancers | Yes | Yes |
+| Private integrations with Application Load Balancers | Yes | Yes |
+| Private integrations with AWS Cloud Map | No | Yes |
+| Mock integrations | Yes | No |
+| Response Streaming | Yes | No |
+
