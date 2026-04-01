@@ -241,9 +241,9 @@ The Developer Edition has free tier with upto 750hrs first 30 days.
      --role-arn arn:aws:iam::123456789012:role/KendraDataSourceRole \
      --type S3 \
      --configuration '{"S3Configuration": {"BucketName": "bucket-name"}}'
-  # different data source would use a template to define the schema
-  # --type TEMPLATE \
-  # --configuration '{"TemplateConfiguration": {"TemplateId": {JSON Schema}}}'
+     # different data source would use a template to define the schema
+     # --type TEMPLATE \
+     # --configuration '{"TemplateConfiguration": {"TemplateId": {JSON Schema}}}'
   ```
 3. Sync the data source to the Index (update the index):
 

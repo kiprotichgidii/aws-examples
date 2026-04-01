@@ -54,3 +54,7 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [AWS CloudTrail](https://github.com/kiprotichgidii/aws-examples/blob/main/cloudtrail/README.md#aws-cloudtrail)
 - [Amazon Redshift](https://github.com/kiprotichgidii/aws-examples/blob/main/redshift/README.md#amazon-redshift)
 - [Amazon Athena](https://github.com/kiprotichgidii/aws-examples/blob/main/athena/README.md#amazon-athena)
+- [ML Managed Services](https://github.com/kiprotichgidii/aws-examples/blob/main/ml-managed-services/README.md#amazon-codeguru)
+- [AWS Data Exchange](https://github.com/kiprotichgidii/aws-examples/blob/main/ml-managed-services/README.md#aws-data-exchange)
+- [AWS Glue](https://github.com/kiprotichgidii/aws-examples/blob/main/ml-managed-services/README.md#aws-glue)
+
