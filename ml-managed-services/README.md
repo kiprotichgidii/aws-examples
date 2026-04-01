@@ -246,22 +246,14 @@ The Developer Edition has free tier with upto 750hrs first 30 days.
      # --configuration '{"TemplateConfiguration": {"TemplateId": {JSON Schema}}}'
   ```
 
-3. Sync the data source to the Index (update the index):
+3. Sync the data source to the index:
 
    ```sh
    aws kendra start-data-source-sync-job \
      --index-id index-id \
      --id data-source-id
    ```
-
-4. Sync the data source to the index:
-
-   ```sh
-   aws kendra start-data-source-sync-job \
-     --index-id index-id \
-     --id data-source-id
-   ```
-5. Query Kendra index for results:
+4. Query Kendra index for results:
 
    ```sh
    aws kendra query \
