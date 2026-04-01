@@ -266,5 +266,6 @@ Syntax: `x-amazon-apigateway-extension`
    - VPC Link
 4. **Stage** - A stage is a version, a snapshot of the API at a specific point in time. It can be used to deploy the API to different environments such as development, testing
    and production. It must be deployed in order to be accesible.
+   - HTTP API has a special stage called `$default`.
+   - All changes made to the API are autodeployed to the `$default` stage.
 
-   
