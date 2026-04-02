@@ -161,15 +161,56 @@ A Multi-AZ deployment provides the following advantages:
 
 #### Multi-AZ Instance Deployment
 
-Multi-AZ Instance deployment is for Amazon RDS instances. For example, a Multi-AZ DB instance deployment, where Amazon RDS automatically provisions and maintains a synchronous standby replica in a different Availability Zone. The replica database doesn't serve read traffic.
+When the deployment has one standby DB instance, it's called a Multi-AZ DB instance deployment. A Multi-AZ DB instance deployment has one standby DB instance that provides failover support, but doesn't serve read traffic. Multi-AZ Instance deployment is Multi-AZ for Amazon RDS instances. 
 
 ![Multi-AZ Instance Deployment](./images/amazon-rds-multi-az-instance-deployment.png)
 
 #### Multi-AZ Cluster Deployment
 
-Multi-AZ Cluster deployment is for Amazon Aurora DB clusters. For example, a Multi-AZ DB cluster deployment, which has a writer DB instance and two reader DB instances in three separate Availability Zones in the same AWS Region. All three DB instances can serve read traffic.
+When the deployment has two standby DB instances, it's called a Multi-AZ DB cluster deployment. A Multi-AZ DB cluster deployment has standby DB instances that provide failover support and can also serve read traffic. Multi-AZ Cluster deployment is Multi-AZ for Amazon Aurora DB clusters. 
 
 ![Multi-AZ Cluster Deployment](./images/amazon-rds-multi-az-cluster-deployment.png)
 
 Multi-AZ deployment offer Autoatic Failover protection. In case of a failover, RDS will automatically failover to the secondary DB instance. The failover process can take up to 60 seconds.
+
+You can configure Multi-AZ deployment on already existing RDS instance, using the AWS CLI:
+
+```sh
+aws rds modify-db-instance \
+  --db-instance-identifier my-rds-postgres-db \
+  --multi-az \
+  --apply-immediately
+```
+
+If not applied immediately, the Multi-AZ will only be provisioned during the next maintenance window. 
+
+### RDS Read Replicas
+
+A **read replica** is a read-only copy of a DB instance. You can reduce the load on your primary DB instance by routing queries from your applications to the read replica. In
+this way, you can elastically scale out beyond the capacity constraints of a single DB instance for read-heavy database workloads.
+
+**Read replicas** improve **read contention** which in turn improve database performance and latency. **Read contention** is when multiple processes or instances competing for access to the same index or data block at the same time.
+
+- You must have automated backups enabled, to use Read Replicas
+- Asynchronous replication occurs between the primary RDS instance and the replicas.
+- You can have up to 5 replicas of a MySQL, MariaDB, and PostgreSQL database. For Aurora, you can have up to 15 replicas. 
+- Each Read Replica will have it's own DNS endpoint.
+- By deafult, Read Replicas will use the same Storage Type as the source database. The storage type of a Read Replica can be changed independently of the source database.
+- You can have Multi-AZ replicas, replicas in other regions, or even replicas of Read Replicas.
+
+![RDS Read Replicas](./images/amazon-rds-multi-az-read-replicas.png)
+
+Replicas can be promoted to their own databases, but this breaks replication, hence no automatic failover support. In the case of a failure, you must manually update URLs to
+point to copies.
+
+Creating a Read Replica using the AWS CLI:
+
+```sh
+aws rds create-db-instance-read-replica \
+  --db-instance-identifier my-rds-postgres-db-replica \
+  --source-db-instance-identifier my-rds-postgres-db \
+  --allocated-storage 100 \
+  --max-allocated-storage 1000 \
+  --upgrade-storage-config
+```
 
