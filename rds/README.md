@@ -68,10 +68,11 @@ database volumes into 10GB segments spread across many disks, enhancing performa
 of your DB instance, backing up the entire DB instance and not just individual databases. RDS saves the automated backups of your DB instance according to the backup retention
 period that you specify. If necessary, you can recover your DB instance to any point in time during the backup retention period.
 
-RDS Databases can be backed up in two ways:
+Snapshot and backup functionality supports multi-volume configurations. All backup operations include both the primary volume and any additional storage volumes. Snapshots
+capture the entire database storage configuration. Point-in-time recovery (PITR) works across all storage volumes.
 
-1. Automated Backups
-2. Manual Backups
+The first snapshot of a DB instance contains the data for the full database. Subsequent snapshots of the same database are incremental, which means that only the data that has
+changed after your most recent snapshot is saved.
 
 #### Automated Backups
 
@@ -95,4 +96,42 @@ aws rds modify-db-instance \
 ```
 
 #### Manual Backups
+
+- Taken manually by the user.
+- The backups persist even if the original RDS instance is deleted.
+- RDS DB snapshots can be copied across regions.
+- DB snapshots can be shared to other AWS accounts.
+- Manual Snapshots can be exported to S3.
+- Manual snapshots incurr additional charges.
+
+```sh
+aws rds create-db-snapshot \
+  --db-snapshot-identifier pre-update-backup \
+  --db-instance-identifier my-rds-postgres-db
+```
+
+### Restoring Backups
+
+Restoring a backup for automated and manual backups creates a new RDS instance and restores the data to that instance. You provide the name of the DB snapshot to restore from,
+and then provide a name for the new DB instance that is created from the restore. You can't restore from a DB snapshot to an existing DB instance; you create a new DB instance
+when you restore the snapshot. You can use the restored DB instance as soon as its status is `available`. 
+
+Restoring a manual snapshot via the AWS CLI:
+
+```sh
+aws rds restore-db-instance-from-db-snapshot \
+  --db-instance-identifier restore-db-instance \
+  --db-snapshot-identifier pre-update-backup
+```
+
+Restoring a PITR backup via automated backups with the AWS CLI:
+
+```sh
+aws rds restore-db-instance-to-point-in-time \
+  --source-db-instance-identifier my-rds-postgres-db \
+  --target-db-instance-identifier restore-db-instance \
+  --restore-time "2026-04-02T12:00:00Z"
+```
+
+Restoring DB backups is not a fast process because it involves creating new DB instances, which should be taken into consideration for Recovery Time Objectives(RTOs).
 
