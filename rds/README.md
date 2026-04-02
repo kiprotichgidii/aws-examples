@@ -264,3 +264,31 @@ memory requirements. A DB instance class consists of both the DB instance class 
 5. **Optimized Reads**
    - db.m8gd, db.r8gd, db.r6gd, db.r6id
 
+### DB Instance Storage
+
+DB instances for Amazon RDS for Db2, MariaDB, MySQL, PostgreSQL, Oracle, and Microsoft SQL Server use Amazon Elastic Block Store (Amazon EBS) volumes for database and log
+storage.
+
+The following list briefly describes the three storage types:
+
+1. **Provisioned IOPS SSD** – Provisioned IOPS storage is designed to meet the needs of I/O-intensive workloads, particularly database workloads, that require low I/O latency
+and consistent I/O throughput. Provisioned IOPS storage is best suited for production environments.
+
+2. **General Purpose SSD** – General Purpose SSD volumes offer cost-effective storage that is ideal for a broad range of workloads running on medium-sized DB instances. General
+Purpose storage is best suited for development and testing environments.
+
+3. **Magnetic** – Amazon RDS also supports magnetic storage for backward compatibility. We recommend that you use General Purpose SSD or Provisioned IOPS SSD for any new storage
+needs. The maximum amount of storage allowed for DB instances on magnetic storage is 3 TiB. Not recommended.
+
+Maximum storage that most DB instances support is 64 TiB, though it will greatly vary based on engine type, instance type, and size. RDS allows you to increase the storage size
+of an EBS volume, but it does not support decreasing the storage size of an EBS volume. To decrease the storage size, you would have to create a new DB instance with less
+provisioned storage space.
+
+### RDS Performance Insights
+
+**RDS Performance Insights** enables you to monitor and explore different dimensions of database load based on data captured from a running DB instance. When Performance
+Insights is enabled, the Amazon RDS Performance Insights API provides visibility into the performance of your DB instance. Amazon CloudWatch provides the authoritative source
+for AWS service-vended monitoring metrics. Performance Insights offers a domain-specific view of DB load.
+
+**Performance Insights** helps to easily identify bottlenecks and performance issues. By default, it is turned on, providing 1 week of performance data. At an additional cost, the retention period can be changed to 2 years.
+
