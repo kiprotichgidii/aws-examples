@@ -53,3 +53,46 @@ including Db2, Db2 Warehouse, and Db2 on Cloud. Db2 is a popular choice for ente
 7. **Amazon Aurora** - Amazon Aurora is a MySQL and PostgreSQL-compatible relational database that is designed to run on AWS infrastructure. It automatically divides your
 database volumes into 10GB segments spread across many disks, enhancing performance and reliability.
 
+### RDS Encryption
+
+- Amazon RDS can encrypt your Amazon RDS DB instances at rest. 
+- Data that is encrypted at rest includes the underlying storage for DB instances, its logs, automated backups, read replicas, and snapshots.
+- Amazon RDS encrypted DB instances use the industry standard AES-256 encryption algorithm to encrypt your data on the server that hosts your Amazon RDS DB instances.
+- Encryption is handled using the AWS Key Management Service(KMS).
+- RDS encryption can only be turned on when creating the DB instance, it cannot be turned on later. For already created DB instances, you can take a snapshot and launch new DB instances from the snapshot with encryption turned on.
+- Encryption-in-transit is provided by default via the database DNS endpoint.
+
+### RDS Backup
+
+**Amazon RDS** creates and saves automated backups of your DB instance or Multi-AZ DB cluster during the backup window of your DB instance. RDS creates a storage volume snapshot
+of your DB instance, backing up the entire DB instance and not just individual databases. RDS saves the automated backups of your DB instance according to the backup retention
+period that you specify. If necessary, you can recover your DB instance to any point in time during the backup retention period.
+
+RDS Databases can be backed up in two ways:
+
+1. Automated Backups
+2. Manual Backups
+
+#### Automated Backups
+
+An RDS DB instance must be in the available state for automated backups to occur. Automated backups don't occur while your DB instance is in a state other than available, for
+example, storage_full. Automated backups don't occur while a DB snapshot copy is running in the same AWS Region for the same database.
+
+- Choose a retention perod between 0-35 days. 0 days would mean automatic backup is turned off. You can use Point-in-time recovery (PITR) to restore at any 5min interval within your retention period.
+- Stores transactional logs throughout the day.
+- Automated backups are enabled by default.
+- All the backup data is stored inside S3.
+- You define your backup window.
+- Storage I/O may be suspended during backups.
+- Automated backups do not incurr any additional costs.
+
+```sh
+aws rds modify-db-instance \
+  --db-instance-identifier my-rds-postgres-db \
+  --backup-retention-period 7 \
+  --preferred-backup-window 03:00-04:00 \
+  --apply-immediately
+```
+
+#### Manual Backups
+
