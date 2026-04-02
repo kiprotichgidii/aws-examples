@@ -135,3 +135,41 @@ aws rds restore-db-instance-to-point-in-time \
 
 Restoring DB backups is not a fast process because it involves creating new DB instances, which should be taken into consideration for Recovery Time Objectives(RTOs).
 
+### RDS Subnet Groups
+
+An **Amazon RDS DB subnet group** is a collection of subnets in a Virtual Private Cloud (VPC) that you designate for your DB instances. When you create an RDS instance, you must
+associate it with a subnet group, which tells RDS which subnets and IP addresses it can use.
+
+- Each DB Subnet Group should have subnets in at least 2 AZs in a given AWS region.
+- RDS will choose a subnet from a subnet group to deploy your RDS instance.
+- Subnets in a DB Subnet Group are either private or public.
+- For a DB instance to be publicly accessible, all of the subnets in it's DB subnet group must be public.
+
+![RDS Subnet Groups](./images/amazon-rds-subnet-groups.png)
+
+### RDS Multi-AZ Depolyment
+
+You can run your DB instance in several Availability Zones, an option called a Multi-AZ deployment. When you choose this option, Amazon automatically provisions and maintains
+one or more secondary standby DB instances in a different AZ. Your primary DB instance is replicated across Availability Zones to each secondary DB instance.
+
+A Multi-AZ deployment provides the following advantages:
+
+- Providing data redundancy and failover support
+- Eliminating I/O freezes
+- Minimizing latency spikes during system backups
+- Serving read traffic on secondary DB instances (Multi-AZ DB clusters deployment only)
+
+#### Multi-AZ Instance Deployment
+
+Multi-AZ Instance deployment is for Amazon RDS instances. For example, a Multi-AZ DB instance deployment, where Amazon RDS automatically provisions and maintains a synchronous standby replica in a different Availability Zone. The replica database doesn't serve read traffic.
+
+![Multi-AZ Instance Deployment](./images/amazon-rds-multi-az-instance-deployment.png)
+
+#### Multi-AZ Cluster Deployment
+
+Multi-AZ Cluster deployment is for Amazon Aurora DB clusters. For example, a Multi-AZ DB cluster deployment, which has a writer DB instance and two reader DB instances in three separate Availability Zones in the same AWS Region. All three DB instances can serve read traffic.
+
+![Multi-AZ Cluster Deployment](./images/amazon-rds-multi-az-cluster-deployment.png)
+
+Multi-AZ deployment offer Autoatic Failover protection. In case of a failover, RDS will automatically failover to the secondary DB instance. The failover process can take up to 60 seconds.
+
