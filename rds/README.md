@@ -319,3 +319,39 @@ How it works:
 
 ![RDS Custom](./images/amazon-rds-custom-architecture-1.png)
 
+### RDS Proxy
+
+**Amazon RDS Proxy** is a fully managed, highly available database proxy for Amazon RDS that makes applications more scalable, resilient, and secure. It acts as an intermediary
+between your application and your database to handle connection pooling and failover.
+
+### RDS Proxy Benefits
+
+1. **Improved Application Performance**: RDS Proxy maintains a pool of established connections to your RDS database instances, reducing the stress on database compute and memory
+resources that typically occurs when new connections are established.
+2. **Increased Application Availability**: RDS Proxy minimizes application disruption from outages affecting the availability of your database by automatically connecting to a
+new database instance while preserving application connections. 
+3. **Enhanced Application Security**: RDS Proxy gives you additional control over data security by giving you the choice to enforce IAM authentication for database access and
+avoid hard coding database credentials into application code.
+4. **Reduced Operational Burden**: RDS Proxy is fully serverless and a fully managed database proxy so it automatically scales to accommodate your workload while removing the
+burden of patching and managing your own proxy server.
+
+![RDS Proxy](./images/amazon-rds-proxy-architecture.png)
+
+### RDS Optimized Reads and Writes
+
+**RDS Optimized Reads and Writes** are performance-enhancing features designed to accelerate database workloads at no additional cost by leveraging specialized hardware and
+optimized I/O paths. Writes 0.5X faster and Reads 2X faster.
+
+RDS Optimized Reads and Writes utilizes NVMe-based SSD block storage instead of AWS EBS for temporary tables for greater performance. 
+
+Queries that use temporary tables; sort, hash aggregations, high-load joins, and Common Table Expressions (CTEs).
+
+RDS Optimized Reads and Writes are available for specific combination of Instance Classes and Engine Versions. eg.
+
+- db.r5b + MySQL 8.0
+- Some DB Engines only allow for optimized reads.
+- Reads and writes have different requirements.
+- Additional database configurations may be required to take advantage of optimized reads and writes.
+
+### RDS IAM Authentication
+
