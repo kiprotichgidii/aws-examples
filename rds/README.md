@@ -214,3 +214,53 @@ aws rds create-db-instance-read-replica \
   --upgrade-storage-config
 ```
 
+### Multi-AZ vs Read Replicas
+
+| Multi-AZ Deployments | Read Replicas |
+| --- | --- |
+| Synchronous replication, highly durable | Asynchrounous replication, highly scalable |
+| Only Database engine on primary instance is active | All read replicas are accessible and can be used for read scaling |
+| Autonated backups are taken from standy | No backups configured by default |
+| Always spans two AZs within a single region | Can be within an AZ, Cross-AZ, or cross-region |
+| Database engine version upgrades happen on primary instance | Database engine version upgrade is independent of the source database. |
+| Automatic failover to standby when a problem is detected | Can be manually promoted to a standalone database instance |
+
+### DB Instances
+
+A **DB instance** is an isolated database environment running in the cloud. A DB instance can contain multiple user-created databases, and can be accessed using the same client
+tools and applications you might use to access a standalone database instance. DB instances are simple to create and modify with the AWS command line tools, Amazon RDS API
+operations, or the AWS Management Console.
+
+You can have up to 40 Amazon RDS DB instances, with the following limitations:
+
+- 10 for each SQL Server edition (Enterprise, Standard, Web, and Express) under the "license-included" model
+- 10 for Oracle under the "license-included" model
+- 40 for Db2 under the "bring-your-own-license" (BYOL) licensing model
+- 40 for MySQL, MariaDB, or PostgreSQL
+- 40 for Oracle under the "bring-your-own-license" (BYOL) licensing model
+
+Each DB instance has a customer-supplied DB instance identifier, which must be unique for that customer in an AWS Region. The DB instance identifier forms part of the DNS
+hostname allocated to your instance by RDS. 
+
+Example: `db1.abcdefghijkl.us-east-1.rds.amazonaws.com`, where `db1` is your instance ID.
+
+### DB Instance Classes
+
+The **DB instance class** determines the computation and memory capacity of an Amazon RDS DB instance. The DB instance class that you need depends on your processing power and
+memory requirements. A DB instance class consists of both the DB instance class type and the size.
+
+##### DB Instance Class Types
+
+1. **General Purpose**
+   - db.m8g, db.m7i, db.m7g, db.m6g, db.m6i, db.m5, db.m4, db.m3
+2. **Memory Optimized**
+   - Optimized Z Family(high frequency CPU): db.z1d 
+   - Optimized X Family: db.x2g, db.x2i, db.x1
+   - Optimized R Family(balanced compute): db.r8g, db.r7g, db.r7i, db.r6g, db.r6i, db.r5b, db.r5d, db.r4, db.r3
+3. **Compute Optimized**
+   - db.c6gd
+4. **Burstable**
+   - db.t4g, db.t3, db.t2
+5. **Optimized Reads**
+   - db.m8gd, db.r8gd, db.r6gd, db.r6id
+
