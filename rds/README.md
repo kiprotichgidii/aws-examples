@@ -292,3 +292,30 @@ for AWS service-vended monitoring metrics. Performance Insights offers a domain-
 
 **Performance Insights** helps to easily identify bottlenecks and performance issues. By default, it is turned on, providing 1 week of performance data. At an additional cost, the retention period can be changed to 2 years.
 
+### RDS Custom
+
+**RDS Custom** automates database administration tasks and operations. RDS Custom makes it possible for you as a database administrator to access and customize your database
+environment and operating system. With RDS Custom, you can customize to meet the requirements of legacy, custom, and packaged applications.
+
+With Custom RDS, you can:
+
+- Install third-party applications.
+- Install custom database and OS patches and packages.
+- Configure specific database settings.
+- Configure file systems to share files directly with their applications.
+
+RDS Custom works with:
+
+- Microsoft SQL Server
+- Oracle Database
+
+![RDS Custom](./images/amazon-rds-custom-architecture.png)
+
+How it works:
+
+- You create RDS Custom DB instances
+- You connect an RDS Custom DB instance endpoint
+- Directly access the host to make changes
+
+![RDS Custom](./images/amazon-rds-custom-architecture-1.png)
+
