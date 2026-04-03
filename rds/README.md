@@ -469,3 +469,42 @@ aws rds modify-db-instance \
 
 RDS generates the master user password and manages it throughout it's lifecycle in Secrets Manager. 
 
+### Master User Account
+
+**Master User Account** in RDS is the initial database account that's created when you provision a new DB instance. It is not a superuser (like root or sysdba) but has 
+high-level permissions for most tasks, with security, auditing, and backups handled by RDS.
+
+This account is granted full administrative privileges on the database: i.e
+
+- Creating tables
+- Creating schemas
+- Performing SQL operations
+
+It's not recommended to use the Master User Account for daily use. Instead, it's recommended to create a user with the least amount of privileges required for the task at hand. 
+
+The Master User Account username and password is set at the time of creating the DB instance:
+
+```sh
+aws rds create-db-instance \
+  --db-instance-identifier my-db-instance \
+  --engine mysql \
+  --engine-version 8.0.35 \
+  --db-instance-class  db.m5.large \
+  --allocated-storage 20 \
+  --master-username  my-master-user \
+  --master-user-password  my-master-password
+```
+
+The username will be visible in the AWS Management Console.
+
+The Master Account user password can be reset as follows:
+
+```sh
+aws rds modify-db-instance \
+  --db-instance-identifier my-db-instance \
+  --master-user-password  my-new-password \
+  --apply-immediately
+```
+
+The password format and restrictions vary depending on the database engine but the general rules also apply, such as a minimum of 8 characters.
+
