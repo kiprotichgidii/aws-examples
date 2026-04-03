@@ -725,3 +725,103 @@ clustering and replication, which are typically among the most challenging aspec
 - TLS/SSL certificates can be applied to encrypt security connections so that termination occurs at the database.
 - Data is encrypted at rest and cannot be turned off. Can use KMS to manage keys.
 
+### Aurora Serverless Provisioned
+
+**Amazon Aurora Serverless Provisioned** is a database configuration where you manually choose and manage the specific compute instance types for your database cluster. Unlike 
+the **Aurora Serverless** version that autoscales, the provisioned model requires you to select instance sizes (e.g., db.r6g.large) based on your expected workload. **Aurora 
+Serverless Provisioned** is the default compute configuration for Amazon Aurora. 
+
+Aurora DB cluster contains a primary DB instance that performs reads and writes, and optionally, up to 15 Aurora Replicas(read DB instances). To create an Aurora DB provisioned 
+cluster via the AWS CLI:
+
+```sh
+aws rds create-db-cluster \
+  --db-cluster-identifier my-aurora-cluster \
+  --engine aurora-mariadb \
+  --engine-version 11.4.0 \
+  --master-username admin \
+  --master-user-password [PASSWORD] \
+  --backup-retention-period 7 \
+  --preferred-backup-window 03:00-04:00 \
+  --preferred-maintenance-window Sun:23:00-Mon:01:00
+```
+
+The primary DB instance will not be created for you by default. You will need to create your DB instances separately after creating your cluster. 
+
+### Aurora Reader and Writer Instances
+
+Amazon Aurora has two types of instances within a cluster: 
+
+- Reader Instances
+- Writer Instances
+
+| | Writer Instance | Reader Instance |
+| --- | --- | --- |
+| Role | Handles writes; can also read | Handles reads |
+| Quantity | One Per cluster | 15 per cluster for scalability |
+| Scalabiltiy | Vertical only(upgrade instance) | Horizontal(add more instances) |
+| Availability | Critical; failure triggers failover | Distributes reads; can be failover target |
+| Use Cases | Transactional charges | Read-heavy workloads, analytics |
+| Failver Capability | Automatic promotion of a reader incase of failure | Can be promoted to writer |
+| Cost | Based on instance size and IOPS | Increases with each instance added |
+
+The first DB instance created in your cluster will be the writer instance:
+
+```sh
+aws rds create-db-instance \
+  --db-instance-identifier my-writer-instance \
+  --db-instance-class db.r4.large \
+  --engine aurora-mariadb \
+  --engine-version 11.4.0 \
+  --db-cluster-identifier my-aurora-cluster
+```
+
+All other instances created afterwards will be reader instances(Aurora replicas):
+
+```sh
+aws rds create-db-instance \
+  --db-instance-identifier my-reader-instance \
+  --db-instance-class db.r4.large \
+  --engine aurora-mariadb \
+  --engine-version 11.4.0 \
+  --db-cluster-identifier my-aurora-cluster
+```
+
+### Aurora Serverless v2
+
+**Amazon Aurora Serverless v2** is an on-demand, autoscaling configuration for Amazon Aurora that automatically adjusts database capacity based on application demand. It is 
+designed to handle everything from small, infrequent workloads to large, business-critical applications requiring high availability.
+
+- Capacity is adjusted automatically based on application demand.
+- You are charged only for the resourcs that your database cluster consumes.
+- Suitable for the most demanding, highly variable workloads.
+- Aurora "Serverless" v2 does not scale to zero and must maintain at least 0.5 ACUs.
+- Only certain Aurora Instance classes are available to use with Aurora Serverless v2.
+
+#### Aurora Capacity Unit (ACU)
+
+ACU is the unit of measurement for Aurora Serverless v2 capacity. It is equivalent to 2 GiB of memory and 1 vCPU. The capacity ranges between 0.5 ACUs - 128 ACUs.
+
+When you configure your Aurora cluster for Serverless v2, you set the Minimum and Maximum ACU capacity:
+
+```sh
+aws rds create-db-cluster \
+  --db-cluster-identifier my-aurora-cluster \
+  --region us-east-1 \
+  --engine aurora-mariadb \
+  --engine-version 11.4.0 \
+  --master-username admin \
+  --master-user-password [PASSWORD] \
+  --serverless-v2-scaling-configuration MinCapacity=1,MaxCapacity=10
+```
+
+When creating a Writer instances for your serverless cluster, you need to specify the db class as being `db.serverless`:
+
+```sh
+aws rds create-db-instance \
+  --db-cluster-identifier my-serverless-v2-cluster \
+  --db-instance-identifier my-serverless-v2-writer \
+  --db-instance-class db.serverless \
+  --engine aurora-mariadb 
+```
+
