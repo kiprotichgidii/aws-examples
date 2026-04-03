@@ -574,3 +574,40 @@ Public access does not override Security Group rules, so you must still configur
 Public Access feature is useful when you are confident with password authentication and security groups, and you want the convinience of connecting to your RDS instance without 
 having to use an intermediate way for accessing the instances database.
 
+### Establishing Public Connections
+
+There are a few options for connecting to a Public RDS endpoint:
+
+1. Use a Database Management / DB IDE tool to establish a connection to the RDS instance. eg. TablePlus, Dbeaver, DataGrip, Navicat.
+2. Use AWS CloudShell and use a database client or database driver via code to establish a connection.
+3. Use a database client via your local terminal. eg. psql, mysql, mariadb
+4. Programmatically connect with a database driver from your preferred programming language. eg. JDBC, ODBC, Python DB-API, etc.
+
+![Public RDS Instance](images/amazon-public-rds-instance.png)
+
+#### What is a connection url string?
+
+A connection url string is a single string containing all the parameters to connect to a database. It's a convenient way to quickly configure a connection for database drivers and database command line clients. The connection string may vary between database drivers and database command line tools.
+
+- **MySQL Format**: `mysql://[hostname]:[port]/[databaseName]?[propertise]`
+- **MariaDB Format**: `mariadb://[hostname]:[port]/[databaseName]?[propertise]`
+- **Postgres Format**: `postgresql://[username]:[password]@[hostname]:[port]/[databaseName]?[propertise]`
+- **Oracle Format**: `oracle:thin:@[hostname]:[port]:[SID]` or `jdbc:oracle:thin:@//[hostname]:[port]/[serviceName]`  
+- **SQL Server Format**: `sqlserver://[hostname]:[port]/;databaseName=[databaseName];user=[user];password=[password]`
+
+Default Ports for DB engines:
+
+- MySQL: 3306
+- MariaDB: 3306
+- PostgreSQL: 5432
+- Oracle: 1521
+- SQL Server: 1433
+- Aurora MySQL: 3306
+- Aurora PostgreSQL: 5432
+
+Example of using a string to connect via the PSQL command line tool:
+
+```sh
+psql postgresql://gidii:testing123@my-postgres-db.123456789012.us-east-1.rds.amazonaws.com:5432/mydatabase
+```
+
