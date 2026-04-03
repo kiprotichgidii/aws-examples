@@ -433,3 +433,39 @@ It can be used with:
 Microsoft SQL Server and PostgreSQL DB instances support one and two-way forest trust relationships, while Oracle DB instances support one-way and two-way external and forest
 relationships.
 
+### Secrets Manager Integration
+
+Amazon RDS supports integration with **AWS Secrets Manager** to streamline how you manage your master user password for your RDS database instances. With this feature, RDS fully
+manages the master user password and stores it in AWS Secrets Manager whenever your RDS database instances are created, modified, or restored. 
+
+The feature supports the entire lifecycle maintenance for your RDS master user password including regular and automatic password rotations; removing the need for you to manage
+rotations using custom Lambda functions.
+
+RDS integration with AWS Secrets Manager improves your database security by ensuring your RDS master user password is not visible in plaintext to administrators or engineers
+during your database creation workflow. Furthermore, you have flexibility in encrypting the secrets using your own managed key or by using a KMS key provided by AWS Secrets 
+Manager.
+
+- By default, the secret will be rotated every 7 days.
+- Web applications will have to be configured to access the password programmatically from AWS Secrets Manager.
+- The secret is deleted when the RDS instance is deleted.
+
+Secrets Manager Integration does not work with:
+
+- Microsoft SQL Server
+- Amazon RDS Blue/Green deployments
+- Amazon RDS Custom
+- Oracle Data Guard Switchover
+- RDS for Oracle with CDB
+
+Let Secrets Manager manage master user passwords for RDS:
+
+```sh
+aws rds modify-db-instance \
+  --db-instance-identifier my-db-instance \
+  --db-instance-class  db.m5.large \
+  --manage-master-user-password \
+  --apply-immediately
+```
+
+RDS generates the master user password and manages it throughout it's lifecycle in Secrets Manager. 
+
