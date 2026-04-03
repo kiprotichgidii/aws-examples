@@ -693,7 +693,7 @@ engine version to a supported version, then Amazon RDS will automatically upgrad
 
 ## Amazon Aurora
 
-Amazon Aurora is a fully managed, high-performance relational database engine compatible with MySQL and PostgreSQL, offering up to 5x the throughput of standard MySQL and 3x of PostgreSQL. Designed for cloud-native applications, it provides high availability, auto-scaling storage up to 128TB, and enterprise-grade security.
+**Amazon Aurora** is a fully managed, high-performance relational database engine compatible with MySQL and PostgreSQL, offering up to 5x the throughput of standard MySQL and 3x of PostgreSQL. Designed for cloud-native applications, it provides high availability, auto-scaling storage up to 128TB, and enterprise-grade security.
 
 Aurora includes a high-performance storage subsystem. Its MySQL- and PostgreSQL-compatible database engines are customized to take advantage of that fast distributed storage. 
 The underlying storage grows automatically as needed. An Aurora cluster volume can grow to a maximum size of 128 tebibytes (TiB). Aurora also automates and standardizes database 
