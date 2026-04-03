@@ -433,7 +433,7 @@ It can be used with:
 Microsoft SQL Server and PostgreSQL DB instances support one and two-way forest trust relationships, while Oracle DB instances support one-way and two-way external and forest
 relationships.
 
-### Secrets Manager Integration
+### RDS Secrets Manager Integration
 
 Amazon RDS supports integration with **AWS Secrets Manager** to streamline how you manage your master user password for your RDS database instances. With this feature, RDS fully
 manages the master user password and stores it in AWS Secrets Manager whenever your RDS database instances are created, modified, or restored. 
@@ -469,7 +469,7 @@ aws rds modify-db-instance \
 
 RDS generates the master user password and manages it throughout it's lifecycle in Secrets Manager. 
 
-### Master User Account
+### RDS Master User Account
 
 **Master User Account** in RDS is the initial database account that's created when you provision a new DB instance. It is not a superuser (like root or sysdba) but has 
 high-level permissions for most tasks, with security, auditing, and backups handled by RDS.
@@ -507,4 +507,70 @@ aws rds modify-db-instance \
 ```
 
 The password format and restrictions vary depending on the database engine but the general rules also apply, such as a minimum of 8 characters.
+
+### RDS Database Activity Streams
+
+**Amazon RDS Database Activity Streams (DAS)** provides a near real-time stream of all audit events from your database, allowing you to monitor and audit database activity for security and compliance.
+
+Database Activity Streams can be enabled via the AWS CLI:
+
+```sh
+aws rds start-activity-stream \
+  --mode async \
+  --kms-key-id my-kms-key-id \
+  --resource-arn my-db-instance-arn \
+  --engine-native-audit-fields-include \
+  --apply-immediately 
+```
+
+- Amazon RDS pushes activities to an Amazon Kinesis Data Stream in near real-time
+- A Kinesis Stream is created automatically. Active Streams feature in Amazon RDS is free, but Kinesis is not.
+- From Kinesis, you can monitor the activity stream, or other services and applications can consume the activity stream for further analysis.
+
+### RDS Parameter Groups
+
+**Amazon RDS parameter groups** act as a configuration engine for your database, allowing you to manage engine settings (like memory allocation, connection limits, and logging) 
+for one or more DB instances. Parameter groups let you change database parameters to specify how you want your instance(s) to be configured.
+
+This can be done using the AWS CLI as follows:
+
+```sh
+aws rds modify-db-parameter-group \
+  --db-parameter-group-name my-db-parameter-group \
+  --parameters "ParameterName=my-parameter,ParameterValue=my-value,ApplyMethod=immediate" \
+  --apply-immediately
+```
+
+Each database engine has its own set of parameters that can be modified. For example, Postgres has the following:
+
+- `work_mem`: Memory for  sort operations; increase for complex queries
+- `shared_buffers`: Memory for shared buffers; typically 25-40% of system memory
+- `maintenance_work_mem`: Memory for maintenance operations; increase for faster vacuuming/indexing
+- `effective_cache_size`: Helps query planner with estimating available memory for caching
+- `checkpoint_completion_target`: Spreads checkpoint writes over time; closer to 1.0 for even spread
+- `wal_buffers`: Memory for write-ahead log (WAL) buffers; increase to batch writes and reduce I/O
+
+### RDS Public Accessibility
+
+In Amazon RDS, Public Accessibility determines whether a database instance is assigned a public IP address and is reachable from outside its Virtual Private Cloud (VPC) via the internet.
+
+Passing the Public Access(sible) option changes if the DNS endpoint will resolve to the private IP address from traffic outside of the VPC.
+
+```sh
+aws rds create-db-instance \
+  --db-instance-identifier my-db-instance \
+  --db-instance-class  db.m5.large \
+  --engine mysql \
+  --engine-version 8.0.35 \
+  --allocated-storage 20 \
+  --master-username  adminuser \
+  --master-user-password  mysecuremasterpassword \
+  --publicly-accessible \
+  --backup-retention 7 
+```
+
+Public access does not override Security Group rules, so you must still configure Security Groups to allow traffic from the internet to your DB instance ports. 
+
+Public Access feature is useful when you are confident with password authentication and security groups, and you want the convinience of connecting to your RDS instance without 
+having to use an intermediate way for accessing the instances database.
 
