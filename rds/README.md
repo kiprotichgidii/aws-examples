@@ -691,3 +691,37 @@ This paid offering gives you more time to upgrade to a supported major engine ve
 RDS Extended Support is available for up to 3 years past the RDS end of standard support date for a major engine version. After this time, if you haven't upgraded your major 
 engine version to a supported version, then Amazon RDS will automatically upgrade your major engine version.
 
+## Amazon Aurora
+
+Amazon Aurora is a fully managed, high-performance relational database engine compatible with MySQL and PostgreSQL, offering up to 5x the throughput of standard MySQL and 3x of PostgreSQL. Designed for cloud-native applications, it provides high availability, auto-scaling storage up to 128TB, and enterprise-grade security.
+
+Aurora includes a high-performance storage subsystem. Its MySQL- and PostgreSQL-compatible database engines are customized to take advantage of that fast distributed storage. 
+The underlying storage grows automatically as needed. An Aurora cluster volume can grow to a maximum size of 128 tebibytes (TiB). Aurora also automates and standardizes database 
+clustering and replication, which are typically among the most challenging aspects of database configuration and administration.
+
+### Scaling
+
+#### Durability and Fault Tolerance
+
+- Aurora backups and Failover are handled autmatically.
+- Snapshots of data can be shared with other AWS accounts.
+- Storage is self-healing; the data blocks and disks are continuously scanned for errors and repaired automatically.
+
+#### Availability
+
+- Aurora deploys in a minmum of three AZs, each containing 2 copies of your data at all times.
+- That means that there are 6 copies of your data in total.
+- You can lose up to 2 copies of your data without affecting write availability.
+- You can lose up to 3 copies of your data without affecting read availability.
+
+#### Storage
+
+- A cluster starts with 10GB of storage, and scales in 10GB increments up to 64TB or 128TB depending on the DB engine version.
+- Storage automatically scales with the data in your cluster volume.
+- Compute resources can scale up to 32 vCPUs and 244GB memory.
+
+#### Security
+
+- TLS/SSL certificates can be applied to encrypt security connections so that termination occurs at the database.
+- Data is encrypted at rest and cannot be turned off. Can use KMS to manage keys.
+
