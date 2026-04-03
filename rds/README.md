@@ -413,3 +413,23 @@ An **authentication token** is a unique string of characters that Amazon RDS gen
      --username db-user-1 \
      --region us-east-1)"
    ```
+### RDS Kerberos Authentication
+
+**Amazon RDS Kerberos authentication** provides a centralized, secure way to manage database user identities by integrating with Microsoft Active Directory (AD). It enables
+features like Single Sign-On (SSO), allowing users to authenticate to database instances using their existing AD credentials without sending passwords over the network.
+
+RDS support for Kerberos and Active Directory provides the benefits of single sign-on and centralized authentication of database users. It works with:
+
+- AWS Directory Service for Microsoft Active Directory
+- On-premises Active Directory
+
+It can be used with:
+
+- Microsoft SQL Server
+- PostgreSQL
+- MySQL
+- Oracle
+
+Microsoft SQL Server and PostgreSQL DB instances support one and two-way forest trust relationships, while Oracle DB instances support one-way and two-way external and forest
+relationships.
+
