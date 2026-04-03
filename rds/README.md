@@ -624,3 +624,70 @@ Connection options:
 - For On-Premise networks, use AWS Direct Connect to establish a connection to the VPC.
 - AWS CloudShell cannot be used to establish a connection to a private RDS instance because it is not in the same VPC.
 
+### RDS Security Groups
+
+**Amazon RDS security groups** act as a virtual firewall for your database, controlling which network traffic is allowed to reach or leave your DB instance.
+
+Amazon RDS security groups enable you to manage network access to your Amazon RDS instances. With security groups, you specify sets of IP addresses using CIDR notation, and only 
+network traffic originating from these addresses is recognized by your Amazon RDS instance.
+
+Although they function in a similar way, Amazon RDS security groups are different from Amazon EC2 security groups. It is possible to add an EC2 security group to your RDS 
+security group. Any EC2 instances that are members of the EC2 security group are then able to access the RDS instances that are members of the RDS security group.
+
+![RDS Security Group](./images/amazon-rds-security-groups.png)
+
+### RDS Blue/Green Deployments
+
+**Amazon RDS Blue/Green Deployments** provide a fully managed staging environment that allows you to test database changes—such as engine upgrades, schema modifications, or 
+parameter updates—against a mirror of your production data before promoting them to the live environment.
+
+A blue/green deployment creates a staging environment that copies the production environment. The blue environment is the current production environment, and the green 
+environment is the staging environment and stays in sync with the current production environment.
+
+You can make changes to the RDS DB instances in the green environment without affecting production workloads. For example, you can upgrade the major or minor DB engine version 
+upgrade the underlying file system configuration, or change database parameters in the staging environment.
+
+You can thoroughly test changes in the green environment. When ready, you can switch over the environments to transition the green environment to be the new production 
+environment. The switchover typically takes under a minute with no data loss and no need for application changes.
+
+Because the green environment is a copy of the topology of the production environment, the green environment includes the features used by the DB instance. These features 
+include the read replicas, the storage configuration, DB snapshots, automated backups, Performance Insights, and Enhanced Monitoring. If the blue DB instance is a Multi-AZ DB 
+instance deployment, then the green DB instance is also a Multi-AZ DB instance deployment.
+
+Currently, blue/green deployments are supported only for RDS for MariaDB, RDS for MySQL, and RDS for PostgreSQL. Under certain conditions, RDS for PostgreSQL uses logical 
+replication instead of physical replication to keep the green environment in sync with the blue environment.
+
+Creating a Blue/Green deployment for RDS via the AWS CLI:
+
+```sh
+aws rds create-blue-green-deployment \
+  --blue-green-deployment-name my-blue-green-deployment \
+  --source arn:aws:rds:us-east-1:123456789012:db:my-db-instance \
+  --target-engine-version 15.4 \
+  --target-db-parameter-group-name my-db-parameter-group \
+  --target-db-instance-class db.m5.8xlarge \
+  --upgrade-target-storage-config 
+```
+
+### RDS Extended Support
+
+**Amazon RDS Extended Support** allows you to continue running a database on a major engine version past the RDS end of standard support date for an additional cost. 
+
+You can only enroll a database in RDS Extended Support by enabling RDS Extended Support when you first create or restore a DB instance. You can't update your RDS Extended 
+Support enrollment status on existing DB instances unless you are restoring them.
+
+If you enabled RDS Extended Support during the creation or restoration of a DB instance, then after the RDS end of standard support date, Amazon RDS will automatically enroll 
+the DB instance in RDS Extended Support. Automatic enrollment into RDS Extended Support doesn't change the database engine and doesn't impact the uptime or performance of your 
+DB instance.
+
+RDS Extended Support provides the following updates and technical support:
+
+- Security updates for critical and high CVEs for your DB instance or DB cluster, including the database engine
+- Bug fixes and patches for critical issues
+- The ability to open support cases and receive troubleshooting help within the standard Amazon RDS service level agreement
+
+This paid offering gives you more time to upgrade to a supported major engine version. 
+
+RDS Extended Support is available for up to 3 years past the RDS end of standard support date for a major engine version. After this time, if you haven't upgraded your major 
+engine version to a supported version, then Amazon RDS will automatically upgrade your major engine version.
+
