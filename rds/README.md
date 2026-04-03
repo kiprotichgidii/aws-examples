@@ -585,7 +585,7 @@ There are a few options for connecting to a Public RDS endpoint:
 
 ![Public RDS Instance](images/amazon-public-rds-instance.png)
 
-#### What is a connection url string?
+#### Connection url string
 
 A connection url string is a single string containing all the parameters to connect to a database. It's a convenient way to quickly configure a connection for database drivers and database command line clients. The connection string may vary between database drivers and database command line tools.
 
@@ -610,4 +610,17 @@ Example of using a string to connect via the PSQL command line tool:
 ```sh
 psql postgresql://gidii:testing123@my-postgres-db.123456789012.us-east-1.rds.amazonaws.com:5432/mydatabase
 ```
+
+### Establishing Private Connections
+
+![Private RDS Instance](./images/amazon-rds-establishing-private-connections.png)
+
+Connection options:
+
+- Luanch a CLoud9 server(in a public subnet) in the same VPC.
+- Connect through a bastion or jumpbox and tunnel through the box.
+- Launch an EC2 instance and connect via SSH or Session Manager to establish a connection.
+- Use AWS Client VPN to connect local machine to VPC and establish a connection to the VPC.
+- For On-Premise networks, use AWS Direct Connect to establish a connection to the VPC.
+- AWS CloudShell cannot be used to establish a connection to a private RDS instance because it is not in the same VPC.
 
