@@ -854,15 +854,16 @@ low-latency local reads and robust cross-Region disaster recovery with minimal i
 
 To create an Aurora global database and its associated resources by using the AWS CLI, use the following steps:
 
-1. Create an Aurora global database, giving it a name and specifying the Aurora database engine type that you plan to use.
+1. Create an Aurora global database cluster, giving it a name and specifying the Aurora database engine type that you plan to use.
 
    ```sh
-   aws rds create-global-cluster --region primary_region \
+   aws rds create-global-cluster \
+     --region primary_region \
      --global-cluster-identifier global_database_id \
      --engine aurora-mysql \
      --engine-version version # optional
    ```
-2. Create an Aurora DB cluster for the Aurora global database.
+2. Create an Aurora DB primary cluster for the Aurora global database.
    
    ```sh
    aws rds create-db-cluster \
@@ -885,15 +886,25 @@ To create an Aurora global database and its associated resources by using the AW
      --engine-version version \
      --region primary_region
    ```
-4. Create a second DB instance for Aurora DB cluster. This is a reader to complete the Aurora DB cluster.
+4. Create a secondary Aurora DB cluster in a different region.
+   
+   ```sh
+   aws rds create-db-cluster \
+     --region secondary_region \
+     --db-cluster-identifier secondary_db_cluster_id \
+     --engine aurora-mysql \
+     --engine-version version \
+     --global-cluster-identifier global_database_id
+   ```
+5. Create an Aurora DB instance for the secondary cluster. This is a reader to complete the Aurora DB cluster.
    
    ```sh
    aws rds create-db-instance \
-     --db-cluster-identifier primary_db_cluster_id \
+     --db-cluster-identifier secondary_db_cluster_id \
      --db-instance-class instance_class \
      --db-instance-identifier replica_db_instance_id \
-     --engine aurora-mysql
+     --engine aurora-mysql \
+     --region secondary_region
    ```
 
 When the DB instance is available, replication begins from the writer node to the replica.
-
