@@ -725,11 +725,11 @@ clustering and replication, which are typically among the most challenging aspec
 - TLS/SSL certificates can be applied to encrypt security connections so that termination occurs at the database.
 - Data is encrypted at rest and cannot be turned off. Can use KMS to manage keys.
 
-### Aurora Serverless Provisioned
+### Aurora Provisioned
 
-**Amazon Aurora Serverless Provisioned** is a database configuration where you manually choose and manage the specific compute instance types for your database cluster. Unlike 
+**Amazon Aurora Provisioned** is a database configuration where you manually choose and manage the specific compute instance types for your database cluster. Unlike 
 the **Aurora Serverless** version that autoscales, the provisioned model requires you to select instance sizes (e.g., db.r6g.large) based on your expected workload. **Aurora 
-Serverless Provisioned** is the default compute configuration for Amazon Aurora. 
+Provisioned** is the default compute configuration for Amazon Aurora. 
 
 Aurora DB cluster contains a primary DB instance that performs reads and writes, and optionally, up to 15 Aurora Replicas(read DB instances). To create an Aurora DB provisioned 
 cluster via the AWS CLI:
@@ -824,4 +824,76 @@ aws rds create-db-instance \
   --db-instance-class db.serverless \
   --engine aurora-mariadb 
 ```
+
+### Aurora Serverless V2 vs Aurora Provisioned
+
+| | Aurora Serverless V2 | Aurora Provisioned |
+| --- | --- | --- |
+| Scaling | Fine-grained, almost instant scaling | Manual scaling, requires planning and downtime |
+| Capacity Range | 0.5-128 ACUs, more flexible | Fixed, based on instance chosen. |
+| Scaling speed | Seconds | N/A (manual intervention required) | 
+| Read/Arite scaling | Independently | Depends on instance type and read repica configuration |
+| Compatibility | Broader version support | Wide version suppor, depdending on the instance type. |
+| Use cases | Highly variabel workkloads requiring immediate scaling | Stable workloads with predictable performance needs |
+| Billing | ACUs per second, more granular, + storage. | Instance hours + storage. |
+| Start/Stop | Responsive start/stop, cost-saving for intermittent loads. | Manual start/stop. | 
+| Maintenance | Minimal downtime, seamless. | Scheduled maintenance windows. | 
+
+### Aurora Global Database
+
+**Amazon Aurora Global Database** is a feature designed for globally distributed applications, allowing a single Aurora database to span multiple AWS Regions. It provides 
+low-latency local reads and robust cross-Region disaster recovery with minimal impact on performance.
+
+- Has a primary cluster in 1 region
+- Has up to 5 secondary DB clusters in different regions
+- Write operations occur on the primary cluster
+- Data is replicated to secondary clusters using dedicated infrastructure
+- Global Database is only available in specific regions and specific database versions
+
+![Aurora Global Database](./images/amazon-aurora-global-database.png)
+
+To create an Aurora global database and its associated resources by using the AWS CLI, use the following steps:
+
+1. Create an Aurora global database, giving it a name and specifying the Aurora database engine type that you plan to use.
+
+   ```sh
+   aws rds create-global-cluster --region primary_region \
+     --global-cluster-identifier global_database_id \
+     --engine aurora-mysql \
+     --engine-version version # optional
+   ```
+2. Create an Aurora DB cluster for the Aurora global database.
+   
+   ```sh
+   aws rds create-db-cluster \
+     --region primary_region \
+     --db-cluster-identifier primary_db_cluster_id \
+     --master-username userid \
+     --master-user-password password \
+     --engine aurora-mysql \
+     --engine-version version \
+     --global-cluster-identifier global_database_id
+   ```
+3. Create the Aurora DB instance for the cluster. This is the primary Aurora DB cluster for the global database.
+
+   ```sh
+   aws rds create-db-instance \
+     --db-cluster-identifier primary_db_cluster_id \
+     --db-instance-class instance_class \
+     --db-instance-identifier db_instance_id \
+     --engine aurora-mysql \
+     --engine-version version \
+     --region primary_region
+   ```
+4. Create a second DB instance for Aurora DB cluster. This is a reader to complete the Aurora DB cluster.
+   
+   ```sh
+   aws rds create-db-instance \
+     --db-cluster-identifier primary_db_cluster_id \
+     --db-instance-class instance_class \
+     --db-instance-identifier replica_db_instance_id \
+     --engine aurora-mysql
+   ```
+
+When the DB instance is available, replication begins from the writer node to the replica.
 
