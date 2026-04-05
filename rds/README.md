@@ -908,3 +908,39 @@ To create an Aurora global database and its associated resources by using the AW
    ```
 
 When the DB instance is available, replication begins from the writer node to the replica.
+
+### Aurora RDS Data API
+
+**Amazon RDS Data API** is a secure HTTPS endpoint that allows you to run SQL statements against Amazon Aurora databases without the need for persistent database connections or 
+specialized drivers. It is particularly designed for modern, cloud-native applications such as those using AWS Lambda.
+
+- It provides a secure HTTP endpoint and integration with AWS SDKs. 
+- You can use the endpoint to run SQL statements without managing connections.
+- Unlimited max request per second.
+- Must be enabled on the DB cluster to use.
+- By default, Data API calls are excluded by CloudTrail since they are data events.
+- Multi-statements are not supported.
+- Cannot reterive multi-dimensional arrays for a column.
+- Supports specific data types.
+- Supports execution and transaction statements.
+
+To enable Data API on your Aurora DB cluster:
+
+```sh
+aws rds enable-http-endpoint \
+  --resource-arn cluster-arn
+```
+
+To execute an SQL statement using the RDS Data API:
+
+```sh
+aws rds-data execute-statement \
+  --resource-arn "arn:aws:rds:us-east-1:123456789012:cluster:my-aurora-cluster" \
+  --secret-arn "arn:aws:secretsmanager:us-east-1:123456789012:secret:my-aurora-cluster-secret" \
+  --sql "SELECT * FROM users" \
+  --database "mydb" \
+  --region us-east-1
+```
+
+Aurora in the AWS Management Console has a Query Editor, which is just an interface to connect and use the RDS Data API.
+
