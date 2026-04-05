@@ -967,3 +967,56 @@ With **Babelfish**, apps originally built for Microsoft SQL Server can work dire
   - Query Editor
   - Kerberos Authentication via Active Directory
   
+## MongoDB
+
+**MongoDB** in an open-source document database which stores JSON-like documents. It's primary data structure is BSON (Binary JSON).
+
+**Binary JSON(BSON)**
+
+- BSON is a binary representation of JSON-like documents.
+- BSON is designed to be more efficient both in terms of storage space and scan speed compared to JSON.
+- BSON has more data types than JSON eg.
+  - Datetime, byte arrays, regular expressions, MD5 binary data, javascript code.
+
+Example BSON file:
+
+```bson
+BSON:
+  \x16\x00\x00\x00
+  \x02
+  hello\x00
+  \x06\x00\x00\x00world\x00
+  \x00
+```
+Query Operation on a MongoDB databse:
+
+```sh
+db.collection.insertMany([
+  {
+    name: "John Doe",
+    age: 30,
+    email: "[EMAIL_ADDRESS]"
+  },
+  {
+    name: "Jane Doe",
+    age: 25,
+    email: "[EMAIL_ADDRESS]"
+  }
+]);
+```
+
+- MongoDB is used with an interactive shell (mongosh) or a MongoDB driver in a programming language.
+  - Traditionally, MongoDB does not use an SQL language, but there is MQL and Atlas SQL to query MongoDB.
+- The default port for MongoDB is 27017.
+- MongoDB supports searches against fields, range queries, and regular expressions.
+- MongoDB supports primary and seconday indexes.
+- High availability can be obtained via replica sets (replica sets to offload reads and provide failover).
+- MongoDB scales horizontally via sharding (sharding to distribute data across multiple shards).
+- MongoDB can be used as a file system (GridFS), with load balancing and data replication features over multiple machines for storing files.
+- MongoDB provides three ways to perform aggregation(grouping data during a query):
+  - Aggregation pipeline
+  - Map-reduce operations
+  - Single-purpose aggregation operators
+- MongoDB supports fixed-size collections called capped collections.
+- MongoDB claims to support multi-document ACID transactions.
+
