@@ -944,3 +944,26 @@ aws rds-data execute-statement \
 
 Aurora in the AWS Management Console has a Query Editor, which is just an interface to connect and use the RDS Data API.
 
+### Babelfish for Aurora 
+
+**Babelfish** for PostgreSQL is an open-source library with the compatibility for PostgreSQL to understand queries for applications written for SQL Server.
+
+**Babelfish for Aurora PostgreSQL** extends your Aurora PostgreSQL DB cluster with the ability to accept database connection requests form Microsoft SQL.
+
+With **Babelfish**, apps originally built for Microsoft SQL Server can work directly with Aurora PostgreSQL with few code changes compared to a traditional migration and without changing database drivers.
+
+- Both SQL dialects supported by Babelfish are available through their native write protocols at the following ports:
+  - SQL Server dialetc (T-SQL), port 1433.
+  - PostgreSQL dialect (PL/pqSQL), port 5432.
+- Babelfish runs the Transact-SQL (T-SQL)
+- Babelfish currently does not support:
+  - RDS Blue/Green deployments
+  - AWS IAM
+  - Database Activity Streams (DAS)
+  - PostgreSQL Logical replication
+  - RDS Data API with Aurora Serverless v2 and Provisioned
+  - RDS Proxy with RDS for SQL Server
+  - Salted Challenge Response Authentication Mechanism (SCRAM)
+  - Query Editor
+  - Kerberos Authentication via Active Directory
+  
