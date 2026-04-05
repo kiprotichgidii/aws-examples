@@ -1020,3 +1020,40 @@ db.collection.insertMany([
 - MongoDB supports fixed-size collections called capped collections.
 - MongoDB claims to support multi-document ACID transactions.
 
+## Amazon DocumentDB
+
+**Document Store**
+
+A **document** store is a NOSQL database that stores documents as it's primary data structure. A document could be an XML but more commonly is JSON or JSON-like. Document 
+Stores are a sub-class of Key/Value stores.
+
+The components of a Document store compared to a real SQL database:
+
+![Document Store vs SQL Database](./images/document-store-vs-sql-database.png)
+
+**Amazon DocumentDB** is a fully managed, scalable, and highly available NoSQL document database service designed to store, query, and index JSON 
+data at scale. It allows developers to use the same MongoDB application code, drivers, and tools they already use, while providing the performance and reliability of a managed 
+AWS service.
+
+MongoDB is a very popular NOSQL database among developers , but there were open-source licensing issues around using open-source MongoDB, so AWS got around it by building their 
+own NOSQL database, famously known as **Amazon DocumentDB**.
+
+Cluster types:
+
+1. Instance based cluster
+  - Manage your instances, directly choosing instance type.
+2. Elastic Cluster
+  - Cluster automatically scale, you choose vCPU and number of instances per shard.
+
+- DocumentDB is compatible with MongoDB 4.0, and 5.0
+- DocumentDB does not support all functionalities of MongoDb eg. Writeable retries
+- DocumentDB storage volumes grow in increments of 10GB, up to a maximum of 128TiB.
+- Create upto 15 replicas.
+- Amazon DocumentDB continously monitors the health of the cluster and automatically restarts failed instances.
+- Failover will automatically occur to up to 15 replicas in other AZs.
+- Backup is turned on by default(cannot be turned off), with a retention period of between 1-35 days, supports point-in-time recovery.
+- Clusters are deployed into a customer's VPC
+- Offers a performance insights feature to determine bottlenecks for reads and writes.
+- Data is encrypted in-transit and at rest.
+- Connection must be via TLS.
+
