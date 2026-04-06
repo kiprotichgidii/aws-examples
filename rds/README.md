@@ -1383,3 +1383,66 @@ Cassandra Query Language (CQL) is a database query language for Apache Cassandra
 
 ## Amazon Neptune
 
+**Amazon Neptune** is a fully managed, high-performance graph database service optimized for storing and querying highly connected datasets. It supports popular graph  
+models—Property Graph (via Apache TinkerPop Gremlin/openCypher) and W3C RDF (via SPARQL)—making it ideal for social networking, fraud detection, recommendation engines, and  
+knowledge graphs.
+
+A **graph database** is a database composed of a data structure that uses vertices (nodes, dots) which form a relationship to other vertices via edges (arcs, lines).
+
+Use cases for graph databases:
+
+- Fraud detection
+- Real-time recommendation engines
+- Master data management (MDM)
+- Network and IT operations
+- Identity and Access Management (IAM)
+- Traceability and Management
+- Contact Tracing
+- Data Lineage for GDPR
+- Customer 360-degree analysis
+- Product recommendations
+- Social Media Graphing
+- Feature engineering
+
+### Amazon Neptune Analytics
+
+Neptune Analytics is a memory-optimized graph database engine for analytics. With Neptune Analytics, you can get insights and find trends by processing large amounts of graph  
+data in seconds. To analyze graph data quickly and easily, Neptune Analytics stores large graph datasets in memory. It supports a library of optimized graph analytic 
+algorithms, low-latency graph queries, and vector search capabilities within graph traversals.
+
+Neptune Analytics is an ideal choice for investigatory, exploratory, or data-science workloads that require fast iteration for data, analytical and algorithmic processing, or 
+vector search on graph data. It complements Amazon Neptune Database, a popular managed graph database. To perform intensive analysis, you can load the data from a Neptune 
+Database graph or snapshot into Neptune Analytics. You can also load graph data that's stored in Amazon S3.
+
+It integrates with Workbench, and includes algorithms like PageRank, shortest path, and community detection directly applicable on the graph data. Leverages an Apache Spark 
+cluster to perform complex analytics on the graph data.
+
+### Amazon Neptune ML
+
+Use Graph Nueral Networks (GNNs), a learning (ML) technique built for graphs, to make easy, fast, and more accurate using graph data. 
+ - Powered by the open-source Deep Graph Library (DGL)
+ - Neptune integrates with LangChain
+
+### Amazon Neptune Database
+
+Neptune database has two types:
+  - Neptune Provisioned: You choose an instance type
+  - Neptune Serverless: A serverless offering, you set a min and max Neptune Capacity Units (NCUs).
+
+- Neptune database supports multi-AZ deployment.
+- Netptune has two storage configurations:
+  - **Neptune I/O optimized**: increased input/output for additional costs
+  - **Neptune Standard**: 25% lower cost than I/O optimized
+- You can create a Jupyter Notebook (within Amazon SageMaker Notebook) that includes magic extensions to easily work with Neptune database.
+- Neptune Bulk Loader can be used to import large amounts of data.
+- AWS has multiple built-in or third-party options for visualizing your graph database:
+  - The open-source graph-explorer
+  - Tom Sawyer Software
+  - Cambridge Intelligence
+  - Graphistry
+  - Metaphacts
+  - G.V()
+  - Linkurious
+
+#### Gremlin
+
