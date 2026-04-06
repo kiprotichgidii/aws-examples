@@ -1045,14 +1045,21 @@ Cluster types:
 2. Elastic Cluster
   - Cluster automatically scale, you choose vCPU and number of instances per shard.
 
-- DocumentDB is compatible with MongoDB 4.0, and 5.0
-- DocumentDB does not support all functionalities of MongoDb eg. Writeable retries
-- DocumentDB storage volumes grow in increments of 10GB, up to a maximum of 128TiB.
-- Create upto 15 replicas.
-- Amazon DocumentDB continously monitors the health of the cluster and automatically restarts failed instances.
-- Failover will automatically occur to up to 15 replicas in other AZs.
-- Backup is turned on by default(cannot be turned off), with a retention period of between 1-35 days, supports point-in-time recovery.
-- Clusters are deployed into a customer's VPC
+DocumentDB is compatible with MongoDB 4.0, and 5.0
+
+DocumentDB does not support all functionalities of MongoDb eg. Writeable retries
+
+DocumentDB storage volumes grow in increments of 10GB, up to a maximum of 128TiB.
+
+Create upto 15 replicas.
+
+Amazon DocumentDB continously monitors the health of the cluster and automatically restarts failed instances.
+
+Failover will automatically occur to up to 15 replicas in other AZs.
+
+Backup is turned on by default(cannot be turned off), with a retention period of between 1-35 days, supports point-in-time recovery.
+
+Clusters are deployed into a customer's VPC
 - Offers a performance insights feature to determine bottlenecks for reads and writes.
 - Data is encrypted in-transit and at rest.
 - Connection must be via TLS.
