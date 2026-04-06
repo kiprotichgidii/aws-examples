@@ -1345,39 +1345,41 @@ Cassandra Query Language (CQL) is a database query language for Apache Cassandra
 
 2. Create Table:
 
-  ```sql
-  CREATE TABLE IF NOT EXISTS exampleKeyspace.users (
-    user_id uuid PRIMARY KEY,
-    first_name text,
-    last_name text,
-    email text
-  );
-  ```
+    ```sql
+    CREATE TABLE IF NOT EXISTS exampleKeyspace.users (
+        user_id uuid PRIMARY KEY,
+        first_name text,
+        last_name text,
+        email text
+    );
+    ```
 
 3. Insert Data:
 
-  ```sql
-  INSERT INTO exampleKeyspace.users (user_id, first_name, last_name, email)
-  VALUES (uuid(), 'John', 'Doe', 'johndoe@example.com');
-  ```
+    ```sql
+    INSERT INTO exampleKeyspace.users (user_id, first_name, last_name, email)
+    VALUES (uuid(), 'John', 'Doe', 'johndoe@example.com');
+    ```
 
 4. Query Data:
 
-  ```sql
-  SELECT * FROM exampleKeyspace.users WHERE user_id = 123e4567-e89b-12d3-a456-426614174000;
-  ```
+    ```sql
+    SELECT * FROM exampleKeyspace.users WHERE user_id = 123e4567-e89b-12d3-a456-426614174000;
+    ```
 
 5. Update Data:
 
-  ```sql
-  UPDATE exampleKeyspace.users 
-  SET email = [EMAIL_ADDRESS]' 
-  WHERE user_id = 123e4567-e89b-12d3-a456-426614174000;
-  ```
+    ```sql
+    UPDATE exampleKeyspace.users 
+    SET email = [EMAIL_ADDRESS]' 
+    WHERE user_id = 123e4567-e89b-12d3-a456-426614174000;
+    ```
 
 6. Delete Data:
 
-  ```sql
-  DELETE FROM exampleKeyspace.users WHERE user_id = 123e4567-e89b-12d3-a456-426614174000;
-  ```
+    ```sql
+    DELETE FROM exampleKeyspace.users WHERE user_id = 123e4567-e89b-12d3-a456-426614174000;
+    ```
+
+## Amazon Neptune
 
