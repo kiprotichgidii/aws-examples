@@ -1057,3 +1057,40 @@ Cluster types:
 - Data is encrypted in-transit and at rest.
 - Connection must be via TLS.
 
+## Amazon DynamoDB
+
+**Amazon DynamoDB** is a fully managed, serverless, NoSQL database service providing consistent, single-digit millisecond performance at any scale. It supports key-value and 
+document data models, making it ideal for high-traffic applications like gaming, e-commerce, and mobile backends. Key features include automatic scaling, built-in security, and 
+ACID transactions.
+
+### Features
+
+1. Performance and scalability
+   - With DynamoDB, there are no servers to provision, patch, or manage, and no software to install, maintain, or operate.
+   - DynamoDB offers warm throughput which means all resources are instantaneously available.
+   - Secondary indexes enhance DynamoDB's performance primarily by enabling efficient querying of data using attributes other than the table's primary key. 
+2. Security
+   - DynamoDB encrypts all customer data in transit and at rest by default.
+   - DynamoDB uses AWS Identity and Access Management (IAM) to authenticate and authorize access to resources.
+   - DynamoDB supports gateway virtual private cloud (VPC) endpoints and interface VPC endpoints for connections within a VPC or from on-premises data centers.
+3. Resilience
+   - Point-in-time recovery (PITR) helps protect your DynamoDB tables from accidental write or delete operations.
+   - On-demand backup and restore allows you to create full backups of your DynamoDB tables’ data for data archiving, helping you meet your corporate and governmental 
+   regulatory requirements.
+   - DynamoDB global tables provides active-active replication of your data across your choice of AWS Regions with 99.999% availability.
+   - DynamoDB is built for mission-critical workloads, including support for atomicity, consistency, isolation, and durability (ACID) transactions for applications that requir 
+   complex business logic.
+4. Cost-effectiveness
+   - You only pay for the reads and writes made by your application.
+   - For data that is infrequently accessed, DynamoDB Standard-IA table class reduces storage costs by 60% compared to existing Standard tables while delivering the same 
+   performance, durability, and scaling capabilities.
+   - DynamoDB provides capacity modes for each table: on demand and provisioned.
+   - For tables using provisioned capacity, DynamoDB provides auto scaling of throughput and storage based on your previously set capacity by monitoring the performance usage 
+   of your application.
+5. Integrations with AWS services
+   - Amazon DynamoDB bulk import and export capabilities provide a simple and efficient way to move data between Amazon S3 and DynamoDB tables without writing any code.
+   - DynamoDB Streams is a change data–capture capability. Whenever an application creates, updates, or deletes items in a table, DynamoDB Streams record a time-ordered 
+   sequence of every item-level change in near real time, making it ideal for event-driven architecture applications to consume and action the changes.
+   - Amazon Kinesis Data Streams for DynamoDB captures item-level changes in your DynamoDB tables to power live dashboards, generate metrics, and deliver data into data lakes. 
+   - To easily monitor your database performance, DynamoDB is integrated with Amazon Cloudwatch, which collects and processes raw database performance data.
+

@@ -58,3 +58,7 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [AWS Data Exchange](https://github.com/kiprotichgidii/aws-examples/blob/main/ml-managed-services/README.md#aws-data-exchange)
 - [AWS Glue](https://github.com/kiprotichgidii/aws-examples/blob/main/ml-managed-services/README.md#aws-glue)
 - [AWS Lake Formation](https://github.com/kiprotichgidii/aws-examples/blob/main/lake-formation/README.md#aws-lake-formation)
+- [AWS API Gateway](https://github.com/kiprotichgidii/aws-examples/blob/main/api-gateway/README.md#amazon-api-gateway)
+- [Amazon RDS](https://github.com/kiprotichgidii/aws-examples/blob/main/rds/README.md#amazon-relational-database-service-rds)
+- [Amazon Aurora](https://github.com/kiprotichgidii/aws-examples/blob/main/rds/README.md#amazon-aurora)
+- [Amazon DynamoDB](https://github.com/kiprotichgidii/aws-examples/blob/main/dynamodb/README.md#amazon-dynamodb)
