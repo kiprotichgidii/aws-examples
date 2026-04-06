@@ -1040,10 +1040,8 @@ own NOSQL database, famously known as **Amazon DocumentDB**.
 
 Cluster types:
 
-1. Instance based cluster
-  - Manage your instances, directly choosing instance type.
-2. Elastic Cluster
-  - Cluster automatically scale, you choose vCPU and number of instances per shard.
+1. Instance based cluster: Manage your instances, directly choosing instance type.
+2. Elastic Cluster: Cluster automatically scale, you choose vCPU and number of instances per shard.
 
 DocumentDB is compatible with MongoDB 4.0, and 5.0
 
@@ -1203,4 +1201,44 @@ Suppose that the Pets table has a composite primary key consisting of AnimalType
 
 To read that same item from the Pets table, DynamoDB calculates the hash value of Dog, yielding the partition in which these items are stored. DynamoDB then scans the sort key 
 attribute values until it finds Fido.
+
+### DynamoDB Query
+
+You must provide the name of the partition key attribute and a single value for that attribute. `Query` returns all items with that partition key value. Optionally, you can
+provide a sort key attribute and use a comparison operator to refine the search results.
+
+Use the `KeyConditionExpression` parameter to provide a specific value for the partition key. The `Query` operation will return all of the items from the table or index with
+that partition key value. You can optionally narrow the scope of the `Query` operation by specifying a sort key value and a comparison operator in `KeyConditionExpression`. To
+further refine the `Query` results, you can optionally provide a `FilterExpression`. A `FilterExpression` determines which items within the results should be returned to you. 
+All of the other results are discarded.
+
+A `Query` operation always returns a result set. If no matching items are found, the result set will be empty. Queries that do not return results consume the minimum number of 
+read capacity units for that type of read operation.
+
+`Query` results are always sorted by the sort key value. If the data type of the sort key is Number, the results are returned in numeric order; otherwise, the results are  
+returned in order of UTF-8 bytes. By default, the sort order is ascending. To reverse the order, set the `ScanIndexForward` parameter to false.
+
+`FilterExpression` is applied after a `Query` finishes, but before the results are returned. A `FilterExpression` cannot contain partition key or sort key attributes. You need 
+to specify those attributes in the `KeyConditionExpression`.
+
+```sh
+aws dynamodb query \
+    --table-name Music \
+    --key-condition-expression "Artist = :v_artist AND SongTitle = :v_song" \
+    --expression-attribute-values file://expression-attribute-values.json \
+    --projection-expression "AlbumTitle, Year" \
+    --return-consumed-capacity TOTAL \
+    --output json
+```
+
+```json
+{
+    "Artist": {
+        "S": "No One Writes Songs Like You"
+    },
+    "SongTitle": {
+        "S": "The Rolling Stones"
+    }
+}
+```
 
