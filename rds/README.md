@@ -1332,3 +1332,52 @@ and enterprise features you need to operate business-critical Cassandra workload
   - Create Tables
   - Perform Queries using the CQL Editor
 
+### Cassandra Query Language (CQL)
+
+Cassandra Query Language (CQL) is a database query language for Apache Cassandra. It is a declarative language that is used to create, read, update, and delete data in a Cassandra database. CQL is a subset of SQL, but it is not a full implementation of SQL. CQL is a distributed database query language, and it is designed to be used with a distributed database. 
+
+1. Create a Keyspace:
+   
+   ```sql
+   CREATE KEYSPACE IF NOT EXISTS exampleKeyspace
+   WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3};
+   ```
+
+2. Create Table:
+
+  ```sql
+  CREATE TABLE IF NOT EXISTS exampleKeyspace.users (
+    user_id uuid PRIMARY KEY,
+    first_name text,
+    last_name text,
+    email text
+  );
+  ```
+
+3. Insert Data:
+
+  ```sql
+  INSERT INTO exampleKeyspace.users (user_id, first_name, last_name, email)
+  VALUES (uuid(), 'John', 'Doe', 'johndoe@example.com');
+  ```
+
+4. Query Data:
+
+  ```sql
+  SELECT * FROM exampleKeyspace.users WHERE user_id = 123e4567-e89b-12d3-a456-426614174000;
+  ```
+
+5. Update Data:
+
+  ```sql
+  UPDATE exampleKeyspace.users 
+  SET email = [EMAIL_ADDRESS]' 
+  WHERE user_id = 123e4567-e89b-12d3-a456-426614174000;
+  ```
+
+6. Delete Data:
+
+  ```sql
+  DELETE FROM exampleKeyspace.users WHERE user_id = 123e4567-e89b-12d3-a456-426614174000;
+  ```
+
