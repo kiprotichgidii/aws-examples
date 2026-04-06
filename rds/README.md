@@ -1065,32 +1065,135 @@ ACID transactions.
 
 ### Features
 
-1. Performance and scalability
+1. **Performance and scalability**
    - With DynamoDB, there are no servers to provision, patch, or manage, and no software to install, maintain, or operate.
    - DynamoDB offers warm throughput which means all resources are instantaneously available.
    - Secondary indexes enhance DynamoDB's performance primarily by enabling efficient querying of data using attributes other than the table's primary key. 
-2. Security
+2. **Security**
    - DynamoDB encrypts all customer data in transit and at rest by default.
    - DynamoDB uses AWS Identity and Access Management (IAM) to authenticate and authorize access to resources.
    - DynamoDB supports gateway virtual private cloud (VPC) endpoints and interface VPC endpoints for connections within a VPC or from on-premises data centers.
-3. Resilience
+3. **Resilience**
    - Point-in-time recovery (PITR) helps protect your DynamoDB tables from accidental write or delete operations.
    - On-demand backup and restore allows you to create full backups of your DynamoDB tables’ data for data archiving, helping you meet your corporate and governmental 
    regulatory requirements.
    - DynamoDB global tables provides active-active replication of your data across your choice of AWS Regions with 99.999% availability.
    - DynamoDB is built for mission-critical workloads, including support for atomicity, consistency, isolation, and durability (ACID) transactions for applications that requir 
    complex business logic.
-4. Cost-effectiveness
+4. **Cost-effectiveness**
    - You only pay for the reads and writes made by your application.
    - For data that is infrequently accessed, DynamoDB Standard-IA table class reduces storage costs by 60% compared to existing Standard tables while delivering the same 
    performance, durability, and scaling capabilities.
    - DynamoDB provides capacity modes for each table: on demand and provisioned.
    - For tables using provisioned capacity, DynamoDB provides auto scaling of throughput and storage based on your previously set capacity by monitoring the performance usage 
    of your application.
-5. Integrations with AWS services
+5. **Integrations with AWS services**
    - Amazon DynamoDB bulk import and export capabilities provide a simple and efficient way to move data between Amazon S3 and DynamoDB tables without writing any code.
    - DynamoDB Streams is a change data–capture capability. Whenever an application creates, updates, or deletes items in a table, DynamoDB Streams record a time-ordered 
    sequence of every item-level change in near real time, making it ideal for event-driven architecture applications to consume and action the changes.
    - Amazon Kinesis Data Streams for DynamoDB captures item-level changes in your DynamoDB tables to power live dashboards, generate metrics, and deliver data into data lakes. 
    - To easily monitor your database performance, DynamoDB is integrated with Amazon Cloudwatch, which collects and processes raw database performance data.
+
+Amazon DynamoDB provides:
+
+- Eventual Consistent Reads (default)
+- Strongly Consistent Reads
+
+For Provisioned mode, you specify the number of reads and writes per second you expect your application to perform. DynamoDB will then reserve that capacity for you. It works at whatever capacity needed without any tweaks.
+
+All data is stored on SSD storage and is spread across 3 different AZs.
+
+### DynamoDB Anatomy
+
+![DynamoDB Anatomy](./images/amazon-dynamodb-anatomy.png)
+
+- Tables: Table contains rows and columns
+- Items: The rows of data
+- Attributes: Columns of data
+- Keys: Identifying names of the data
+- Values: The actual data
+
+### Read Consistency
+
+When data needs to be updated, it has to write updates to all the copies and data can be inconsistent when reading from a copy that has yet to be updated. The read consistency 
+can be set ins DynamoDB to meet your needs.
+
+#### Eventual Consistent Reads (default)
+
+- When copies are being updated, it's possible for users to read and be returned the old data.
+- The reads are fast but there is no guarantee that you will get the most recent data.
+- All copies of data eventually become consistent within a second.
+
+#### Strongly Consistent Reads
+
+- When copies are being updates, an attempt to read the data will not return any result until all copies of the data are consistent.
+- There is a guarantee of consistency but the trade off is higher latency(slow reads).
+- All copies of data will be consistent within a second.
+
+### Partitions
+
+**Amazon DynamoDB** stores data in partitions. A partition is an allocation of storage for a table, backed by solid state drives (SSDs) and automatically replicated across 
+multiple Availability Zones within an AWS Region. Partition management is handled entirely by DynamoDB—you never have to manage partitions yourself.
+
+When you create a table, the initial status of the table is CREATING. During this phase, DynamoDB allocates sufficient partitions to the table so that it can handle your 
+provisioned throughput requirements. You can begin writing and reading table data after the table status changes to ACTIVE.
+
+DynamoDB allocates additional partitions to a table in the following situations:
+
+- If you increase the table's provisioned throughput settings beyond what the existing partitions can support.
+- If an existing partition fills to capacity and more storage space is required.
+
+Each partition has a maximum of 3000 RCUs and 1000 WCUs (Write Capacity Units). DynamoDB even splits the RCUs and WCUs across all the partitions.
+
+### Primary Keys
+
+When you create a DynamoDB table, you have to define a Primary Key, the primary key determines where and how your data will be stored in partitions. The Primary Key cannot be 
+changed later.
+
+- **Partition Key**: determines which partition data should be writtent to
+- **Sort Key**: determines how the data should be sorted within a partition
+
+![DynamoDB Primary Key](./images/amazon-dynamodb-primary-key.png)
+
+- Using only a Partition Key, is called a **Simple Primary Key**
+- Using both a Partition Key and a Sort Key, is called a **Composite Primary Key**
+- Amazon DynamoDB does not have a `Date` data type, so instead you have to use a string.
+
+### Simple Primary Key
+
+If your table has a simple primary key (partition key only), DynamoDB stores and retrieves each item based on its partition key value.
+
+To write an item to the table, DynamoDB uses the value of the partition key as input to an internal hash function. The output value from the hash function determines the 
+partition in which the item will be stored.
+
+To read an item from the table, you must specify the partition key value for the item. DynamoDB uses this value as input to its hash function, yielding the partition in which 
+the item can be found.
+
+#### Example
+
+The following diagram shows a table named Pets, which spans multiple partitions. The table's primary key is AnimalType (only this key attribute is shown). DynamoDB uses its 
+hash function to determine where to store a new item, in this case based on the hash value of the string Dog. Note that the items are not stored in sorted order. Each item's 
+location is determined by the hash value of its partition key.
+
+![DynamoDB Simple Primary Key](./images/amazon-dynamodb-simple-primary-key.png)
+
+### Composite Primary Key
+
+To write an item to the table, DynamoDB calculates the hash value of the partition key to determine which partition should contain the item. In that partition, several items 
+could have the same partition key value. So DynamoDB stores the item among the others with the same partition key, in ascending order by sort key.
+
+To read an item from the table, you must specify its partition key value and sort key value. DynamoDB calculates the partition key's hash value, yielding the partition in which 
+the item can be found.
+
+You can read multiple items from the table in a single operation (Query) if the items you want have the same partition key value. DynamoDB returns all of the items with that 
+partition key value. Optionally, you can apply a condition to the sort key so that it returns only the items within a certain range of values.
+
+#### Example
+
+Suppose that the Pets table has a composite primary key consisting of AnimalType (partition key) and Name (sort key). 
+
+![DynamoDB Composite Primary Key](./images/amazon-dynamodb-composite-primary-key.png)
+
+To read that same item from the Pets table, DynamoDB calculates the hash value of Dog, yielding the partition in which these items are stored. DynamoDB then scans the sort key 
+attribute values until it finds Fido.
 
