@@ -1306,3 +1306,29 @@ Avoid DynamoDB scans as much as possiblee:
 - As a table grows, scans take much longer tp complete.
 - A large table can consume all the provisioned throughput in a single scan.
 
+
+## Amazon Keyspaces
+
+**Amazon Keyspaces (for Apache Cassandra)** is a scalable, serverless, and highly available managed database service compatible with Apache Cassandra. It allows you to run 
+Cassandra workloads on AWS using existing CQL drivers and application code without managing infrastructure, offering instant scaling and automatic multi-AZ data replication.
+
+- **Cassandra** is an open-source NoSQL key/value database similar to DynamoDB in that it is a columnar store database with some additional functionality. 
+- **Keyspaces** is serverless with zero infrastructure management, zero downtime maintenance, instant scaling to any application demand, and pay-per-request billing.
+- It supports applications that require virtually unlimited throughput and storage.
+- Data is encrypted by default and Keyspaces enables you to back up your table data continuously using point-in-time recovery. Keyspaces gives you the performance, elasticity, 
+and enterprise features you need to operate business-critical Cassandra workloads at scale.
+- **Cluser** - A collection of nodes
+- **Nodes** - holds up to 2-4 TB of data
+  - All nodes read and write
+  - Nodes represent the smallest unit of a database
+  - Data is replicated on multiple nodes
+- **Ring** - All nodes are arranged in a ring where all nodes connect to each other
+- **Keyspace** - A namespace that specifies data replication on nodes
+- **Table** - Tabular data of columns and rows with a primary key
+- Cassandra is queried using the Cassandra Query Language (CQL)
+- Interacting with Cassandra is typicallt done through an SDK, in your preferred programming language. 
+- Amazon Keyspaces allows you to do the following using the AWS Management Console:
+  - Create Keyspaces
+  - Create Tables
+  - Perform Queries using the CQL Editor
+
