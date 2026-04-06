@@ -1218,8 +1218,13 @@ read capacity units for that type of read operation.
 `Query` results are always sorted by the sort key value. If the data type of the sort key is Number, the results are returned in numeric order; otherwise, the results are  
 returned in order of UTF-8 bytes. By default, the sort order is ascending. To reverse the order, set the `ScanIndexForward` parameter to false.
 
+A single `Query` operation will read up to the maximum number of items set (if using the `Limit` parameter) or a maximum of 1 MB of data and then apply any filtering to the 
+results using `FilterExpression`. If `LastEvaluatedKey` is present in the response, you will need to paginate the result set.
+
 `FilterExpression` is applied after a `Query` finishes, but before the results are returned. A `FilterExpression` cannot contain partition key or sort key attributes. You need 
 to specify those attributes in the `KeyConditionExpression`.
+
+By default, a `Query` operation uses eventually consistent reads when accessing the items in a table. However, you can use strongly consistent reads by setting the `ConsistentRead` parameter to true.
 
 ```sh
 aws dynamodb query \
@@ -1231,6 +1236,8 @@ aws dynamodb query \
     --output json
 ```
 
+Values.json:
+
 ```json
 {
     "Artist": {
@@ -1241,4 +1248,61 @@ aws dynamodb query \
     }
 }
 ```
+
+### DynamoDB Scan
+
+The Scan operation returns one or more items and item attributes by accessing every item in a table or a secondary index. To have DynamoDB return fewer items, you can provide a 
+`FilterExpression` operation.
+
+If the total size of scanned items exceeds the maximum dataset size limit of 1 MB, the scan completes and results are returned to the user. The `LastEvaluatedKey` value is also 
+returned and the requestor can use the `LastEvaluatedKey` to continue the scan in a subsequent operation.
+
+Each scan response also includes number of items that were scanned (`ScannedCount`) as part of the request. If using a `FilterExpression`, a scan result can result in no items 
+meeting the criteria and the `Count` will result in zero. If you did not use a `FilterExpression` in the scan request, then `Count` is the same as `ScannedCount`.
+
+A single Scan operation first reads up to the maximum number of items set (if using the `Limit` parameter) or a maximum of 1 MB of data and then applies any filtering to the 
+results if a `FilterExpression` is provided. If `LastEvaluatedKey` is present in the response, pagination is required to complete the full table scan.
+
+Scan operations proceed sequentially; however, for faster performance on a large table or secondary index, applications can request a parallel Scan operation by providing the 
+Segment and `TotalSegments` parameters.
+
+By default, a Scan uses eventually consistent reads when accessing the items in a table. Therefore, the results from an eventually consistent Scan may not include the latest 
+item changes at the time the scan iterates through each item in the table. If you require a strongly consistent read of each item as the scan iterates through the items in the 
+table, you can set the `ConsistentRead` parameter to true. Strong consistency only relates to the consistency of the read at the item level.
+
+```sh
+aws dynamodb scan \
+    --table-name Music \
+    --filter-expression "Genre = :v_genre" \
+    --expression-attribute-values file://expression-attribute-values.json \
+    --expression-attribute-names file://expression-attribute-names.json \
+    --projection-expression "Artist, SongTitle, AlbumTitle" \
+    --return-consumed-capacity TOTAL \
+    --output json
+```
+
+Values.json:
+
+```json
+{
+    ":v_genre": {
+        "S": "Rock"
+    }
+}
+```
+
+Names.json:
+
+```json
+{
+    "#yr": "Year",
+    "#na": "Name"
+}
+```
+
+Avoid DynamoDB scans as much as possiblee:
+
+- Scans are much less efficient compared to running a query.
+- As a table grows, scans take much longer tp complete.
+- A large table can consume all the provisioned throughput in a single scan.
 
