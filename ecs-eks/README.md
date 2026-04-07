@@ -88,3 +88,97 @@ ECR lifecycle can be used to expire old images based on specific criteria:
 }
 ```
 
+## Elastic Container Service (ECS)
+
+Amazon Elastic Container Service (Amazon ECS) is a fully managed container orchestration service that helps you easily deploy, manage, and scale containerized applications. As a 
+fully managed service, Amazon ECS comes with AWS configuration and operational best practices built-in. 
+
+It's integrated with both AWS tools, such as Amazon Elastic Container Registry, and third-party tools, such as Docker. This integration makes it easier for teams to focus on 
+building the applications, not the environment. You can run and scale your container workloads across AWS Regions in the cloud, and on-premises, without the complexity of 
+managing a control plane.
+
+### ECS Components
+
+1. **Cluster**: Multiple instances which will house the docker containers.
+2. **Task Definition**: A JSON file that defines the configuration of (up to 10) containers you want to run.
+3. **Task**: Launches containers defines in task definition. Tasks do not remain once workload is complete.
+4. **Service**: Ensures tasks remain running eg. Web app
+5. **Container Agent**: Binary on each EC2 instance, which monitors, starts and stops tasks.
+6. **ECS Controller/Schduler**: Responsible for scheduling the deployment and placement of containers, Replace unhealthy containers.
+   - You can create your own schedulers or use thrid-party schedulers.
+
+### AWS Fargate
+
+**AWS Fargate** is a serverless, pay-as-you-go compute engine for containers that works with both **Amazon ECS** and **Amazon EKS**, eliminating the need to manage underlying 
+EC2 server infrastructure. It automatically scales and manages infrastructure, allowing developers to focus on application development by defining CPU, memory, and networking 
+requirements for each container.
+
+- You can create an empty ECS cluster (no EC2 provisioned), and then launch Tasks as Fargate.
+- With fargate, you no longer have to provision, configure, and scale clusters of EC2 instances to run containers.
+- You are charged for at least 1 minute, and then it's by the second.
+- You pay based on duration and consumption.
+- Fargate must use awslogs networking mode, and will have an ENI in the VPC per task group.
+- When using ELB to point to Fargate, you have to use an IP address, because Fargate tasks do not have hostnames.
+
+### Configuring Fargate Tasks
+
+- In your Fargate Task Definition, you define the memory and vCPU.
+- You will then add your containers and allocate the memory and vCPU required for each container.
+- When you run the Task, you can select the VPC and subnet the task should run in.
+- Apply a security group to the Task.
+- Apply an IAM role to the Task.
+
+Security Groups and IAM roles can be applied to both ECS and Fargate Tasks and services.
+
+### ECS Task Execution Role
+
+The task **execution role** grants the Amazon ECS container and Fargate agents permission to make AWS API calls on your behalf. The task execution IAM role is required depending 
+on the requirements of your task. You can have multiple task execution roles for different purposes and services associated with your account.
+
+Common permissions:
+
+- Access to Secrets Manager or SSM Parameter Store.
+- Access to download private image form ECR.
+- Full Access to CloudWatch Logs.
+
+Example Task Execution Role with CloudFormation:
+
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Description: ECS Task Execution Role
+
+Resources:
+  Type: AWS::IAM:Role
+  Propertise:
+    RoleName: CruddurSrviceExecutionRole
+    AssumeRolePolicyDocument:
+      Version: "2012-10-17"
+      Statement:
+        - Effect: Allow
+          Principal:
+            Service: ecs-tasks.amazonaws.com
+          Action: sts:AssumeRole
+    Policies:
+      - PolicyName: 'cruddur-execution-policy'
+        PolicyDocument: 
+          Version: "2012-10-17"
+          Statement: 
+            - Sid: 'VisualEditor0'
+              Effect: 'Allow'
+              Action: 
+                - 'ecr:GetAuthorizationToken'
+                - 'ecr:BatchCheckLayerAvailability'
+                - 'ecr:GetDownloadUrlForLayer'
+                - 'ecr:BatchGetImage'
+                - 'logs:CreateLogStream'
+                - 'logs:PutLogEvents'
+              Resource: '*'
+            - Sid: 'VisualEditor1'
+              Effect: 'Allow'
+              Action: 
+                - 'ssm:GetParameters'
+                - 'ssm:GetParameter'
+              Resource: !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/cruddur/${ServiceName}/*'
+    ManagedPolicyArns:
+      - arn:aws:iam::aws:policy/CloudWatchFullAccess
+```
