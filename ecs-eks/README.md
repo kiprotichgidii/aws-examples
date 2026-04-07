@@ -228,3 +228,47 @@ Resources:
       - arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess
 ```
 
+### ECS Capacity Providers
+
+When you use Amazon EC2 instances for your capacity, you use Auto Scaling groups to manage the Amazon EC2 instances registered to their clusters. Auto Scaling helps ensure that 
+you have the correct number of Amazon EC2 instances available to handle the application load.
+
+You create an Auto Scaling Group, and associate that with your custom capacity provider. You can then add the capacity provider to your ECS cluster.
+
+1. Create an Auto Scaling Group:
+   
+   ```sh
+   aws autoscaling create-auto-scaling-group \
+    --auto-scaling-group-name cruddur-asg \
+    --launch-template LaunchTemplateId=lt-0123456789abcdef0,Version=1 \
+    --min-size 1 \
+    --max-size 10 \
+    --desired-capacity 2 \
+    --vpc-zone-identifier subnet-0123456789abcdef0 \
+     # Other parameters omitted for brevity
+   ```
+2. Create Capacity Provider:
+
+   ```sh
+   aws create-capacity-provider \
+    --name MyEC2CapacityProvider \
+    --auto-scaling-group-provider autoScalingGroupArn=ASG_ARN, managedScaling={"status":"ENABLED", "targetCapacity":75}, managedTerminationProtection="ENABLED"  
+   ```
+
+3. At the cluster level:
+ 
+   ```sh
+   aws ecs put-cluster-capacity-providers \
+     --cluster my-cluster \ 
+     --capacity-providers MyEC2CapacityProvider \
+     --default-capacity-provider-strategy capacityProvider="MyEC2CapacityProvider",weight=1,base=0
+   ```
+4. At the task level:
+
+   ```sh
+   aws ecs create-service \
+     ...
+     --capacity-provider-strategy capacityProvider="MyEC2CapacityProvider",weight=1,base=0
+   ```
+
+   
