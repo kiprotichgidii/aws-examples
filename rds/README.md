@@ -1444,5 +1444,111 @@ Neptune database has two types:
   - G.V()
   - Linkurious
 
-#### Gremlin
+### Gremlin
+
+**Gremlin** is the grahp traversal language for Apache TinkerPop. Amazon Neptune is compatible with Apache TinkerPop and Gremlin. This means that you can connect to a Neptune 
+DB instance and use the Gremlin traversal language to query the graph. 
+
+A traversal in Gremlin is a series of chained steps. It starts at a vertex (or edge). It walks the graph by following the outgoing edges of each vertex and then the outgoing 
+edges of those vertices. Each step is an operation in the traversal.
+
+**Gremlin** is designed to the "Write Once, Run Anywhere" (WORA) principle. This means that you can write a Gremlin traversal once and run it on any graph database that is 
+compatible with Apache TinkerPop and Gremlin. 
+
+**Gremlin** traversal can be evaluated as:
+
+- real-time database query (OLTP)
+- batch analysis query (OLAP)
+
+**Gremlin Host Language Embedding** means that you can write Gremlin traversals in your preferred programming language. 
+
+### OpenCypher
+
+**openCypher** is a declarative query language for property graphs that was originally developed by Neo4j, then open-sourced in 2015, and contributed to the openCypher project 
+under an Apache 2 open-source license.
+
+**Neptune** supports building graph applications using **openCypher**, currently one of the most popular query languages for developers working with graph databases. 
+Developers, business analysts, and data scientists like openCypher’s SQL-inspired syntax because it provides a familiar structure to compose queries for graph applications.
+
+**Cypher** is known for being more developer friendly for writing queries than using *Gremlin**. **Gremlin** is more proficient at traversal depending on the use-case.
+
+```sql
+# Creating
+CREATE (a:Person {name: 'Alice', age: 30})
+CREATE (b:Person {name: 'Bob', age: 25})
+CREATE (a)-[:KNOWS {since: 2022}]->(b)
+
+# Querying
+MATCH (a:Person)
+RETURN p.name, p.age
+
+MATCH (a:Person {name: 'Alice'})-[:KNOWS]->(b:Person {name: 'Bob'})
+RETURN a.name, b.name
+
+# Updating
+MATCH (a:Person {name: 'Alice'})
+SET a.age = 31
+RETURN a.name, a.age
+
+# Advanced Query
+MATCH (alice:Person {name: 'Alice'})-[:KNOWS]->(bob:Person)-[:KNOWS]->(friendsOfBob)
+WHERE NOT (alice)-[:KNOWS]->(friendsOfBob)
+RETURN friendsOfBob.name AS RecommendedFriend
+```
+
+### SPARQL
+
+**`SPARQL`** is a query language for the Resource Description Framework (RDF), which is a graph data format designed for the web. Amazon Neptune is compatible with SPARQL 1.1.
+This means that you can connect to a Neptune DB instance and query the graph using the query language described in the SPARQL Query Language specification.
+
+**`SPARQL`** allows users to write queries against what can loosely be called "Key-value" data or, data that follows the RDF specification of the W3C. 
+
+Setting up sample data:
+
+```sql
+@prefix : <http://example.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+:Alice a :Person ;
+       :name "Alice" ;
+       :age 24 ;
+       :knows :Bob .
+
+:Bob a :Person ;
+     :name "Bob" ;
+     :age 25 ;
+     :knows :Charlie .
+
+:Charlie a :Person ;
+         :name "Charlie" .
+```
+
+Updating the data:
+
+```sql
+PREFIX : <http://example.org/>
+DELETE {
+  :Bob :age 22 .
+}
+INSERT {
+  :Bob :age 23 .
+}
+WHERE {
+  :Bob :age 22 .
+}
+```
+
+Querying data:
+
+```sql
+PREFIX : <http://example.org/>
+SELECT DISTINCT ?name
+WHERE {
+  :Alice :knows/:knows ?person .
+  ?person :name ?name .
+  FILTER NOT EXISTS {
+    :Alice :knows ?person
+  }
+}
+```
 
