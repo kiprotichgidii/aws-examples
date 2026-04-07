@@ -150,7 +150,7 @@ Description: ECS Task Execution Role
 Resources:
   Type: AWS::IAM:Role
   Propertise:
-    RoleName: CruddurSrviceExecutionRole
+    RoleName: CruddurServiceExecutionRole
     AssumeRolePolicyDocument:
       Version: "2012-10-17"
       Statement:
@@ -180,5 +180,51 @@ Resources:
                 - 'ssm:GetParameter'
               Resource: !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/cruddur/${ServiceName}/*'
     ManagedPolicyArns:
-      - arn:aws:iam::aws:policy/CloudWatchFullAccess
+      - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
 ```
+### ECS Task Role
+
+**ECS tasks** can have an **IAM role** associated with them. The permissions granted in the IAM role are vended to containers running in the task. This role allows your 
+application code (running in the container) to use other AWS services. The task role is required when your application accesses other AWS services, such as Amazon S3.
+
+Common Permissions:
+
+- Access to SSM messages for ECS Exec
+- CloudWatch Logs Full Access for container logging
+- XRay Daemon Write Access so XRay can be used for traceability.
+
+Example Task IAM Role using CloudFormation:
+
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Description: ECS Task IAM Role
+
+Resources:
+  Type: AWS::IAM:Role
+  Propertise:
+    RoleName: CruddurServiceTaskRole
+    AssumeRolePolicyDocument:
+      Version: "2012-10-17"
+      Statement:
+        - Effect: Allow
+          Principal:
+            Service: ecs-tasks.amazonaws.com
+          Action: sts:AssumeRole
+    Policies:
+      - PolicyName: 'cruddur-task-policy'
+        PolicyDocument: 
+          Version: "2012-10-17"
+          Statement: 
+            - Sid: 'VisualEditor0'
+              Effect: 'Allow'
+              Action: 
+                - 'ssmmessages:CreateControlChannel'
+                - 'ssmmessages:CreateDataChannel'
+                - 'ssmmessages:OpenControlChannel'
+                - 'ssmmessages:OpenDataChannel'
+              Resource: '*'
+    ManagedPolicyArns:
+      - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
+      - arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess
+```
+
