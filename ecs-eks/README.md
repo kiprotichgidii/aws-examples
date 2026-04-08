@@ -385,7 +385,7 @@ JSON Example:
   - *`Environment`*: Environment variables you want to set for your container.
   - *`Secrets`*: Secrets pulled from Secrets Manager or SSM Parameter Store.
 
-#### Port Mappings
+### Port Mappings
 
 **Bridge Mode**
 - Container port(guest) maps to hosts different port.
@@ -432,4 +432,93 @@ JSON Example:
 ```
 
 ### ECS Exec
+
+**Amazon ECS Exec** allows you to run interactive shell commands or execute single commands directly inside an Amazon ECS container. It functions similarly to docker exec but is 
+designed for cloud-native environments, eliminating the need to first interact with the host container operating system, open inbound ports, or manage SSH keys. 
+
+- ECS Exec works with both *ECS EC2* and *ECS Fargate* containers.
+- ECS Exec commands are run as root.
+- ECS Exec commands cannot be executed from the AWS Management console.
+- ECS Exec session has an idle timeout of 20 minutes.
+- ECE Exec must be turned on during the launch of a task, it cannot be turned on for existing tasks.
+
+**Prerequisites**
+
+- AWS CLI Installed
+- Sessions Manager Plugin Installed
+- The Task role must have permission
+
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssmmessages:CreateControlChannel",
+                "ssmmessages:CreateDataChannel",
+                "ssmmessages:OpenControlChannel",
+                "ssmmessages:OpenDataChannel"
+            ],
+            "Resource": "*"
+        }
+    ]
+  }
+  ```
+- You must meet version requirements for ECS or Fargate
+
+To remove any zombie SSM agent child processes found, set the task definition parameter `initProcessEnabled` to `true`, this starts the init process inside the container. 
+
+```json
+{
+    "taskRoleArn": "ecsTaskRole",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "executionRoleArn": "ecsTaskExecutionRole",
+    "memory": ".5 gb",
+    "cpu": ".25 vcpu",
+    "containerDefinitions": [
+        {
+            "name": "amazon-linux",
+            "image": "amazonlinux:latest",
+            "essential": true,
+            "command": ["sleep","3600"],
+            "linuxParameters": {
+                "initProcessEnabled": true
+            }
+        }
+    ],
+    "family": "ecs-exec-task"
+}
+```
+
+Then you can turn on the ECS Exec feature for your services and standalone tasks by specifying the `--enable-execute-command` flag when using one of the following AWS CLI 
+commands: `create-service`, `update-service`, `start-task`, or `run-task`.
+
+Example when running `create-service`:
+
+```sh
+aws ecs create-service \
+  --cluster cluster-name \
+  --task-definition task-definition-name \
+  --enable-execute-command \
+  --service-name service-name \
+  --launch-type FARGATE \
+  --network-configuration "awsvpcConfiguration={subnets=[subnet-12344321],securityGroups=[sg-12344321],assignPublicIp=ENABLED}" \
+  --desired-count 1
+```
+
+The use ECS Exec to remotely execute a command:
+
+```sh
+aws ecs execute-command \
+  --cluster cluster-name \
+  --task task-id \
+  --container container-name \
+  --interactive \
+  --command "/bin/sh"
+```
 
