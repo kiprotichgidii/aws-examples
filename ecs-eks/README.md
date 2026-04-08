@@ -385,3 +385,51 @@ JSON Example:
   - *`Environment`*: Environment variables you want to set for your container.
   - *`Secrets`*: Secrets pulled from Secrets Manager or SSM Parameter Store.
 
+#### Port Mappings
+
+**Bridge Mode**
+- Container port(guest) maps to hosts different port.
+- The guest and host ports can be different.
+
+```json
+"portMappings": [
+    {
+        "containerPort": "3000",
+        "hostPort": "80",
+        "protocol": "tcp"
+    }
+]
+```
+
+**Host Mode**
+
+- Container port (guest) directly maps to the same host port.
+- The guest and host ports will be the same.
+  - The host port definition is not required since it will be the same.
+
+```json
+"portMappings": [
+    {
+        "containerPort": "3000",
+        "protocol": "tcp"
+    }
+]
+```
+
+**AWSVPC Mode**
+
+- Gives the container it's own network interface with a direct public IP address
+- The guest and host port will be the same.
+  - The host port definition is not required since it will be the same.
+
+```json
+"portMappings": [
+    {
+        "containerPort": "3000",
+        "protocol": "tcp"
+    }
+]
+```
+
+### ECS Exec
+
