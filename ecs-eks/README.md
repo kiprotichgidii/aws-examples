@@ -365,3 +365,23 @@ JSON Example:
 }
 ```
 
+- **Family**: A way to group similar task definitions(it's how versioning works).
+- **Execution Role**: The role used to prepare or managed the container.
+- **Task Role**: The role used by the running compute of the container.
+- **Network Mode**
+  - *Host* - Connect directly to host machine
+  - *Bridge* - Isolate between containers but they can still communicate with each other
+  - *AWSVPC* - creates an ENI in your VPC. Fargate can only used AWSVPC mode.
+  - *None* - disable networking
+- **CPU and Memory**: How much memory and compute
+- **Requires compatibilities**: EC2, Fargate, EXTERNAL
+- **Container Definition**: Defines the connection of containers to be provisioned on the compute.
+  - *`Name`*: Name of the container
+  - *Image*: a URI to the container image eg. ECR, DockerHub
+  - *Essential*: There always has to be one essential container, if this container fails, all containers fail.
+  - *HealthCheck*: Perform a health check.
+  - *PortMappings*: Map the container port to the host port.
+  - *LogConfiguration*: Write logs to AWS CloudWatch.
+  - *Environment*: Environment variables you want to set for your container.
+  - *Secrets*: Secrets pulled from Secrets Manager or SSM Parameter Store.
+
