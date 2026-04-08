@@ -271,4 +271,97 @@ You create an Auto Scaling Group, and associate that with your custom capacity p
      --capacity-provider-strategy capacityProvider="MyEC2CapacityProvider",weight=1,base=0
    ```
 
-   
+### ECS Task Lifecycle
+
+![Amazon ECS Task Lifecycle](./images/amazon-ecs-task-lifecycle.png)
+
+1. **PROVISIONING**: Amazon ECS has to perform additional steps before the task is launched. For example, for tasks that use the awsvpc network mode, the elastic network 
+interface needs to be provisioned.
+
+2. **PENDING**: This is a transition state where Amazon ECS is waiting on the container agent to take further action. A task stays in the pending state until there are available 
+resources for the task.
+
+3. **ACTIVATING**: This is a transition state where Amazon ECS has to perform additional steps after the task is launched but before the task can transition to the RUNNING 
+state. This is the state where Amazon ECS pulls the container images, creates the containers, configures the task networking, registers load balancer target groups, and 
+configures service discovery.
+
+4. **RUNNING**: The task is successfully running.
+
+5. **DEACTIVATING**: This is a transition state where Amazon ECS has to perform additional steps before the task is stopped. For example, for tasks that are part of a service 
+that's configured to use Elastic Load Balancings target groups, the target group deregistration occurs during this state.
+
+6. **STOPPING**: This is a transition state where Amazon ECS is waiting on the container agent to take further action. For Linux containers, the container agent will send the 
+stop signal defined in your container image to notify the application needs to finish and shut down using the STOPSIGNAL instruction. This is SIGTERM by default. Then it will 
+send a SIGKILL after waiting the StopTimeout duration set in the task definition.
+
+7. **DEPROVISIONING**: Amazon ECS has to perform additional steps after the task has stopped but before the task transitions to the STOPPED state. For example, for tasks that 
+use the awsvpc network mode, the elastic network interface needs to be detached and deleted.
+
+8. **STOPPED**: The task has been successfully stopped. If your task stopped because of an error, see Viewing Amazon ECS stopped task errors.
+
+9. **DELETED**: This is a transition state when a task stops. This state is not displayed in the console, but is displayed in describe-tasks.
+
+### Task Definition
+
+JSON Example:
+
+```json
+{
+  "family": "backend-flask",
+  "executionRoleArn": "arn:aws:iam::982383527471:role/EscEc2BasicServiceExecutionRole",
+  "taskRoleArn": "arn:aws:iam::982383527471:role/EcsEc2BasicTaskRole",
+  "networkMode": "bridge",
+  "cpu": "256",
+  "memory": "512",
+  "requiresCompatibilities": [ 
+    "FARGATE" 
+  ],
+  "containerDefinitions": [
+    {
+      "name": "backend-flask",
+      "image": "982383527471.dkr.ecr.ca-central-1.amazonaws.com/backend-flask",
+      "essential": true,
+      "healthCheck": {
+        "command": [
+            "CMD-SHELL",
+            "python /backend-flask/bin/health-check"
+        ],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3,
+        "startPeriod": 60
+      },
+      "portMappings": [
+        {
+          "name": "backend-flask",
+          "containerPort": 4567,
+          "hostPort": 80,
+          "protocol": "tcp", 
+          "appProtocol": "http"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-group": "cruddur",
+            "awslogs-region": "ca-central-1",
+            "awslogs-stream-prefix": "backend-flask"
+        }
+      },
+      "enviroment": [
+        {
+          "name": "AWS_REGION",
+          "value": "ca-central-1"
+        }
+      ],
+      "secrets": [
+        {
+          "name": "DB_PASSWORD",
+          "valueFrom": "arn:aws:secretsmanager:ca-central-1:982383527471:secret:cruddur/backend-flask/DB_PASSWORD-Abcdef"
+        }
+      ]
+    }
+  ]
+}
+```
+
