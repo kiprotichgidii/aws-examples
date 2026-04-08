@@ -522,3 +522,21 @@ aws ecs execute-command \
   --command "/bin/sh"
 ```
 
+### Log Configuration
+
+The log configuration for the container. This parameter maps to LogConfig in the docker container create command and the `--log-driver` option to docker run. A log driver tells 
+where the container should log, `awslogs` will log to CloudWatch logs.
+
+By default, containers use the same logging driver that the Docker daemon uses. However, the container might use a different logging driver than the Docker daemon by specifying 
+a log driver configuration in the container definition.
+
+There are other third-party log drivers that can be used.
+
+1. AWS EC2 log driver support:
+   - `awslogs`, `fluentd`, `json-file`, `journald`, `logentries`, `syslog`, `splunk`, `awsfirelens`.
+
+2. Fargate Log driver support:
+   - `awslogs`, `splunk`, `awsfirelens`
+
+By default, `awslogs` is blocking and you might want to configure it for nonblockor instead use AWS FireLens. AWS FireLens works with either Fluent Bit, or Fluentd. 
+
