@@ -68,3 +68,29 @@ You can connect and managed your cluster via `kubectl`. Use ALB to route traffic
 
 ### EKS Connector
 
+You can use **Amazon EKS Connector** to register and connect any conformant Kubernetes cluster to AWS and visualize it in the Amazon EKS console. After a cluster is connected, 
+you can see the status, configuration, and workloads for that cluster in the Amazon EKS console. You can use this feature to view connected clusters in Amazon EKS console, but 
+you can’t manage them.
+
+The Amazon EKS Connector can connect the following types of Kubernetes clusters to Amazon EKS.
+
+- On-premises Kubernetes clusters
+- Self-managed clusters that are running on Amazon EC2
+- Managed clusters from other cloud providers
+
+You install the EKS Connector via helm in your target cluster:
+
+```sh
+helm -n eks-connector install eks-connector \
+  oci://public.ecr.aws/eks-connector/eks-connector-chart \
+  --set eks.activationCode="your_activation_code" \
+  --set eks.activationId="your_activation_id" \
+  --set eks.agentRegion="your_region"
+```
+
+### EKS CTL
+
+`eksctl` is a command-line utility tool that automates and simplifies the process of creating, managing, and operating Amazon Elastic Kubernetes Service (Amazon EKS) clusters. 
+Written in Go, eksctl provides a declarative syntax through YAML configurations and CLI commands to handle complex EKS cluster operations that would otherwise require multiple 
+manual steps across different AWS services.
+
