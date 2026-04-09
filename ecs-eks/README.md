@@ -540,3 +540,61 @@ There are other third-party log drivers that can be used.
 
 By default, `awslogs` is blocking and you might want to configure it for nonblockor instead use AWS FireLens. AWS FireLens works with either Fluent Bit, or Fluentd. 
 
+### ECS Service Connect
+
+**Amazon ECS Service Connect** is a fully managed networking capability that simplifies service-to-service communication within Amazon ECS clusters. It provides built-in service
+discovery, reliable connectivity, and observability without requiring you to manage complex infrastructure like sidecar proxies or external load balancers for internal traffic.
+
+**ECS Service Connect** is an evolution of App Mesh, abstracting a lot of the configuration between App Mesh, Cloud Map, and ELB. 
+
+#### Features
+
+- Service Discovery.
+- Consistent Approach to handle Service-to-Service Communication.
+- Encrypts data in-transit between services using TLS.
+- Telemetry data in the ECS Console and CloudWatch.
+- Traffic Health checks.
+- Automatic retries.
+- Rolling deployments.
+
+With ECS Service Connect, you can refer and connect to your services by logical names using a namespace provided by AWS Cloud Map and automatically distribute traffic between 
+ECS tasks without deploying and configuring load balancers.
+
+![Amazon ECS Service Connect](./images/amazon-ecs-service-connect.jpg)
+
+You can simply create a cluster via AWS CLI with service-connect-default parameter and a default Cloud Map namespace name for service discovery purposes.
+
+```sh
+aws ecs create-cluster \
+  --cluster "svc-cluster-2" \
+  --service-connect-defaults '{
+    "namespace": "svc-namespace"
+}'
+```
+
+Then create a service using an existing task definition called `webui-svc-cluster` and expose your web user-interface server using ECS Service Connect. To use Service 
+Connect, you need to add port names in your task definition.
+
+```sh
+aws ecs create-service \
+  --cluster "svc-cluster-2" \
+  --service-name "webui" \
+  --desired-count 1 \
+  --task-definition "webui-svc-cluster" \
+  --service-connect-configuration '{
+    "enabled": true,
+    "namespace": "svc-namespace",
+    "services":
+     [
+        {
+           "portName": "webui-port",
+          "clientAliases": [
+             {
+                "port": 80,
+                "dnsName": "webui"
+              }
+            ]
+        }
+      ]
+  }'
+```
