@@ -685,3 +685,34 @@ support makes running these workloads less efficient. Amazon ECS added a new EXT
 
 ![Amazon ECS Anywhere](./images/amazon-ecs-anywhere.png)
 
+To configure an ECS Anywhere instance you need to:
+
+1. Create a Systems Manager activation pair:
+
+   ```sh
+   aws ssm create-activation \
+     --iam-role ecsAnywhereRole \
+     | tee ssm-activation.json
+   ```
+
+2. Download the Install script:
+   
+   ```sh
+   curl --proto "https" -o "/tmp/ecs-anywhere-install.sh" \
+     "https://amazon-ecs-agent.s3.amazonaws.com/ecs-anywhere-install-latest.sh"
+   ```
+3. Run the install script:
+
+   ```sh
+   sudo bash /tmp/ecs-anywhere-install.sh \
+     --region $REGION \
+     --cluster $CLUSTER_NAME \
+     --activation-id $ACTIVATION_ID \
+     --activation-code $ACTIVATION_CODE
+   ```
+The install script runs and starts the ECS Service agent which you can manage with `systemctl`. 
+
+```sh
+sudo systemctl status ecs.service
+```
+
