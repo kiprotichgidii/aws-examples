@@ -560,7 +560,7 @@ discovery, reliable connectivity, and observability without requiring you to man
 With ECS Service Connect, you can refer and connect to your services by logical names using a namespace provided by AWS Cloud Map and automatically distribute traffic between 
 ECS tasks without deploying and configuring load balancers.
 
-![Amazon ECS Service Connect](./images/amazon-ecs-service-connect.jpg)
+![Amazon ECS Service Connect](./images/amazon-ecs-service-connect.png)
 
 You can simply create a cluster via AWS CLI with service-connect-default parameter and a default Cloud Map namespace name for service discovery purposes.
 
@@ -598,3 +598,90 @@ aws ecs create-service \
       ]
   }'
 ```
+### ECS Optimized AMI
+
+The **Amazon ECS-optimized AMI** is a specialized Amazon Machine Image (AMI) designed specifically for running containerized workloads on Amazon ECS. It comes pre-configured 
+with essential components like the ECS container agent, the Docker daemon, and necessary runtime dependencies.
+
+When you launch an EC2 instance via ECS EC2 Management console, it will automatically use an Amazon ECS-optimized AMI by default. 
+
+#### Features
+
+- Comes with Docker installed.
+- Comes with ECS Container Agent installed.
+- OS-level optimized for containers.
+- There is a variant of ECS Optimized with GPUs.
+
+To change the AMI and use the GPU variant AMI, then you need to adjust it in the launch template:
+
+```sh
+aws ec2 create-launch-template \ 
+  --launch-template-name "ECEEC2LaunchTemplate" \
+  --version-description "Version1" \
+  --launch-template-data \
+       {
+         "ImageId":"ami-0c55b159cbfafe1f0",
+         "InstanceType":"t3.micro"
+       }
+...      
+```
+
+### ECS Optimized Bottlerocket AMI
+
+**Bottlerocket** is a Linux based open-source operating system that is purpose built by AWS for running containers on virtual machines or bare metal hosts. The **Amazon 
+ECS-optimized Bottlerocket AMI** is secure and only includes the minimum number of packages that's required to run containers. 
+
+Bottlerocket differs from Amazon Linux in the following ways:
+ - Bottle rocket does not include a package manager.
+ - Software can only be run as containers.
+ - Updates are both applied and can be rolled back in a single step, which reduces the likelihood of update errors.
+ - The primary mechanism to manage Bottlerocket hosts is with a container scheduler.
+ 
+Bottlerocket AMIs also don't support the following services and features.
+ - ECS Anywhere
+ - ECS Service Connect
+ - Amazon EFS in encrypted mode and AWSVPC Network Mode.
+
+### ECS EC2 Instance Cluster Registration
+
+To register an ECS EC2 instance to a cluster you need to provide the username in the `user-data.toml` file:
+
+```yaml
+# userdata.toml
+[settings.ecs]
+cluster = "my-cluster-name"
+```
+Then run the instance:
+
+```sh
+aws ec2 run-instances \
+  --key-name ecs-bottlerocket-instance \
+  --subnet-id subnet-08fc675773504410c \
+  --image-id ami-09557774777477747 \
+  --instance-type t3.large \
+  --region us-east-1 \
+  --user-data file://userdata.toml \
+  --iam-instance-profile Name=ecsInstanceRole
+```
+
+### ECS Anywhere
+
+**Amazon ECS Anywhere** provides support for registering an external instance such as an on-premises server or virtual machine (VM), to your Amazon ECS cluster. External 
+instances are optimized for running applications that generate outbound traffic or process data. If your application requires inbound traffic, the lack of Elastic Load Balancing 
+support makes running these workloads less efficient. Amazon ECS added a new EXTERNAL launch type that you can use to create services or run tasks on your external instances.
+
+- $0.01025 per hour for each managed ECS Anywhere instance.
+- You can register an external instance to a single cluster.
+- External instaces require an IAM role that allows them to communicate with AWS APIs.
+- External instances support ECS Exec.
+- AWSVPC network mode is not supported.
+- Service Load Balancing is not supported.
+- Service discovery is not supported.
+- ECS capacity providers are not supported.
+- ECS Anywhere uses the launch template type `EXTERNAL`.
+- SELinux is not supported.
+- EFS Volumes are not supported.
+- ECS Anywhere can be run on Windows but not without a Windows LICENSE.
+
+![Amazon ECS Anywhere](./images/amazon-ecs-anywhere.png)
+
