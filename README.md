@@ -67,4 +67,5 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [Amazon ECR](https://github.com/kiprotichgidii/aws-examples/blob/main/ecs/README.md#elastic-container-registry-ecr)
 - [Amazon ECS](https://github.com/kiprotichgidii/aws-examples/blob/main/ecs/README.md#elastic-container-service-ecs)
 - [Amazon EKS](https://github.com/kiprotichgidii/aws-examples/blob/main/eks/README.md#amazon-elatic-kubernetes-serviceeks)
-- [AWS KMS]()
+- [AWS KMS](https://github.com/kiprotichgidii/aws-examples/blob/main/kms/README.md#aws-key-management-service-kms)
+- 
