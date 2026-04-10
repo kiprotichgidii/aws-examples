@@ -189,19 +189,19 @@ A **trace** is a data/execution path through the system, and can be though of as
 A **Span** represents a logical unit of work, in Jaeger that has an operation name, the start time of the operation, and the duration. Spans may be nested and ordered to model 
 casual relationships.
 
-### Open Telemetry
+### OpenTelemetry
 
-**Open Telemetry(OTEL)** is a collection of open-source tools, APIs, SDKs, and integrations that help you instrument, generate, collect, and export telemetry data 
+**OpenTelemetry(OTEL)** is a collection of open-source tools, APIs, SDKs, and integrations that help you instrument, generate, collect, and export telemetry data 
 (traces, metrics, and logs) from your applications and services. It provides a vendor-neutral standard for observability, allowing you to collect telemetry data from 
 different sources and export it to various backends for analysis and visualization. 
 
-Open Telemetry standardizes how telemetry data are generated and collected. 
+OpenTelemetry standardizes how telemetry data are generated and collected. 
 
 ![OpenTelemetry](./images/amazon-eks-opentelemetry.png)
 
 A **Wire Protocol** refers to a way of getting data from point to point. eg. SOAP, AMQP
 
-### Open Telemetry Instrumentation
+### OpenTelemetry Instrumentation
 
 Instrumentation is the act of embedding a monitoring library into your existing application in order to capture monitoring data such as metrics, traces, or logging.
 
@@ -258,5 +258,84 @@ OpenTelemetry::Context.with_current(context) do
 end
 ```
 
-### Open Telemetry Collector
+### OpenTelemetry Collector
 
+- OpenTelemetry collector is an agent installed on the target machine, or a dedicated sever, and is a Vendor-agnostic way to receive, process, and export telemetry data.
+- It removes the need to run, operate and maintain multiple agents/collectors.
+- This works with improved scalability and support for open-source observability data formats,(Jaeger, FluentBit, Prometheus, etc) sending to one or more open-source or commercial backends.
+- The Lab collector agent is the default location to which instrumentation libraries export their telemetry data.
+
+![OpenTelemetry Collector](./images/amazon-eks-opentelemetry-collector.png)
+
+### AWS Distro for OpenTelemetry
+
+The **AWS Distro for OpenTelemetry (ADOT)** is an AWS distribution based on the Cloud Native Computing Foundation (CNCF) OpenTelemetry project. OpenTelemetry provides a single 
+set of open source APIs, libraries, and agents to collect distributed traces and metrics.
+
+![AWS Distro for OpenTelemetry](./images/amazon-eks-aws-distro-for-opentelemetry.png)
+
+Send correlated logs, metrics, and traces to or from more observability backends such as:
+
+- Amazon Managed Service for Prometheus (AMP)
+- Amazon Managed Streaming for Apache Kafka (MSK)
+- Amazon CloudWatch
+- AWS X-Ray
+- Amazon Open Search
+- and any OpenTelemetry Protocol (OTLP) compatible backend
+
+You can observer applications running in:
+
+- EC2
+- ECS EC2
+- Fargate
+- EKS
+- AWS App Runner
+- AWS Lambda
+- On-Premise
+
+### Prometheus
+
+**Prometheus** is an open-source systems monitoring and alerting toolkit, originally built at SoundCloud. Prometheus collects and stores its metrics as time series data. It provides the ability to query, aggregate, and store collected data.
+
+**Prometheus Features**
+
+- A multi-dimensional data model with time series data indentified by metric name and key/value pairs (labels)
+- PromQL, a flexible query language to leverage this dimensionality.
+- Zero reliance on distributed storage, single server nodes are autonomous.
+- Time series collection happens via a pull model over HTTP.
+- Pushing time series is supported via an intermediary gateway.
+- Targets are discovered via service discovery, or static configuration.
+- Supports multiple nodes of graphing and dashboarding.
+
+Prometheus values reliability. You can always view what statistics are available about your system, even under failure conditions.
+
+If you need 100% accuracy, such as per-request billing, Prometheus is not a good choice as the collected data will likely not be detailed and complete enough.
+
+![Prometheus Architecture](./images/amazon-eks-prometheus-architecture.png)
+
+- **Pushgateway**- Prometheus scrapes metrics from instrumented jobs, either directly or via an intermediary push gateway for short-lived jobs.
+- **Node**- It stores all scraped samples locally and runs rules over these data to either aggregate and record new time series from existing data or generate alerts.
+- Grafana or other API consumers can be used to query and visualize the collected metrics.
+
+### Amazon Managed Service for Prometheus
+
+**Amazon Managed Service for Prometheus** is a Prometheus-compatible monitoring and alerting service that makes it easy to monitor containerized applications and infrastructure 
+at scale. It is a fully-managed service that automatically scales the ingestion, storage, querying, and alerting of your metrics. It also integrates with AWS security services 
+to enable fast and secure access to your data. You can use the open-source PromQL query language to query your metrics and alert on them. Also, you can use alert manager in 
+Amazon Managed Service for Prometheus to set up alerting rules for critical alerts. You can then send these critical alerts as notifications to an Amazon SNS topic.
+
+![Amazon Managed Service for Prometheus](./images/amazon-eks-managed-service-for-prometheus.png)
+
+- You can use **Amazon Managed Service for Grafana** to visualize data within AMP.
+- You can also use **AWS Distro for OpenTelemetry** to injest application metrics from your environment with AMP.
+
+### Amazon Managed Service for Grafana
+
+**Grafana** is an open-source analytics platform that helps you query, visualize, alert on, and understand your metrics wherever they are stored.
+
+**Amazon Managed Grafana** is a fully managed secure data visualization service that lets you analyze and visualize your metrics, logs, and traces from multiple sources. You can 
+use the open-source PromQL query language to query your metrics and alert on them. 
+
+**Amazon Managed Grafana** is particularly useful if your organization already uses Grafana for visualization of existing workloads and you want to extend coverage to AWS 
+workloads. You can use Amazon Managed Grafana with CloudWatch by adding it as a data source, which means that you can create visualizations using CloudWatch metrics. Amazon 
+Managed Grafana supports AWS Organizations and you can centralize dashboards using CloudWatch metrics from multiple accounts and Regions.
