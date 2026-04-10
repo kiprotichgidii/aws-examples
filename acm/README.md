@@ -105,3 +105,25 @@ Most SSO systems are using LDAP, LDAP was not designed natively to work with web
 
 ### AWS Directory Service
 
+Directory Service provides multiple ways to set up and run Microsoft Active Directory with other AWS services such as Amazon EC2, Amazon RDS for SQL Server, FSx for Windows File 
+Server, and AWS IAM Identity Center. Directory Service for Microsoft Active Directory, also known as AWS Managed Microsoft AD, enables your directory-aware workloads and AWS 
+resources to use a managed Active Directory in the AWS Cloud.
+
+1. **Simple AD**
+   - A Microsoft AD compatible directory, powered by Samba 4.
+   - Supports basic AD features.
+   - Not available in all regions.
+
+2. **AD Connector**
+   - A proxy service to connect your existing on-premise AD directory.
+
+3. **AWS Managed Microsoft AD**
+   - A fully managed Microsoft Windows Server Active Directory, running in the AWS Cloud.
+   - Supports full AD features.
+   - Available in all regions.
+
+4. **Amazon Cognito**
+   - Integrate signup and sign-in into your web applications.
+
+### AWS Firewall Manager
+
