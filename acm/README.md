@@ -162,3 +162,59 @@ AWS Inspector can perform both Network and Host Assessments.
 
 ### Amazon Macie
 
+**Amazon Macie** is a data security service that helps customers discover, classify, and protect sensitive data stored in Amazon S3 buckets by continuously monitoring and 
+alerting on potential data risks and unauthorized access attempts.
+
+Macie works by using Machine Learning to analyze your ClouTrail logs. Macie has a variety of alerts:
+
+- Anonymized Access
+- Config Compliance
+- Credential Loss
+- Data Compliance
+- File Hosting
+- Identity Enumeration
+- Information Loss
+- Location Anomaly
+- Open Permissions
+- Privilege Escalation
+- Ransomware
+- Service Disruption
+- Suspicious Access
+
+Macie will identify the most at-risk users, which could lead to a compromise.
+
+![Amazon Macie](./images/amazon-macie.png)
+
+### AWS Security Hub
+
+**AWS Security Hub** is a unified cloud security solution that prioritizes your critical security issues and helps you respond at scale. Security Hub detects security issues by 
+automatically correlating and enriching security signals from multiple sources, such as posture management, vulnerability management (Amazon Inspector), sensitive data (Amazon 
+Macie), and threat detection (Amazon GuardDuty).
+
+Security Hub also includes automated response workflows to help you remediate risks, improve team productivity, and minimize operational disruptions. Security Hub receives findings from the following AWS services.
+
+- AWS Security Hub CSPM
+- Amazon GuardDuty
+- Amazon Inspector
+- Amazon Macie
+
+**Features**
+
+1. **Unified security solution**: Gain broader visibility across your cloud environment through centralized management in a unified cloud security solution.
+
+2. **Actionable security insights**: Gain actionable security insights through advanced analytics to learn about security risks associated with your environment.
+
+3. **Reduced response times**: Streamline response times with automated workflows and an integrated ticketing system.
+
+4. **Exposure findings**: Security Hub correlates findings from Security Hub CSPM control checks, Amazon Inspector, and other AWS services to detect exposures associated with AWS resources.
+
+5. **Findings are formatted in the Open Cybersecurity Schema Framework (OCSF)**: Security Hub generates findings in OCSF and receives findings in OCSF from Security Hub CSPM and other AWS services:
+
+   - Amazon GuardDuty
+   - Amazon Macie
+   - Amazon Inspector
+
+6. **Dashboard**: The Security Hub console provides a comprehensive view of your exposures, threats, security coverage, and resources, as well as an interactive visualization called the attack path graph, which shows how potential attackers can access and take control of resources associated with an exposure finding.
+
+7. **Integrations with third-party products**: You can enhance your security posture with Security Hub integrations. For example, if you use Jira Cloud or ServiceNow ITSM, you can use this feature to create tickets from findings.
+
