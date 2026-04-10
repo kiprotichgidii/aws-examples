@@ -127,3 +127,38 @@ resources to use a managed Active Directory in the AWS Cloud.
 
 ### AWS Firewall Manager
 
+**AWS Firewall Manager** simplifies your administration and maintenance tasks across multiple accounts and resources. With Firewall Manager, you set up your protections just 
+once and the service automatically applies them across your accounts and resources, even as you add new accounts and resources.
+
+AWS Services that can be managed by Firewall Manager:
+
+- AWS WAF
+- AWS WAF Classic
+- AWS Shield Advanced
+- Amazon VPC security groups
+- Network ACLs
+- AWS Network Firewall
+- Amazon Route 53 Resolver DNS Firewall
+- Third Party Firewall Services
+
+Prerequisites:
+
+- Account must be a member of AWS Organizations.
+- Account must be the AWS Firewall Manager Admninistrator.
+- Must have AWS Config enabled for your accounts and regions.
+- Resource Access Manager must be enabled for specific services. eg. AWS Network Firewall or Route 53 Resolver DNS Firewall.
+
+### AWS Inspector
+
+**Amazon Inspector** is a fully managed AWS service that provides automated, continuous vulnerability scanning for EC2 instances, container images (ECR), and Lambda functions. 
+It identifies software vulnerabilities and network exposure, offering prioritized risk scores for efficient remediation, integrating with AWS Security Hub and EventBridge for 
+automated responses.
+
+AWS Inspector can perform both Network and Host Assessments.
+
+- Install the AWS agent on your EC2 instances.
+- Run the assessment for your assessment target.
+- Review findings and remediate security risks.
+
+### Amazon Macie
+
