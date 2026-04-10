@@ -180,3 +180,83 @@ Clusters can be deployed to:
 EKS-Anywhere is open-source and free. EKS Anywhere Enterprise Subscriptions for 24/7 Support goes for $24K per cluster for a 1 year term. For a 3-year term, it's $18K per 
 cluster per year.
 
+### Traces and Spans
+
+A **trace** is a data/execution path through the system, and can be though of as a directed acrylic graph(DAG) of spans. 
+
+![Traces and Spans](./images/amazon-eks-traces-and-spans.png)
+
+A **Span** represents a logical unit of work, in Jaeger that has an operation name, the start time of the operation, and the duration. Spans may be nested and ordered to model 
+casual relationships.
+
+### Open Telemetry
+
+**Open Telemetry(OTEL)** is a collection of open-source tools, APIs, SDKs, and integrations that help you instrument, generate, collect, and export telemetry data 
+(traces, metrics, and logs) from your applications and services. It provides a vendor-neutral standard for observability, allowing you to collect telemetry data from 
+different sources and export it to various backends for analysis and visualization. 
+
+Open Telemetry standardizes how telemetry data are generated and collected. 
+
+![OpenTelemetry](./images/amazon-eks-opentelemetry.png)
+
+A **Wire Protocol** refers to a way of getting data from point to point. eg. SOAP, AMQP
+
+### Open Telemetry Instrumentation
+
+Instrumentation is the act of embedding a monitoring library into your existing application in order to capture monitoring data such as metrics, traces, or logging.
+
+Open Telemetry supports a variety of programming languages:
+
+- C++
+- .NET
+- Erlang/Elixir
+- Go
+- Python
+- JavaScript
+- Php
+- Java
+- Ruby
+- Rust
+- Swift
+
+For certain frameworks, there plug-and-play libraries to quickyly instrument your apps:
+ 
+ - Spring
+ - ASP.Net Core
+ - Express
+ - Quarkus
+
+```ruby
+# require otel-ruby
+require 'opentelemetry-sdk'
+
+# export traces to console by default
+ENV['OTEL_TRACES_EXPORTER'] = 'console'
+
+# configure sdk with defaults
+OpenTelemetry::SDK.configure
+
+@tracer = OpenTelemetry.tracer_provider.tracer('sinatra', '1.0')
+
+OpenTelemetry::Context.with_current(context) do
+  @tracer.in_span(
+    span_name,
+    kind: :server,
+    attributes: {
+      'component' => 'http',
+      'http.method' => ENV['REQUEST_MATHOD'],
+      'http.url' => ENV['REQUEST_URI'],
+      'http.route' => ENV['PATH_INFO'],
+    }
+  ) do |span|
+    # Run application stack
+    status, header, response_body = @app.call(env)
+    
+    span.set_attribute('http.status_code', status)
+    
+  end
+end
+```
+
+### Open Telemetry Collector
+
