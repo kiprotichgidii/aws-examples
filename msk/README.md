@@ -1,4 +1,4 @@
-## Amazon MSK
+## Amazon Managed Streaming for Apache Kafka (MSK)
 
 **Amazon Managed Streaming for Apache Kafka (Amazon MSK)** is a streaming data service that manages Apache Kafka infrastructure and operations, making it easier for developers 
 and DevOps managers to run Apache Kafka applications and Apache Kafka Connect connectors on AWS—without becoming experts in operating Apache Kafka.
