@@ -16,6 +16,8 @@ center agents and end-customers in real-time. It evolved from Amazon Connect Wis
 **Amazon CodeWhisperer** is a machine learning (ML)–powered service that helps improve developer productivity by generating code recommendations based on their comments in 
 natural language and code in their integrated development environment (IDE).
 
+![Amazon CodeWhisperer](./images/amazon-code-whisperer.png)
+
 It integrates with the following IDEs:
 
 - AWS Glue Studio Notebook.
@@ -42,6 +44,3 @@ Amazon CodeWhisperer has two tiers, Individual and Professional.
 | | Organizational policy management |
 | | Amazon Q feature development |
 | | Amazon Q code Transformation |
-
-![Amazon CodeWhisperer](./images/amazon-code-whisperer.png)
-

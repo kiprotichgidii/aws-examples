@@ -70,3 +70,4 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [AWS KMS](https://github.com/kiprotichgidii/aws-examples/blob/main/kms/README.md#aws-key-management-service-kms)
 - [AWS Certificate Manager](https://github.com/kiprotichgidii/aws-examples/blob/main/acm/README.md#aws-certificate-manager-acm)
 - [AWS Secrets Manager](https://github.com/kiprotichgidii/aws-examples/blob/main/secrets-manager/README.md#aws-secrets-manager)
+- [Amazon AI Dev Tools](https://github.com/kiprotichgidii/aws-examples/blob/main/ai-dev-tools/README.md#amazon-q)
