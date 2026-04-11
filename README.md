@@ -71,7 +71,7 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [AWS Certificate Manager](https://github.com/kiprotichgidii/aws-examples/blob/main/acm/README.md#aws-certificate-manager-acm)
 - [AWS Secrets Manager](https://github.com/kiprotichgidii/aws-examples/blob/main/secrets-manager/README.md#aws-secrets-manager)
 - [Amazon AI Dev Tools](https://github.com/kiprotichgidii/aws-examples/blob/main/ai-dev-tools/README.md#amazon-q)
-- [Amazon MSK](https://github.com/kiprotichgidii/aws-examples/blob/main/msk/README.md#amazon-msk)
+- [Amazon MSK](https://github.com/kiprotichgidii/aws-examples/blob/main/msk/README.md#amazon-managed-streaming-for-apache-kafka-msk)
 - [AWS WAF](https://github.com/kiprotichgidii/aws-examples/blob/main/shield-waf/README.md#aws-web-application-firewall-waf)
 - [AWS Shield](https://github.com/kiprotichgidii/aws-examples/blob/main/shield-waf/README.md#aws-shield)
 - [AWS CloudHSM](https://github.com/kiprotichgidii/aws-examples/blob/main/shield-waf/README.md#aws-cloudhsm)
