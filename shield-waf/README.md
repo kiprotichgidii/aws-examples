@@ -101,4 +101,3 @@ The Personal Health Dashboard shows recent events to help you managed active eve
 include our Service Organization Control (SOC) reports, Payment Card Industry (PCI) reports, and certifications from accreditation bodies across geographies and compliance 
 verticals that validate the implementation and operating effectiveness of AWS security controls. Agreements available in AWS Artifact include the Business Associate Addendum 
 (BAA) and the Nondisclosure Agreement (NDA).
-
