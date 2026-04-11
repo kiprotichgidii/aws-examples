@@ -107,4 +107,53 @@ The gateway can also be deployed to:
 
 ### Cached Volumes
 
-- 
+- Cached volumes store primary data in Amazon S3 while retaining ferquently accessed data locally in your storage gateway. 
+- Minimizes the need to scale your on-premise storage infrastructure while still providing your applications with low-latency data access.
+- Create storage volumes up to 32TiB in size and attach them as iSCSI devices from your on-premise servers.
+- Your gateway staores data that you write to these volumes in S3 and retains recently read data in your on-premise storage gateway cache, and uploads buffer storage.
+- Cached volumes can be between 1-32GiB in size.
+- Hosting:
+  - Deployed on a VM Appliance
+    - VMWare ESXi Hypervisor
+    - Microsoft Hyper-V
+    - Linux Kernel-based Virtual Machine (KVM)
+  - Deployed as a Hardware Appliance
+  - Deployed as an EC2 instance
+
+## Tape Gateway
+
+Tape Gateway is a durable, cost-effective, and secure cloud-based replacement for your physical tape backup infrastructure. It provides a virtual tape library (VTL) interface 
+that integrates with your existing backup software, allowing you to continue using your familiar backup tools while taking advantage of the scalability and cost-effectiveness of 
+AWS cloud storage.
+
+- Tape storage has proven readability of 30 years. 
+- Each tape gateway is pre-configured with a media changer and tape drivers, which are available to existing client backup applications as iSCSI devices.
+- Tape catridges are added as you need to archive your data.
+- Supported by NetBackup, Backup Exec, and Veeam.
+- Hosting:
+  - Deployed on a VM appliance
+    - VMWare ESXi Hypervisor
+    - Microsoft Hyper-V
+    - Linux Kernel-based Virtual Machine (KVM)
+  - Deployed as a Hardware appliance
+
+A **VTL media changer** is analogous to a robot that moves tapes around in a physical tape library's storage slots and tape drives.
+
+Tape Gateway has two possible media changers:
+- AWS-Gateway-VTL
+- STK L700 - emulated 
+
+Different backup applications can use both or only specific media changers:
+
+- Arcserve Backup
+- Bacula Enterprise V10.x
+- Commvault V11
+- Dell EMC NetWorker 19.5
+- IBM Soectrum Protect V8.1.10
+- Micro Focus (HPE) Data Protector 9 or 11.x
+- Microsoft System Center 2012 R2 or 2016 Data Protection Manager
+- NovaStor DataCenter/Network 6.4 or 7.1
+- Quest NetVault Backup 12.4 or 13.x
+- Veeam Backup & Replication 11A
+- Veritas Backup Exec 2014 or 15 or 16 or 20 or 22.x
+- Veritas Backup Exec 2022
