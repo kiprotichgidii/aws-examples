@@ -401,7 +401,7 @@ You cannot disable IPv4 support on a VPC and it's subnets, as it is the default 
 
 AWS Direct Connect is the AWS solution for establishing dedicated network connections from on-premise locations to AWS. It is a private connection between your on-premise network and your VPC. It is not a VPN and it is not a proxy. It is a dedicated connection between your on-premise network and your VPC.
 
-Direct Connect has two ver fast-network connection options:
+Direct Connect has two very fast-network connection options:
 - Lower Bandwidth (50 Mbps - 500 Mbps)
 - Higher Bandwidth (1 Gbps - 100 Gbps)
 
@@ -470,7 +470,7 @@ With Privatelink, you create an Interface Endpoint to connect to services. You a
 
 Interface endpoints are **Elastic Network Interfaces (ENIs)** with private IP addresses that are created in your subnets. They are used to access AWS services from your VPC without exposing them to the public internet.
 
-Interfaca Endpoints are used to access services hosted on AWS easily and securely by keeping your network traffic within the AWS network.
+Interface Endpoints are used to access services hosted on AWS easily and securely by keeping your network traffic within the AWS network.
 
 ![Interface Endpoints](./images/aws-interface-endpoints.png)
 
@@ -619,7 +619,7 @@ AWS Site-to-Site VPN allows you to connect your VPC to your on-premise network.
 #### AWS Site-to-Site Components
 
 - **VPN Connection**: Secure connection between your VPC and your on-premise network.
-- **VPN Tunneel**: Encrypted connection for data transfer between your VPC and your on-premise network.
+- **VPN Tunnel**: Encrypted connection for data transfer between your VPC and your on-premise network.
 - **Customer Gateway(CGW)**: Provides information to AWS about your customer gateway device.
 - **Customer Gateway Device**: The physical device or software application on your side of the Site-to-Site VPN connection.
 - **Target Gateway**: A generic term for the VPN endpoint on the AWS Side of the Site-to-Site VPN connection.
@@ -700,7 +700,7 @@ Transit gateway can support either IPv4 or IPv6 traffic inside the VPN tunnel.
 
 ### AWS Client VPN
 
-AWS Client VPN is a fully managed client-based VPN service that enables you to securely access AWS resources and resources in your on-premise network.
+AWS Client VPN is a fully managed client-based VPN service that enables you to securely access AWS resources in your on-premise network.
 
 ![AWS Client VPN](./images/aws-client-vpn.png)
 
