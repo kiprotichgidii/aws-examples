@@ -29,11 +29,11 @@ Technically, NACLs and SGs are EC2 networking components, but as mentioned earli
 ### VPC Key Features
 
 - VPCs are region specific. You can use VPC Peering to connect VPCs across regions.
-- You can create upto 5 VPCs per region. (adjustable)
+- You can create up to 5 VPCs per region. (adjustable)
 - Every region comes with a default VPC.
-- You can have upto 200 subnets per VPC.
-- You can have upto 5 IPv4 CIDR blocks per VPC.
-- You can have upto 5 IPv6 CIDR blocks per VPC.
+- You can have up to 200 subnets per VPC.
+- You can have up to 5 IPv4 CIDR blocks per VPC.
+- You can have up to 5 IPv6 CIDR blocks per VPC.
 - Most VPC components don't incur any charges from AWS, e.g
   - VPC itself, Route Tables, NACLs, Internet Gateways, Security Groups, Subnets, and VPC Peering.
 - Here's what has additional charges from AWS:
