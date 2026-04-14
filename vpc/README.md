@@ -306,12 +306,16 @@ With `--network-board-group` you can pick very specific AZs, Local Zones or Wave
 
 ```bash
 aws ec2 allocate-address --domain vpc 
+```
+Output:
+
+```sh
 {
-    "PublicIP": "54.228.5.3",
-    "AllocationId": "eipalloc-1234567890abcdef0",
-    "PublicIPv4Pool": "amazon",
+    "AllocationId": "eipalloc-0e6357f9b145775ab",
+    "PublicIpv4Pool": "amazon",
+    "NetworkBorderGroup": "us-east-1",
     "Domain": "vpc",
-    "NetworkBorderGroup": "us-east-1a"
+    "PublicIp": "54.161.92.224"
 }
 ```
 Associate Elastic IP with an EC2 instance:
@@ -319,7 +323,7 @@ Associate Elastic IP with an EC2 instance:
 ```bash
 aws ec2 associate-address \
   --instance-id i-1234567890abcdef0 \
-  --allocation-id eipalloc-1234567890abcdef0
+  --allocation-id eipalloc-0e6357f9b145775ab
 ```
 
 Disassociate Elastic IP from an EC2 instance:
@@ -333,14 +337,14 @@ Deallocate Elastic IP:
 
 ```bash
 aws ec2 release-address \
-  --allocation-id eipalloc-1234567890abcdef0
+  --allocation-id eipalloc-0e6357f9b145775ab
 ```
 In the case of a failure, you can re-associate the Elastic IP address with another EC2 instance.
 
 ```bash
 aws ec2 associate-address \
   --instance-id i-1234567890abcdef0 \
-  --allocation-id eipalloc-1234567890abcdef0
+  --allocation-id eipalloc-0e6357f9b145775ab
   --allow-reassociation
 ```
  You can also explicitly tell it not to re-associate:
@@ -348,7 +352,7 @@ aws ec2 associate-address \
 ```bash
 aws ec2 associate-address \
   --instance-id i-1234567890abcdef0 \
-  --allocation-id eipalloc-1234567890abcdef0
+  --allocation-id eipalloc-0e6357f9b145775ab
   --no-allow-reassociation
 ```
 
