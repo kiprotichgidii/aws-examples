@@ -226,9 +226,9 @@ Security Groups have only ALLOW rules, unlike NACLs, which have both ALLOW and D
    ```
 #### Security Group Limits
 
-- You can have upto 10,000 Security Groups in a region. (default is 2,500)
-- You can have upto 60 inbound rules and 60 outbound rules per Security Group. 
-- You can have upto 16 Security Groups per Elastic Network Interface (ENI). (default is 5)
+- You can have up to 10,000 Security Groups in a region. (default is 2,500)
+- You can have up to 60 inbound rules and 60 outbound rules per Security Group. 
+- You can have up to 16 Security Groups per Elastic Network Interface (ENI). (default is 5)
 
 Security Groups do not filter traffic destined to and from the following:
 - Amazon Domain Name Services (DNS)
@@ -309,7 +309,7 @@ aws ec2 allocate-address --domain vpc
 {
     "PublicIP": "54.228.5.3",
     "AllocationId": "eipalloc-1234567890abcdef0",
-    "IublicIPv4Pool": "amazon",
+    "PublicIPv4Pool": "amazon",
     "Domain": "vpc",
     "NetworkBorderGroup": "us-east-1a"
 }
