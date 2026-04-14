@@ -786,7 +786,7 @@ Jumpboxes are security hardened virtual machines that provide secure access to p
 
 - Jumpboxes areEC2 instances that are security hardened.
 - Jumpboxes access private subnet resources via SSH or RCP.
-- They are known as Jumpboxes becuase you are jumping from one box to access another.
+- They are known as Jumpboxes because you are jumping from one box to access another.
 - They are known as Bastion because they provide protection against attacks.
 
 **NATs** cannot and should not be used as Bastions. **NAT Gateways/Instances** are only intended for EC2 instances to gain outbound internet access for tasks such as security updates.
@@ -806,7 +806,7 @@ Amazon VPC Lattice is a fully managed application networking service that is use
 - Integrates with AWS IAM
 - Uses weight routing for traffic, eg. blue/green and canary style deployments
 - Uses HTTPS for service-to-service communication
-- Supports Custome domain names
+- Supports Custom domain names
 - Offers Bring-Your-Own SSL/TLS certificates
 
 ![AWS VPC Lattice](./images/aws-vpc-lattice.png)
@@ -814,7 +814,7 @@ Amazon VPC Lattice is a fully managed application networking service that is use
 - **Service Network**: The logical container for all the services that can communicate with each other within the associated VPCs.
 - **Listener**: The protocol and port the services listens on. A service can have upto 2 listeners, a listener containing the routing rules and another for default rule.
 - **Target Group**: A collection of resources of a specific type. eg EC2, IP addresses, Lambda fucntions, ALBs, K8s pods
-- **Service Directory**: A registry of all Lattice services owned or shared with AWS Account through AWS Resource Manager(AWS RAM).
+- **Service Directory**: A registry of all Lattice services owned or shared with AWS Account through AWS Resource Access Manager(AWS RAM).
 
 ### Transit Gateway
 
@@ -877,7 +877,7 @@ It filters outbound traffic at the perimeter of the VPC:
 
 ### VPC Peering
 
-VPC Peering allows the connection one VPC to another over a direct route using Private IP addresses. 
+VPC Peering allows connecting one VPC to another over a direct route using Private IP addresses. 
 
 ![AWS VPC Peering](./images/aws-vpc-peering.png)
 
