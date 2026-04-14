@@ -62,7 +62,7 @@ If you accidentally delete the default VPC, it can be recreated via the CLI, usi
 aws ec2 create-default-vpc --region us-east-1
 ```
 - A deleted VPC cannot be restored.
-- You cannot mark an existing non-default VPC as a default VPC and if you already have a default VPC in a region, you canoot create another one.
+- You cannot mark an existing non-default VPC as a default VPC and if you already have a default VPC in a region, you cannot create another one.
 
 ###  Deleting a VPC
 
@@ -118,7 +118,7 @@ Each NACL has two different sets of rules:
 
 Subnets are associated with NACLs and a subnet can only belong to a single NACL.
 
-They key difference of NACLs from Security Groups is that NACLs have both ALLOW and DENY rules, while Security Groups only have ALLOW rules. With NACLs, you could block a single IP address, which you can't do with Security Groups.
+The key difference of NACLs from Security Groups is that NACLs have both ALLOW and DENY rules, while Security Groups only have ALLOW rules. With NACLs, you could block a single IP address, which you can't do with Security Groups.
 
 NACL rules have NACL numbers, which determine the order of evaluation from the lowest to the highest. The highest rule # can be 32766 and it's recommended to work in 10 or 100 increments.
 
