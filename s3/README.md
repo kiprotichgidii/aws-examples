@@ -1339,7 +1339,7 @@ curl https://ip-ranges.amazonaws.com/ip-ranges.json | jq '.prefixes[] | select(.
 
 An endpoint is the URL of the entry point for an AWS web service. To connect to programmatically to an AWS service, you use an endpoint. For example, the S3 service endpoint in the US East (N. Virginia) Region is https://s3.us-east-1.amazonaws.com. 
 
-Endpoints vary depending on the type of AWS service, but the general fomart is `protocol://service-code.region-code.amazonaws.com`. e.g `https://cloudformation.us-east-1.amazonaws.com`.
+Endpoints vary depending on the type of AWS service, but the general format is `protocol://service-code.region-code.amazonaws.com`. e.g `https://cloudformation.us-east-1.amazonaws.com`.
 
 Therea are four types of Service endpoints:
 1. **Global endpoints**: AWS Services that use the same endpoint. e.g `https://iam.amazonaws.com`, `https://sts.amazonaws.com`, `https://s3.amazonaws.com`
