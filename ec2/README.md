@@ -470,7 +470,7 @@ Some Marketplace and community AMIs will write the default user name and passwor
 
 Logs can be delivered to CloudWatch Logs installing the CloudWatch Unified Agent and can be accessed through a CloudWatch Log Group of the same name as the instance.
 
-Logs that woule be collected from an EC2 instance is CloudWatch Unified Agent is running and the EC2 instance is permitted to write to CloudWatch logs:
+Logs that would be collected from an EC2 instance if CloudWatch Unified Agent is running and the EC2 instance is permitted to write to CloudWatch logs:
 
 - `/var/log/ssm/amazon-ssm-agent.log/`
 - `/var/log/audit/audit.log`
@@ -548,9 +548,9 @@ Short-lived SSH keys controlled by IAM policies, works only with Linux and not a
 #### Session Manager
 
 - Connection to a Linux or Windows computer via a reverse connection.
-- Windows will log into PowerShell and Linuc will log into bash.
+- Windows will log into PowerShell and Linux will log into bash.
 - Does not require open ports, access is controlled via IAM policies.
-- Supports audit tails for logins.
+- Supports audit trails for logins.
 
 #### Fleet Manager Remote Desktop
 
@@ -597,7 +597,7 @@ sudo yum list installed
 
 #### Amazon Linux Extras
 
-**Amazon Linux Extras** is a feature of Amazon Linux 2 that allows users to install additional software packages on their instances. Amazon Linux 2 was packaged with significantly fewer than Amazon Linux 1, hence the vital need for Amazon Linux Extras. **Amazon Linux 2023** has significanyly more packages than **Amazon Linux 2**, so it does not need Amazon Linux Extras.
+**Amazon Linux Extras** is a feature of Amazon Linux 2 that allows users to install additional software packages on their instances. Amazon Linux 2 was packaged with significantly fewer than Amazon Linux 1, hence the vital need for Amazon Linux Extras. **Amazon Linux 2023** has significantly more packages than **Amazon Linux 2**, so it does not need Amazon Linux Extras.
 
 ```bash
 # List all available extras
@@ -631,9 +631,9 @@ Amazon Linux 2023 is a major upgrade over Amazon Linux 2, with a number of impro
 | `yum` package manager | `dnf` package manager |
 | Security Enhanced Linux (SELinux) disabled by default | Security Enhanced Linux (SELinux) enabled by default |
 | OpenSSL 1.0.2 | OpenSSL 3 |
-| Sourcing CentOS 7 | Sourcing RHEL Stream 9 |
+| Sourcing CentOS 7 | Sourcing CentOS Stream 9 |
 | gp2 volumes be default | gp3 volumes be default |
-| Cronie installed by default to have crontab | Cronie not installed by default |
+| Crony installed by default to have crontab | Crony not installed by default |
 | OpenJDK | Amazon Corretto |
 
 ### EC2 AMI
