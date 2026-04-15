@@ -887,8 +887,8 @@ VPC Peering allows connecting one VPC to another over a direct route using Priva
 - There is no single point of failure for communication or bandwidth bottlenecks
 - VPC Peering can be between Ipv4 addresses of IPv6 addresses
 - Instances on peered VPCs behave exactly as if they were in the same VPC
-- VPC Peerinf can connect VPCs across the same or different AWS accounts and regions
-- Peering Uses a star configuration i.e 1 Cental VPC and 4 other VPCs connected to it
+- VPC Peering can connect VPCs across the same or different AWS accounts and regions
+- Peering uses a star configuration i.e 1 Cental VPC and 4 other VPCs connected to it
   ![AWS Peered VPCs](./images/aws-peered-vpcs.png)
 - No transit Peering i.e Peering must be take place directly between VPCs
   - Needs a one-to-one connection to immediate VPC

@@ -440,7 +440,7 @@ Burstable Instances allow workloads to handle bursts of higher CPU usage for ver
 #### Standard Mode
 
 - The default mode for burstable instances
-- Provides a baseline level of CPU performance with the ability to burst above the baseline using accumulated CPI credits, suitable for workloads with variable CPU usage.
+- Provides a baseline level of CPU performance with the ability to burst above the baseline using accumulated CPU credits, suitable for workloads with variable CPU usage.
 
 #### Unlimited Mode
 
