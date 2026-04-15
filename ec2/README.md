@@ -722,9 +722,9 @@ The native volumes of the instance store are used as the root device. When the i
 
 ![AWS EC2 Instance store-backed Instance](./images/aws-ec2-instance-store-backed-instance.png)
 
-### AMI - Creating an Copying
+### AMI - Creating and Copying
 
-You can create an AMI from an existing EC2 instance that os either running or stopped.
+You can create an AMI from an existing EC2 instance that is either running or stopped.
 
 ```bash
 # Create an AMI from an existing EC2 instance

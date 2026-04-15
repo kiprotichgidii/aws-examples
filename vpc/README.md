@@ -600,7 +600,7 @@ Logs can be delivered to either:
 
 ### AWS Virtual Private Network (VPN)
 
-**AWS VPN** let's you establisha secure and private tunnel from your network or device, to the **AWS Global Network**.
+**AWS VPN** let's you establish a secure and private tunnel from your network or device, to the **AWS Global Network**.
 
 There are two types of VPN connections in AWS:
 - **AWS Site-to-Site VPN**: Allows you to securely connect your on-premise network or branch office to your VPC.
@@ -770,9 +770,9 @@ IPv6-only workloads running in a VPC can only send and receive IPv6 network pack
 
 ### NAT Instance
 
-**NAT Instances** (legacy) is an AWS managed IAM to launch a NAT onto individual EC2 instances. NAT instnaces require the client to handle scaling, high availability, and patching. NAT instances are not fault tolerant and must be manually configured for high availability.
+**NAT Instances** (legacy) is an AWS managed AMI to launch a NAT on to individual EC2 instances. NAT instances require the client to handle scaling, high availability, and patching. NAT instances are not fault tolerant and must be manually configured for high availability.
 
-The NAT AMI is built on the lastes version of the Amazon Linux AMI, 2018.03, which reached the end of standard support on December 31, 2023 and end of maintenance support on December 31, 2023.
+The NAT AMI is built on the latest version of the Amazon Linux AMI, 2018.03, which reached the end of standard support on December 31, 2023 and end of maintenance support on December 31, 2023.
 
 ![AWS NAT Instance](./images/aws-nat-instance.png)
 
@@ -784,7 +784,7 @@ Jumpboxes are security hardened virtual machines that provide secure access to p
 
 ![AWS Bastion](./images/aws-bastion-jumpbox.png)
 
-- Jumpboxes areEC2 instances that are security hardened.
+- Jumpboxes are EC2 instances that are security hardened.
 - Jumpboxes access private subnet resources via SSH or RCP.
 - They are known as Jumpboxes because you are jumping from one box to access another.
 - They are known as Bastion because they provide protection against attacks.
@@ -885,7 +885,7 @@ VPC Peering allows connecting one VPC to another over a direct route using Priva
 - VPC Peering connection is not a VPN connection
 - VPC Peering connection does not rely on separate piece of physical hardware
 - There is no single point of failure for communication or bandwidth bottlenecks
-- VPC Peering can be between Ipv4 addresses of IPv6 addresses
+- VPC Peering can be between Ipv4 addresses and IPv6 addresses
 - Instances on peered VPCs behave exactly as if they were in the same VPC
 - VPC Peering can connect VPCs across the same or different AWS accounts and regions
 - Peering uses a star configuration i.e 1 Cental VPC and 4 other VPCs connected to it
