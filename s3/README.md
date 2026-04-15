@@ -49,7 +49,7 @@ S3 Bucket Folders are S3 objects with a name that ends with a forward slash `/`.
 
 ### S3 Objects
 
-S3 Objects are resources that represnet data and are not infrastructure resources.
+S3 Objects are resources that represent data and are not infrastructure resources.
 
 **Properties**
   - **Etags**: a way to detect when the contents of an object have changed without downloading the contents of the object. 
@@ -71,7 +71,7 @@ A response header that is returned when an object is uploaded to S3. It is a has
 
 #### S3 Object Checksums
 Amazon S3 uses checksums to verify data integrity of files on the transfer of data to and from S3.
-AWS allows you to chnage the checksum algorithm during the uploading of an object
+AWS allows you to change the checksum algorithm during the uploading of an object
 
 **Checksum Algorithms**
 - **CRC32**: A 32-bit checksum value that is calculated from the object data.
@@ -81,7 +81,7 @@ AWS allows you to chnage the checksum algorithm during the uploading of an objec
 
 #### S3 Object Prefixes
 These are prefixes that proceed the object filename and is part of the object key name. e.g `assests/images/image.png`. In this case `assets/images` is the prefix.
-Object prefixes allows for a way ti organize, group, and filter objects in a bucket.
+Object prefixes allows for a way to organize, group, and filter objects in a bucket.
 Prefixes use the forwad slash `/` as a delimiter to group similar data to directories, or subdirectories.
 
 #### S3 Object Metadata
