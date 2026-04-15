@@ -17,7 +17,7 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 4. Design Cost-Optimized Architectures (20%): Right-sizing resources, using Savings Plans/Reserved Instances, and monitoring costs with AWS Cost Explorer.
 
 **AWS Services**
-- [Simple Storage Service](https://github.com/kiprotichgidii/aws-examples/blob/main/s3/README.md#aws-s3-cli)
+- [Simple Storage Service](https://github.com/kiprotichgidii/aws-examples/blob/main/s3/README.md#amazon-simple-storage-services3)
 - [Virtual Private Cloud](https://github.com/kiprotichgidii/aws-examples/blob/main/vpc/README.md#aws-virtual-private-cloud-vpc)
 - [Identity and Access Management](https://github.com/kiprotichgidii/aws-examples/blob/main/iam/README.md#aws-identity-and-access-management-iam)
 - [Elastic Compute Cloud](https://github.com/kiprotichgidii/aws-examples/blob/main/ec2/README.md#amazon-elastic-compute-cloud-ec2)

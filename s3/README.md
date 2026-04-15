@@ -1,4 +1,4 @@
-## Amazon S3(Simple Storage Service)
+## Amazon Simple Storage Service(S3)
 
 S3 bucket names are used to form URL links to perform various HTTPS operations i.e `https://myexamplebucketname.s3.amazonaws.com/object-name`.
 
