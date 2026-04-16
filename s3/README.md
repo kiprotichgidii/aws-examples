@@ -752,7 +752,7 @@ Requesters must include the `x-amz-requester-payer` in their API request header 
 #### S3 Requesters Pay Troubleshooting
 
 A 403 (Forbidden Request) HTTP error code will occur for the following reasons:
-- The requester doesn't include the parameter (`x-amz-request-payer`) 
+- The requester didn't include the parameter (`x-amz-request-payer`) 
 - Request authentication failure (something is wrong with the IAM role or IAM policy)
 - The requester is anonymous
 - The request is a SOAP request (not allowed when requester pay is turned on)
@@ -778,7 +778,7 @@ Batch Operations:
 - **Copy**: Copy objects listed in the manifest to the specified destination bucket.
 - **Invoke AWS Lambda Function**: Run a Lambda function for each object in the manifest.
 - **Replace Object Tags**: Replace the tags on Amazon S3 objects listed in the manifest.
-- **Replcae ACLs**: Replace ACLs on Amazon S3 objects listed in the manifest.
+- **Replace ACLs**: Replace ACLs on Amazon S3 objects listed in the manifest.
 - **Restore Objects**: Restore objects from S3 Glacier.
 - **Object Lock Retention**: Prevents Overwriting or Deleting objects for a fixed amount of time.
 - **Object Lock Legal Hold**: Prevents Overwriting or Deleting objects until the legal hold is removed.
