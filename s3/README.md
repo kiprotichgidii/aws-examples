@@ -879,7 +879,7 @@ aws s3api put-bucket-analytics-configuration\
     --bucket my-bucket --id 1 \
     --analytics-configuration '{"Id": "1", "StorageClassAnalysis": {}}'  
 ```
-S3 Storage Clas Analysis observes the inrequent access patterns of a filtered set of data over a period of time and makes recommendations to move objects between Standard Storage and Standard IA.
+S3 Storage Class Analysis observes the infrequent access patterns of a filtered set of data over a period of time and makes recommendations to move objects between Standard Storage and Standard IA.
 
 You can have multiple analysis filters (up to 1000 filters) per bucket. The results can be exported in CSV format to an S3 bucket.
   - Use data in Amazon QuickSight for data visulization. 
