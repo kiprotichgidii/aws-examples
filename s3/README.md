@@ -347,7 +347,7 @@ S3 Glacier Flexible Retrieval combines S3 and Glacier into a single set of APIs.
 2. **Standard Tier**: 3-5 hours, no archive size limit 
 3. **Bulk Tier**: 5-12 hours, no archive size limit, even Petabytes of data can be retrieved.
 
-Arhived objects will have an additioncal 40KBS of data:
+Archived objects will have an additioncal 40KBS of data:
   - 32KB for archive index and metadata
   - 8KB for the name of the object
 
