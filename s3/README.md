@@ -715,7 +715,7 @@ There are two ways to archive S3 objects:
 
 1. **Archived Storage Classes**
     - When you know your access patterns
-    - Requires manual intervention to mave data
+    - Requires manual intervention to move data
     - Lower costs archives storage costs
       - S3 Glacier Flexible Retrieval (mins to hrs)
       - S3 Glacier Deep Archive (+12hrs)
@@ -729,7 +729,9 @@ There are two ways to archive S3 objects:
 
 ### S3 Requesters Pay
 
-S3 Requesters Pay bucket allows the bucket owner to offset/delegate specific costs to the requester of the data. The requester now pays for their Downloads/Uploadc costs while the bucket owner pays for the storage costs. This option is recommended when you want to share the data with other users but don't want to incur the charges associated with others accessing the data.
+S3 Requesters Pay bucket allows the bucket owner to offset/delegate specific costs to the requester of the data. The requester now pays for their Downloads/Uploads costs while
+the bucket owner pays for the storage costs. This option is recommended when you want to share the data with other users but don't want to incur the charges associated with
+others accessing the data.
 
 **Use Cases**
 1. **Collaborative Projects**: External partners pay for their own S3 data uploads and downloads.
@@ -737,7 +739,7 @@ S3 Requesters Pay bucket allows the bucket owner to offset/delegate specific cos
 3. **Shared Educational Resources**: Researchers cover their S3 usage fees and not the institution.
 4. **Conent Distribution**: Distributors/customers pay for S3 data transfer and downloads.
 
-All requests must be authenticated involving requester pays buckets. Requester assumes an IAMM role before making their requests; the IAM policy will have a `S3:RequesterPayer` condition. Anonymous access to Requester Pays buckets is not allowed.
+All requests must be authenticated involving requester pays buckets. Requester assumes an IAM role before making their requests; the IAM policy will have a `S3:RequesterPayer` condition. Anonymous access to Requester Pays buckets is not allowed.
 
 The AWS account of the Requester will be charged.
 
