@@ -583,7 +583,7 @@ S3 Object replication helps to:
 
 #### S3 Versioning
 
-S3 Versioning allows users to store multipl versions of S3 objects. With versioning, it's easy to recover from unintended user actions and application failures.
+S3 Versioning allows users to store multiple versions of S3 objects. With versioning, it's easy to recover from unintended user actions and application failures.
 
 Versioning-enabled buckets can help recover from accidental deletion or overwrite actions.
 
@@ -637,9 +637,9 @@ S3 Lifecycle allows users to automate the storage class changes, archival, or de
 
 #### S3 Transfer Acceleration
 
-S3 Transfer Acceleration is a bucket-level feature that provided fast and secure transfer of files over log distances between end users and an S3 bucket.
+S3 Transfer Acceleration is a bucket-level feature that provides fast and secure transfer of files over long distances between end users and an S3 bucket.
 
-It utilizes AWS CloudFront's ditributed edge locations to quickly enter the Amazon Global Network. Instead of uploading to a bucket, users use a different endpoint to route to an edge location. e.g `https://s3.accelerate.amazonaws.com` or `https://s3.accelerate.dualstack.amazonaws.com`
+It utilizes AWS CloudFront's distributed edge locations to quickly enter the Amazon Global Network. Instead of uploading to a bucket, users use a different endpoint to route to an edge location. e.g `https://s3.accelerate.amazonaws.com` or `https://s3.accelerate.dualstack.amazonaws.com`
 
 S3 Transfer Acceleration is only supported on virtual-hosted style requests. Buckets cannot contain periods and must be DNS compliant. 
 
