@@ -243,7 +243,7 @@ S3 Standard-IA is a storage class that is designed for data that is less frequen
 - High Availability: 99.9% (3 nines)
 - Data Redundancy: Data is stored across 3 or more AZs.
 - Retrieval Time: Milliseconds.
-- High Throughput: Optimized for rapi access.
+- High Throughput: Optimized for rapid access.
 - Cost-effective: Costs 50% less than S3 standard, but only if you do not access a file more than once in a month.
 - Scalability: Easily scales to storage size and number of requests.
 - Pricing:
@@ -265,15 +265,15 @@ Amazon S3 Express One Zone delivers consistent singe-digit millisecond data acce
 
 - It is the lowest latency cloud-object storage class available.
 - It offers data access speeds upto 10X faster than S3 Standard.
-- Requests cost upto 50% less than S3 Standard.
+- Requests cost up to 50% less than S3 Standard.
 - Data is stored in a single AZ(User selected).
 - Data is stored in a new bucket type(Amazon S3 directory bucket).
 
-The S3 directory bucket used supports simple real-folder structure. Only allowed 10 S3 directory buckets per AWS account by default. Express One Zone applies a flat per request charge for requests of upto 512KB.
+The S3 directory bucket used supports simple real-folder structure. Only allowed 10 S3 directory buckets per AWS account by default. Express One Zone applies a flat per request charge for requests of up to 512KB.
 
 #### S3 One Zone-IA (Infrequent Access)
 
-S3 One Zone-IS is designed for data that is less frequently accessed and has additional saving at reduced availability.
+S3 One Zone-IA is designed for data that is less frequently accessed and has additional saving at reduced availability.
 
 **Properties**
 
