@@ -791,7 +791,7 @@ You can also have Batch Operations generate out a completion report to audit the
 
 Amazon S3 Inventory takes inventory of objects in an S3 bucket on a repeated schedule so that you have an audit history of object changes.
 
-Amazon S3 will outout the inventory into the destination of another S3 bucket in the form of a manifest file.
+Amazon S3 will output the inventory into the destination of another S3 bucket in the form of a manifest file.
 
 You can specify additional metadata to be included in the inventory report such as:
 - Object size
@@ -881,7 +881,7 @@ aws s3api put-bucket-analytics-configuration\
 ```
 S3 Storage Clas Analysis observes the inrequent access patterns of a filtered set of data over a period of time and makes recommendations to move objects between Standard Storage and Standard IA.
 
-You can have multiple analysis filter (up to 1000 filters) per bucket. The results can be exported in CSV format to an S3 bucket.
+You can have multiple analysis filters (up to 1000 filters) per bucket. The results can be exported in CSV format to an S3 bucket.
   - Use data in Amazon QuickSight for data visulization. 
 
 S3 Storage Class Analysis provides storager usage visualization in the Amazon S3 console, that is updated daily.
