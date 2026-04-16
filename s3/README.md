@@ -668,7 +668,7 @@ Instead of creating a bucket policy you can create multiple access points that a
 
 Multi-Region access points is a global endpoint to route requests to multiple buckets in different regions.
 
-Multi-Region Access Points will return data from the regional bucket with the lowets latency. AWS Global Accelerator is used to route to the closest bucket an requests are accelerated over the internet, VPC or PrivateLink.
+Multi-Region Access Points will return data from the regional bucket with the lowest latency. AWS Global Accelerator is used to route to the closest bucket and requests are accelerated over the internet, VPC or PrivateLink.
 
 S3 Replication rules can be used to synchronize objects to the regional buckets.
 
@@ -690,7 +690,7 @@ An Amazon Lambda function is attached to an S3 bucket via the Object Lambda Acce
 Mounting allows you to mount an S3 bucket to your Linux local file system. Mountpoint is an open source client that provides high-throughput access to objects within basic file-system operations.
 
 Mounting an S3 bucket allows you to:
-- Read files upto 5TB in size
+- Read files up to 5TB in size
 - List and read existing files
 - Create new files
 
