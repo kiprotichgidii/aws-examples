@@ -884,7 +884,7 @@ S3 Storage Class Analysis observes the infrequent access patterns of a filtered 
 You can have multiple analysis filters (up to 1000 filters) per bucket. The results can be exported in CSV format to an S3 bucket.
   - Use data in Amazon QuickSight for data visulization. 
 
-S3 Storage Class Analysis provides storager usage visualization in the Amazon S3 console, that is updated daily.
+S3 Storage Class Analysis provides storage usage visualization in the Amazon S3 console, that is updated daily.
 
 After a filter is applied, the analysis will be available within 24-48 hours.
 
