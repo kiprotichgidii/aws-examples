@@ -563,7 +563,7 @@ Users can enable bucket key at the object level to be applied to a specific obje
 
 #### S3 Client-Side Encryption
 
-Client-side encryption is when the user encrypts the data on their end before uploading it to S3. This guarantees that AWS and no third party can decrypt their data. Vasrious AWS SDKs have built-int code to make it easy to encrypt data before uploading it to S3.
+Client-side encryption is when the user encrypts the data on their end before uploading it to S3. This guarantees that AWS and no third party can decrypt their data. Various AWS SDKs have built-in code to make it easy to encrypt data before uploading it to S3.
 
 #### S3 Object Replication
 
@@ -572,8 +572,8 @@ S3 Object replication helps to:
 - Replicate objects into different storage classes
 - Maintain object copies under different ownership
 - Keep objects stored over multiple AWS Regions
-- Replicate objetcs within 15 minutes
-- Sunc buckets, replicate existing objects, and replicate previously failed or replicated objects.
+- Replicate objects within 15 minutes
+- Sync buckets, replicate existing objects, and replicate previously failed or replicated objects.
 
 **Replication Options**
 - Cross-Region Replication (region-to-region)
