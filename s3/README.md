@@ -419,7 +419,7 @@ ACLs grant basic read/write permissions to other AWS accounts:
 
 #### S3 Bucket Policies
 
-S3 Bucket policy is a resource-based policy to granrt an S3 bucket and bucket objects to other principles e.g AWS Accounts, Users, AWS Services, etc
+S3 Bucket policy is a resource-based policy to grant an S3 bucket and bucket objects to other principles e.g AWS Accounts, Users, AWS Services, etc.
 
 #### S3 Bucket Policies vs IAM Policies
 
@@ -442,7 +442,7 @@ S3 Access Grants let you map identities in a directory service (IAM Identity Cen
 
 #### IAM Access Analyzer for S3
 
-Access Analyzer for S3 will alert you when S3 buckets are expose to the public internet or other AWS accounts.
+Access Analyzer for S3 will alert you when S3 buckets are exposed to the public internet or other AWS accounts.
 
 To utilize Access Analyzer for S3, it needs to be created in the IAM Access Analyzer at the account level.
 
@@ -553,9 +553,9 @@ Server-side encryption is always on for all new S3 objects. Server-side encrypti
 
 #### S3 Bucket Key
 
-When using SSE-KMS, an individual data key is used ton every object request. In that case, S3 has to call AWS KMS every time a request is made. KMS charges on the number of requests made, and so this can add up to a significant amount.
+When using SSE-KMS, an individual data key is used on every object request. In that case, S3 has to call AWS KMS every time a request is made. KMS charges on the number of requests made, and so this can add up to a significant amount.
 
-S3 Bucket key allows users to generate a short-lived bucket-level key from AWS Key that is temporarily stored in S3. This approach redces the cost by 99% and will decrease request traffic and improve overall performance.
+S3 Bucket key allows users to generate a short-lived bucket-level key from AWS Key that is temporarily stored in S3. This approach reduces the cost by 99% and will decrease request traffic and improve overall performance.
 
 A unique bucket-level key is generated for each requester. Users can enable bucket keys at the bucket level to be applied to all objects in the bucket.
 
