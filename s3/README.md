@@ -653,9 +653,9 @@ A presigned URL can be generated using the AWS CLI or an AWS SDK.
 
 #### S3 Access Points
 
-S3 Access Points are names network endpoints that are attached to buckets that you can use to perform S3 object operations. S3 Access Points simplify managing data access for shared datasets in S3.
+S3 Access Points are named network endpoints that are attached to buckets that you can use to perform S3 object operations. S3 Access Points simplify managing data access for shared datasets in S3.
 
-Each andpoint has:
+Each endpoint has:
 - Distinct permissions via an access point policy
 - Distinct Network Controls
 - Distinct block public Access
