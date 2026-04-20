@@ -474,7 +474,7 @@ Record sets are a collection of records which determine where to send traffic. R
 - SPF record
 - TXT record
 
-Record sets are always changes in batch via the API:
+Record sets are always changed in batches via the API:
 
 ```bash
 aws route53 change-resource-record-sets \
@@ -544,13 +544,13 @@ The `change-batch.json` file:
 
 Alias targets can point to:
 
-- CloudFront - d111111abcdef8.cloudfront.net
-- Elastic Beanstalk Environment - example.elasticbeanstalk.com
-- ELB load balancer - example.us-east-2.elb.amazonaws.com
-- S3 Website endpoint - s3-website.us-east-2.amazonaws.com
-- Resource Record set - www.example.com
-- VPC endpoint - example.us-east-2.vpc2.amazonaws.com
-- API Gateway endpoint custom regional api - d-abcde1234.execute-api.us-west-2.amazonaws.com
+- CloudFront - `d111111abcdef8.cloudfront.net`
+- Elastic Beanstalk Environment - `example.elasticbeanstalk.com`
+- ELB load balancer - `example.us-east-2.elb.amazonaws.com`
+- S3 Website endpoint - `s3-website.us-east-2.amazonaws.com`
+- Resource Record set - `www.example.com`
+- VPC endpoint - `example.us-east-2.vpc2.amazonaws.com`
+- API Gateway endpoint custom regional api - `d-abcde1234.execute-api.us-west-2.amazonaws.com`
 
 ### Route 53 Traffic Flow
 
