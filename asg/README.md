@@ -817,7 +817,7 @@ For instance, this would let you route all traffic coming from North America to 
 
 ![Geo-proximity Routing Policy](images/aws-route53-geo-proximity-routing-policy.png)
 
-### Route 53 Multi-Value Answer Policies
+#### Multi-Value Answer Routing Policies
 
 **Multi-Value Answer Policies** allow users to configure Route 53 to return multiple values such as IP addresses of your web servers, in response to DNS queries. 
 
