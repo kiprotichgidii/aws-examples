@@ -591,7 +591,7 @@ When multiple values are specified for one record, Route53 will return all value
 
 ![Simple Routing Policy](images/aws-route53-simple-routing-policy.png)
 
-For instnace, if we had a record for www.example.com with 3 different IP address values, users would be directed randomly to one of them when visiting the domain. 
+For instance, if we had a record for www.example.com with 3 different IP address values, users would be directed randomly to one of them when visiting the domain. 
 
 ```bash
 aws route53 change-resource-record-sets \
@@ -706,8 +706,7 @@ For instance, if we had an ALB running experimental features, we could test agai
           "Region": "us-west-1"
         }
       }
-    },
- //...
+    }
 ```
 
 For instance, we have two copies of a web application backed by an ALB in two different regions. One in Virginia and one in California. A request from a user in Richmond, will be routed to Virginia since it will have low latency. A request from a user in San Francisco, will be routed to California since it will have low latency.
@@ -812,7 +811,7 @@ For instance, this would let you route all traffic coming from North America to 
 
 #### Geo-proximity Routing Policies
 
-**Geoproximity Routing Policies** allows users to direct traffic based on the geographic location of the users and the AWS resources. Users can route more or less traffic to a specific resource by specifying a 'Bias' value. **Bias** values expand or shrink the size of the geographic region from which traffic is routed to.
+**Geoproximity Routing Policies** allows users to direct traffic based on the geographic location of the users and the AWS resources. Users can route more or less traffic to a specific region by specifying a 'Bias' value. **Bias** values expand or shrink the size of the geographic region to which traffic is routed to.
 
 **Users must use Route 53 Traffic Flow to use Geo-proximity Routing Policies**.
 
