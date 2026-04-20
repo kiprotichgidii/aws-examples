@@ -1,6 +1,6 @@
 ## Auto Scaling Group (ASG)
 
-An **Auto Scaling group (ASG)** is a collection of EC2 instances that are managed by AWS Auto Scaling. The ASG automatically adjusts the number of EC2 instances in the group based on demand. 
+An **Auto Scaling Group (ASG)** is a collection of EC2 instances that are managed by AWS Auto Scaling. The ASG automatically adjusts the number of EC2 instances in the group based on demand. 
 
 Auto Scaling helps you maintain application availability and lets you automatically adjust the number of EC2 instances in response to changing demand. You can use Auto Scaling to automatically scale your Amazon EC2 capacity up or down to meet demand, or on a schedule. Auto Scaling can also automatically replace unhealthy instances with new ones.
 
@@ -51,7 +51,7 @@ aws autoscaling set-desired-capacity \
   --desired-capacity <desired-capacity>
   --honor-cooldown
 ```
-An ASG will always launch instances to meet the minimum size capacity. Changing the min, maxz and desired capacities is considered "manual scaling", since you have to manually change these numbers to change the capacity of the ASG. 
+An ASG will always launch instances to meet the minimum size capacity. Changing the min, max and desired capacities is considered "manual scaling", since you have to manually change these numbers to change the capacity of the ASG. 
 
 ### ASG Health Check Replacements
 
@@ -189,7 +189,7 @@ aws autoscaling put-scaling-policy \
   --target-tracking-configuration file://config.json
 ```
 
-**config.json**:
+The `config.json` file:
 
 ```json
 {
@@ -227,10 +227,10 @@ aws autoscaling put-scaling-policy \
   --target-tracking-configuration file://config.json
 ```
 
-**config.json**:
+The `config.json` file:
 
 ```json
-# Forecast Only
+// Forecast Only
 {
   "MetricSpecifications": [
     {
@@ -243,8 +243,7 @@ aws autoscaling put-scaling-policy \
   "Mode": "ForecastOnly"
 }
 
-# Forecast and Scale
-```json
+// Forecast and Scale
 {
   "MetricSpecifications": [
     {
