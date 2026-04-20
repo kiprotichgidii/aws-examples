@@ -864,7 +864,7 @@ It is similar to **Simple Routing Policies** but with the added **Health Checks*
 - A health check can initiate a **failover** if the status returns as unhealthy
 - A CloudWatch alarm can be configured to alert when status is unhealthy
 - A health check can monitor other health checks to create a chain of reactions
-- Can creat upto 50 health checks for AWS endpoints within or linked to the same AWS account
+- Can create up to 50 health checks for AWS endpoints within or linked to the same AWS account
 
 ![Route 53 Health Checks](images/aws-route53-health-checks.png)
 
