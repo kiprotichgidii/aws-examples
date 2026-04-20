@@ -214,8 +214,8 @@ The `config.json` file:
 
 **Predictive Scaling Policies** triggers scaling by analyzing historical load data to detect daily and weekly patterns in traffic flow. It then uses this analysis to predict future load and adjust capacity accordingly.
 
-- Reuires a 24 hour forecast of CloudWatch data before it can be used.
-- Predictive Scaling Policy will continuosly use the last 14 days of data to tweak the policy
+- Requires a 24 hour forecast of CloudWatch data before it can be used.
+- Predictive Scaling Policy will continuously use the last 14 days of data to tweak the policy
 - It will produce hourly forecast for capacity requirements for the next 48 hours
 - It will update every 6 hours using the latest CloudWatch data
 
