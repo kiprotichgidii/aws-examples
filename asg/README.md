@@ -584,7 +584,8 @@ There are 7 different types of routing policies:
 
 #### Simple Routing Policies
 
-**Simple Routing Policies** are the most basic routing policies in Route 53. It is also the default routing policy for Route 53. You create 1 record and provide multiple IP addresses.
+**Simple Routing Policies** are the most basic routing policies in Route 53. It is also the default routing policy for Route 53. You create 1 record and provide multiple IP 
+addresses.
 
 When multiple values are specified for one record, Route53 will return all values back to the user in a random order. 
 
