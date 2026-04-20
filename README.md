@@ -24,7 +24,7 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [Auto Scaling Group](https://github.com/kiprotichgidii/aws-examples/blob/main/asg/README.md#auto-scaling-group-asg)
 - [AWS Route 53](https://github.com/kiprotichgidii/aws-examples/blob/main/asg/README.md#aws-route-53)
 - [Elastic Load Balancer](https://github.com/kiprotichgidii/aws-examples/blob/main/asg/README.md#elastic-load-balancer-elb)
-- [AWS Global Accelerator](https://github.com/kiprotichgidii/aws-examples/tree/main/bundled#aws-global-accelerator)
+- [AWS Global Accelerator](https://github.com/kiprotichgidii/aws-examples/blob/main/bundled/README.md#aws-global-accelerator)
 - [AWS CloudFront](https://github.com/kiprotichgidii/aws-examples/blob/main/bundled/README.md#aws-cloudfront)
 - [Amazon Elastic Block Store](https://github.com/kiprotichgidii/aws-examples/blob/main/bundled/README.md#amazon-elastic-block-store-ebs)
 - [Amazon Elastic File System](https://github.com/kiprotichgidii/aws-examples/blob/main/bundled/README.md#amazon-elastic-file-system-efs)

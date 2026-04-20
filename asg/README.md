@@ -879,8 +879,8 @@ It is similar to **Simple Routing Policies** but with the added **Health Checks*
 
 ### DNSSEC with Route 53
 
-**Domain Name System Security Extensions (DNSSEC)** are a suite of extension specifications by the **Internet Engineering Task Force (IETF)** for securing data exchanged in the d
-Domain Naming System (DNS) in Internet Protocols (IP) networks.
+**Domain Name System Security Extensions (DNSSEC)** are a suite of extension specifications by the **Internet Engineering Task Force (IETF)** for securing data exchanged in the  
+Domain Naming System (DNS) in Internet Protocol (IP) networks.
 
 **DNSSEC** signing lets DNS resolvers validate that a DNS response came from Amazon Route 53 and has not been tampered with.
 
@@ -918,7 +918,7 @@ Enabling DNSSEC is a more involved process than just the two API calls. It's imp
 
 ### Route 53 Profiles
 
-**Route 53 Profiles** allow users to apply and managed DNS-related Route 53 configurations across many VPCs and in different AWS Accounts. 
+**Route 53 Profiles** allow users to apply and manage DNS-related Route 53 configurations across many VPCs and in different AWS Accounts. 
 
 The following reources can be associated with a Route 53 Profile:
 
