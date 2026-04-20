@@ -227,10 +227,9 @@ aws autoscaling put-scaling-policy \
   --target-tracking-configuration file://config.json
 ```
 
-The `config.json` file:
+The `config.json` file (forecast only):
 
 ```json
-// Forecast Only
 {
   "MetricSpecifications": [
     {
@@ -242,8 +241,11 @@ The `config.json` file:
   ],
   "Mode": "ForecastOnly"
 }
+```
 
-// Forecast and Scale
+The `config.json` file (forecast and scale):
+
+```json
 {
   "MetricSpecifications": [
     {
