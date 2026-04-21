@@ -662,13 +662,13 @@ AWS Snow Family are storage and compute devices used to physically move data in 
 
 **AWS Snowcone** is a small, portable, rugged, and secure device for edge computing and data transfer. Snowcone can send data to AWS in two ways:
 
-- Physically shipping the device back to AWS.
-- AWS Datasync which runs on the device's compute.
+  - Physically shipping the device back to AWS.
+  - AWS Datasync which runs on the device's compute.
 
-Snowcone is available in two configurations:
+- Snowcone is available in two configurations:
 
-- **Snowcone**: 8 TB HDD
-- **Snowcone SSD**: 14 TB SSD
+  - **Snowcone**: 8 TB HDD
+  - **Snowcone SSD**: 14 TB SSD
 
 - The devices can run edge computing workloads that use EC2 instances
 - They are small and lightweight enough to carry in a backpack
