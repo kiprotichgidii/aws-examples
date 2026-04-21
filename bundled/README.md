@@ -717,7 +717,7 @@ There are 5 device configuration options:
 
 ### Snowmobile 
 
-**Snowmobile** is a 45-foot-long ruggedized shipping container, pulled by a semi-truck, that can transfer petabytes of data to AWS. It can transfer up to 100PB per snowmobil. AWS personnel will help you connect your network to the Snowmobile, and when data transfer is complete, they'll drive it back to AWS to import into S3 or Glacier.
+**Snowmobile** is a 45-foot-long ruggedized shipping container, pulled by a semi-truck, that can transfer petabytes of data to AWS. It can transfer up to 100PB per snowmobile. AWS personnel will help you connect your network to the Snowmobile, and when data transfer is complete, they'll drive it back to AWS to import into S3 or Glacier.
 
 #### Security Features
 
@@ -759,7 +759,7 @@ Common ports for these protocols:
 - FTPS: port 990
 - AS2: port 443
 
-## Transfer Family Managed File Transfer Workflows
+### Transfer Family Managed File Transfer Workflows
 
 **Transfer Family Managed File Transfer Workflows (MFTW)** is a fully managed, serverless File Transfer Workflow service to set up, run, automate, and monitor processing of files uploaded using AWS Transfer Family.
 
