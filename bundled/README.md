@@ -514,7 +514,7 @@ PCIe slots on a motherboard come in different sizes, including x1, x4, x8, and x
 - EC2 instances install the **NFSv4 client** to mount the EFS volume.
 - EFS uses the Network File System version 4(**NFSv4**) protocol.
 - EFS creates multiple mount targets in VPCs.
-- EFS is charged per space used starting at $0.30 GB/month.
+- EFS is charged per space used starting at $0.30 per GB/month.
 
 ![EFS](./images/aws-efs.png)
 
@@ -571,7 +571,7 @@ EFS mount helper will use the following mount options:
 
 ## Amazon FSx
 
-**Amazon FSx** allows users to deploy scale feature-rich, high performance file systems in the cloud. FSx supports a variety of file system protocols.
+**Amazon FSx** allows users to deploy, scale, and manage feature-rich, high performance file systems in the cloud. FSx supports a variety of file system protocols.
 
 1. **Amazon FSX for NetApp ONTAP**
    - Proprietary enterprise storage platform known for handling petabytes of data.
