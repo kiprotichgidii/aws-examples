@@ -743,7 +743,7 @@ There are 5 device configuration options:
 | 256-bit Encryption       | Yes                       | Yes                       | Yes                      |
 | HIPPA Compliant          | No                        | Yes, Eligible             | Yes, Eligible            |
 
-### AWS Transfer for SFTP
+## AWS Transfer for SFTP
 
 **AWS Transfer family** offers fully managed support for the transfer of files over SFTP, AS2, FTPS, and FTP to and from Amazon S3 or Amazon EFS. It eliminates the need for you to manage file transfer servers, patching, or scaling. It is a fully managed service that is available 24x7 with high availability and automatic scaling. It supports the following protocols:
 
@@ -759,7 +759,7 @@ Common ports for these protocols:
 - FTPS: port 990
 - AS2: port 443
 
-### Transfer Family Managed File Transfer Workflows
+## Transfer Family Managed File Transfer Workflows
 
 **Transfer Family Managed File Transfer Workflows (MFTW)** is a fully managed, serverless File Transfer Workflow service to set up, run, automate, and monitor processing of files uploaded using AWS Transfer Family.
 
