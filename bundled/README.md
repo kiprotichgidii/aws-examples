@@ -743,7 +743,7 @@ There are 5 device configuration options:
 | 256-bit Encryption       | Yes                       | Yes                       | Yes                      |
 | HIPPA Compliant          | No                        | Yes, Eligible             | Yes, Eligible            |
 
-## AWS Transfer for SFTP
+## AWS Transfer Family
 
 **AWS Transfer family** offers fully managed support for the transfer of files over SFTP, AS2, FTPS, and FTP to and from Amazon S3 or Amazon EFS. It eliminates the need for you to manage file transfer servers, patching, or scaling. It is a fully managed service that is available 24x7 with high availability and automatic scaling. It supports the following protocols:
 
