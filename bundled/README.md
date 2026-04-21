@@ -507,7 +507,7 @@ PCIe slots on a motherboard come in different sizes, including x1, x4, x8, and x
 
 ## Amazon Elastic File System (EFS)
 
-**Elastic File System** is a managed file storage service provided by Amazon Web Services (AWS). It is a fully managed, scalable, and highly available file storage service that can be used by multiple EC2 instances at the same time. It is based on the Network File System (NFS) protocol and is designed to work with Linux-based workloads. EFS is a good choice for workloads that require shared file storage, such as web servers, content management systems, and big data analytics.
+**Elastic File System** is a fully managed, scalable, and highly available file storage service that can be used by multiple EC2 instances at the same time. It is based on the Network File System (NFS) protocol and is designed to work with Linux-based workloads. EFS is a good choice for workloads that require shared file storage, such as web servers, content management systems, and big data analytics.
 
 - Storage capacity grows(up to petabytes) and shrinks automatically based on the data stored(elastic).
 - **Multiple instances** in the **same VPC** can mount a **single EFS volume**.
