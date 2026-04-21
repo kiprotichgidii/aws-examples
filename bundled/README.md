@@ -21,6 +21,8 @@ There two types of Global Accelerators:
 
 **Global Accelerator** has a speed comparison tool, i.e `https://speedtest.globalaccelerator.aws/`
 
+![Amazon Global Accelerator](./images/amazon-global-accelerator-speedtest.png)
+
 ## AWS CloudFront
 
 **CloudFront** is a content delivery network (CDN) service provided by Amazon Web Services (AWS). A **Content Delivery Network (CDN)** is a distributed network that delivers web pages and content to users based on their geographical location, the origin of the webpage, and a content delivery server.
