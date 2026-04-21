@@ -338,7 +338,7 @@ Types of volumes that can be deployed:
 - **io2 Block Express**: Higher throughput and IOPS with support for larger capacity.
 - **Throughput Optimized HDD (st1)**: Magnetic drive optimised for quick throughput.
 - **Cold HDD (sc1)**: Low cost HDD for infrequently accessed workloads.
-- **Magnetic (standard)**: Precious generation HDD.
+- **Magnetic (standard)**: Previous generation HDD.
 
 All **io2** volumes created after November 21, 2023 are **io2 Block Express volumes**. **io2** volumes created before November 21, 2023 can be converted to **io2 Block Express volumes**.
 
@@ -351,14 +351,14 @@ All **io2** volumes created after November 21, 2023 are **io2 Block Express volu
 | **Durability** | 99.8% - 99.9% | **io1** 99.8% - 99.9%<br>**io2 Block Express** 99.999% | 99.8% - 99.9% | 99.8% - 99.9% | N/A |
 | **Volume Size** | 1GiB - 16GiB | **io1** 4GiB - 16TiB<br>**io2 Block Express** 4GiB - 64TiB | 125 GiB - 16 TiB | 125 GiB - 16 TiB | 1 GiB - 1 TiB | 
 | **Max IOPS** | 16,000 (16 KiB I/O)| **io1** 16,000 (16 KiB I/O)<br>**io2 Block Express** 256,000 (256 KiB I/O) | 500 (1 MiB I/O)| 250 (1 MiB I/O)| 40 - 200 (1 MiB I/O) |
-| **Max Throughput** | **gp2** 250 MiB/s<br>**gp3** 1,000 MiB/s | **io1** 250 MiB/s<br>**io2 Block Express** 4,000 MiB/s | 500 (1 MiB/s)| 250 (1 MiB/s)| 40 - 90 (1 MiB/s |
+| **Max Throughput** | **gp2** 250 MiB/s<br>**gp3** 1,000 MiB/s | **io1** 250 MiB/s<br>**io2 Block Express** 4,000 MiB/s | 500 (1 MiB/s)| 250 (1 MiB/s)| 40 - 90 (1 MiB/s) |
 | **EBS Multi-attach** | Not supported for either gp2 or gp3 | Supported for both io1 and io2 Block Express | Not Supported | Not Supported | N/A |
 | **NVMe Reserve** | Not supported for either gp2 or gp3 | Supported only for io2 Block Express | N/A | N/A | N/A |
 | **Boot Volume** | Supported for both gp2 and gp3 | Supported for both io1 and io2 Block Express | Not Supported | Not Supported | N/A |
 
 ### Hard Disk Drive (HDD) 
 
-**HDD** is a magnetic storage device that uses rotating platters to, an actuator arm, and a magnetic head to read and write data(similar to a record player). **HDD** is very good at writing a continuous amount of data. **HDD** is not great for writing many small reads and writes. 
+**HDD** is a magnetic storage device that uses rotating platters, an actuator arm, and a magnetic head to read and write data(similar to a record player). **HDD** is very good at writing a continuous amount of data. **HDD** is not great for writing many small reads and writes. 
 
 - Better for throughput
 - Physical Moving Part
