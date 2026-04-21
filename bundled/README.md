@@ -614,9 +614,11 @@ or
 
 ### Amazon File Cache
 
-**Amazon File Cache** is a high-speed cache for datasets stored anywhere, accelerate cloud bursting workloads. Amazon File Cache is found under the **Amazon FSx Management Console**. 
+Amazon File Cache provides a high-speed cache on AWS that makes it easier to process file data, regardless of where it’s stored. Amazon File Cache serves as temporary, 
+high-performance storage for data on premises or on AWS. The service allows you to make dispersed datasets available to file-based applications on AWS with a unified view and 
+high speeds.
 
-It serves as a temporary, high-performance storage location for data stored in: 
+Amazon File Cache is found under the **Amazon FSx Management Console**. It serves as a temporary, high-performance storage location for data stored in: 
 
 - On-premise file systems
 - AWS file systems
