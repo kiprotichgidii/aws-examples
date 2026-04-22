@@ -1509,7 +1509,7 @@ To receive any messages from a topic, a subscription is required. A subscriber c
 
 ![SNS Subscriptions](./images/aws-sns-subscription.png)
 
-**Subscription Protocols**:
+The subscription protocols are as follows:
 
 - **HTTP** and **HTTPS** create webhooks to the applications
 - **Email** is good for internal email notifications (only supports plaintext)
