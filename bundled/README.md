@@ -917,7 +917,7 @@ AWS SCT is not available on macOS but can be installed on:
 
 #### Predictive Scaling
 
-**AWS Auto Scaling** analyses historical load data, generates a forecast, and scales based ont the generated forecast.
+**AWS Auto Scaling** analyses historical load data, generates a forecast, and scales based on the generated forecast.
 
 ![AWS Auto Scaling](./images/aws-auto-scaling.png)
 
