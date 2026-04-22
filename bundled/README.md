@@ -985,7 +985,7 @@ Amazon AppFlow supports 80+ applications for data exchange.
 
 ## GraphQL
 
-**GraphQL** is an open-source query adaptor that allows users to query data from multiple diffrent data sources. **GraphQL** is used to build APIs where clients will send a query of nested data. **GraphQL** mitigates the issue of versioned or rapidly changing APIs compared to REST API because users can request the data they want.
+**GraphQL** is an open-source query adaptor that allows users to query data from multiple different data sources. **GraphQL** is used to build APIs where clients will send a query of nested data. **GraphQL** mitigates the issue of versioned or rapidly changing APIs compared to REST API because users can request the data they want.
 
 **GraphQL** schemas are written in the GraphQL SDL(Schema Definition Language) composed of:
 
