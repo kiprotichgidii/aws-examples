@@ -1268,7 +1268,7 @@ In Pub/Sub systems:
 
 - **Publishers**: Who will send messages
 - **SNS Topic**: Logical access point for communication
-- **Subscriptions**: Who will receive messages
+- **Subscribers**: Who will receive messages
 
 ### SNS Sources
 
