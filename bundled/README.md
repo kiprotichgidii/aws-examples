@@ -1505,7 +1505,7 @@ aws sns publish --topic-arn "arn:aws:sns:region:account-id:topic-name" \
 
 ### SNS Subscriptions
 
-To receive any messages from a topic, a subscription is required. A subscription can only subscribe to one protocol and one topic.
+To receive any messages from a topic, a subscription is required. A subscriber can only subscribe to one protocol and one topic.
 
 ![SNS Subscriptions](./images/aws-sns-subscription.png)
 
