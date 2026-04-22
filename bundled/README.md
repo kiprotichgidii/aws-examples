@@ -1135,7 +1135,7 @@ With **Amazon OpenSearch Service**, two engines can be depoyed:
 
 ## AWS Device Farm
 
-**AWS Device Farm** is an application testing service that allows users to tst iOS, Android, and web applications on real smartphones, tablets, and desktop web browsers. The service allows you to concurrently run your tests on multiple desktop browsers or real devices to speed up the execution of your test suite, and Device Farm generates videos and logs to help you quickly identify issues with your application.
+**AWS Device Farm** is an application testing service that allows users to test iOS, Android, and web applications on real smartphones, tablets, and desktop web browsers. The service allows you to concurrently run your tests on multiple desktop browsers or real devices to speed up the execution of your test suite, and Device Farm generates videos and logs to help you quickly identify issues with your application.
 
 ### Mobile Device Testing
 
