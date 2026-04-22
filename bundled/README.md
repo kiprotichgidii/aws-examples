@@ -1262,7 +1262,7 @@ In Pub/Sub systems:
 
 ## Amazon Simple Notification Service (SNS)
 
-**Simple Notification Service (SND)** is a highly available, durable, secure, fully-managed **pub/sub messaging** service that allows users to decouple microservices, distributed systems, and serverless applications.
+**Simple Notification Service (SNS)** is a highly available, durable, secure, fully-managed **pub/sub messaging** service that allows users to decouple microservices, distributed systems, and serverless applications.
 
 ![AWS Simple Notification Service](./images/aws-sns.png)
 
