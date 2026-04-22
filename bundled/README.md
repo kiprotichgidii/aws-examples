@@ -773,7 +773,7 @@ Workflows allow you to perform the following after a file is uploaded:
 
 ## AWS Migration Hub
 
-**AWS Migration Hub** provides a singel place to discover your existing servers, applications, and databases, and plan migrations and track their status during migration to AWS. AWS Migration Hub can monitor migration statuses from migration services:
+**AWS Migration Hub** provides a singel place to discover your existing servers, applications, and databases, plan migrations and track their status during migration to AWS. AWS Migration Hub can monitor migration statuses from migration services:
 
 - Application Migration Service (AMS)
 - Database Migration Service (DMS)
