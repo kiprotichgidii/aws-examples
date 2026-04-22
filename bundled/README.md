@@ -780,8 +780,8 @@ AWS Migration Hub can monitor migration status from:
 - Application Migration Service (AMS)
 - Database Migration Service (DMS)
 
-1. **AWS Discovery Agent**: An agent installed on your VM of servers to help discover and migrate servers
-2. **Migration Evaluator Collector**: You submit a request to AWS help assess a migration
+1. **AWS Discovery Agent**: An agent installed on VM/Servers to help discover and migrate servers
+2. **Migration Evaluator Collector**: You submit a request to AWS to help assess a migration
 
 #### AWS Migration Hub Refactor
 
