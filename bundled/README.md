@@ -1302,7 +1302,7 @@ SNS topics are the logical access point for communication.
 | --- | --- | --- |
 | **Throughput** | High throughput | Lower throughput compared to Standard |
 | **Delivery** | At least once | Exactly Once |
-| **Ordering** | No ordering guarantees | Messages are delivered in the order the are sent within a message group |
+| **Ordering** | No ordering guarantees | Messages are delivered in the order they are sent within a message group |
 | **Use-case** | Where the volume of messages is high and exact ordering/delivery isn't critical:<br><ul><li>Alerts</li><li>Notifications</li></ul> | Where the order and exact delivery of messages is crucial:<br><ul><li>Banking Transactions</li><li>Ordered Data Processing</li></ul> |
 | **Message Grouping** | N/A | Supports message grouping, allowing multiple ordered streams within the same topic. |
 
@@ -1418,7 +1418,7 @@ aws sns publish \
   --message-attributes message-attributes.json
 ```
 
-**message-attributes.json**
+The `message-attributes.json` file:
 
 ```json
 {
