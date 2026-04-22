@@ -1207,8 +1207,9 @@ With **Amazon OpenSearch Service**, two engines can be depoyed:
 
 ## AWS Elemental MediaConvert
 
-**AWS MediaConvert** is 
-AWS MediaConvert is a fully-managed video-transcoding service that transcodes file-based content into live stream assets quickly and reliably. MediaConvert combines advanced video and audio capabilities with a web services interface and pay-as-you-go pricing. With cloud-based transcoding, you can focus on delivering compelling media experiences and worry less about maintaining video processing infrastructure.
+**AWS MediaConvert** is a fully-managed video-transcoding service that transcodes file-based content into live stream assets quickly and reliably. MediaConvert combines 
+advanced video and audio capabilities with a web services interface and pay-as-you-go pricing. With cloud-based transcoding, you can focus on delivering compelling media 
+experiences and worry less about maintaining video processing infrastructure.
 
 **Video Correction**
 
@@ -1225,7 +1226,8 @@ AWS MediaConvert is a fully-managed video-transcoding service that transcodes fi
 - Sharpening
 - Adding Texture
 
-**AWS MediaConvert** lets users define a job, inputs and outputs. A job is the container with all the settings for a single transcoding job. **AWS MediaConvert** will pull videos from a source bucket, transcode, and then place them in a destination S3 bucket.
+**AWS MediaConvert** lets users define a job, inputs and outputs. A job is the container with all the settings for a single transcoding job. **AWS MediaConvert** will pull 
+videos from a source bucket, transcode, and then place them in a destination S3 bucket.
 
 **Other Features**
 
