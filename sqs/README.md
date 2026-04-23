@@ -143,9 +143,9 @@ end
 - Messages have a unique duplication ID to ensure there are no duplicate messages in the queue.
 - FIFO queues ensure Exactly-Once processing.
 - Messages are ordered based on Message Group IDs.
-- To endure that order is preserved, each producer must have their own unique Message Group ID.
+- To ensure that order is preserved, each producer must have their own unique Message Group ID.
 - To request (poll) messages, consumers have to specify a Message Group ID.
-- FIFO queues support reading upto 10 messages at a time.
+- FIFO queues support reading up to 10 messages at a time.
 - SQS FIFO manages data in partitions across multiple AZs, all managed by AWS.
 - With batching, each partition supports up to 3000 messages per second (tps), or up to 300 messages per second for send, receive, and delete operations.
 - An existing Standard Queue cannot be converted to a FIFO Queue.

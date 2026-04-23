@@ -90,11 +90,11 @@ Memory Settings:
 
 ### Function Versions
 
-Versions are used to manage the deployment of AWS lambda functions. eg. Publish a new version of a lambda for beta testing without affecting the production versions. 
+Versions are used to manage the deployment of AWS Lambda functions. eg. Publish a new version of a Lambda for beta testing without affecting the production versions. 
 
 ![Lambda Versions](./images/aws-lambda-versions.png)
 
-Each function version will have its own unique ARN. i.e.
+Each Lambda version will have its own unique ARN. i.e.
 
 - arn:aws:lambda:us-east-1:1111111:function:MyFunction:$LATEST
 - arn:aws:lambda:us-east-1:1111111:function:MyFunction:2
@@ -107,11 +107,9 @@ When referencing a Lambda, use its ARN. A Lambda has two initial versions:
 2. Unqualified ARN: The function ARN without the version suffix. i.e 
    - `arn:aws:lambda:region:account-id:function:function-name`
 
-Aliases cannot be created with an **Unqualified ARN**, they point to the latest.
-
 ### Lambda Aliases
 
-Aliases allow users to give a specific lambda version a friendly name when accessing the Lambda programmatically. 
+Aliases allow users to give a specific lambda version a friendly name when accessing the Lambda programmatically. Aliases cannot be created with an **Unqualified ARN**, they point to the latest.
 
 ![Lambda Aliases](./images/aws-lambda-aliases.png)
 
