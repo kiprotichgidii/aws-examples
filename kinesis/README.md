@@ -392,7 +392,7 @@ You can use Kinesis Video Streams to capture massive amounts of live video data 
 
 ### Managed Service for Apache Flink
 
-**Managed Service for Apache Flink** is a fully managed Amazon service that allows users to run queries against data flowing through Kinesis Data Streams or Kinesis Data Firehose t create reports and analysis on emerging data. First, you program your Apache Flink application, and then you create your Managed Service for Apache Flink application.
+**Managed Service for Apache Flink** is a fully managed Amazon service that allows users to run queries against data flowing through Kinesis Data Streams or Kinesis Data Firehose to create reports and analysis on emerging data. First, you program your Apache Flink application, and then you create your Managed Service for Apache Flink application.
 
 An Apache Flink application is a Java or Scala application that is created with the Apache Flink framework. The Apache Flink application is built and authored locally. 
 

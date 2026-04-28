@@ -7,10 +7,10 @@ It provides a high-performance, scalable, and cost-effective caching solution.  
 - ElastiCache is only accessible by resources in the same VPC to ensure low latency.
 - ElastiCache can be deployed in multiple AZs for high availability
 - ElastiCache can be deployed on-prem via AWS Outposts
-- ElastiCache can use RBAC for Redis 6.0+ so users managed user access via the AWS management console
-- ElastiCache can be replicatd cross-region via ElastiCache Global Datastores
+- ElastiCache can use RBAC for Redis 6.0+ so users can manage user access via the AWS management console
+- ElastiCache can be replicated cross-region via ElastiCache Global Datastores
 - Users can reserve nodes to save money with ElastiCache Standard
-- ElastiCache can be automate to perform backups of data stores
+- ElastiCache can be automated to perform backups of data stores
 
 ![ElastiCache](./images/aws-elasticache.png)
 
