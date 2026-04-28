@@ -69,7 +69,7 @@ Capacity Modes can be changed at any time in any direction.
 
 **Shards**
 
-A Kinesis Data Stream is made up of one or more shards. A Kinesis Data Stream shard is the base throughput unit of an Amazon Kinesis Data Stream, defining capacity as 1 MB/s (1,000 records/s) for writes and 2 MB/s for reads. Shards provide ordered data ingestion and are managed manually in provisioned mode or automatically in on-demand mode.
+A Kinesis Data Stream is made up of one or more shards. A Kinesis Data Stream shard is the base throughput unit of an Amazon Kinesis Data Stream, defining capacity as 1 MBps (1,000 records/s) for writes and 2 MBps for reads. Shards provide ordered data ingestion and are managed manually in provisioned mode or automatically in on-demand mode.
 
 - Each shard can support up to 5 transactions per second for threads
 - Up to a maximum total data read rate of 2 MiB per second
@@ -135,7 +135,7 @@ aws kinesis get-records \
 
 ### Enhanced Fan Out (EFO)
 
-Enhanced fan-out allows developers to scale up the number of stream consumers (applications reading data from a stream in real-time) by offering each stream consumer its own read throughput. It allows up to 20 consumers to receive records from a stream with throughout of up to 2 MiB of data per shard. Consumers that utilize EFO have dedicated througput per consumer.
+Enhanced fan-out allows developers to scale up the number of stream consumers (applications reading data from a stream in real-time) by offering each stream consumer its own read throughput. It allows up to 20 consumers to receive records from a stream with throughout of up to 2 MiB of data per shard. Consumers that utilize EFO have dedicated throughput per consumer.
 
 ![AWS Kinesis Enhanced Fan Out](./images/aws-kinesis-enhanced-fan-out.png)
 

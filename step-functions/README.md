@@ -337,7 +337,7 @@ Step Functions will receive JSON event data as input and pass JSON as output.
 
 The JSON payload can be manipulated as follows:
 
-- `InputPath`: Select a portion of the state intput.
+- `InputPath`: Select a portion of the state input.
 - `Parameters`: Create a collection of key-value pairs that are passed as input.
 - `ResultSelector`: Manipulate a state's result before ResultPath is applied.
 - `ResultPath`: Determines what should be outputted, the input, task output, or both.
