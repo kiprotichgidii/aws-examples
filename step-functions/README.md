@@ -48,7 +48,7 @@ States are configured using Amazon States Language (JSON):
 
 ### Use Cases
 
-1. **Managed a Batch Job or Fargate Container**
+1. **Managed Batch Job or Fargate Container**
    - Submit a batch job to AWS Batch, if job fails or succeeds, notify via SNS.
    - Run a Fargate Task, if task fails or succeeds, notify via SNS.
 
@@ -331,7 +331,7 @@ The state machine does not move forward until both states complete:
 
 ### Inputs and Outputs
 
-Step Functions will receieve JSON event data as input and pass JSON as output.
+Step Functions will receive JSON event data as input and pass JSON as output.
 
 ![Inputs and Outputs](./images/aws-step-functions-inputs-&-outputs.png)
 
