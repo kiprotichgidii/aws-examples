@@ -221,7 +221,7 @@ if __name__ == "__main__":
 ![Amazon Data Firehose](./images/aws-kinesis-data-firehose.png)
 
 - Users pick one consumer from a predefined list
-- Data immediately dissappears once it's consumed
+- Data immediately disappears once it's consumed
 - Incoming data can be converted into other file formats and compress then secure the data
 - Users pay only for data that is ingested
 
