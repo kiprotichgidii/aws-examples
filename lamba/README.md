@@ -193,7 +193,7 @@ A **deployment package** is the package which contains the function code that La
 - IMAGE (container image)
 
 1. **Zip Archive**: Zip the contents of your code and additional libraries and dependencies. 
-   - AWS will upload the contents to an AWS managed S3 buckat.
+   - AWS will upload the contents to an AWS managed S3 bucket.
    - Or, upload the contents to an S3 bucket and reference the object address to Lambda. ZIPs larger than 50 MB have to be uploaded to an S3 Bucket first.
    - You rely on Lambda runtimes and are limited to these runtime environments.
 
