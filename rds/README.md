@@ -195,7 +195,7 @@ this way, you can elastically scale out beyond the capacity constraints of a sin
 - Asynchronous replication occurs between the primary RDS instance and the replicas.
 - You can have up to 5 replicas of a MySQL, MariaDB, and PostgreSQL database. For Aurora, you can have up to 15 replicas. 
 - Each Read Replica will have it's own DNS endpoint.
-- By deafult, Read Replicas will use the same Storage Type as the source database. The storage type of a Read Replica can be changed independently of the source database.
+- By default, Read Replicas will use the same Storage Type as the source database. The storage type of a Read Replica can be changed independently of the source database.
 - You can have Multi-AZ replicas, replicas in other regions, or even replicas of Read Replicas.
 
 ![RDS Read Replicas](./images/amazon-rds-multi-az-read-replicas.png)
@@ -321,7 +321,7 @@ How it works:
 
 ### RDS Proxy
 
-**Amazon RDS Proxy** is a fully managed, highly available database proxy for Amazon RDS that makes applications more scalable, resilient, and secure. It acts as an intermediary
+**Amazon RDS Proxy** is a fully managed, serverless, highly available database proxy for Amazon RDS that makes applications more scalable, resilient, and secure. It acts as an intermediary
 between your application and your database to handle connection pooling and failover.
 
 ### RDS Proxy Benefits
