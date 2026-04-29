@@ -17,7 +17,7 @@ Amazon Redshift is a fast, fully managed, petabyte-scale cloud data warehouse se
 
 - Pricing starts at just $0.25 per hour with no upfront costs or commitments.
 - Scales up to petabytes for $1000 per petabyte, per year.
-- Redshifts price is 1/10 less than the cost of most similar servces.
+- Redshift's price is 1/10 less than the cost of most similar services.
 - Redshift is used for business intelligence.
 - Redshift uses OLAP (Online Analytical Processing)
 - Redshift is a **Columnar Storage** database.
@@ -51,7 +51,7 @@ Nodes come in sizes of 160GB. You can launch a single node to get started with R
 Multi-node mode can be used to launch a cluster of nodes. 
 
 - **Leader Node** - Manages client connections and receiving queries.
-- **Compute Node** - Stored data and performs queries up to 128 compute nodes.
+- **Compute Node** - Stores data and performs queries up to 128 compute nodes.
 
 ![Multi Node](./images/aws-redshift-multi-node.png)
 
@@ -66,8 +66,8 @@ The smallest node you can select is `dc2.large`.
 
 ### Compression
 
-- Redshift uses multiple compression techniques to achieve significant compression relative to traditional relationa data stores.
-- Similar data is scored sequentially on disk.
+- Redshift uses multiple compression techniques to achieve significant compression relative to traditional relational data stores.
+- Similar data is stored sequentially on disk.
 - Does not require indexes or materialized views, which saves a lot of space, compared to traditional systems.
 - When loading data to an empty table, data is sampled, and the most appropriate compression scheme is selected automatically.
 
