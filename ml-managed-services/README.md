@@ -318,8 +318,8 @@ learning expertise.
      - User Item Interaction data
      - User Data
      - Item Data
-  - Provide a JSON schema mapping for the CSV files
-  - Reference the dataset location from an S3 object location
+   - Provide a JSON schema mapping for the CSV files
+   - Reference the dataset location from an S3 object location
 3. **Solutions** and **Recipes** allow users to fine tune the model
 4. **Event Trackers** - Using the Ingestion SDK, users can track user events and feed them to the model in real-time.
 5. **Filters** allow users to remove certain items from the recommendations based on rules
@@ -427,7 +427,7 @@ aws polly synthesize-speech \
 <amazon:effect vocal-tract-length> : controlling timbre
 ```
 
-## Amazon Rekoginition
+## Amazon Rekognition
 
 **Amazon Rekognition** is a cloud-based image and video analysis service that makes it easy to add advanced computer vision capabilities to your applications. The service is
 powered by proven deep learning technology and it requires no machine learning expertise to use. Amazon Rekognition includes a simple, easy-to-use API that can quickly analyze

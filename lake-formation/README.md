@@ -59,7 +59,7 @@ It's a data lake to centrally govern, secure, and globally share data for analyt
 
 ## OpenAPI
 
-**OpenAPI Specification(OAS)** defines a standard, language agnostic interface for RESTful APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation of through network traffic inspection.
+**OpenAPI Specification(OAS)** defines a standard, language agnostic interface for RESTful APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation or through network traffic inspection.
 
 **Swagger** and **OpenAPI** used to be the same thing but as of OpenAPI V3, they became two different things:
 - OpenAPI = Specification
