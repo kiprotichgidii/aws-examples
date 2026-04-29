@@ -217,10 +217,10 @@ Amazon Kendra has two versions which provide all features but with different lim
 
 | Feature | Developer Edition | Enterprise Edition |
 | --- | --- | --- |
-| 5 indexes with up to 5 data sources each | 5 indexes with up to 50 data sources each |
-| 10K documents or 3GB of extracted text | |
-| 4K queries per day or 0.05 queries per second | 8K queries per day or 0.1 queries per second |
-| Runs in 1 AZ | Runs in 3 AZs |
+| | 5 indexes with up to 5 data sources each | 5 indexes with up to 50 data sources each |
+| | 10K documents or 3GB of extracted text | |
+| | 4K queries per day or 0.05 queries per second | 8K queries per day or 0.1 queries per second |
+| | Runs in 1 AZ | Runs in 3 AZs |
  
 The Developer Edition has free tier with upto 750hrs first 30 days.
 
