@@ -171,7 +171,7 @@ When the deployment has two standby DB instances, it's called a Multi-AZ DB clus
 
 ![Multi-AZ Cluster Deployment](./images/amazon-rds-multi-az-cluster-deployment.png)
 
-Multi-AZ deployment offer Autoatic Failover protection. In case of a failover, RDS will automatically failover to the secondary DB instance. The failover process can take up to 60 seconds.
+Multi-AZ deployment offer automatic failover protection. In case of a failover, RDS will automatically failover to the secondary DB instance. The failover process can take up to 60 seconds.
 
 You can configure Multi-AZ deployment on already existing RDS instance, using the AWS CLI:
 
