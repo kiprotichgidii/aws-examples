@@ -178,6 +178,7 @@ Syntax: `x-amazon-apigateway-extension`
 #### Authorization
 
 | Authorization Options | REST API | HTTP API |
+| --- | --- | --- |
 | IAM | Yes | Yes |
 | Resource Policies | Yes | No |
 | Amazon Cognito | Yes | Yes |
@@ -187,6 +188,7 @@ Syntax: `x-amazon-apigateway-extension`
 #### API Management
 
 | Features | REST API | HTTP API |
+| --- | --- | --- |
 | Custom domains | Yes | Yes |
 | API Keys | Yes | No |
 | Per-client rate limiting | Yes | No |
@@ -196,6 +198,7 @@ Syntax: `x-amazon-apigateway-extension`
 #### Development
 
 | Features | REST API | HTTP API |
+| --- | --- | --- |
 | CORS Configuration | Yes | Yes |
 | Test Invocations | Yes | No |
 | Caching | Yes | No | 
@@ -210,6 +213,7 @@ Syntax: `x-amazon-apigateway-extension`
 #### Monitoring 
 
 | Feature | REST API | HTTP API |
+| --- | --- | --- |
 | Amazon CloudWatch Metrics | Yes | Yes |
 | Access logs to CloudWatch Logs | Yes | Yes |
 | Access logs to Amazon Data Firehose | Yes | No |
@@ -219,6 +223,7 @@ Syntax: `x-amazon-apigateway-extension`
 #### Integrations 
 
 | Feature | REST API | HTTP API |
+| --- | --- | --- |
 | Public HTTP endpoints | Yes | Yes |
 | AWS Services | Yes | Yes |
 | AWS Lambda Functions | Yes | Yes |
