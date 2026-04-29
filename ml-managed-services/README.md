@@ -82,7 +82,7 @@ print(f"Mixed: {sentiment_response['SentimentScore']['Mixed']}")
 ## Amazon Forecast
 
 **Amazon Forecast** is a fully managed AWS service that uses machine learning (ML) to deliver highly accurate time-series forecasts without requiring prior ML experience. It
-automates data preparation, model training, and tuning to predict business metrics like inventory demand, workforce staffing, and financial, based on historical data and related
+automates data preparation, model training, and tuning, to predict business metrics like inventory demand, workforce staffing, and financial, based on historical data and related
 variables (e.g., weather, holidays).
 
 You need to upload your dataset to S3 with:
@@ -117,7 +117,7 @@ You upload your dataset for data model training to an S3 bucket which will then 
 **Amazon Fraud Detector** comes with the following predefined models, which you'll train your data against:
 - **Online Fraud Insights**: Optimized to detect fraud when little historical data is available about the entity being evaluated. eg. New customers registering online for an
 account.
-- **Transaction Fraud Insights**: Testing fraud use cases where the e ntity that is being evaluated might a history of intercations that the model cqn analyze to improve
+- **Transaction Fraud Insights**: Testing fraud use cases where the entity that is being evaluated might have a history of interactions that the model can analyze to improve
 prediction accuracy.
 - **Account Takeover Insights**: If an account was compromised by phishing attacks or any other type of attack.
 
