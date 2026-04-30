@@ -16,7 +16,7 @@ lifecycles. Many AWS services store and use secrets in Secrets Manager but it's 
 ### Automatic Secret Rotation
 
 - You can setup automatic rotation for any database credentials stored in Secrets Manager.
-- You can rotate upto 365 days(1 year).
+- You can rotate up to 365 days (1 year).
 - Rotation is performed via a Lambda function.
 - You can rotate the password for the superuser or for a developer programmatically acessing the database.
 
