@@ -598,7 +598,7 @@ aws ecs create-service \
       ]
   }'
 ```
-### ECS Optimized AMI
+### ECS-Optimized AMI
 
 The **Amazon ECS-optimized AMI** is a specialized Amazon Machine Image (AMI) designed specifically for running containerized workloads on Amazon ECS. It comes pre-configured 
 with essential components like the ECS container agent, the Docker daemon, and necessary runtime dependencies.
@@ -626,7 +626,7 @@ aws ec2 create-launch-template \
 ...      
 ```
 
-### ECS Optimized Bottlerocket AMI
+### ECS-Optimized Bottlerocket AMI
 
 **Bottlerocket** is a Linux based open-source operating system that is purpose built by AWS for running containers on virtual machines or bare metal hosts. The **Amazon 
 ECS-optimized Bottlerocket AMI** is secure and only includes the minimum number of packages that's required to run containers. 
