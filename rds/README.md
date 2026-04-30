@@ -1121,7 +1121,7 @@ All data is stored on SSD storage and is spread across 3 different AZs.
 ### Read Consistency
 
 When data needs to be updated, it has to write updates to all the copies and data can be inconsistent when reading from a copy that has yet to be updated. The read consistency 
-can be set ins DynamoDB to meet your needs.
+can be set in DynamoDB to meet your needs.
 
 #### Eventual Consistent Reads (default)
 
@@ -1303,7 +1303,7 @@ Names.json:
 Avoid DynamoDB scans as much as possiblee:
 
 - Scans are much less efficient compared to running a query.
-- As a table grows, scans take much longer tp complete.
+- As a table grows, scans take much longer to complete.
 - A large table can consume all the provisioned throughput in a single scan.
 
 
