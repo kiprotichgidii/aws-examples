@@ -138,7 +138,7 @@ on the requirements of your task. You can have multiple task execution roles for
 Common permissions:
 
 - Access to Secrets Manager or SSM Parameter Store.
-- Access to download private image form ECR.
+- Access to download private images form the ECR.
 - Full Access to CloudWatch Logs.
 
 Example Task Execution Role with CloudFormation:
