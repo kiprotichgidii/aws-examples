@@ -96,8 +96,8 @@ manual steps across different AWS services.
 
 **`eksctl`** can:
 
-- Deploy EC2-backed nodes.
-- Fargate-backed nodes.
+- Deploy to EC2-backed nodes.
+- Deploy to Fargate-backed nodes.
 - Deploy to a private cluster on AWS Outposts.
 
 By default, `eksctl` uses the following defaults:
