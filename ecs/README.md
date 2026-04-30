@@ -101,10 +101,10 @@ managing a control plane.
 
 1. **Cluster**: Multiple instances which will house the docker containers.
 2. **Task Definition**: A JSON file that defines the configuration of (up to 10) containers you want to run.
-3. **Task**: Launches containers defines in task definition. Tasks do not remain once workload is complete.
-4. **Service**: Ensures tasks remain running eg. Web app
+3. **Task**: Launches containers defined in a task definition. Tasks do not remain once workload is complete.
+4. **Service**: Ensures tasks remain running eg. Web app.
 5. **Container Agent**: Binary on each EC2 instance, which monitors, starts and stops tasks.
-6. **ECS Controller/Schduler**: Responsible for scheduling the deployment and placement of containers, Replace unhealthy containers.
+6. **ECS Controller/Scheduler**: Responsible for scheduling the deployment and placement of containers, Replace unhealthy containers.
    - You can create your own schedulers or use thrid-party schedulers.
 
 ### AWS Fargate
