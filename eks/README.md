@@ -184,8 +184,6 @@ cluster per year.
 
 A **trace** is a data/execution path through the system, and can be though of as a directed acrylic graph(DAG) of spans. 
 
-![Traces and Spans](./images/amazon-eks-traces-and-spans.png)
-
 A **Span** represents a logical unit of work, in Jaeger that has an operation name, the start time of the operation, and the duration. Spans may be nested and ordered to model 
 casual relationships.
 
