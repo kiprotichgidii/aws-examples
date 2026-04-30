@@ -146,7 +146,7 @@ The policy JSON file `mypolicy.json`:
 To store a new secret value in a secret:
 
 ```sh
-    aws secretsmanager put-secret-value \
+aws secretsmanager put-secret-value \
     --secret-id MyTestSecret \
     --secret-string "{\"user\":\"diegor\",\"password\":\"EXAMPLE-PASSWORD\"}"
 ```
