@@ -217,7 +217,7 @@ Open Telemetry supports a variety of programming languages:
 - Rust
 - Swift
 
-For certain frameworks, there plug-and-play libraries to quickyly instrument your apps:
+For certain frameworks, there plug-and-play libraries to quickly instrument your apps:
  
  - Spring
  - ASP.Net Core
