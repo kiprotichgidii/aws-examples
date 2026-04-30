@@ -703,7 +703,7 @@ clustering and replication, which are typically among the most challenging aspec
 
 #### Durability and Fault Tolerance
 
-- Aurora backups and Failover are handled autmatically.
+- Aurora backups and Failover are handled automatically.
 - Snapshots of data can be shared with other AWS accounts.
 - Storage is self-healing; the data blocks and disks are continuously scanned for errors and repaired automatically.
 
