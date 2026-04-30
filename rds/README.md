@@ -832,7 +832,7 @@ aws rds create-db-instance \
 | Scaling | Fine-grained, almost instant scaling | Manual scaling, requires planning and downtime |
 | Capacity Range | 0.5-128 ACUs, more flexible | Fixed, based on instance chosen. |
 | Scaling speed | Seconds | N/A (manual intervention required) | 
-| Read/Arite scaling | Independently | Depends on instance type and read repica configuration |
+| Read/Write scaling | Independently | Depends on instance type and read replica configuration |
 | Compatibility | Broader version support | Wide version suppor, depdending on the instance type. |
 | Use cases | Highly variabel workkloads requiring immediate scaling | Stable workloads with predictable performance needs |
 | Billing | ACUs per second, more granular, + storage. | Instance hours + storage. |
