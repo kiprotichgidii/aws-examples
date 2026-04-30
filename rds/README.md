@@ -1406,7 +1406,7 @@ Use cases for graph databases:
 
 ### Amazon Neptune Analytics
 
-Neptune Analytics is a memory-optimized graph database engine for analytics. With Neptune Analytics, you can get insights and find trends by processing large amounts of graph  
+Neptune Analytics is a memory-optimized graph database engine for analytics. With Neptune Analytics, you can get insights and find trends by processing large amounts of graph 
 data in seconds. To analyze graph data quickly and easily, Neptune Analytics stores large graph datasets in memory. It supports a library of optimized graph analytic 
 algorithms, low-latency graph queries, and vector search capabilities within graph traversals.
 
@@ -1425,14 +1425,14 @@ Use Graph Nueral Networks (GNNs), a learning (ML) technique built for graphs, to
 
 ### Amazon Neptune Database
 
-Neptune database has two types:
-  - Neptune Provisioned: You choose an instance type
-  - Neptune Serverless: A serverless offering, you set a min and max Neptune Capacity Units (NCUs).
+- Neptune database has two types:
+  1. Neptune Provisioned: You choose an instance type
+  2. Neptune Serverless: A serverless offering, you set a min and max Neptune Capacity Units (NCUs).
 
 - Neptune database supports multi-AZ deployment.
 - Netptune has two storage configurations:
-  - **Neptune I/O optimized**: increased input/output for additional costs
-  - **Neptune Standard**: 25% lower cost than I/O optimized
+  1. **Neptune I/O optimized**: increased input/output for additional costs
+  2. **Neptune Standard**: 25% lower cost than I/O optimized
 - You can create a Jupyter Notebook (within Amazon SageMaker Notebook) that includes magic extensions to easily work with Neptune database.
 - Neptune Bulk Loader can be used to import large amounts of data.
 - AWS has multiple built-in or third-party options for visualizing your graph database:
