@@ -118,7 +118,8 @@ aws secretsmanager list-secrets
 
 To add a resource-based policy to a secret:
 
-```shaws secretsmanager put-resource-policy \
+```sh
+aws secretsmanager put-resource-policy \
     --secret-id MyTestSecret \
     --resource-policy file://mypolicy.json \
     --block-public-policy
