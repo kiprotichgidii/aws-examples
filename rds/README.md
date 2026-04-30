@@ -790,10 +790,10 @@ aws rds create-db-instance \
 ### Aurora Serverless v2
 
 **Amazon Aurora Serverless v2** is an on-demand, autoscaling configuration for Amazon Aurora that automatically adjusts database capacity based on application demand. It is 
-designed to handle everything from small, infrequent workloads to large, business-critical applications requiring high availability.
+designed to handle everything from small, infrequent workloads, to large, business-critical applications requiring high availability.
 
 - Capacity is adjusted automatically based on application demand.
-- You are charged only for the resourcs that your database cluster consumes.
+- You are charged only for the resources that your database cluster consumes.
 - Suitable for the most demanding, highly variable workloads.
 - Aurora "Serverless" v2 does not scale to zero and must maintain at least 0.5 ACUs.
 - Only certain Aurora Instance classes are available to use with Aurora Serverless v2.
