@@ -946,7 +946,7 @@ Aurora in the AWS Management Console has a Query Editor, which is just an interf
 
 ### Babelfish for Aurora 
 
-**Babelfish** for PostgreSQL is an open-source library with the compatibility for PostgreSQL to understand queries for applications written for SQL Server.
+**Babelfish** for PostgreSQL is an open-source library with the compatibility for PostgreSQL to understand queries for applications written for Microsoft SQL Server.
 
 **Babelfish for Aurora PostgreSQL** extends your Aurora PostgreSQL DB cluster with the ability to accept database connection requests form Microsoft SQL.
 
