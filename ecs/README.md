@@ -61,7 +61,7 @@ aws ecr create-repository \
 ```
 
 When tag immutability is turned on for a repository, this affects all tags, you cannot make some tags immutable and others mutable. Immutable tags is a best practice because if 
-there was a security vulnerability with a specific image, you can rollbackto the previous image ore preserve the history of vulnerabilities.
+there was a security vulnerability with a specific image, you can rollback to the previous image or preserve the history of vulnerabilities.
 
 The `ImageTagAlreadyExistsExceptio` error is returned if you attempt to push an image with a tag that is already in the repository.
 
