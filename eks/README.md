@@ -163,8 +163,8 @@ powers EKS on AWS.
 
 ![EKS Anywhere](./images/amazon-eks-anywhere.png)
 
-- EKS Anywhere allows you to managed your cluster form the AWS Management Console.
-- An Admin Machine is required to run cluster lifecycle operation
+- EKS Anywhere allows you to manage your on-premise Kubernetes clusters from the AWS Management Console.
+- An Admin Machine is required to run cluster lifecycle operations:
   - Does not have to continously run
   - Critical cluster artifacts are saved to the admin machine on creation eg. kubeconfig
 
