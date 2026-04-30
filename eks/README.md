@@ -91,10 +91,10 @@ helm -n eks-connector install eks-connector \
 ### EKS CTL
 
 `eksctl` is a command-line utility tool that automates and simplifies the process of creating, managing, and operating Amazon Elastic Kubernetes Service (Amazon EKS) clusters. 
-Written in Go, eksctl provides a declarative syntax through YAML configurations and CLI commands to handle complex EKS cluster operations that would otherwise require multiple 
+Written in Go, `eksctl` provides a declarative syntax through YAML configurations and CLI commands to handle complex EKS cluster operations that would otherwise require multiple 
 manual steps across different AWS services.
 
-**EKS** can:
+**`eksctl`** can:
 
 - Deploy EC2-backed nodes.
 - Fargate-backed nodes.
