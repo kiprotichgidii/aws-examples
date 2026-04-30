@@ -104,7 +104,7 @@ managing a control plane.
 3. **Task**: Launches containers defined in a task definition. Tasks do not remain once workload is complete.
 4. **Service**: Ensures tasks remain running eg. Web app.
 5. **Container Agent**: Binary on each EC2 instance, which monitors, starts and stops tasks.
-6. **ECS Controller/Scheduler**: Responsible for scheduling the deployment and placement of containers, Replace unhealthy containers.
+6. **ECS Controller/Scheduler**: Responsible for scheduling the deployment and placement of containers, replace unhealthy containers, and more.
    - You can create your own schedulers or use thrid-party schedulers.
 
 ### AWS Fargate
