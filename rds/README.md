@@ -907,7 +907,7 @@ To create an Aurora global database and its associated resources by using the AW
      --region secondary_region
    ```
 
-When the DB instance is available, replication begins from the writer node to the replicas.
+When the DB instance is available, replication begins from the writer node to the secondary cluster.
 
 ### Aurora RDS Data API
 
