@@ -1430,7 +1430,7 @@ Use Graph Nueral Networks (GNNs), a learning (ML) technique built for graphs, to
   2. Neptune Serverless: A serverless offering, you set a min and max Neptune Capacity Units (NCUs).
 
 - Neptune database supports multi-AZ deployment.
-- Netptune has two storage configurations:
+- Neptune has two storage configurations:
   1. **Neptune I/O optimized**: increased input/output for additional costs
   2. **Neptune Standard**: 25% lower cost than I/O optimized
 - You can create a Jupyter Notebook (within Amazon SageMaker Notebook) that includes magic extensions to easily work with Neptune database.
@@ -1446,8 +1446,8 @@ Use Graph Nueral Networks (GNNs), a learning (ML) technique built for graphs, to
 
 ### Gremlin
 
-**Gremlin** is the grahp traversal language for Apache TinkerPop. Amazon Neptune is compatible with Apache TinkerPop and Gremlin. This means that you can connect to a Neptune 
-DB instance and use the Gremlin traversal language to query the graph. 
+**Gremlin** is the graph traversal language for Apache TinkerPop. Amazon Neptune is compatible with Apache TinkerPop and Gremlin. This means that you can connect to a Neptune 
+db instance and use the Gremlin traversal language to query the graph. 
 
 A traversal in Gremlin is a series of chained steps. It starts at a vertex (or edge). It walks the graph by following the outgoing edges of each vertex and then the outgoing 
 edges of those vertices. Each step is an operation in the traversal.
