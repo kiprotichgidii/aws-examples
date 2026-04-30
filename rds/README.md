@@ -1038,29 +1038,29 @@ AWS service.
 MongoDB is a very popular NOSQL database among developers , but there were open-source licensing issues around using open-source MongoDB, so AWS got around it by building their 
 own NOSQL database, famously known as **Amazon DocumentDB**.
 
-Cluster types:
+- Cluster types:
 
-1. Instance based cluster: Manage your instances, directly choosing instance type.
-2. Elastic Cluster: Cluster automatically scale, you choose vCPU and number of instances per shard.
+  1. Instance based cluster: Manage your instances, directly choosing instance type.
+  2. Elastic Cluster: Cluster automatically scale, you choose vCPU and number of instances per shard.
 
-DocumentDB is compatible with MongoDB 4.0, and 5.0
+- DocumentDB is compatible with MongoDB 4.0, and 5.0
 
-DocumentDB does not support all functionalities of MongoDb eg. Writeable retries
+- DocumentDB does not support all functionalities of MongoDb eg. Writeable retries
 
-DocumentDB storage volumes grow in increments of 10GB, up to a maximum of 128TiB.
+- DocumentDB storage volumes grow in increments of 10GB, up to a maximum of 128TiB.
 
-Create upto 15 replicas.
+- Create upto 15 replicas.
 
-Amazon DocumentDB continously monitors the health of the cluster and automatically restarts failed instances.
+- Amazon DocumentDB continously monitors the health of the cluster and automatically restarts failed instances.
 
-Failover will automatically occur to up to 15 replicas in other AZs.
+- Failover will automatically occur to up to 15 replicas in other AZs.
 
-Backup is turned on by default(cannot be turned off), with a retention period of between 1-35 days, supports point-in-time recovery.
+- Backup is turned on by default(cannot be turned off), with a retention period of between 1-35 days, supports point-in-time recovery.
 
-Clusters are deployed into a customer's VPC
-- Offers a performance insights feature to determine bottlenecks for reads and writes.
-- Data is encrypted in-transit and at rest.
-- Connection must be via TLS.
+- Clusters are deployed into a customer's VPC
+  - Offers a performance insights feature to determine bottlenecks for reads and writes.
+  - Data is encrypted in-transit and at rest.
+  - Connection must be via TLS.
 
 ## Amazon DynamoDB
 
