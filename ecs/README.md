@@ -543,7 +543,7 @@ By default, `awslogs` is blocking and you might want to configure it for nonbloc
 ### ECS Service Connect
 
 **Amazon ECS Service Connect** is a fully managed networking capability that simplifies service-to-service communication within Amazon ECS clusters. It provides built-in service
-discovery, reliable connectivity, and observability without requiring you to manage complex infrastructure like sidecar proxies or external load balancers for internal traffic.
+discovery, reliable connectivity, and observability, without requiring you to manage complex infrastructure like sidecar proxies or external load balancers for internal traffic.
 
 **ECS Service Connect** is an evolution of App Mesh, abstracting a lot of the configuration between App Mesh, Cloud Map, and ELB. 
 
