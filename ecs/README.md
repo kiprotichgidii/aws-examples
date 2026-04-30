@@ -562,7 +562,7 @@ ECS tasks without deploying and configuring load balancers.
 
 ![Amazon ECS Service Connect](./images/amazon-ecs-service-connect.png)
 
-You can simply create a cluster via AWS CLI with service-connect-default parameter and a default Cloud Map namespace name for service discovery purposes.
+You can simply create a cluster via AWS CLI with `--service-connect-defaults` parameter and a default Cloud Map namespace name for service discovery purposes.
 
 ```sh
 aws ecs create-cluster \
