@@ -1384,7 +1384,7 @@ Cassandra Query Language (CQL) is a database query language for Apache Cassandra
 ## Amazon Neptune
 
 **Amazon Neptune** is a fully managed, high-performance graph database service optimized for storing and querying highly connected datasets. It supports popular graph 
-models—Property Graph (via Apache TinkerPop Gremlin/openCypher) and W3C RDF (via SPARQL)—making it ideal for social networking, fraud detection, recommendation engines, and  
+models—Property Graph (via Apache TinkerPop Gremlin/openCypher) and W3C RDF (via SPARQL)—making it ideal for social networking, fraud detection, recommendation engines, and 
 knowledge graphs.
 
 A **graph database** is a database composed of a data structure that uses vertices (nodes, dots) which form a relationship to other vertices via edges (arcs, lines).
