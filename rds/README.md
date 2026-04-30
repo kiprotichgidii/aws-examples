@@ -1317,7 +1317,7 @@ Cassandra workloads on AWS using existing CQL drivers and application code witho
 - It supports applications that require virtually unlimited throughput and storage.
 - Data is encrypted by default and Keyspaces enables you to back up your table data continuously using point-in-time recovery. Keyspaces gives you the performance, elasticity, 
 and enterprise features you need to operate business-critical Cassandra workloads at scale.
-- **Cluser** - A collection of nodes
+- **Cluster** - A collection of nodes
 - **Nodes** - holds up to 2-4 TB of data
   - All nodes read and write
   - Nodes represent the smallest unit of a database
@@ -1383,7 +1383,7 @@ Cassandra Query Language (CQL) is a database query language for Apache Cassandra
 
 ## Amazon Neptune
 
-**Amazon Neptune** is a fully managed, high-performance graph database service optimized for storing and querying highly connected datasets. It supports popular graph  
+**Amazon Neptune** is a fully managed, high-performance graph database service optimized for storing and querying highly connected datasets. It supports popular graph 
 models—Property Graph (via Apache TinkerPop Gremlin/openCypher) and W3C RDF (via SPARQL)—making it ideal for social networking, fraud detection, recommendation engines, and  
 knowledge graphs.
 
