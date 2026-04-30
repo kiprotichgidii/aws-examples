@@ -825,7 +825,7 @@ aws rds create-db-instance \
   --engine aurora-mariadb 
 ```
 
-### Aurora Serverless V2 vs Aurora Provisioned
+### Aurora Serverless v2 vs Aurora Provisioned
 
 | | Aurora Serverless V2 | Aurora Provisioned |
 | --- | --- | --- |
