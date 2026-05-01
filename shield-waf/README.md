@@ -91,7 +91,7 @@ An icon and details will indicate the status of each service.
 
 **AWS Personal Health Dashboard** provides alerts and guidance for AWS events that might affect your environment. All customers can access the AWS Personal Health Dashboard. 
 
-The Personal Health Dashboard shows recent events to help you managed active events, and show proactive notifications so that you can plan for scheduled activities. Use these alerts to get notified about changes that can affect your AWS resources, and then follow the guidance to diagnose and resolve issues.
+The Personal Health Dashboard shows recent events to help you manage active events, and show proactive notifications so that you can plan for scheduled activities. Use these alerts to get notified about changes that can affect your AWS resources, and then follow the guidance to diagnose and resolve issues.
 
 ![AWS Personal Health Dashboard](./images/aws-personal-health-dashboard.png)
 
