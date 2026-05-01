@@ -18,7 +18,7 @@ on-premise infrastructure with AWS, enabling you to store and retrieve data from
 This provides a familiar user interface and helps reduce costs by storing your data in Amazon S3 and taking advantage of the various Amazon S3 storage tiers. You can implement 
 Storage Gateway with S3 Intelligent Tiering to help you automatically move lifecycle files to the lowest cost storage tiers to lower your costs even further.
 
-You deploy your gateway to an on-premise Virtual Machine that runs on the following hypervisors:
+You can deploy your gateway to an on-premise Virtual Machine that runs on the following hypervisors:
 
 - VMWare ESXi
 - Microsoft Hyper-V
