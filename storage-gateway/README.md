@@ -51,7 +51,7 @@ Files can take full advantage of S3 features such as:
 ## Amazon FSx File Gateway
 
 **Amazon FSx File Gateway** is a file storage service that provides on-premises access to fully managed Amazon FSx for Windows File Server file systems. It allows you to store 
-and retrieve files in Amazon FSx File Storage(WFS). This allows your Windows developers to easily store datain the cloud using the tools they are already farmiliar with.
+and retrieve files in Amazon FSx File Storage(WFS). This allows your Windows developers to easily store data in the cloud using the tools they are already farmiliar with.
 
 - You must have at least one Amazon FSx for Windows File Server File system.
 - You must also have on-premise access to FSx for Windows File Server, either through AWS Direct Connect or AWS Site-to-Site VPN.
