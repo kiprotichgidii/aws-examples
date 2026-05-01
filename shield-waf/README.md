@@ -34,7 +34,7 @@ AWS WAF can manage matching requests in a variety of ways, including counting th
 browser.
 
 - Write your own rules to ALLOW or DENY traffic based on the contents of HTTP requests
-- Use a ruleset form a trusted AWS Security Partner in the AWS WAF Rules Marketplace
+- Use a ruleset from a trusted AWS Security Partner in the AWS WAF Rules Marketplace
 - WAF can be attached to either CloudFront or an Application Load Balancer
 
 ![AWS WAF](./images/aws-waf-architecture.png)
