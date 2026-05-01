@@ -66,7 +66,7 @@ Per month, you can purchase:
 
 - You cannot exceed your running On-Demand Instance limit by purchasing regional Reserved Instances.
 - The default On-Demand Instance Limit is 20.
-- Before purchasing RI ensure your On-Demand limit is equal or greater than your RI you intent to purchase.
+- Before purchasing RI ensure your On-Demand limit is equal or greater than the RI you intent to purchase.
 
 #### Zonal Limits
 
