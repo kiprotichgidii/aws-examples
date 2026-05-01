@@ -35,7 +35,7 @@ RIs can be shared between multiple accounts within an AWS Organization unused RI
 
 ### Reserved Instance Attributes
 
-**RI Attributes** (aka Instance Attributes) are limited based on class offering and can affect final price of an RI instance. Thera are 4 RI Attributes: 
+**RI Attributes** (aka Instance Attributes) are limited based on class offering and can affect final price of an RI instance. There are 4 RI Attributes: 
 
 1. **Instance type**: For example, m4.large. This is composed of the instance family (for example, m4) and the instance size (for example, large).
 2. **Region**: The region in which the Reserved Instance is purchased.
