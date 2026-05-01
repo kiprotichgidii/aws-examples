@@ -15,8 +15,8 @@ On-Demand is for applications where the workload is for short-term, spikey, or u
 
 ### Reserved Instances (RI)
 
-Designed for applications that have a steady-state, predictable usage, or require reserved capacity. Reduced Pricing is based on Term X Class Offering X RI Attributes X Payment 
-Option. 
+Designed for applications that have a steady-state, predictable usage, or require reserved capacity. Reduced Pricing is based on `Term x Class Offering x RI Attributes x 
+Payment Option`. 
 
 1. **Term**
    - The longer the term, the greater the savings.
