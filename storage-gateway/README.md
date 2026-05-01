@@ -1,7 +1,7 @@
 ## AWS Storage Gateway 
 
-**AWS Storage Gateway** is a hybrid cloud storage service that connects on-premises environments with AWS cloud storage. It allows you to seamlessly integrate your existing 
-on-premises infrastructure with AWS, enabling you to store and retrieve data from the cloud and run applications in a hybrid environment.
+**AWS Storage Gateway** is a hybrid cloud storage service that connects on-premise environments with AWS cloud storage. It allows you to seamlessly integrate your existing 
+on-premise infrastructure with AWS, enabling you to store and retrieve data from the cloud and run applications in a hybrid environment.
 
 1. **File Gateway** allows you to run a gateway within your on-premise environment so you can interact through an SMB or NFS file-system protocol.
    - *Amazon S3 File Gateway* - enables you to store your files in Amazon S3 while providing access to your users by using traditional SMB shares.
