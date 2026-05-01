@@ -47,6 +47,7 @@ RIs can be shared between multiple accounts within an AWS Organization unused RI
 When you purchase a RI, you determine the scope of the Reserved Instance. The scope does not affect the price. 
 
 | **Regional RI**: Purchase for a region | **Zonal RI**: purchase for an Availability Zone |
+| --- | --- |
 | Does not reserve capacity | Reserves capacity in the specified Availabilty Zone |
 | RI discount applies to integrate to instance usage in any AZ in the Region | RI discount applies to instance in the selected AZ (no AZ Flexibility) |
 | RI discount applies to instance usage within the instance family, regardless of size.<br> Only supported on Amazon Linux/Unix Reserved Instances within default tenancy. | No instance size flexibility. <br> RI discounts discount applies to instance usage for the specified instance type and size only. |
