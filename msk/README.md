@@ -98,10 +98,10 @@ aws kafkaconnect create-custom-plugin \
     "s3Location":{
       "bucketArn": "arn:aws:s3:::bucket-name",
       "fileKey": "file-key"
-    }
-  }'
+     }
+    }'
 ```
-The you create a connector specifying the plugin and configuration information to your source:
+Then you create a connector specifying the plugin and configuration information to your source:
 
 ```sh
 aws kafkaconnect create-connector \
