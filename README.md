@@ -79,3 +79,5 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [AWS Service Health Dashboard](https://github.com/kiprotichgidii/aws-examples/blob/main/shield-waf/README.md#aws-service-health-dashboard)
 - [AWS Personal Health Dashboard](https://github.com/kiprotichgidii/aws-examples/blob/main/shield-waf/README.md#aws-personal-health-dashboard)
 - [AWS Artifact](https://github.com/kiprotichgidii/aws-examples/blob/main/shield-waf/README.md#aws-artifact)
+- [AWS Storage Gateway](https://github.com/kiprotichgidii/aws-examples/blob/main/storage-gateway/README.md#aws-storage-gateway)
+- [EC2 Pricing Models](https://github.com/kiprotichgidii/aws-examples/blob/main/ec2-pricing-models/README.md#ec2-pricing-models)
