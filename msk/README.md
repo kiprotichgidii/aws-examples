@@ -20,7 +20,7 @@ Amazon MSK comes in two types of clusters:
  - Amazon S3
  - EventBridge Pipes
 
-**Amazon MSK** is launched within your VPC, and need your connect to originate from the same VPC. You can enable public access on clusters after the launch of a cluster. Turn on public access for an MSK cluster:
+**Amazon MSK** is launched within your VPC, and need your connect to originate from the same VPC. You can enable public access on clusters after the launch of a cluster. To turn on public access for an MSK cluster:
 
 ```sh
 aws kafka update-connectivity \
