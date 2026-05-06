@@ -83,4 +83,4 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 - [EC2 Pricing Models](https://github.com/kiprotichgidii/aws-examples/blob/main/ec2-pricing-models/README.md#ec2-pricing-models)
 
 ---
-*FYI I got a 799 on my first attempt of the exam and I'm now a AWS Certified Solutions Architect - Associate. * 
+*FYI I got a 799 on my first attempt of the exam and I'm now a AWS Certified Solutions Architect - Associate.* 
