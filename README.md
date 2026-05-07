@@ -84,3 +84,6 @@ The exam focuses on four key areas of the AWS Well-Architected Framework:
 
 ---
 In just 2 months, I was able to pass the exam with a 799 on my first attempt.
+---
+### Acknowledgments
+- All the course content on this repository is courtesy of Andrew Brown, freeCodeCamp.org.
