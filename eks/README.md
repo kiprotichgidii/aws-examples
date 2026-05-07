@@ -263,14 +263,14 @@ end
 - This works with improved scalability and support for open-source observability data formats,(Jaeger, FluentBit, Prometheus, etc) sending to one or more open-source or commercial backends.
 - The Lab collector agent is the default location to which instrumentation libraries export their telemetry data.
 
-![AWS Distro for OpenTelemetry](./images/open-telemetry-collector.png)
+![OpenTelemetry Collector](./images/open-telemetry-collector.png)
 
 ### AWS Distro for OpenTelemetry
 
 The **AWS Distro for OpenTelemetry (ADOT)** is an AWS distribution based on the Cloud Native Computing Foundation (CNCF) OpenTelemetry project. OpenTelemetry provides a single 
 set of open source APIs, libraries, and agents to collect distributed traces and metrics.
 
-![OpenTelemetry Collector](./images/amazon-eks-opentelemetry-collector.png)
+![AWS Distro for OpenTelemetry](./images/open-telemetry-collector.png)
 
 Send correlated logs, metrics, and traces to or from more observability backends such as:
 
