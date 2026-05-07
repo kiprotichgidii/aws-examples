@@ -87,4 +87,4 @@ In just 2 months, I was able to pass the exam with a 799 on my first attempt.
 
 ---
 ### Acknowledgments
-- All the course content on this repository is courtesy of Andrew Brown's course ![here](https://www.youtube.com/watch?v=c3Cn4xYfxJY&t=1s)
+- All the course content on this repository is courtesy of Andrew Brown's course on [YouTube](https://www.youtube.com/watch?v=c3Cn4xYfxJY&t=1s)
