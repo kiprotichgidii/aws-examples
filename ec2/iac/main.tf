@@ -122,9 +122,31 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
+# Fetch the latest Ubuntu 24.04 Image
+data "aws_ami" "ubuntu" {
+  most_recent = true
+  owners      = ["099720109477"] # Canonical
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
 resource "aws_instance" "amazon-ec2-instance" {
-  ami           = data.aws_ami.amazon_linux.id
-  instance_type = "t3.micro" # Free Tier eligible
+  for_each = {
+    debian = "ami-0b75f821522bcff85"
+    rhel   = "ami-0d5e8769671b48387"
+    ubuntu = "ami-05cf1e9f73fbad2e2"
+  }
+
+  ami           = each.value
+  instance_type = "c7i-flex.large" # Free Tier eligible
   subnet_id     = aws_subnet.terraform_subnet.id
   key_name      = aws_key_pair.ssh_public_key.key_name
   region        = "us-east-1"
@@ -133,19 +155,31 @@ resource "aws_instance" "amazon-ec2-instance" {
   ]
   associate_public_ip_address = true
 
+  root_block_device {
+    volume_size = 40
+    volume_type = "gp3"
+  }
+
   tags = {
-    Name = "terraform-instance"
+    Name = "terraform-${each.key}-instance"
   }
 }
 
-output "instance_id" {
-  value = aws_instance.amazon-ec2-instance.id
+output "instance_ids" {
+  value = {
+    for name, instance in aws_instance.amazon-ec2-instance : name => instance.id
+  }
 }
 
-output "public_ip" {
-  value = aws_instance.amazon-ec2-instance.public_ip
+output "public_ips" {
+  value = {
+    for name, instance in aws_instance.amazon-ec2-instance : name => instance.public_ip
+  }
 }
 
-output "private_ip" {
-  value = aws_instance.amazon-ec2-instance.private_ip
+output "private_ips" {
+  value = {
+    for name, instance in aws_instance.amazon-ec2-instance : name => instance.private_ip
+  }
 }
+
